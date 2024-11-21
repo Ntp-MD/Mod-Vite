@@ -1,6 +1,6 @@
 
 
-
+/*
 $(document).ready(async () => {
 	$('html *[id]').each(async function () {
 		for (const folder of ['components', 'views']) {
@@ -19,3 +19,4 @@ $(document).ready(async () => {
 
 
 
+*/

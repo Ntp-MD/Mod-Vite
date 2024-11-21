@@ -1,0 +1,57 @@
+@font-face {
+	font-family: "LINE Seed Sans TH";
+	font-weight: 100;
+	src: url(https://itp1.itopfile.com/ContentImage/z_itp_130820236l5w/fonts/LINESeedSansTH/LINESeedSansTH_Th.otf) format("opentype");
+}
+
+@font-face {
+	font-family: "LINE Seed Sans TH";
+	font-weight: 400;
+	src: url(https://itp1.itopfile.com/ContentImage/z_itp_130820236l5w/fonts/LINESeedSansTH/LINESeedSansTH_Rg.otf) format("opentype");
+}
+
+@font-face {
+	font-family: "LINE Seed Sans TH";
+	font-weight: 600;
+	src: url(https://itp1.itopfile.com/ContentImage/z_itp_130820236l5w/fonts/LINESeedSansTH/LINESeedSansTH_Bd.otf) format("opentype");
+}
+
+@font-face {
+	font-family: "LINE Seed Sans TH";
+	font-weight: 800;
+	src: url(https://itp1.itopfile.com/ContentImage/z_itp_130820236l5w/fonts/LINESeedSansTH/LINESeedSansTH_XBd.otf) format("opentype");
+}
+
+@font-face {
+	font-family: "LINE Seed Sans TH";
+	font-weight: 900;
+	src: url(https://itp1.itopfile.com/ContentImage/z_itp_130820236l5w/fonts/LINESeedSansTH/LINESeedSansTH_He.otf) format("opentype");
+}
+
+body {
+	--color1: #282828;
+	--color2: #fff;
+	margin: 0;
+	padding: 0;
+	font-size: clamp(16px, 1vw, 18px);
+	font-family: "LINE Seed Sans TH";
+	background: var(--color2);
+	color: var(--color1);
+}
+
+body.dark-mode {
+	--color1: #fff !important;
+	--color2: #282828 !important;
+}
+
+body::-webkit-scrollbar {
+	opacity: 0;
+	width: 0;
+}
+
+
+a {
+	color: var(--color1);
+	text-decoration: none;
+	text-transform: uppercase;
+}
