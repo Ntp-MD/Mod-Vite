@@ -77,8 +77,6 @@
 
 <style scoped>
 @import '/css/slide.css';
-
-
 </style>
 
 

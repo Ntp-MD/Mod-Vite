@@ -1,6 +1,27 @@
+<template>
+	<div class="nav-header">
+		<a href="/" class="nav-logo">MOD</a>
+		<div class="nav-menu">
+			<router-link class="nav-link" to="/page1">Page1</router-link>
+			<router-link class="nav-link" to="/page2">Page2</router-link>
+			<router-link class="nav-link" to="/page3">Page3</router-link>
+			<router-link class="nav-link" to="/page4">Page4</router-link>
+		</div>
+	</div>
+	<div class="toggle-mode">
+		<img src="/src/assets/icon/day-and-night2.png" alt="">
+	</div>
+</template>
+
+
+<script>
+
+
+
+</script>
+
+
 <style scoped>
-
-
 .nav-header {
 	display: grid;
 	grid-template-columns: 20% 80%;
@@ -33,43 +54,3 @@
 	width: 50px;
 }
 </style>
-
-<template>
-	<div class="nav-header">
-		<a href="/" class="nav-logo">MOD</a>
-		<div class="nav-menu">
-			<a class="nav-link" href="">Home</a>
-			<a class="nav-link" href="">About</a>
-			<a class="nav-link" href="">Service</a>
-			<a class="nav-link" href="">Contact</a>
-		</div>
-	</div>
-	<div class="toggle-mode">
-		<img src="/src/assets/icon/day-and-night2.png" alt="">
-	</div>
-</template>
-
-
-<script>
-
-$(document).ready(function () {
-	if (localStorage.getItem('darkMode') === 'enabled') {
-		$('body').addClass('dark-mode');
-	}
-});
-
-$(document).on('click', function (e) {
-	if ($(e.target).closest('.toggle-mode').length) {
-		$('body').toggleClass('dark-mode');
-
-		// Save the mode in local storage
-		if ($('body').hasClass('dark-mode')) {
-			localStorage.setItem('darkMode', 'enabled');
-		} else {
-			localStorage.setItem('darkMode', 'disabled');
-		}
-	}
-});
-
-
-</script>
