@@ -4,7 +4,7 @@ import { resolve } from "path"; // Import path module
 
 export default defineConfig({
   plugins: [vue()],
-  base: "/Mod-Vite/",
+  base: "/Mod-Vite/", // Ensure this matches your repository name
   server: {
     hmr: true, // Disable Hot Module Replacement (HMR)
     watch: {
@@ -15,6 +15,7 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": resolve(__dirname, "src"), // Alias for the src folder
+      vue: "vue/dist/vue.esm-bundler.js", // Ensures Vue is resolved correctly in the browser
     },
   },
 });
