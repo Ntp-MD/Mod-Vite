@@ -4,11 +4,12 @@ import { resolve } from "path"; // Import path module
 
 export default defineConfig({
   plugins: [vue()],
+  base: "/Mod-Vite/",
   server: {
-    hmr: true,  // Disable Hot Module Replacement (HMR)
+    hmr: true, // Disable Hot Module Replacement (HMR)
     watch: {
-      usePolling: true,  // Enable polling to detect file changes
-      interval: 100,     // Polling interval in ms
+      usePolling: true, // Enable polling to detect file changes
+      interval: 100, // Polling interval in ms
     },
   },
   resolve: {
