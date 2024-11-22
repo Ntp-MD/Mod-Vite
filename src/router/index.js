@@ -1,7 +1,7 @@
-import { createRouter, createWebHistory } from "vue-router";
+import { createRouter, createWebHashHistory } from "vue-router"; // Import hash history
 
 // Dynamically import all `.vue` files from the `views` folder
-const viewFiles = import.meta.glob("@/views/*.vue");  // Correct the path to `@/views/*.vue`
+const viewFiles = import.meta.glob("@/views/*.vue");
 
 // Dynamically create routes for each file
 const routes = Object.keys(viewFiles).map((path) => {
@@ -22,7 +22,7 @@ routes.push({
 });
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL), // Base URL from Vite config
+  history: createWebHashHistory(import.meta.env.BASE_URL), // Use hash mode for routing
   routes,
 });
 
