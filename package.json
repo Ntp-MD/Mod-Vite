@@ -1,4 +1,5 @@
 {
+	 "homepage": "https:///ntp-md.github.io/Mod-Vite",
   "name": "mod-vite",
   "private": true,
   "version": "0.0.0",
@@ -7,7 +8,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "generate:exports": "node generate-exports.js"
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "fs-extra": "^11.2.0",
