@@ -1,12 +1,18 @@
 <template>
 	<div>
-	  <h1>Welcome to Page 1</h1>
+
 	</div>
- </template>
- 
- <script>
- export default {
+	<Slide />
+</template>
+
+<script>
+// Import the Slide component from the components folder
+import Slide from '@/components/Slide.vue';
+
+export default {
 	name: 'Page1',
- };
- </script>
- 
+	components: {
+		Slide, // Register the Slide component so you can use it in the template
+	},
+};
+</script>

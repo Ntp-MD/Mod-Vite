@@ -1,25 +1,28 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHistory } from "vue-router";
 
 // Dynamically import all `.vue` files from the `views` folder
-const viewFiles = import.meta.glob('@/views/*.vue');
+const viewFiles = import.meta.glob("../views/*.vue");
 
 // Dynamically create routes for each file
 const routes = Object.keys(viewFiles).map((path) => {
-  const name = path.split('/').pop().replace('.vue', ''); // Extract page name from file path
+  // Extract the file name (e.g., "Page1.vue")
+  const name = path.split("/").pop().replace(".vue", "");
+
   return {
-    path: `/${name.toLowerCase()}`, // Use file name as route path (e.g., "/page1")
-    component: viewFiles[path], // Use the dynamically imported component
+    path: name.toLowerCase() === "home" ? "/" : `/${name.toLowerCase()}`, // Use `/` for "Home.vue", otherwise `/page-name`
+    name, // Use the file name as the route name
+    component: viewFiles[path], // Dynamically imported component
   };
 });
 
-// Add a fallback route for when no route matches
+// Add a fallback route for unmatched paths
 routes.push({
-  path: '/:pathMatch(.*)*', // Catch-all route
-  component: viewFiles['/src/views/NotFound.vue'] || null, // Optional: Set a NotFound component
+  path: "/:pathMatch(.*)*", // Catch-all route
+  component: viewFiles["../views/NotFound.vue"] || null, // Use NotFound.vue if it exists
 });
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHistory(import.meta.env.BASE_URL), // Base URL from Vite config
   routes,
 });
 

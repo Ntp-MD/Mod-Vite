@@ -1,0 +1,33 @@
+{
+	"Vue Component Boilerplate": {
+	  "prefix": "vuecomponent",
+	  "body": [
+		 "<template>",
+		 "  <div>",
+		 "    $1",
+		 "  </div>",
+		 "</template>",
+		 "",
+		 "<script>",
+		 "export default {",
+		 "  name: \"$TM_FILENAME_BASE\",",
+		 "  components: {},",
+		 "  data() {",
+		 "    return {",
+		 "      $2",
+		 "    };",
+		 "  },",
+		 "  methods: {",
+		 "    $3",
+		 "  }",
+		 "};",
+		 "</script>",
+		 "",
+		 "<style scoped>",
+		 "$4",
+		 "</style>"
+	  ],
+	  "description": "Scaffold a Vue component"
+	}
+ }
+ 
