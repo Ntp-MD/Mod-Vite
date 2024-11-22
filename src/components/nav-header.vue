@@ -9,7 +9,9 @@
 		</div>
 	</div>
 	<div class="toggle-mode">
-		<img src="/src/assets/icon/day-and-night2.png" alt="">
+		<div class="bg-toggle">
+			<div class="icon-toggle"></div>
+		</div>
 	</div>
 </template>
 
@@ -45,12 +47,41 @@
 .toggle-mode {
 	cursor: pointer;
 	position: fixed;
-	top: 0;
-	right: 0;
+	top: 40%;
+	right: 10px;
 }
 
-.toggle-mode img {
+.bg-toggle {
+	position: relative;
+	display: grid;
+	place-items: center;
+	width: 35px;
+	aspect-ratio: 2/5;
+	background-image: url(/src/assets/icon/bg-day.png);
+	background-size: cover;
+	background-repeat: no-repeat;
+	border: 2px solid #ccc;
+	border-radius: 30px;
+}
+
+body.dark-mode .bg-toggle {
+	background-image: url(/src/assets/icon/bg-night.png) !important;
+	border: 2px solid #fff;
+}
+
+.icon-toggle {
+	background-image: url(/src/assets/icon/sun.png);
+	background-size: cover;
+	background-repeat: no-repeat;
+	transform: translateY(-90%);
+	height: 25px;
 	aspect-ratio: 1;
-	width: 50px;
+	transition: .5s;
+	border-radius: 50%;
+}
+
+body.dark-mode .icon-toggle{
+	background-image: url(/src/assets/icon/moon.png);
+	transform: translateY(90%);
 }
 </style>

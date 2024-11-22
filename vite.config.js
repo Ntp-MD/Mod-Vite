@@ -1,23 +1,19 @@
-import { defineConfig } from 'vite';  // Importing Vite's defineConfig
-import vue from '@vitejs/plugin-vue';  // Importing Vue plugin
-import path from 'path';  // Import path module
+import { defineConfig } from "vite"; // Importing Vite's defineConfig
+import vue from "@vitejs/plugin-vue"; // Importing Vue plugin
+import { resolve } from "path"; // Import path module
 
 export default defineConfig({
   plugins: [vue()],
   server: {
-    hmr: {
-      // Specify the client port if needed
-      clientPort: 443,
-    },
+    hmr: true,  // Disable Hot Module Replacement (HMR)
     watch: {
-      usePolling: true, // Ensure file changes are detected
-      interval: 100, // Polling interval
+      usePolling: true,  // Enable polling to detect file changes
+      interval: 100,     // Polling interval in ms
     },
   },
   resolve: {
     alias: {
-      // Resolve alias for '@' to the 'src' directory
-      '@': path.resolve(__dirname, 'src'),
+      "@": resolve(__dirname, "src"), // Alias for the src folder
     },
   },
 });

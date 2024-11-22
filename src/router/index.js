@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 
 // Dynamically import all `.vue` files from the `views` folder
-const viewFiles = import.meta.glob("../views/*.vue");
+const viewFiles = import.meta.glob("@/views/*.vue");  // Correct the path to `@/views/*.vue`
 
 // Dynamically create routes for each file
 const routes = Object.keys(viewFiles).map((path) => {
@@ -18,7 +18,7 @@ const routes = Object.keys(viewFiles).map((path) => {
 // Add a fallback route for unmatched paths
 routes.push({
   path: "/:pathMatch(.*)*", // Catch-all route
-  component: viewFiles["../views/NotFound.vue"] || null, // Use NotFound.vue if it exists
+  component: viewFiles["@/views/NotFound.vue"] || null, // Use NotFound.vue if it exists
 });
 
 const router = createRouter({
