@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "preview": "vite preview",
+    "build": "vite build",
+	 "preview": "vite preview",
     "deploy": "npm run build && rm -rf docs && mv dist docs && git add . && git commit -m 'Deploy site to GitHub Pages from docs folder' && git push origin main"
   },
   "dependencies": {
@@ -16,8 +17,6 @@
     "vue-router": "^4.4.5"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^5.1.4",
-    "gh-pages": "^6.2.0",
     "vite": "^5.4.10"
   }
 }
