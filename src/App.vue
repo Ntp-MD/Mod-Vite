@@ -11,8 +11,11 @@ export default {
 
 <template>
 	<div id="app">
-		
 		<nav-header />
 		<router-view />
 	</div>
+	
+
+
+
 </template>
