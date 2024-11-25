@@ -1,24 +1,25 @@
 {
-	 "homepage": "https:///ntp-md.github.io/Mod-Vite",
-	 "name": "mod-vite",
-	 "private": true,
-	 "version": "0.0.0",
-	 "type": "module",
-	 "scripts": {
-	 	 "dev": "vite",
-	 	 "build": "vite build",
-	 	 "preview": "vite preview",
-	 	 "deploy": "gh-pages -d dist"
-	 },
-	 "dependencies": {
-	 	 "fs-extra": "^11.2.0",
-	 	 "path": "^0.12.7",
-	 	 "vue": "^3.5.13",
-	 	 "vue-router": "^4.4.5"
-	 },
-	 "devDependencies": {
-	 	 "@vitejs/plugin-vue": "^5.1.4",
-	 	 "gh-pages": "^6.2.0",
-	 	 "vite": "^5.4.10"
-	 }
+  "homepage": "https:///ntp-md.github.io/Mod-Vite",
+  "name": "mod-vite",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "deploy": "npm run build && vite-gh-pages"
+  },
+  "dependencies": {
+    "fs-extra": "^11.2.0",
+    "path": "^0.12.7",
+    "vue": "^3.5.13",
+    "vue-router": "^4.4.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.1.4",
+    "gh-pages": "^6.2.0",
+    "vite": "^5.4.10",
+    "vite-plugin-gh-pages": "^1.0.0"
+  }
 }

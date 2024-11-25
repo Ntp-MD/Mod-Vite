@@ -1,9 +1,13 @@
 import { defineConfig } from "vite"; // Importing Vite's defineConfig
 import vue from "@vitejs/plugin-vue"; // Importing Vue plugin
 import { resolve } from "path"; // Import path module
+import { ghPages } from "vite-plugin-gh-pages";
 
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [
+    vue(),
+    ghPages(), // เพิ่มปลั๊กอินสำหรับ deploy อัตโนมัติ
+  ],
   base: "/Mod-Vite/", // Ensure this matches your repository name
   server: {
     hmr: true, // Disable Hot Module Replacement (HMR)
