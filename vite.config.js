@@ -3,9 +3,10 @@ import vue from "@vitejs/plugin-vue"; // Importing Vue plugin
 import { resolve } from "path"; // Import path module
 
 export default defineConfig({
-  plugins: [
-    vue(),
-  ],
+  plugins: [vue()],
+  build: {
+    outDir: "docs", // Change the output folder to docs or another folder if needed
+  },
   base: "/Mod-Vite/", // Ensure this matches your repository name
   server: {
     hmr: true, // Disable Hot Module Replacement (HMR)
