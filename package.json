@@ -6,9 +6,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
     "preview": "vite preview",
-    "deploy": "npm run build && vite-gh-pages"
+    "build": "vite build",
+    "deploy": "npm run build && rm -rf docs && mv dist docs && git add . && git commit -m 'Deploy site to GitHub Pages from docs folder' && git push origin main"
   },
   "dependencies": {
     "fs-extra": "^11.2.0",
