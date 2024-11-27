@@ -1,0 +1,1 @@
+import{_ as s,c as a,a as t,F as n,o}from"./index-DGTPJ92W.js";const r={name:"Page1"};function l(p,e,c,d,u,f){return o(),a(n,null,[e[0]||(e[0]=t("div",null,"test",-1)),e[1]||(e[1]=t("div",{class:"test"},null,-1))],64)}const m=s(r,[["render",l]]);export{m as default};
