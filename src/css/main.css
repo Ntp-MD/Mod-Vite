@@ -1,29 +1,69 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
 body {
-	--color1: #282828;
-	--color2: #fff;
-	margin: 0;
-	padding: 0;
-	font-size: clamp(14px, 1vw, 16px);
-	font-family: "Inter", sans-serif;
-	background: var(--color2);
-	color: var(--color1);
-	transition: .3s;
-}
+  --bg: #fff;
+  --color1: #282828;
+  --color2: #fff;
+  --color3: #9d00ff;
+  --color4: #bbb;
+  --color-sw: #555;
+  --color-sw2: #fff;
 
-body.dark-mode {
-	--color1: #fff !important;
-	--color2: #282828 !important;
+  margin: 0;
+  padding: 0;
+  font-size: clamp(14px, 1vw, 16px);
+  font-family: "Inter", sans-serif;
+  background: var(--color2);
+  color: var(--color1);
+  transition: 0.3s;
+  background: var(--bg);
 }
 
 body::-webkit-scrollbar {
-	opacity: 0;
-	width: 0;
+  opacity: 0;
+  width: 0;
 }
 
 a {
-	color: var(--color1);
-	text-decoration: none;
-	text-transform: uppercase;
+  color: var(--color1);
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+h1 {
+  font-size: clamp(26px, 2vw, 36px);
+}
+
+h2 {
+  font-size: clamp(24px, 1.5vw, 30px);
+}
+
+h3 {
+  font-size: clamp(20px, 1.5vw, 26px);
+}
+
+button {
+  font-size: clamp(14px, 1vw, 16px);
+  background: var(--color3);
+  color: #fff;
+  border-radius: 7px;
+  padding: 12px 15px;
+  width: fit-content;
+  border: none;
+  cursor: pointer;
+}
+
+body.dark-mode {
+  --bg: #000;
+  --color-sw: #fff;
+  --color-sw2: #282828;
+  --color-sw3: #282828;
+  --color3: #9d00ff;
+  & .dashboard-content {
+    background: var(--color1);
+  }
+
+  .nav-logo {
+    background-image: url(/Mod-Vite/src/assets/icon/night.png);
+  }
 }
