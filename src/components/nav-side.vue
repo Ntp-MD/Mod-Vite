@@ -3,23 +3,23 @@
     <a href="/" class="nav-logo"> </a>
     <div class="nav-menu">
       <span>overview</span>
-      <router-link class="nav-link" to="/page1"><img src="/src/assets//ui/home.png" alt="" />dashboard</router-link>
-      <router-link class="nav-link" to="/"><img src="/src/assets//ui/menu.png" alt="" />application</router-link>
-      <router-link class="nav-link" to="/"><img src="/src/assets//ui/copy.png" alt="" />page</router-link>
-      <router-link class="nav-link" to="/"><img src="/src/assets//ui/link.png" alt="" />embed</router-link>
-      <router-link class="nav-link" to="/"><img src="/src/assets//ui/download.png" alt="" />download</router-link>
+      <router-link class="nav-link" to="/page1"><img src="/src/assets//ui-icon/home.png" alt="" />dashboard</router-link>
+      <router-link class="nav-link" to="/"><img src="/src/assets//ui-icon/menu.png" alt="" />application</router-link>
+      <router-link class="nav-link" to="/"><img src="/src/assets//ui-icon/copy.png" alt="" />page</router-link>
+      <router-link class="nav-link" to="/"><img src="/src/assets//ui-icon/link.png" alt="" />embed</router-link>
+      <router-link class="nav-link" to="/"><img src="/src/assets//ui-icon/download.png" alt="" />download</router-link>
     </div>
     <div class="nav-menu">
       <span>community</span>
-      <router-link class="nav-link" to="/"><img src="/src/assets//ui/calendar.png" alt="" />calendar</router-link>
-      <router-link class="nav-link" to="/"><img src="/src/assets//ui/contact.png" alt="" />contact</router-link>
-      <router-link class="nav-link" to="/"><img src="/src/assets//ui/international.png" alt="" />social</router-link>
+      <router-link class="nav-link" to="/"><img src="/src/assets//ui-icon/calendar.png" alt="" />calendar</router-link>
+      <router-link class="nav-link" to="/"><img src="/src/assets//ui-icon/contact.png" alt="" />contact</router-link>
+      <router-link class="nav-link" to="/"><img src="/src/assets//ui-icon/international.png" alt="" />social</router-link>
     </div>
     <div class="nav-menu">
       <span>preference</span>
-      <router-link class="nav-link" to="/"><img src="/src/assets//ui/account.png" alt="" />account</router-link>
-      <router-link class="nav-link" to="/"><img src="/src/assets//ui/control.png" alt="" />setting</router-link>
-      <router-link class="nav-link" to="/"><img src="/src/assets//ui/logout.png" alt="" />sign out</router-link>
+      <router-link class="nav-link" to="/"><img src="/src/assets//ui-icon/account.png" alt="" />account</router-link>
+      <router-link class="nav-link" to="/"><img src="/src/assets//ui-icon/control.png" alt="" />setting</router-link>
+      <router-link class="nav-link" to="/"><img src="/src/assets//ui-icon/logout.png" alt="" />sign out</router-link>
     </div>
   </div>
 </template>

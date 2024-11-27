@@ -1,21 +1,16 @@
-<script>
-import NavSide from "./components/nav-side.vue";
-
-export default {
-  components: {
-    NavSide,
-  },
-};
-</script>
-
 <template>
+  <toggle-mode />
   <div class="dashboard-layout">
     <nav-side />
+
     <div class="dashboard-content">
       <router-view />
       <div class="top">
         <div class="search-box">
           <input type="search" />
+          <div class="search-icon">
+            <img src="/src/assets/ui-icon/search.png" alt="" width="100%" />
+          </div>
         </div>
         <button>Lorem, ipsum dolor.</button>
       </div>
@@ -35,10 +30,44 @@ export default {
   flex-direction: column;
   padding: 2vw 5vw 5vw 2vw;
   background: #f5f5f5;
-  & .top {
-    display: flex;
-    justify-content: end;
-    float: right;
-  }
+}
+
+.top {
+  display: flex;
+  justify-content: end;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.search-box input {
+  width: 15vw;
+  border-radius: 30px;
+  height: 100%;
+  border: 2px solid var(--color3);
+  padding-left: 15px;
+}
+.search-box input:focus {
+  outline: none;
+}
+
+.search-icon {
+  display: grid;
+  place-items: center;
+  position: relative;
+  right: 12%;
+  background: var(--color3);
+  border-radius: 50%;
+  padding: 5px;
+  height: 20px;
+  width: 20px;
+}
+
+.search-icon img {
+  width: 80%;
+  filter: invert(1);
 }
 </style>
