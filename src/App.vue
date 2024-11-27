@@ -1,11 +1,7 @@
 <script>
-import NavHeader from "./components/nav-header.vue";
 import NavSide from "./components/nav-side.vue";
 
 export default {
-  components: {
-    NavHeader,
-  },
   components: {
     NavSide,
   },
@@ -44,46 +40,5 @@ export default {
     justify-content: end;
     float: right;
   }
-}
-
-.toggle-mode {
-  cursor: pointer;
-  position: fixed;
-  top: 40%;
-  right: 10px;
-}
-
-.bg-toggle {
-  position: relative;
-  display: grid;
-  place-items: center;
-  width: 35px;
-  aspect-ratio: 2/5;
-  background-image: url(/src/assets/icon/bg-day.png);
-  background-size: cover;
-  background-repeat: no-repeat;
-  border: 2px solid #ccc;
-  border-radius: 30px;
-}
-
-body.dark-mode .bg-toggle {
-  background-image: url(/src/assets/icon/bg-night.png) !important;
-  border: 2px solid var(--color2);
-}
-
-.icon-toggle {
-  background-image: url(/src/assets/icon/sun.png);
-  background-size: cover;
-  background-repeat: no-repeat;
-  transform: translateY(-90%);
-  height: 25px;
-  aspect-ratio: 1;
-  transition: 0.5s;
-  border-radius: 50%;
-}
-
-body.dark-mode .icon-toggle {
-  background-image: url(/src/assets/icon/moon.png);
-  transform: translateY(90%);
 }
 </style>
