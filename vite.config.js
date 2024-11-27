@@ -1,15 +1,23 @@
-import { defineConfig } from "vite"; // Importing Vite's defineConfig
-import vue from "@vitejs/plugin-vue"; // Importing Vue plugin
+import { defineConfig } from "vite"; // Import Vite's defineConfig
+import vue from "@vitejs/plugin-vue"; // Import Vue plugin
 import { resolve } from "path"; // Import path module
+import Components from "unplugin-vue-components/vite"; // Import unplugin-vue-components
 
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [
+    vue(),
+    Components({
+      dirs: ["./src/components"], // Specify your components directory
+      extensions: ["vue"], // File extensions to include
+      deep: true, // Enable subdirectory scanning
+    }),
+  ],
   build: {
     outDir: "docs", // Change the output folder to docs or another folder if needed
   },
   base: "/Mod-Vite/", // Ensure this matches your repository name
   server: {
-    hmr: true, // Disable Hot Module Replacement (HMR)
+    hmr: true, // Enable Hot Module Replacement (HMR)
     watch: {
       usePolling: true, // Enable polling to detect file changes
       interval: 100, // Polling interval in ms
