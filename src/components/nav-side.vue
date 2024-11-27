@@ -39,7 +39,7 @@
 .nav-logo {
   position: relative;
   height: 140px;
-  background-image: url(/Mod-Vite/src/assets/icon/day.png);
+  background-image: url(/src/assets/icon/day.png);
   background-size: 64%;
   background-repeat: no-repeat;
   background-position: 50% 0%;
@@ -73,5 +73,9 @@
 
 .nav-menu a:hover {
   color: var(--color3);
+}
+
+body.dark-mode .nav-logo {
+  background-image: url(/src/assets/icon/night.png);
 }
 </style>

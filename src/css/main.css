@@ -62,8 +62,4 @@ body.dark-mode {
   & .dashboard-content {
     background: var(--color1);
   }
-
-  .nav-logo {
-    background-image: url(/Mod-Vite/src/assets/icon/night.png);
-  }
 }
