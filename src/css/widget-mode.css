@@ -1,16 +1,3 @@
-<template>
-  <div class="toggle-mode">
-    <div class="bg-toggle">
-      <div class="icon-toggle"></div>
-    </div>
-  </div>
-</template>
-
-<script>
-export default {};
-</script>
-
-<style scoped>
 .toggle-mode {
   cursor: pointer;
   position: fixed;
@@ -50,4 +37,3 @@ body.dark-mode .icon-toggle {
   background-image: url(@/assets/weather/moon.png);
   transform: translateY(90%);
 }
-</style>

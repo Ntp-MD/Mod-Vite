@@ -1,7 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
 body {
-  --bg: #fff;
   --color1: #282828;
   --color2: #fff;
   --color3: #9d00ff;
@@ -16,7 +15,6 @@ body {
   background: var(--color2);
   color: var(--color1);
   transition: 0.3s;
-  background: var(--bg);
 }
 
 body::-webkit-scrollbar {
@@ -45,7 +43,7 @@ h3 {
 button {
   font-size: clamp(14px, 1vw, 16px);
   background: var(--color3);
-  color: #fff;
+  color: var(--color2);
   border-radius: 7px;
   padding: 12px 15px;
   width: fit-content;
@@ -54,10 +52,8 @@ button {
 }
 
 body.dark-mode {
-  --bg: #000;
   --color-sw: #fff;
   --color-sw2: #282828;
-  --color-sw3: #282828;
   --color3: #9d00ff;
   & .dashboard-content {
     background: var(--color1);

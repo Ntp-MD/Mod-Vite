@@ -1,5 +1,6 @@
 <template>
-  <toggle-mode />
+  <widget-mode />
+
   <div class="dashboard-layout">
     <nav-side />
 
@@ -20,5 +21,6 @@
 </template>
 
 <style scoped>
-@import url("@/css/dashboard");
+@import "@/css/widget-mode.css";
+@import "@/css/dashboard.css";
 </style>

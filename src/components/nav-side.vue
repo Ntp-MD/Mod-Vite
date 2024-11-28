@@ -1,5 +1,5 @@
 <template>
-  <div class="nav-side">
+  <div class="nav-aside">
     <a href="/" class="nav-logo"> </a>
     <div class="nav-menu">
       <span>overview</span>
@@ -24,58 +24,6 @@
   </div>
 </template>
 
-<script></script>
-
 <style scoped>
-.nav-side {
-  display: flex;
-  flex-direction: column;
-  gap: 3vw;
-  height: 100vh;
-  padding: 1vw 2vw 3vw;
-  background: var(--color-sw2);
-}
-
-.nav-logo {
-  position: relative;
-  height: 140px;
-  background-image: url("@/assets/weather/day.png");
-  background-size: 64%;
-  background-repeat: no-repeat;
-  background-position: 50% 0%;
-}
-
-.nav-menu {
-  display: flex;
-  flex-direction: column;
-  gap: 1vw;
-}
-
-.nav-side span {
-  font-size: 14px;
-  text-transform: uppercase;
-  color: var(--color4);
-}
-
-.nav-menu img {
-  aspect-ratio: 1;
-  width: 18px;
-  filter: brightness(0) invert(15%) sepia(100%) saturate(6000%) hue-rotate(270deg);
-}
-
-.nav-menu a {
-  display: flex;
-  align-items: start;
-  gap: 10px;
-  font-size: 16px;
-  color: var(--color-sw);
-}
-
-.nav-menu a:hover {
-  color: var(--color3);
-}
-
-body.dark-mode .nav-logo {
-  background-image: url("@/assets/weather/night.png");
-}
+@import "@/css/nav-aside.css";
 </style>
