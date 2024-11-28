@@ -66,19 +66,13 @@
 .nav-menu {
   display: flex;
   flex-direction: column;
-  gap: 1vw;
+  gap: 15px;
 }
 
 .nav-aside span {
   font-size: clamp(10px, 0.8vw, 14px);
   text-transform: uppercase;
   color: #aaa;
-}
-
-.nav-menu img {
-  aspect-ratio: 1;
-  width: 18px;
-  filter: brightness(0) invert(15%) sepia(100%) saturate(6000%) hue-rotate(270deg);
 }
 
 .nav-menu a {
@@ -89,11 +83,21 @@
   color: var(--font2);
 }
 
+.nav-menu img {
+  aspect-ratio: 1;
+  width: clamp(15px, 1vw, 18px);
+  filter: brightness(0) invert(15%) sepia(100%) saturate(6000%) hue-rotate(270deg);
+}
+
 .nav-menu a:hover {
   color: var(--main-color2);
 }
 
 body.dark-mode .nav-logo {
   background-image: url("@/assets/weather/night.png");
+}
+
+body.dark-mode .nav-menu img {
+  filter: invert(1);
 }
 </style>

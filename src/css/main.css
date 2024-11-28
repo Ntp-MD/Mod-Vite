@@ -85,7 +85,7 @@ button {
 .dashboard-section {
   display: flex;
   flex-direction: column;
-  padding: var(--gap);
+
   background: var(--main-bg);
   gap: var(--gap);
   min-height: 1500px;
@@ -93,12 +93,11 @@ button {
 
 .top-section {
   display: flex;
-  justify-content: start;
-  align-items: flex-end;
+  justify-content: end;
+  align-items: center;
   gap: var(--gap);
   padding: 10px var(--gap);
   background: var(--sub-color);
-  box-shadow: var(--box-shadow1);
 }
 
 .head-page {
@@ -109,6 +108,7 @@ button {
   display: flex;
   flex-direction: column;
   gap: var(--gap);
+  padding: var(--gap);
 }
 
 .bottom-section {
@@ -148,6 +148,22 @@ button {
 
 .search-icon img {
   width: 80%;
+  filter: invert(1);
+}
+
+.social-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.social-panel img {
+  aspect-ratio: 1;
+  width: 25px;
+  filter: brightness(0) invert(15%) sepia(100%) saturate(6000%) hue-rotate(270deg);
+}
+
+body.dark-mode .social-panel img {
   filter: invert(1);
 }
 
