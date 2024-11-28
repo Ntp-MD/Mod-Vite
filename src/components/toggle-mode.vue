@@ -24,7 +24,7 @@ export default {};
   place-items: center;
   width: 35px;
   aspect-ratio: 2/5;
-  background-image: url(/src/assets/icon/bg-day.png);
+  background-image: url(/src/assets/weather/bg-day.png);
   background-size: cover;
   background-repeat: no-repeat;
   border: 2px solid #ccc;
@@ -32,7 +32,7 @@ export default {};
 }
 
 .icon-toggle {
-  background-image: url(/src/assets/icon/sun.png);
+  background-image: url(/src/assets/weather/sun.png);
   background-size: cover;
   background-repeat: no-repeat;
   transform: translateY(-90%);
@@ -43,11 +43,11 @@ export default {};
 }
 
 body.dark-mode .bg-toggle {
-  background-image: url(/src/assets/icon/bg-night.png) !important;
+  background-image: url(/src/assets/weather/bg-night.png) !important;
 }
 
 body.dark-mode .icon-toggle {
-  background-image: url(/src/assets/icon/moon.png);
+  background-image: url(/src/assets/weather/moon.png);
   transform: translateY(90%);
 }
 </style>

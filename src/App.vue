@@ -5,11 +5,11 @@
 
     <div class="dashboard-content">
       <router-view />
-      <div class="top">
+      <div class="top-content">
         <div class="search-box">
           <input type="search" />
           <div class="search-icon">
-            <img src="/src/assets/ui-icon/search.png" alt="" width="100%" />
+            <img src="/src/assets/dashboard/search.png" alt="" width="100%" />
           </div>
         </div>
         <button>Lorem, ipsum dolor.</button>
@@ -32,7 +32,7 @@
   background: #f5f5f5;
 }
 
-.top {
+.top-content {
   display: flex;
   justify-content: end;
 }

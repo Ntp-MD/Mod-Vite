@@ -3,23 +3,23 @@
     <a href="/" class="nav-logo"> </a>
     <div class="nav-menu">
       <span>overview</span>
-      <router-link class="nav-link" to="/page1"><img src="/src/assets//ui-icon/home.png" alt="" />dashboard</router-link>
-      <router-link class="nav-link" to="/"><img src="/src/assets//ui-icon/menu.png" alt="" />application</router-link>
-      <router-link class="nav-link" to="/"><img src="/src/assets//ui-icon/copy.png" alt="" />page</router-link>
-      <router-link class="nav-link" to="/"><img src="/src/assets//ui-icon/link.png" alt="" />embed</router-link>
-      <router-link class="nav-link" to="/"><img src="/src/assets//ui-icon/download.png" alt="" />download</router-link>
+      <router-link class="nav-link" to="/page1"><img src="@/assets/dashboard/home.png" alt="" />dashboard</router-link>
+      <router-link class="nav-link" to="/"><img src="@/assets/dashboard/menu.png" alt="" />application</router-link>
+      <router-link class="nav-link" to="/"><img src="@/assets/dashboard/copy.png" alt="" />page</router-link>
+      <router-link class="nav-link" to="/"><img src="@/assets/dashboard/link.png" alt="" />embed</router-link>
+      <router-link class="nav-link" to="/"><img src="@/assets/dashboard/download.png" alt="" />download</router-link>
     </div>
     <div class="nav-menu">
       <span>community</span>
-      <router-link class="nav-link" to="/"><img src="/src/assets//ui-icon/calendar.png" alt="" />calendar</router-link>
-      <router-link class="nav-link" to="/"><img src="/src/assets//ui-icon/contact.png" alt="" />contact</router-link>
-      <router-link class="nav-link" to="/"><img src="/src/assets//ui-icon/international.png" alt="" />social</router-link>
+      <router-link class="nav-link" to="/"><img src="@/assets/dashboard/calendar.png" alt="" />calendar</router-link>
+      <router-link class="nav-link" to="/"><img src="@/assets/dashboard/contact.png" alt="" />contact</router-link>
+      <router-link class="nav-link" to="/"><img src="@/assets/dashboard/international.png" alt="" />social</router-link>
     </div>
     <div class="nav-menu">
       <span>preference</span>
-      <router-link class="nav-link" to="/"><img src="/src/assets//ui-icon/account.png" alt="" />account</router-link>
-      <router-link class="nav-link" to="/"><img src="/src/assets//ui-icon/control.png" alt="" />setting</router-link>
-      <router-link class="nav-link" to="/"><img src="/src/assets//ui-icon/logout.png" alt="" />sign out</router-link>
+      <router-link class="nav-link" to="/"><img src="@/assets/dashboard/account.png" alt="" />account</router-link>
+      <router-link class="nav-link" to="/"><img src="@/assets//dashboard/control.png" alt="" />setting</router-link>
+      <router-link class="nav-link" to="/"><img src="@/assets/dashboard/logout.png" alt="" />sign out</router-link>
     </div>
   </div>
 </template>
@@ -39,7 +39,7 @@
 .nav-logo {
   position: relative;
   height: 140px;
-  background-image: url(/src/assets/icon/day.png);
+  background-image: url("@/assets/weather/day.png");
   background-size: 64%;
   background-repeat: no-repeat;
   background-position: 50% 0%;
@@ -76,6 +76,6 @@
 }
 
 body.dark-mode .nav-logo {
-  background-image: url(/src/assets/icon/night.png);
+  background-image: url("@/assets/weather/night.png");
 }
 </style>
