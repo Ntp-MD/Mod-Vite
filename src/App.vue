@@ -1,26 +1,36 @@
 <template>
-  <widget-mode />
-
   <div class="dashboard-layout">
-    <nav-side />
-
-    <div class="dashboard-content">
-      <router-view />
-      <div class="top-content">
-        <div class="search-box">
-          <input type="search" />
-          <div class="search-icon">
-            <img src="@/assets/dashboard/search.png" alt="" width="100%" />
-          </div>
+    <aside class="left">
+      <Nav-aside />
+    </aside>
+    <div class="dashboard-section">
+      <div class="top-section">
+        <div class="head-page">
+          <h1>Main Panel</h1>
         </div>
         <button>Lorem, ipsum dolor.</button>
+        <button>Lorem, ipsum dolor.</button>
+        <button>Lorem, ipsum dolor.</button>
       </div>
-      <img src="@/assets/images/mock-panel.png" alt="" width="100%" />
+      <div class="mid-section">
+        <router-view />
+        <div class="mockup grid3">
+          <div class="box type1"></div>
+          <div class="box type1"></div>
+          <div class="box type1"></div>
+        </div>
+        <div class="mockup">
+          <div class="box type2"></div>
+        </div>
+        <div class="mockup grid2">
+          <div class="box type1"></div>
+          <div class="box type1"></div>
+        </div>
+      </div>
+      <div class="bottom-section"></div>
     </div>
+    <aside class="right">
+      <Widget-mode />
+    </aside>
   </div>
 </template>
-
-<style scoped>
-@import "@/css/widget-mode.css";
-@import "@/css/dashboard.css";
-</style>

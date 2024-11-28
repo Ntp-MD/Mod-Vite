@@ -5,3 +5,7 @@
     </div>
   </div>
 </template>
+
+<style scoped>
+@import "@/css/widget-mode.css";
+</style>

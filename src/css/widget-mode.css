@@ -1,8 +1,5 @@
 .toggle-mode {
   cursor: pointer;
-  position: fixed;
-  top: 40%;
-  right: 10px;
 }
 
 .bg-toggle {
