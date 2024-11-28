@@ -1,4 +1,3 @@
-icon
 <template>
   <toggle-mode />
   <div class="dashboard-layout">
@@ -21,5 +20,5 @@ icon
 </template>
 
 <style scoped>
-@import url(@/css/dashboard.css);
+@import url("@/css/dashboard");
 </style>
