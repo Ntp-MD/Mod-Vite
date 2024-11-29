@@ -11,15 +11,16 @@
     "deploy": "npm run build && rm -rf docs && mv dist docs && git add . && git commit -m 'Deploy site to GitHub Pages from docs folder' && git push origin main"
   },
   "dependencies": {
-    "autoprefixer": "^10.4.20",
     "fs-extra": "^11.2.0",
     "path": "^0.12.7",
-    "postcss": "^8.4.49",
     "vue": "^3.5.13",
     "vue-router": "^4.4.5"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.0.0",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
+    "postcss-nested": "^7.0.2",
     "unplugin-vue-components": "^0.27.4",
     "vite": "^5.4.10"
   }

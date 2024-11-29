@@ -22,13 +22,12 @@
 .nav-logo {
   display: grid;
   background-image: url("@/assets/weather/day.png");
-  background-size: 64%;
+  background-size: 100%;
   background-repeat: no-repeat;
-  background-position: 50% 0%;
   position: relative;
-  width: clamp(140px, 12vw, 250px);
-  aspect-ratio: 4/2;
-  margin: 0 auto 2vw;
+  width: 100%;
+  aspect-ratio: 4/3;
+  margin: 0 auto var(--gap);
 }
 
 .nav-menu {

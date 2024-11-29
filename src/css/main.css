@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
-body {
+:root {
   --main-color: #1b1b1b;
   --sub-color: #fff;
   --main-color2: #9d00ff;
@@ -8,7 +8,10 @@ body {
   --font2: #555;
   --main-bg: #fafafa;
   --box-shadow1: rgba(0, 0, 0, 0.15) 0px 5px 15px;
-  --gap: 1.5vw;
+  --gap: 25px;
+}
+
+body {
   margin: 0;
   padding: 0;
   font-size: clamp(14px, 1vw, 16px);
