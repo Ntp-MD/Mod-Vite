@@ -30,5 +30,5 @@
 </template>
 
 <style scoped>
-@import "@/components/nav-aside/style.css";
+@import "@/components/nav-aside/Nav-aside.css";
 </style>

@@ -6,5 +6,5 @@
 </template>
 
 <style scoped>
-@import "@/components/user-profile/style.css";
+@import "@/components/user-profile/User-profile.css";
 </style>

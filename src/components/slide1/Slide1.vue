@@ -61,14 +61,14 @@
 </template>
 
 <style scoped>
-@import "@/components/slide1/stlye.css";
+@import "@/components/slide1/Slide1.css";
 </style>
 
 <script>
-import { slide1 } from "@/components/slide1/slide.js"; // Importing JS module
+import { slide1 } from "@/components/slide1/Slide1.js"; // Importing JS module
 
 export default {
-  name: "Slide",
+  name: "Slide1",
   mounted() {
     slide1(); // Call the imported function when the component is mounted
   },
