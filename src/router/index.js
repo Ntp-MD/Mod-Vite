@@ -5,11 +5,11 @@ const viewFiles = import.meta.glob("@/views/*.vue");
 
 // Dynamically create routes for each file
 const routes = Object.keys(viewFiles).map((path) => {
-  // Extract the file name (e.g., "Page1.vue")
+  // Extract the file name (e.g., "Dashboard.vue")
   const name = path.split("/").pop().replace(".vue", "");
 
   return {
-    path: name.toLowerCase() === "home" ? "/" : `/${name.toLowerCase()}`, // Use `/` for "Home.vue", otherwise `/page-name`
+    path: name.toLowerCase() === "dashboard" ? "/" : `/${name.toLowerCase()}`, // Selective Start Page
     name, // Use the file name as the route name
     component: viewFiles[path], // Dynamically imported component
   };
@@ -21,6 +21,7 @@ routes.push({
   component: viewFiles["@/views/NotFound.vue"] || null, // Use NotFound.vue if it exists
 });
 
+// Create the Vue Router instance
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL), // Use hash mode for routing
   routes,

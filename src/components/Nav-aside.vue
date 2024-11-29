@@ -6,7 +6,7 @@
     <div class="mid-aside">
       <div class="nav-menu">
         <span>overview</span>
-        <router-link class="nav-link" to="/page1"><img src="@/assets/dashboard/home.png" alt="" />dashboard</router-link>
+        <router-link class="nav-link" to="/page1"><img src="@/assets/dashboard/home.png" alt="" />Test space</router-link>
         <router-link class="nav-link" to="/"><img src="@/assets/dashboard/menu.png" alt="" />application</router-link>
         <router-link class="nav-link" to="/"><img src="@/assets/dashboard/copy.png" alt="" />page</router-link>
         <router-link class="nav-link" to="/"><img src="@/assets/dashboard/link.png" alt="" />embed</router-link>
