@@ -39,6 +39,7 @@ img {
 }
 
 a {
+  font-size: clamp(14px, 1vw, 14px);
   color: var(--font1);
   text-decoration: none;
   text-transform: uppercase;
@@ -82,7 +83,7 @@ button {
 
 .App-layout {
   display: grid;
-  grid-template-columns: 18% auto clamp(30px, 4%, 60px);
+  grid-template-columns: 15% auto clamp(30px, 4%, 60px);
 }
 
 .mockup {

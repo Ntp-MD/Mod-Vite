@@ -1,8 +1,3 @@
-.App-layout {
-  display: grid;
-  grid-template-columns: 18% auto clamp(30px, 4%, 60px);
-}
-
 .dashboard-section {
   display: flex;
   flex-direction: column;

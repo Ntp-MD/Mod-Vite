@@ -7,5 +7,5 @@
 </template>
 
 <style scoped>
-@import "@/css/css-widget-mode.css";
+@import "@/components/widget-mode/style.css";
 </style>

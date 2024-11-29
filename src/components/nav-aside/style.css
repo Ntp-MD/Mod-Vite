@@ -37,7 +37,7 @@
 }
 
 .nav-aside span {
-  font-size: clamp(10px, 0.8vw, 14px);
+  font-size: clamp(12px, 0.5vw, 14px);
   text-transform: uppercase;
   color: #aaa;
 }
@@ -46,7 +46,7 @@
   display: flex;
   align-items: start;
   gap: 10px;
-  font-size: clamp(12px, 1vw, 16px);
+
   color: var(--font2);
 }
 

@@ -61,11 +61,11 @@
 </template>
 
 <style scoped>
-@import "@/css/css-slide.css";
+@import "@/components/slide1/stlye.css";
 </style>
 
 <script>
-import { slide1 } from "@/js/slide.js"; // Importing JS module
+import { slide1 } from "@/components/slide1/slide.js"; // Importing JS module
 
 export default {
   name: "Slide",
