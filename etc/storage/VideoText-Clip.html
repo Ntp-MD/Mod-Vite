@@ -1,0 +1,33 @@
+<div class="container-mask"><video autoplay="" loop="" muted="">
+        <source src="https://itp1.itopfile.com/ContentImage/z_itp_24092023yxze/testz-z1188246533134.mp4#t=0.001"
+            type="video/mp4">
+        </source>
+    </video>
+    <div class="text-mask">Lorem ipsum dolor sit amet.
+    </div>
+</div>
+
+<style>
+    .container-mask {
+        position: relative;
+        width: 100%;
+        height: 500px;
+    }
+
+    .container-mask video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .container-mask .text-mask {
+        display: grid;
+        align-content: center;
+        position: absolute;
+        inset: 0;
+        font-size: 12em;
+        font-weight: 800;
+        mix-blend-mode: screen;
+        background: #fff;
+    }
+</style>

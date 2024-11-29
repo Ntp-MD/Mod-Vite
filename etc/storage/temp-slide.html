@@ -1,0 +1,155 @@
+<div id="template_slide_1" class="owl-carousel">
+    <div class="owl-stage-outer">
+        <div class="owl-stage">
+            <div class="owl-item focus">
+                <img
+                    src="https://itp1.itopfile.com/ImageServer/z_itp_09062024wnrm/0/0/clear-view-livingz-z228064597324.webp">
+                <summary>
+                    <span>Image 1</span>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse veniam ipsum, veritatis dolor
+                        similique
+                        facilis?</p>
+                </summary>
+            </div>
+            <div class="owl-item">
+                <img
+                    src="https://itp1.itopfile.com/ImageServer/z_itp_09062024wnrm/0/0/creating-melodyz-z253699040398.webp">
+                <summary>
+                    <span>Image 1</span>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse veniam ipsum, veritatis dolor
+                        similique
+                        facilis?</p>
+                </summary>
+            </div>
+            <div class="owl-item">
+                <img
+                    src="https://itp1.itopfile.com/ImageServer/z_itp_09062024wnrm/0/0/interior-backgroundz-z39952041926.webp">
+                <summary>
+                    <span>Image 1</span>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse veniam ipsum, veritatis dolor
+                        similique
+                        facilis?</p>
+                </summary>
+            </div>
+            <div class="owl-item">
+                <img src="https://itp1.itopfile.com/ImageServer/z_itp_09062024wnrm/0/0/dining-roomz-z724841599345.webp">
+                <summary>
+                    <span>Image 1</span>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse veniam ipsum, veritatis dolor
+                        similique
+                        facilis?</p>
+                </summary>
+            </div>
+            <div class="owl-item">
+                <img
+                    src="https://itp1.itopfile.com/ImageServer/z_itp_09062024wnrm/0/0/view-smart-living-roomz-z296163537487.webp">
+                <summary>
+                    <span>Image 1</span>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse veniam ipsum, veritatis dolor
+                        similique
+                        facilis?</p>
+                </summary>
+            </div>
+            <div class="owl-item">
+                <img
+                    src="https://itp1.itopfile.com/ImageServer/z_itp_09062024wnrm/848/0/3d-rendering-modern-livingz-z1138857596907.webp">
+                <summary>
+                    <span>Image 1</span>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse veniam ipsum, veritatis dolor
+                        similique
+                        facilis?</p>
+                </summary>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#template_slide_1 .owl-item").click(function () {
+            $("#template_slide_1 .owl-item").not($(this)).removeClass("focus");
+            $(this).toggleClass("focus");
+        });
+
+        $("#template_slide_1 ").owlCarousel({
+            dot: true,
+            dotsEach: true,
+            autoWidth: true
+
+        });
+    });
+
+</script>
+
+
+<style>
+    #template_slide_1 {
+        width: 70vw;
+        margin: 0 auto;
+
+        & .owl-stage {
+            display: flex;
+            gap: 20px;
+        }
+
+        .owl-item {
+            width: 250px !important;
+            height: 350px;
+            transition: .3s;
+            cursor: pointer;
+
+            & summary {
+                position: absolute;
+                bottom: -50%;
+                left: 0;
+                color: #fff;
+                transition: .6s;
+                text-align: left;
+                background: rgb(0 0 0 / 70%);
+                color: #fff;
+                padding: 15px;
+            }
+        }
+
+        .owl-item.focus {
+            width: 500px !important;
+
+            & summary {
+                position: absolute;
+                bottom: 0%;
+            }
+        }
+
+        img {
+            border-radius: 15px;
+            object-fit: cover;
+            height: -webkit-fill-available;
+        }
+
+        /*
+        .owl-dots {
+            display: flex;
+            gap: 15px;
+            height: auto;
+            width: fit-content;
+            margin: 20px auto;
+        }
+
+        button.owl-dot {
+            background: #ccc;
+            height: 20px;
+            aspect-ratio: 1;
+            border-radius: 50%;
+        }
+
+        button.owl-dot.active {
+            background: #000;
+        }
+*/
+
+
+
+
+
+    }
+</style>

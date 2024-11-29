@@ -61,7 +61,7 @@
 </template>
 
 <style scoped>
-@import "@/css/slide.css";
+@import "@/css/css-slide.css";
 </style>
 
 <script>

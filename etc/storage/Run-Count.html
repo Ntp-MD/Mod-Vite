@@ -1,0 +1,55 @@
+<span class="count-value" data-value="530.55"></span>
+
+
+<style>
+    span.count-value {
+        display: flex;
+        gap: 10px;
+    }
+
+    span.count-value::after {
+        content: "+";
+    }
+</style>
+
+
+<script>
+    $(document).ready(function () {
+       function animateValue(obj, start, end, duration) {
+           let startTimestamp = null;
+           const step = (timestamp) => {
+               if (!startTimestamp) startTimestamp = timestamp;
+               const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+               const value = (progress * (end - start) + start).toFixed(2); // Set decimal places
+               obj.innerHTML = parseFloat(value).toLocaleString();
+               if (progress < 1) {
+                   window.requestAnimationFrame(step);
+               } else {
+                   obj.innerHTML = parseFloat(end).toLocaleString();
+               }
+           };
+           window.requestAnimationFrame(step);
+       }
+   
+       const elements = document.querySelectorAll(".count-value");
+       let animated = false;
+       const scrollTriggerPercentage = 30;
+   
+       $(window).scroll(function () {
+           const scrollTop = $(this).scrollTop();
+           const docHeight = $(document).height();
+           const winHeight = $(window).height();
+           const scrollPercentage = (scrollTop / (docHeight - winHeight)) * 100;
+   
+           if (scrollPercentage > scrollTriggerPercentage && !animated) {
+               elements.forEach((element) => {
+                   const endValue = parseFloat(element.getAttribute("data-value")); // Handle decimal values
+                   animateValue(element, 0, endValue, 1500);
+               });
+               animated = true;
+           }
+       });
+   });
+   
+   
+   </script>

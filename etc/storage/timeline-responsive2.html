@@ -1,0 +1,106 @@
+<div class="timeline-md">
+    <div class="timeline-section">
+        <div class="timeline-point">●</div>
+        <div class="timeline-content">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, repellendus.
+        </div>
+    </div>
+    <div class="timeline-section">
+        <div class="timeline-point">●</div>
+        <div class="timeline-content">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, repellendus.
+        </div>
+    </div>
+    <div class="timeline-section">
+        <div class="timeline-point">●</div>
+        <div class="timeline-content">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, repellendus.
+        </div>
+    </div>
+    <div class="timeline-section">
+        <div class="timeline-point">●</div>
+        <div class="timeline-content">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, repellendus.
+        </div>
+    </div>
+    <div class="timeline-section">
+        <div class="timeline-point">●</div>
+        <div class="timeline-content">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, repellendus.
+        </div>
+    </div>
+</div>
+
+<style>
+  .timeline-md {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.timeline-section {
+    position: relative;
+    display: grid;
+    grid-template-columns: 20px auto;
+    align-items: center;
+    gap: 20px;
+    height: 10vh;
+}
+
+
+.timeline-point {
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+    font-size: 30px;
+}
+
+.timeline-point::before {
+    position: absolute;
+    content: "";
+    width: 1px;
+    height: 100%;
+    background: red;
+    z-index: -1;
+    top: -50%;
+}
+
+
+.timeline-md>.timeline-section:first-child>.timeline-point::before {
+    display: none;
+}
+
+
+@media screen and (max-width: 992px) {
+    .timeline-md {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+    }
+    
+}
+
+@media screen and (min-width: 992px) {
+    .timeline-md>.timeline-section:nth-child(odd) {
+        display: grid;
+        grid-template-columns: auto 20px;
+        text-align: right;
+    }
+    
+    .timeline-md>.timeline-section:nth-child(odd) > div:first-child {
+        order: 2;
+    }
+    
+    .timeline-md>.timeline-section:nth-child(even) {
+        top: 50%;
+        left: -20px;
+    }
+
+    .timeline-md>.timeline-section:nth-child(even) .timeline-point::before {
+        display: none;
+    }
+    
+    
+
+}
+
+
+</style>

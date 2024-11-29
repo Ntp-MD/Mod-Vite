@@ -1,0 +1,31 @@
+<script>
+    $(document).ready(function () {
+        $(document).on('click', function (e) {
+            var $target = $(e.target);
+            if ($target.closest('.itopplus-search .ui.search').length) {
+                $('.hideForNewSearchtag input').addClass('expanded');
+            } else {
+                $('.hideForNewSearchtag input').removeClass('expanded');
+            }
+        });
+    });
+
+</script>
+
+<style>
+    .itopplus-search .hideForNewSearchtag input {
+        padding: 0 !important;
+        background: transparent;
+        line-height: 1;
+        height: 35px;
+        width: 0;
+        border: none;
+        transition: .3s;
+    }
+
+    .itopplus-search .hideForNewSearchtag input.expanded {
+        width: 10vw !important;
+        padding: 0px 15px !important;
+        background: #fff !important;
+    }
+</style>

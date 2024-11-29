@@ -1,0 +1,169 @@
+<div class="frame">
+    <div id="slide1">
+        <div class="area25-slide">
+            <div class="area25-slide-box">
+                <div class="area25-slide-img">
+                    <img src="https://itp1.itopfile.com/Images/photos/no-image.jpg" width="100%">
+                </div>
+                <div class="area25-slide-img">
+                    <img src="https://itp1.itopfile.com/Images/photos/no-image.jpg" width="100%">
+                </div>
+                <div class="area25-slide-img">
+                    <img src="https://itp1.itopfile.com/Images/photos/no-image.jpg" width="100%">
+                </div>
+                <div class="area25-slide-img">
+                    <img src="https://itp1.itopfile.com/Images/photos/no-image.jpg" width="100%">
+                </div>
+                <div class="area25-slide-img">
+                    <img src="https://itp1.itopfile.com/Images/photos/no-image.jpg" width="100%">
+                </div>
+                <div class="area25-slide-img">
+                    <img src="https://itp1.itopfile.com/Images/photos/no-image.jpg" width="100%">
+                </div>
+                <div class="area25-slide-img">
+                    <img src="https://itp1.itopfile.com/Images/photos/no-image.jpg" width="100%">
+                </div>
+                <div class="area25-slide-img">
+                    <img src="https://itp1.itopfile.com/Images/photos/no-image.jpg" width="100%">
+                </div>
+                <div class="area25-slide-img">
+                    <img src="https://itp1.itopfile.com/Images/photos/no-image.jpg" width="100%">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="slide2">
+        <div class="area25-slide">
+            <div class="area25-slide-box">
+                <div class="area25-slide-img">
+                    <img src="https://itp1.itopfile.com/Images/photos/no-image.jpg" width="100%">
+                </div>
+                <div class="area25-slide-img">
+                    <img src="https://itp1.itopfile.com/Images/photos/no-image.jpg" width="100%">
+                </div>
+                <div class="area25-slide-img">
+                    <img src="https://itp1.itopfile.com/Images/photos/no-image.jpg" width="100%">
+                </div>
+                <div class="area25-slide-img">
+                    <img src="https://itp1.itopfile.com/Images/photos/no-image.jpg" width="100%">
+                </div>
+                <div class="area25-slide-img">
+                    <img src="https://itp1.itopfile.com/Images/photos/no-image.jpg" width="100%">
+                </div>
+                <div class="area25-slide-img">
+                    <img src="https://itp1.itopfile.com/Images/photos/no-image.jpg" width="100%">
+                </div>
+                <div class="area25-slide-img">
+                    <img src="https://itp1.itopfile.com/Images/photos/no-image.jpg" width="100%">
+                </div>
+                <div class="area25-slide-img">
+                    <img src="https://itp1.itopfile.com/Images/photos/no-image.jpg" width="100%">
+                </div>
+                <div class="area25-slide-img">
+                    <img src="https://itp1.itopfile.com/Images/photos/no-image.jpg" width="100%">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .frame {
+        display: flex;
+        gap: 20px;
+    }
+
+    #slide1 .area25-container {
+        float: left;
+    }
+
+    #slide2 .area25-container {
+        float: right;
+    }
+
+    .area25-slide {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        height: 100vh;
+        width: 250px;
+        margin: 0 auto;
+        position: relative;
+        gap: -5px;
+    }
+
+    #slide1 .area25-slide-box {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        position: absolute;
+        bottom: 0;
+        animation: vertical-scroll linear infinite;
+        transform: translateY(100%);
+        z-index: 1;
+    }
+
+    #slide2 .area25-slide-box {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        position: absolute;
+        top: 0;
+        animation: vertical-scroll2 linear infinite;
+        transform: translateY(-100%);
+        z-index: 1;
+    }
+
+
+    .cloned {
+        z-index: 0;
+    }
+
+    @keyframes vertical-scroll {
+        from {
+            transform: translateY(100%);
+        }
+
+        to {
+            transform: translateY(-100%);
+        }
+    }
+
+    @keyframes vertical-scroll2 {
+        from {
+            transform: translateY(-100%);
+
+        }
+
+        to {
+            transform: translateY(100%);
+        }
+    }
+</style>
+
+<script>
+    $(document).ready(function () {
+        function processSlide(...slideIds) {
+            slideIds.forEach(slideId => {
+                const slideContainer = $(`#${slideId} .area25-slide`);
+                const cloneCount = 1;
+                const animationDuration = 20;
+
+                if (slideContainer.length) {
+                    const slideBox = slideContainer.find('.area25-slide-box');
+                    slideBox.css('animation-duration', `${animationDuration}s`);
+
+                    for (let i = 0; i < cloneCount; i++) {
+                        const clonedContent = slideBox.clone().addClass('cloned');
+                        clonedContent.css('animation-duration', `${animationDuration}s`);
+                        const animationDelay = animationDuration / 2;
+                        clonedContent.css('animation-delay', `${animationDelay}s`);
+                        slideContainer.append(clonedContent);
+                    }
+                }
+            });
+        }
+        processSlide('slide1', 'slide2');
+    });
+</script>
