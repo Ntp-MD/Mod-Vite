@@ -21,7 +21,7 @@
 
 .nav-logo {
   display: grid;
-  background-image: url("@/assets/weather/day.png");
+  background-image: url("@img/weather/day.png");
   background-size: 100%;
   background-repeat: no-repeat;
   position: relative;
@@ -61,7 +61,7 @@
 }
 
 body.dark-mode .nav-logo {
-  background-image: url("@/assets/weather/night.png");
+  background-image: url("@img/assets/weather/night.png");
 }
 
 body.dark-mode .nav-menu img {

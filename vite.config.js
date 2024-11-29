@@ -22,6 +22,7 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": resolve(__dirname, "src"), // Alias for src folder
+      "@img": resolve(__dirname, "src/assets/"),
     },
   },
 });
