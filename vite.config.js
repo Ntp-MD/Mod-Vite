@@ -23,6 +23,7 @@ export default defineConfig({
     alias: {
       "@": resolve(__dirname, "src"), // Alias for src folder
       "@img": resolve(__dirname, "src/assets/"),
+      "@comp": resolve(__dirname, "src/components/"),
     },
   },
 });

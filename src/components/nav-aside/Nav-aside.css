@@ -21,13 +21,10 @@
 
 .nav-logo {
   display: grid;
-  background-image: url("@img/weather/day.png");
-  background-size: 100%;
-  background-repeat: no-repeat;
   position: relative;
+  height: 150px;
   width: 100%;
-  aspect-ratio: 4/3;
-  margin: 0 auto var(--gap);
+  overflow: hidden;
 }
 
 .nav-menu {
@@ -42,7 +39,7 @@
   color: #aaa;
 }
 
-.nav-menu a {
+a.nav-link {
   display: flex;
   align-items: start;
   gap: 10px;
@@ -50,9 +47,9 @@
   color: var(--font2);
 }
 
-.nav-menu img {
+a.nav-link img {
   aspect-ratio: 1;
-  width: clamp(15px, 1vw, 18px);
+  width: 20px;
   filter: brightness(0) invert(15%) sepia(100%) saturate(6000%) hue-rotate(270deg);
 }
 
@@ -60,10 +57,12 @@
   color: var(--main-color2);
 }
 
-body.dark-mode .nav-logo {
-  background-image: url("@img/assets/weather/night.png");
-}
+body.dark-mode {
+  & a.nav-link img {
+    filter: invert(1);
+  }
 
-body.dark-mode .nav-menu img {
-  filter: invert(1);
+  .nav-logo .light {
+    display: none;
+  }
 }

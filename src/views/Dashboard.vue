@@ -25,5 +25,5 @@
 </template>
 
 <style scoped>
-@import "@/css/css-dash.css";
+@import "@/css/dashboard.css";
 </style>
