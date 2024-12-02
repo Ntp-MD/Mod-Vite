@@ -60,16 +60,6 @@ h3 {
   margin: 0;
 }
 
-aside {
-  position: sticky;
-  top: 0;
-  display: grid;
-  place-items: center;
-  height: 100vh;
-  background: var(--sub-color);
-  box-shadow: var(--box-shadow1);
-}
-
 button {
   font-size: clamp(14px, 1vw, 16px);
   background: var(--main-color2);

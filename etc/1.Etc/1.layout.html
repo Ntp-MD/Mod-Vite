@@ -1,0 +1,48 @@
+<div class="itopplus-banner">
+  <div class="container">
+    <div class="itopplus-logo">
+      @{ Html.RenderPartial("~/Views/Component/Banner/Banner.cshtml", null, new ViewDataDictionary { { "manage", ViewData["manage"] } });}
+    </div>
+    <div class="itopplus-search">
+      <div ng-class="dropzoneclass" drop="before" positionindex="5" id="pos5">Dropzone</div>
+    </div>
+    <div class="itopplus-menu">
+      @{ Html.RenderPartial("~/Views/Component/Menu/CommonMenu.cshtml", null, new ViewDataDictionary { { "manage", ViewData["manage"] } }); }
+    </div>
+  </div>
+</div>
+
+<div class="itopplus-banner">
+  <div class="container">
+    <div class="itopplus-logo">
+      @{ Html.RenderPartial("~/Views/Component/Banner/Banner.cshtml", null, new ViewDataDictionary { { "manage", ViewData["manage"] } });}
+    </div>
+    <div class="itp-block">
+      <div class="itopplus-search">
+        <div ng-class="dropzoneclass" drop="before" positionindex="5" id="pos5">Dropzone</div>
+      </div>
+      <div class="itopplus-menu">
+        @{ Html.RenderPartial("~/Views/Component/Menu/CommonMenu.cshtml", null, new ViewDataDictionary { { "manage", ViewData["manage"] } }); }
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="itopplus-layout">
+  <div class="container">
+    <div class="itopplus-layout1">
+      <div ng-class="dropzoneclass" drop="before" positionindex="1" id="pos1">DropZone</div>
+    </div>
+    <div class="itopplus-layout2">
+      <div ng-class="dropzoneclass" drop="before" positionindex="2" id="pos2">DropZone</div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .itopplus-layout .container {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    gap: 20px;
+  }
+</style>

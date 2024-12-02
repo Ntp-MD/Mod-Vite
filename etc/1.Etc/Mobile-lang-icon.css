@@ -1,0 +1,54 @@
+#main-navbar-flag {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+#main-navbar-flag a .row::before,
+#main-navbar-flag a .row::after {
+    display: none;
+}
+
+#main-navbar-flag a {
+    width: 100%;
+}
+
+#main-navbar-flag a .row {
+    display: grid;
+    grid-template-columns: 35px 120px;
+    place-content: center;
+    place-items: center;
+    width: 100%;
+    gap: 10px;
+    margin: 5px 0 10px;
+}
+
+#main-navbar-flag a .row>div {
+    white-space: nowrap;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0;
+}
+
+#itpphonemobile {
+    background-image: url(https://itp1.itopfile.com/ImageServer/z_itp_24092023yxze/0/0/n-phonez-z818808809202.webp) !important;
+}
+
+#itpsearchmobile {
+    background-image: url(https://itp1.itopfile.com/ImageServer/z_itp_24092023yxze/0/0/n-searchz-z518913135835.webp) !important;
+}
+
+.old-image-icon-facebook {
+    background-image: url(https://itp1.itopfile.com/ImageServer/z_itp_06092023qlcs/0/0/n-fbz-z1487384105400.png) !important;
+}
+
+.old-image-icon-line {
+    background-image: url(https://itp1.itopfile.com/ImageServer/z_itp_24092023yxze/0/0/n-linez-z1159309108422.webp) !important;
+}
+
+.old-image-icon-instragram {
+    background-image: url(https://itp1.itopfile.com/ImageServer/z_itp_24092023yxze/0/0/n-igz-z1447466116513.webp) !important;
+}
+
+.old-image-icon-youtube {
+    background-image: url(https://itp1.itopfile.com/ImageServer/z_itp_24092023yxze/0/0/n-youtubez-z316205666177.webp) !important;
+}

@@ -41,9 +41,8 @@
 
 a.nav-link {
   display: flex;
-  align-items: start;
+  align-items: flex-end;
   gap: 10px;
-
   color: var(--font2);
 }
 

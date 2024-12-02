@@ -1,0 +1,38 @@
+.itopplus-sticky-nav-bar-inside>div:nth-child(n+3) {
+  display: none;
+}
+
+.itopplus-sticky-nav-bar-inside::before,
+.itopplus-sticky-nav-bar-inside::after {
+  display: none;
+}
+
+.itopplus-sticky-nav-bar-inside {
+  width: 83vw !important;
+  display: grid;
+  grid-template-columns: 10% auto;
+  justify-items: end;
+  align-items: center;
+}
+
+.itopplus-menu-logo {
+  height: auto !important;
+  width: 100%;
+  padding: 15px;
+}
+
+img.itopplus-img-logo {
+  width: 100% !important;
+}
+
+#itopplus-sticky-nav-bar {
+  animation-duration: .8s !important;
+}
+
+#itopplus-nav-bar-sticky {
+  display: flex;
+}
+
+#itopplus-sticky-nav-bar .navbar-default {
+  background: #c0cfb2;
+}

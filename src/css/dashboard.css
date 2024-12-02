@@ -1,19 +1,21 @@
 .dashboard-section {
   display: flex;
   flex-direction: column;
-
   background: var(--main-bg);
-  gap: var(--gap);
   min-height: 1500px;
 }
 
 .top-section {
+  background-image: url(/Mod-Vite/src/assets/images/daytime.jpg);
+  background-size: 25%;
+  background-position: 50% 65%;
+  background-repeat: repeat-x;
   display: flex;
   justify-content: end;
   align-items: center;
   gap: var(--gap);
   padding: 10px var(--gap);
-  background: var(--sub-color);
+  min-height: 100px;
 }
 
 .head-page {

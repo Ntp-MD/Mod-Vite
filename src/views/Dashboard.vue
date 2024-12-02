@@ -1,11 +1,6 @@
 <template>
   <div class="dashboard-section">
-    <div class="top-section">
-      <button>Lorem, ipsum dolor.</button>
-      <button>Lorem, ipsum dolor.</button>
-      <button>Lorem, ipsum dolor.</button>
-      <User-profile></User-profile>
-    </div>
+    <div class="top-section"></div>
     <div class="mid-section">
       <div class="mockup grid3">
         <div class="box type1"></div>

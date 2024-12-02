@@ -1,9 +1,10 @@
 .toggle-mode {
+  position: relative;
+  top: -3%;
   cursor: pointer;
 }
 
 .bg-toggle {
-  position: relative;
   display: grid;
   place-items: center;
   width: 35px;

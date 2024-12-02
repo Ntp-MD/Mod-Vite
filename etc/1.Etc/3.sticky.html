@@ -1,0 +1,47 @@
+<script>
+  $(window).scroll(function () {
+    if ($(this).scrollTop() > 0) {
+      $(".itopplus-banner").addClass("itopplus-sticky");
+    } else {
+      $(".itopplus-banner").removeClass("itopplus-sticky");
+    }
+  });
+</script>
+
+<style>
+  @media screen and (min-width: 1024px) {
+    .no-js .itopplus-banner {
+      position: fixed;
+      background: transparent;
+      width: 100%;
+      z-index: 1000;
+      transition: 0.3s;
+    }
+
+    .itopplus-sticky {
+      background: rgb(0 0 0 / 70%) !important;
+    }
+  }
+</style>
+
+<style>
+  @media screen and (min-width: 1024px) {
+    .no-js .itopplus-banner a:not(.dropdown-menu-all a) {
+      color: #fff;
+    }
+
+    #itopplus-nav-bar > li > a:hover,
+    #itopplus-nav-bar > li > a:focus,
+    #itopplus-nav-bar > li > a:active {
+    }
+
+    .itopplus-sticky a {
+      color: #444 !important;
+    }
+
+    .itopplus-sticky a:hover,
+    .itopplus-sticky a:focus,
+    .itopplus-sticky a:active {
+    }
+  }
+</style>

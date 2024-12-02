@@ -1,9 +1,10 @@
 .user-box {
-  display: grid;
-  grid-template-columns: 30px auto;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 10px;
   text-transform: uppercase;
+  font-size: 14px;
 }
 
 img {
