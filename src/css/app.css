@@ -3,9 +3,10 @@
 :root {
   --main-white: #fff;
   --main-overlay: #fafafa;
-  --font: #282828;
-  --font2: #555;
-  --btn-color: #40375c;
+  --font: #888;
+  --font2: #282828;
+  --font3: #aaa;
+  --btn-color: linear-gradient(to right, #ca409f 0%, #6f36ff 100%);
   --btn-font: #fff;
   --border-color: #e8e8e8;
   --box-shadow1: rgba(0, 0, 0, 0.15) 0px 5px 15px;
@@ -23,9 +24,10 @@ body {
 }
 
 body.dark-mode {
-  --main-white: #121212;
-  --main-overlay: #181818;
+  --main-overlay: #121212;
+  --main-white: #181818;
   --font: #fff;
+  --font2: #fff;
   --border-color: transparent;
   & a.nav-link img {
     filter: invert(1);
@@ -50,12 +52,14 @@ a {
 
 h1 {
   font-size: clamp(26px, 2vw, 34px);
-  margin: 0;
+  margin: 0 0 15px;
+  color: var(--font2);
 }
 
 h2 {
   font-size: clamp(24px, 1.5vw, 30px);
   margin: 0;
+  color: var(--font2);
 }
 
 h3 {
@@ -67,7 +71,7 @@ button {
   background: var(--btn-color);
   color: var(--btn-font);
   font-size: clamp(14px, 1vw, 16px);
-  border-radius: 30px;
+  border-radius: 8px;
   padding: 10px 15px;
   min-width: 5vw;
   width: fit-content;
@@ -125,33 +129,14 @@ aside.right {
 }
 
 section {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   height: 100vh;
   overflow-x: scroll;
 }
 
 article {
   padding: var(--gap);
-}
-
-.grid2 {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-}
-
-.grid3 {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-}
-
-.grid4 {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-}
-
-.grid5 {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
 }
 
 /*Nav Aside*/
@@ -162,24 +147,27 @@ article {
   padding: 2vw;
 }
 
-.top-aside {
-}
-
 .mid-aside {
   display: flex;
   flex-direction: column;
   gap: 3vw;
 }
 
-.top-aside {
-}
-
 .nav-logo {
   display: grid;
   position: relative;
-  height: 150px;
-  width: 100%;
+  height: 125px;
+  width: 8vw;
+  margin: 0 auto;
   overflow: hidden;
+}
+
+.nav-logo img {
+  object-fit: cover;
+}
+
+body.dark-mode .nav-logo img {
+  content: url("@img/weather/night.png");
 }
 
 .nav-menu {
@@ -191,22 +179,41 @@ article {
 .nav-aside span {
   font-size: clamp(12px, 0.5vw, 14px);
   text-transform: uppercase;
-  color: #aaa;
+  color: var(--font3);
 }
 
 a.nav-link {
   display: flex;
   align-items: flex-end;
   gap: 10px;
-  color: var(--font);
+  color: var(--font1);
+  font-weight: 500;
+}
+
+a.nav-link:hover {
+  color: var(--font2);
 }
 
 a.nav-link img {
   aspect-ratio: 1;
   width: 20px;
-}
-
-.nav-menu a:hover {
+  filter: brightness(0) saturate(100%) invert(52%) sepia(12%) saturate(3000%) hue-rotate(226deg) brightness(100%) contrast(106%);
 }
 
 /*Nav Aside*/
+.font-group {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: 100%;
+  gap: 20px;
+}
+
+.font-items {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border-radius: 10px;
+  background: var(--main-white);
+  height: fit-content;
+  box-shadow: var(--box-shadow1);
+}

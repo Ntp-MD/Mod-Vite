@@ -14,10 +14,10 @@
 }
 
 .icon-toggle {
-  background-image: url(@/assets/weather/sun.png);
+  background-image: url("@/assets/weather/day-and-night.png");
   background-size: cover;
   background-repeat: no-repeat;
-  height: 25px;
+  height: 30px;
   aspect-ratio: 1;
   transition: 0.5s;
   border-radius: 50%;

@@ -3,7 +3,6 @@
     <div class="top-aside">
       <a href="/" class="nav-logo">
         <img class="light" src="@img/weather/day.png" alt="" />
-        <img class="dark" src="@img/weather/night.png" alt="" />
       </a>
     </div>
     <div class="mid-aside">
