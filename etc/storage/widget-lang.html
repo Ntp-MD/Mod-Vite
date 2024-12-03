@@ -1,119 +1,112 @@
-<section>
-    <div id="google_translate_element" style="display:none;"></div>
-    <details class="widget-lang">
-        <summary>Select Language</summary>
-        <div class="dropdown-lang">
-            <a onclick="changeLanguage('th')">
-                <img src="https://itp1.itopfile.com/ImageServer/z_itp_030320242d8j/0/0/thz-z603250513355.png" alt="">
-            </a>
-            <a onclick="changeLanguage('en')">
-                <img src="https://itp1.itopfile.com/ImageServer/z_itp_030320242d8j/0/0/enz-z1590420559773.png">
-            </a>
-            <a onclick="changeLanguage('zh-CN')">
-                <img src="https://itp1.itopfile.com/ImageServer/z_itp_030320242d8j/0/0/zhz-z1311657034659.png">
-            </a>
-            <a onclick="changeLanguage('ja')">
-                <img src="http://itp1.itopfile.com/ImageServer/z_itp_030320242d8j/0/0/jaz-z656346751602.png">
-            </a>
-            <a onclick="changeLanguage('es')">
-                <img src="http://itp1.itopfile.com/ImageServer/z_itp_030320242d8j/0/0/esz-z932962263239.png">
-            </a>
-            <a onclick="changeLanguage('fr')">
-                <img src="http://itp1.itopfile.com/ImageServer/z_itp_030320242d8j/0/0/frz-z1472226140203.png">
-            </a>
-            <a onclick="changeLanguage('de')">
-                <img src="https://itp1.itopfile.com/ImageServer/z_itp_030320242d8j/0/0/dez-z760602078318.png">
-            </a>
-            <a onclick="changeLanguage('it')">
-                <img src="https://itp1.itopfile.com/ImageServer/z_itp_030320242d8j/0/0/itz-z570879136534.png">
-            </a>
-            <a onclick="changeLanguage('ko')">
-                <img src="https://itp1.itopfile.com/ImageServer/z_itp_030320242d8j/0/0/koz-z977404544580.png">
-            </a>
-            <a onclick="changeLanguage('pt')">
-                <img src="http://itp1.itopfile.com/ImageServer/z_itp_030320242d8j/0/0/ptz-z773406001680.png">
-            </a>
-            <a onclick="changeLanguage('ru')">
-                <img src="https://itp1.itopfile.com/ImageServer/z_itp_030320242d8j/0/0/ruz-z896217435446.png">
-            </a>
-        </div>
-    </details>
+<section id="widget-lang">
+  <div id="google_translate_element" style="display: none"></div>
+  <div class="widget-lang">
+    <span>Select Language</span>
+    <div class="dropdown-lang">
+      <a onclick="changeLanguage('th')">
+        <img src="https://itp1.itopfile.com/ImageServer/z_itp_030320242d8j/0/0/thz-z603250513355.png" alt="" />
+      </a>
+      <a onclick="changeLanguage('en')">
+        <img src="https://itp1.itopfile.com/ImageServer/z_itp_030320242d8j/0/0/enz-z1590420559773.png" />
+      </a>
+      <a onclick="changeLanguage('zh-CN')">
+        <img src="https://itp1.itopfile.com/ImageServer/z_itp_030320242d8j/0/0/zhz-z1311657034659.png" />
+      </a>
+      <a onclick="changeLanguage('ja')">
+        <img src="http://itp1.itopfile.com/ImageServer/z_itp_030320242d8j/0/0/jaz-z656346751602.png" />
+      </a>
+      <a onclick="changeLanguage('es')">
+        <img src="http://itp1.itopfile.com/ImageServer/z_itp_030320242d8j/0/0/esz-z932962263239.png" />
+      </a>
+      <a onclick="changeLanguage('fr')">
+        <img src="http://itp1.itopfile.com/ImageServer/z_itp_030320242d8j/0/0/frz-z1472226140203.png" />
+      </a>
+      <a onclick="changeLanguage('de')">
+        <img src="https://itp1.itopfile.com/ImageServer/z_itp_030320242d8j/0/0/dez-z760602078318.png" />
+      </a>
+      <a onclick="changeLanguage('it')">
+        <img src="https://itp1.itopfile.com/ImageServer/z_itp_030320242d8j/0/0/itz-z570879136534.png" />
+      </a>
+      <a onclick="changeLanguage('ko')">
+        <img src="https://itp1.itopfile.com/ImageServer/z_itp_030320242d8j/0/0/koz-z977404544580.png" />
+      </a>
+      <a onclick="changeLanguage('pt')">
+        <img src="http://itp1.itopfile.com/ImageServer/z_itp_030320242d8j/0/0/ptz-z773406001680.png" />
+      </a>
+      <a onclick="changeLanguage('ru')">
+        <img src="https://itp1.itopfile.com/ImageServer/z_itp_030320242d8j/0/0/ruz-z896217435446.png" />
+      </a>
+    </div>
+  </div>
 
-    <style>
-        .widget-lang {
-            position: relative;
-            width: fit-content;
+  <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  <script>
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({ pageLanguage: "th" }, "google_translate_element");
+    }
+
+    function changeLanguage(lang) {
+      var translateDropdown = document.querySelector(".goog-te-combo");
+      if (translateDropdown) {
+        translateDropdown.value = lang;
+        translateDropdown.dispatchEvent(new Event("change"));
+      }
+    }
+
+    $(document).ready(function () {
+      $(document).on("click", function (e) {
+        if ($(e.target).closest(".widget-lang").length) {
+          $(".widget-lang").toggleClass("open");
+        } else {
+          $(".widget-lang").removeClass("open");
         }
-
-        .widget-lang summary {
-            display: grid;
-            place-content: center;
-            place-items: center;
-            height: 30px;
-            width: fit-content;
-            cursor: pointer;
-        }
-
-        .widget-lang summary,
-        .widget-lang a {
-            transition: .3s;
-        }
-
-        .dropdown-lang {
-            position: absolute;
-            right: 0;
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 15px;
-            transition: .3s;
-            padding: 15px;
-            box-shadow: inset 0 0 1px 1px #ccc;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.8);
-        }
-
-        .widget-lang a:hover {
-            box-shadow: inset 0 0 1px 3px #08bafd;
-        }
-
-        .widget-lang img {
-            object-fit: cover;
-            aspect-ratio: 3 / 2;
-            width: 40px;
-            box-shadow: inset 0 0 1px 1px #ccc;
-        }
-    </style>
-
-    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-    <script>
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement({ pageLanguage: 'th' }, 'google_translate_element');
-        }
-
-        function changeLanguage(lang) {
-            var translateDropdown = document.querySelector('.goog-te-combo');
-            if (translateDropdown) {
-                translateDropdown.value = lang;
-                translateDropdown.dispatchEvent(new Event('change'));
-            }
-        }
-
-
-        $(document).ready(function () {
-            $(document).on('click', function (e) {
-                if ($(e.target).closest('.widget-lang span').length) {
-                    $('.widget-lang span').toggleClass('open');
-                } else {
-                    $('.widget-lang span').removeClass('open');
-                }
-            });
-        });
-
-
-
-    </script>
-
-
-
-
+      });
+    });
+  </script>
 </section>
+
+<style>
+  .widget-lang {
+    position: fixed;
+    top: 5px;
+    right: 10px;
+    display: flex;
+    width: fit-content;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .widget-lang.open .dropdown-lang {
+    visibility: visible;
+  }
+
+  .skiptranslate iframe {
+    display: none;
+  }
+
+  .dropdown-lang {
+    visibility: hidden;
+    position: absolute;
+    top: 30px;
+    right: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    transition: 0.3s;
+    padding: 15px;
+    box-shadow: inset 0 0 1px 1px #ccc;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.8);
+  }
+
+  .widget-lang img {
+    object-fit: cover;
+    aspect-ratio: 3 / 2;
+    width: 40px;
+    box-shadow: inset 0 0 1px 1px #ccc;
+  }
+
+  .eapps-widget-toolbar {
+    display: none;
+  }
+</style>

@@ -13,6 +13,11 @@
   display: none;
 }
 
+.itopplus-layout .container::before,
+.itopplus-layout .container::after {
+  display: none;
+}
+
 #itopplus-nav-bar::before,
 #itopplus-nav-bar::after {
   display: none;

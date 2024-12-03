@@ -1,12 +1,21 @@
-import "@/css/main.css";
+import "@/css/app.css";
 import { createApp } from "vue";
 import App from "@/App.vue";
 import router from "@/router"; // Import the router
 
 const app = createApp(App);
 
+const components = import.meta.glob("@/components/*.vue");
+
+for (const path in components) {
+  components[path]().then((module) => {
+    const component = module.default;
+    app.component(component.name, component); // Use the `name` property from the component
+  });
+}
+
 app.use(router); // Use the router in the app
-app.mount("#app");
+app.mount("#App");
 
 $(document).ready(function () {
   if (localStorage.getItem("darkMode") === "enabled") {

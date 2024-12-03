@@ -9,8 +9,8 @@ const routes = Object.keys(viewFiles).map((path) => {
   const name = path.split("/").pop().replace(".vue", "");
 
   return {
-    path: name.toLowerCase() === "dashboard" ? "/" : `/${name.toLowerCase()}`, // Selective Start Page
-    alias: "/dashboard",
+    path: name.toLowerCase() === "/" ? "/" : `/${name.toLowerCase()}`, // Selective Start Page
+    alias: "/",
     name, // Use the file name as the route name
     component: viewFiles[path], // Dynamically imported component
   };

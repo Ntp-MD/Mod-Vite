@@ -1,0 +1,192 @@
+@font-face {
+  font-family: "LINE Seed Sans TH";
+  font-weight: 100;
+  src: url(https://itp1.itopfile.com/ContentImage/z_itp_130820236l5w/fonts/LINESeedSansTH/LINESeedSansTH_Th.otf) format("opentype");
+}
+
+@font-face {
+  font-family: "LINE Seed Sans TH";
+  font-weight: 400;
+  src: url(https://itp1.itopfile.com/ContentImage/z_itp_130820236l5w/fonts/LINESeedSansTH/LINESeedSansTH_Rg.otf) format("opentype");
+}
+
+@font-face {
+  font-family: "LINE Seed Sans TH";
+  font-weight: 600;
+  src: url(https://itp1.itopfile.com/ContentImage/z_itp_130820236l5w/fonts/LINESeedSansTH/LINESeedSansTH_Bd.otf) format("opentype");
+}
+
+@font-face {
+  font-family: "LINE Seed Sans TH";
+  font-weight: 800;
+  src: url(https://itp1.itopfile.com/ContentImage/z_itp_130820236l5w/fonts/LINESeedSansTH/LINESeedSansTH_XBd.otf) format("opentype");
+}
+
+@font-face {
+  font-family: "LINE Seed Sans TH";
+  font-weight: 900;
+  src: url(https://itp1.itopfile.com/ContentImage/z_itp_130820236l5w/fonts/LINESeedSansTH/LINESeedSansTH_He.otf) format("opentype");
+}
+
+@media screen and (min-width :1900px) {
+  .container {
+    width: 1600px;
+  }
+}
+
+body {
+  font-family: "LINE Seed Sans TH";
+  color: #444;
+}
+
+.itopplus-bg {
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  color: #fff;
+}
+
+.itopplus-bg2 {
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+}
+
+.itopplus-footer {
+  background: linear-gradient(to right, #000 0%, #000 100%);
+  background-color: #000;
+  color: #fff;
+}
+
+@media screen and (max-width: 992px) {
+  #nav-menu {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+  }
+
+  .navbar-header {
+    display: flex !important;
+    flex-direction: row-reverse;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    padding: 0 5px;
+  }
+
+  #itpMenuSideBar {
+    display: grid !important;
+    place-items: center;
+    border: none;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: 0 0 !important;
+    background-color: transparent !important;
+  }
+
+  #itpMenuSideBar .navbar-inline:last-child {
+    display: none;
+  }
+
+  #itpMenuSideBar span {
+    height: 3px !important;
+    width: 25px !important;
+    margin: 5px !important;
+  }
+
+  .navbar-header a.visible-xs i,
+  .navbar-header a:not(a.visible-xs) {
+    display: none !important;
+  }
+
+  .navbar-header>a {
+    display: grid !important;
+    place-items: center;
+    place-content: center;
+    background-size: 30px;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 0 !important;
+    width: 40px;
+  }
+
+  /*สี*/
+  #itpphonemobile {
+    background-image: url(https://itp1.itopfile.com/ImageServer/z_itp_09062024wnrm/0/0/telz-z77323662137.png) !important
+  }
+
+  #itpsearchmobile {
+    background-image: url(https://itp1.itopfile.com/ImageServer/z_itp_09062024wnrm/0/0/searchz-z1134319420589.png) !important
+  }
+
+  .old-image-icon-facebook {
+    background-image: url(https://itp1.itopfile.com/ImageServer/z_itp_09062024wnrm/0/0/facebookz-z1318628404704.png) !important
+  }
+
+  .old-image-icon-line {
+    background-image: url(https://itp1.itopfile.com/ImageServer/z_itp_09062024wnrm/0/0/linez-z1655517020729.png) !important
+  }
+
+  .old-image-icon-instragram {
+    background-image: url(https://itp1.itopfile.com/ImageServer/z_itp_09062024wnrm/0/0/instagramz-z1066049211157.png) !important
+  }
+
+  .old-image-icon-youtube {
+    background-image: url(https://itp1.itopfile.com/ImageServer/z_itp_09062024wnrm/0/0/youtubez-z1416596488876.png) !important
+  }
+
+
+  #languagemobile {
+    order: 10;
+  }
+
+  #language_member_bar {
+    display: none;
+  }
+
+  #main-navbar-collapse {
+    display: none !important;
+  }
+
+  #languagemobile {
+    filter: unset !important;
+  }
+}
+
+.component-menu li {
+  background-color: #fff !important;
+  background: #fff !important;
+}
+
+.component-menu a,
+.component-menu i,
+.itpSwitchCmp {
+  background: #fff !important;
+  color: #000 !important;
+}
+
+.margin {
+  margin: 0 !important;
+}
+
+.padding {
+  padding: 0 !important;
+}
+
+.itopplus-banner *:not(i):before,
+.itopplus-banner *:not(i)::after {
+  display: none;
+}
+
+#itpMenuSideBar:focus,
+#itpMenuSideBar:hover {
+  background-color: transparent !important;
+  background: 0 0 !important;
+}
+
+@media screen and (min-width:1024px) {
+  #main-navbar-collapse {
+    width: 100%;
+    padding: 0 !important;
+  }
+}
