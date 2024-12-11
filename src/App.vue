@@ -1,7 +1,7 @@
 <template>
   <div id="App-layout">
     <aside class="left">
-      <NavAside></NavAside>
+      <Nav-Aside></Nav-Aside>
     </aside>
     <section>
       <header>
@@ -13,9 +13,6 @@
       </article>
       <footer>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis, perferendis.</footer>
     </section>
-    <aside class="right">
-      <Widget-mode></Widget-mode>
-    </aside>
   </div>
 </template>
 
