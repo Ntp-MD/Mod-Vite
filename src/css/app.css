@@ -6,7 +6,7 @@
   --font-color: #333;
   --font-color2: #555;
   --btn-color: #6161ff;
-  --box-shadow1: #6161ff48 0px 5px 15px;
+  --box-shadow1: rgba(97, 97, 255, 0.2) 0px 5px 15px;
   --gap: 2vw;
 }
 
@@ -51,6 +51,7 @@ section::-webkit-scrollbar {
 aside {
   position: sticky;
   top: 0;
+  width: 100%;
   height: 100vh;
   background: var(--main-white);
   z-index: 1;
@@ -74,7 +75,7 @@ header {
   top: 0;
   display: flex;
   align-items: center;
-  justify-content: end;
+  justify-content: space-between;
   gap: 20px;
   height: 50px;
   background: var(--main-white);
@@ -101,16 +102,15 @@ a {
   text-decoration: none;
   text-transform: uppercase;
   color: var(--font-color);
-  transition: 0.3s;
 }
 
 h1 {
-  font-size: clamp(26px, 2vw, 30px);
+  font-size: clamp(22px, 2vw, 28px);
   margin: 0 0 15px;
 }
 
 h2 {
-  font-size: clamp(24px, 1.5vw, 30px);
+  font-size: clamp(22px, 1.5vw, 28px);
   margin: 0;
   color: var(--font2);
 }
@@ -134,7 +134,7 @@ caption {
   display: block;
   text-transform: uppercase;
   text-align: left;
-  font-size: 2vw;
+  font-size: clamp(26px, 2vw, 32px);
   font-weight: 700;
   color: var(--font1);
   margin-bottom: 20px;
@@ -143,24 +143,25 @@ caption {
 button:hover {
 }
 
+#aside {
+  visibility: hidden;
+  cursor: pointer;
+}
+
 /*Nav Aside*/
 .nav-aside {
   display: flex;
   flex-direction: column;
   gap: 2vw;
-  padding: 1.5vw;
-}
-
-.mid-aside {
-  display: flex;
-  flex-direction: column;
-  gap: 2vw;
+  padding: 20px;
+  min-width: 60%;
+  height: 100vb;
 }
 
 .nav-logo {
   display: grid;
   position: relative;
-  height: 125px;
+  height: 10vw;
   width: 8vw;
   margin: 0 auto;
   overflow: hidden;
@@ -177,14 +178,13 @@ body.dark-mode .nav-logo img {
 .nav-menu {
   display: flex;
   flex-direction: column;
-  gap: 5px;
 }
 
 .nav-aside span {
   font-size: 12px;
   text-transform: uppercase;
   color: var(--font-color2);
-  margin-bottom: 5px;
+  margin-bottom: 15px;
 }
 
 a.nav-link {
@@ -194,6 +194,7 @@ a.nav-link {
   padding: 12px 15px;
   border-radius: 7px;
   font-weight: 500;
+  width: auto;
 }
 
 a.nav-link:hover {
@@ -212,3 +213,115 @@ a.nav-link:hover img {
 }
 
 /*Nav Aside*/
+
+.copy-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
+  gap: 20px;
+}
+
+.copy-items {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: var(--main-white);
+  box-shadow: var(--box-shadow1);
+}
+
+.code-block {
+  display: grid;
+  grid-template-columns: auto 40px;
+  align-items: center;
+  gap: 10px;
+  background-color: var(--main-overlay);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.code-content {
+  display: grid;
+  align-items: center;
+  overflow: hidden;
+  white-space: nowrap;
+  width: auto;
+  padding: 0px 10px;
+  user-select: none;
+  height: 35px;
+}
+
+.copy-button {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  background: var(--btn-color);
+  cursor: pointer;
+}
+
+.copy-button img {
+  object-fit: contain;
+  width: 40%;
+  filter: invert(1);
+}
+
+@media screen and (max-width: 992px) {
+  .copy-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(40%, 1fr));
+  }
+}
+
+@media screen and (max-width: 440px) {
+  #App-layout {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .copy-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+  }
+
+  .nav-logo {
+    display: none;
+  }
+
+  .nav-aside span {
+    display: none;
+  }
+
+  .nav-aside {
+    width: fit-content;
+    padding: 15px;
+    background: var(--main-white);
+  }
+
+  #aside {
+    visibility: visible;
+    padding: 10px;
+    border-radius: 8px;
+    width: 40px;
+    aspect-ratio: 1;
+  }
+
+  #aside img {
+    width: 100%;
+    filter: invert(1);
+  }
+
+  aside {
+    position: fixed;
+    top: 50px;
+    left: -120%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    transition: 0.8s;
+  }
+
+  aside.open {
+    position: fixed;
+    left: 0;
+  }
+}

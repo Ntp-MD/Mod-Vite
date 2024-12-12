@@ -5,6 +5,7 @@
     </aside>
     <main>
       <header>
+        <button id="aside"><img src="@/assets/icons/menu.png" alt="" /></button>
         <widget-mode></widget-mode>
       </header>
       <section>

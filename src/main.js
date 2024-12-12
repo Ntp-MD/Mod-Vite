@@ -36,3 +36,13 @@ $(document).on("click", function (e) {
     }
   }
 });
+
+$(document).ready(function () {
+  $(document).on("click", function (e) {
+    if ($(e.target).closest("#aside").length) {
+      $("aside").toggleClass("open");
+    } else {
+      $("aside").removeClass("open");
+    }
+  });
+});
