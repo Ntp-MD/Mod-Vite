@@ -1,102 +1,100 @@
 <template>
-  <div class="head-content">
-    <h1>Font Family</h1>
-  </div>
-  <div class="font-group">
-    <div class="font-items">
-      <h2>Noto Sans Thai</h2>
-      <div id="textToCopy">font-family: "Noto Sans Thai", sans-serif;</div>
-      <div class="font-display"><button id="copyButton">Copy</button><span id="copyStatus">Copies to clipboard</span></div>
-    </div>
-    <div class="font-items">
-      <h2>Noto Sans Thai</h2>
-      <div id="textToCopy">font-family: "Noto Sans Thai", sans-serif;</div>
-      <div class="font-display"><button id="copyButton">Copy</button><span id="copyStatus">Copies to clipboard</span></div>
-    </div>
-    <div class="font-items">
-      <h2>Noto Sans Thai</h2>
-      <div id="textToCopy">font-family: "Noto Sans Thai", sans-serif;</div>
-      <div class="font-display"><button id="copyButton">Copy</button><span id="copyStatus">Copies to clipboard</span></div>
-    </div>
-    <div class="font-items">
-      <h2>Noto Sans Thai</h2>
-      <div id="textToCopy">font-family: "Noto Sans Thai", sans-serif;</div>
-      <div class="font-display"><button id="copyButton">Copy</button><span id="copyStatus">Copies to clipboard</span></div>
-    </div>
-    <div class="font-items">
-      <h2>Noto Sans Thai</h2>
-      <div id="textToCopy">font-family: "Noto Sans Thai", sans-serif;</div>
-      <div class="font-display"><button id="copyButton">Copy</button><span id="copyStatus">Copies to clipboard</span></div>
-    </div>
-    <div class="font-items">
-      <h2>Noto Sans Thai</h2>
-      <div id="textToCopy">font-family: "Noto Sans Thai", sans-serif;</div>
-      <div class="font-display"><button id="copyButton">Copy</button><span id="copyStatus">Copies to clipboard</span></div>
-    </div>
-    <div class="font-items">
-      <h2>Noto Sans Thai</h2>
-      <div id="textToCopy">font-family: "Noto Sans Thai", sans-serif;</div>
-      <div class="font-display"><button id="copyButton">Copy</button><span id="copyStatus">Copies to clipboard</span></div>
+  <caption>
+    font family
+  </caption>
+  <div class="copy-group">
+    <div class="copy-items" v-for="font in fonts" :key="font.font_name">
+      <h2>{{ font.font_name }}</h2>
+      <div class="code-block">
+        <div class="code-content">
+          {{ font.font_family }}
+        </div>
+        <div class="copy-button" @click="copyToClipboard(font.font_family)"><img src="@img/icons/link.png" alt="" /></div>
+      </div>
+      <div class="code-block">
+        <div class="code-content">
+          {{ font.font_url }}
+        </div>
+        <div class="copy-button" @click="copyToClipboard(font.font_url)"><img src="@img/icons/link.png" alt="" /></div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-$(document).ready(function () {
-  $("#copyButton").on("click", function () {
-    // Get the text to copy
-    const text = $("#textToCopy").text();
+import fontData from "@/data/font-family.json";
 
-    // Check if Clipboard API is supported
-    if (navigator.clipboard && navigator.clipboard.writeText) {
+export default {
+  methods: {
+    copyToClipboard(textToCopy) {
       navigator.clipboard
-        .writeText(text)
+        .writeText(textToCopy)
         .then(() => {
-          // Make the success message visible
-          $("#copyStatus").css("visibility", "visible");
-
-          // Hide the message after 2 seconds
-          setTimeout(() => {
-            $("#copyStatus").css("visibility", "hidden");
-          }, 4000);
+          alert(`${textToCopy} copied to clipboard!`);
         })
         .catch((err) => {
-          alert("Failed to copy text: " + err);
+          console.error("Failed to copy text: ", err);
         });
-    } else {
-      alert("Clipboard API not supported on this browser.");
-    }
-  });
-});
+    },
+  },
+  data() {
+    return {
+      fonts: fontData,
+    };
+  },
+};
 </script>
 
 <style scoped>
-.font-group {
+.copy-group {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
   gap: 20px;
 }
 
-.font-items {
+.copy-items {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  gap: 10px;
   padding: 20px;
-  border-radius: 15px;
-  background: var(--main-white);
-  height: fit-content;
+  border-radius: 8px;
+  background-color: var(--main-white);
   box-shadow: var(--box-shadow1);
-  height: 150px;
 }
 
-.font-display {
-  display: flex;
+.code-block {
+  display: grid;
+  grid-template-columns: auto 40px;
   align-items: center;
-  gap: 20px;
+  gap: 10px;
+  background-color: var(--main-overlay);
+  border-radius: 5px;
+  overflow: hidden;
 }
 
-#copyStatus {
-  visibility: hidden;
+.code-content {
+  display: grid;
+  align-items: center;
+  overflow: hidden;
+  white-space: nowrap;
+  width: auto;
+  padding: 0px 10px;
+  user-select: none;
+  height: 35px;
+}
+
+.copy-button {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  background: var(--btn-color);
+  cursor: pointer;
+}
+
+.copy-button img {
+  object-fit: contain;
+  width: 40%;
+  filter: invert(1);
 }
 </style>

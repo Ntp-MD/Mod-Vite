@@ -10,8 +10,8 @@
         <span>overview</span>
         <router-link class="nav-link" to="/"><img src="@img/icons/home.png" alt="" />Test space</router-link>
         <router-link class="nav-link" to="/Font"><img src="@img/icons/font.png" alt="" />Font Family</router-link>
+        <router-link class="nav-link" to="/Embed"><img src="@img/icons/link.png" alt="" />embed</router-link>
         <router-link class="nav-link" to="/"><img src="@img/icons/copy.png" alt="" />page</router-link>
-        <router-link class="nav-link" to="/"><img src="@img/icons/link.png" alt="" />embed</router-link>
         <router-link class="nav-link" to="/"><img src="@img/icons/download.png" alt="" />download</router-link>
       </div>
       <div class="nav-menu">

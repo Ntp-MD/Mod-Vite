@@ -1,35 +1,30 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 :root {
   --main-white: #fff;
-  --main-overlay: #fafafa;
-  --font1: #666;
-  --font2: #282828;
-  --font3: #aaa;
-  --btn-color: linear-gradient(to right, #ca409f 0%, #6f36ff 100%);
-  --btn-color2: linear-gradient(to right, #fff 0%, #fff 100%);
-  --btn-font: #fff;
-  --border-color: #e8e8e8;
-  --box-shadow1: rgba(0, 0, 0, 0.15) 0px 5px 15px;
+  --main-overlay: #f2f5fd;
+  --font-color: #333;
+  --font-color2: #555;
+  --btn-color: #6161ff;
+  --box-shadow1: #6161ff48 0px 5px 15px;
   --gap: 2vw;
 }
 
 body {
   margin: 0;
   padding: 0;
-  font-size: clamp(14px, 1vw, 16px);
-  font-family: "Roboto", sans-serif;
+  font-size: clamp(14px, 1vw, 14px);
+  font-family: "Poppins", sans-serif;
   overflow-y: hidden;
   background: var(--main-overlay);
-  color: var(--font1);
+  color: var(--font-color);
 }
 
 body.dark-mode {
-  --main-overlay: #121212;
-  --main-white: #181818;
-  --font1: #fff;
-  --font2: #fff;
+  --main-white: #202020;
+  --main-overlay: #252525;
+  --font-color: #fff;
+  --box-shadow1: transparent;
   --border-color: transparent;
   & a.nav-link img {
     filter: invert(1);
@@ -42,6 +37,38 @@ section::-webkit-scrollbar {
   width: 0;
 }
 
+#app {
+  position: relative;
+}
+
+#App-layout {
+  position: relative;
+  display: grid;
+  grid-template-columns: clamp(220px, 18vw, 300px) auto;
+  height: 100%;
+}
+
+aside {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  background: var(--main-white);
+  z-index: 1;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  overflow-x: scroll;
+  z-index: 0;
+}
+
+section {
+  padding: var(--gap);
+}
+
 header {
   position: sticky;
   top: 0;
@@ -51,8 +78,8 @@ header {
   gap: 20px;
   height: 50px;
   background: var(--main-white);
-  border-bottom: 1px solid var(--border-color);
   padding: 0 var(--gap);
+  z-index: 1;
 }
 
 footer {
@@ -63,7 +90,6 @@ footer {
   width: 100%;
   bottom: 0;
   height: 50px;
-  border-top: 1px solid var(--border-color);
 }
 
 img {
@@ -74,13 +100,13 @@ a {
   font-size: clamp(14px, 1vw, 14px);
   text-decoration: none;
   text-transform: uppercase;
-  color: var(--font1);
+  color: var(--font-color);
+  transition: 0.3s;
 }
 
 h1 {
-  font-size: clamp(26px, 2vw, 34px);
+  font-size: clamp(26px, 2vw, 30px);
   margin: 0 0 15px;
-  color: var(--font2);
 }
 
 h2 {
@@ -89,17 +115,11 @@ h2 {
   color: var(--font2);
 }
 
-h3 {
-  font-size: clamp(20px, 1.5vw, 26px);
-  margin: 0;
-}
-
 button {
-  position: relative;
   background: var(--btn-color);
-  color: var(--btn-font);
+  color: #fff;
   font-size: clamp(14px, 1vw, 16px);
-  border-radius: 30px;
+  border-radius: 5px;
   padding: 10px 15px;
   min-width: 5vw;
   width: fit-content;
@@ -110,47 +130,17 @@ button {
   transition: 0.5s;
 }
 
+caption {
+  display: block;
+  text-transform: uppercase;
+  text-align: left;
+  font-size: 2vw;
+  font-weight: 700;
+  color: var(--font1);
+  margin-bottom: 20px;
+}
+
 button:hover {
-}
-
-#app {
-  position: relative;
-}
-
-#App-layout {
-  position: relative;
-  display: grid;
-  grid-template-columns: 15vw auto;
-  height: 100%;
-}
-
-aside {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  background: var(--main-white);
-}
-
-aside.left {
-  border-right: 1px solid var(--border-color);
-}
-
-aside.right {
-  display: flex;
-  flex-direction: column;
-  place-items: center;
-  border-left: 1px solid var(--border-color);
-}
-
-section {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  overflow-x: scroll;
-}
-
-article {
-  padding: var(--gap);
 }
 
 /*Nav Aside*/
@@ -164,7 +154,7 @@ article {
 .mid-aside {
   display: flex;
   flex-direction: column;
-  gap: 3vw;
+  gap: 2vw;
 }
 
 .nav-logo {
@@ -191,9 +181,9 @@ body.dark-mode .nav-logo img {
 }
 
 .nav-aside span {
-  font-size: clamp(12px, 0.5vw, 14px);
+  font-size: 12px;
   text-transform: uppercase;
-  color: var(--font3);
+  color: var(--font-color2);
   margin-bottom: 5px;
 }
 

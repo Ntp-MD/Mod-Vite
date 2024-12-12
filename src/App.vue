@@ -3,16 +3,14 @@
     <aside class="left">
       <Nav-Aside></Nav-Aside>
     </aside>
-    <section>
+    <main>
       <header>
-        <button>Test</button>
-        <User-profile></User-profile>
+        <widget-mode></widget-mode>
       </header>
-      <article>
+      <section>
         <router-view />
-      </article>
-      <footer>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis, perferendis.</footer>
-    </section>
+      </section>
+    </main>
   </div>
 </template>
 
