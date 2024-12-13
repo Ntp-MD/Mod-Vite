@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from "vue-router"; // Import hash history
+import { createRouter, createWebHashHistory } from "vue-router";
 
 // Dynamically import all `.vue` files from the `views` folder
 const viewFiles = import.meta.glob("@/views/*.vue");
@@ -9,17 +9,25 @@ const routes = Object.keys(viewFiles).map((path) => {
   const name = path.split("/").pop().replace(".vue", "");
 
   return {
-    path: name.toLowerCase() === "/Home" ? "/" : `/${name.toLowerCase()}`, // Selective Start Page
-    alias: "/Home",
+    path: name.toLowerCase() === "home" ? "/" : `/${name.toLowerCase()}`, // Set "/" for Home.vue
     name, // Use the file name as the route name
     component: viewFiles[path], // Dynamically imported component
   };
 });
 
 // Add a fallback route for unmatched paths
+const notFoundPath = "@/views/NotFound.vue";
+if (viewFiles[notFoundPath]) {
+  routes.push({
+    path: "/:pathMatch(.*)*", // Catch-all route
+    component: viewFiles[notFoundPath],
+  });
+}
+
+// Ensure `/Home` redirects to `/`
 routes.push({
-  path: "/:pathMatch(.*)*", // Catch-all route
-  component: viewFiles["@/views/NotFound.vue"] || null, // Use NotFound.vue if it exists
+  path: "/Home",
+  redirect: "/",
 });
 
 // Create the Vue Router instance
