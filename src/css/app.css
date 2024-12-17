@@ -4,19 +4,16 @@
   --main-white: #fff;
   --main-overlay: #f2f5fd;
   --font-color: #333;
-  --font-color2: #555;
-  --btn-color: #6161ff;
-  --box-shadow1: rgba(97, 97, 255, 0.2) 0px 5px 15px;
-  --gap: 2vw;
+  --font-color2: #535768;
+  --main-color: #6161ff;
+  --box-shadow1: rgba(97, 97, 255, 0.5) 0px 3px 15px;
+  font-family: "Poppins", sans-serif;
 }
 
 body {
   margin: 0;
   padding: 0;
-  font-size: clamp(14px, 1vw, 14px);
-  font-family: "Poppins", sans-serif;
-  overflow-y: hidden;
-  background: var(--main-overlay);
+  font-size: clamp(14px, 1vw, 16px);
   color: var(--font-color);
 }
 
@@ -41,93 +38,86 @@ section::-webkit-scrollbar {
   position: relative;
 }
 
-#App-layout {
-  position: relative;
-  display: grid;
-  grid-template-columns: clamp(220px, 18vw, 300px) auto;
-  height: 100%;
-}
-
-aside {
-  position: sticky;
-  top: 0;
-  width: 100%;
-  height: 100vh;
-  background: var(--main-white);
-  z-index: 1;
-}
-
-main {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  width: 100%;
-  overflow-x: scroll;
-  z-index: 0;
-}
-
-section {
-  padding: var(--gap);
-}
-
 header {
   position: sticky;
   top: 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  height: 50px;
+  z-index: 10;
   background: var(--main-white);
-  padding: 0 var(--gap);
-  z-index: 1;
+}
+
+main {
+  background: var(--main-overlay);
+}
+
+section {
 }
 
 footer {
-  position: absolute;
-  bottom: 0;
-  background: var(--main-white);
-  position: fixed;
-  width: 100%;
-  bottom: 0;
-  height: 50px;
 }
 
 img {
   width: 100%;
 }
 
-a {
-  font-size: clamp(14px, 1vw, 14px);
-  text-decoration: none;
-  text-transform: uppercase;
-  color: var(--font-color);
-}
-
 h1 {
-  font-size: clamp(22px, 2vw, 28px);
-  margin: 0 0 15px;
+  font-size: clamp(26px, 4vw, 68px);
+  font-weight: 200;
+  line-height: 1.2;
+  margin: 0;
 }
 
 h2 {
-  font-size: clamp(22px, 1.5vw, 28px);
+  font-size: clamp(20px, 4vw, 30px);
+  font-weight: 600;
+  line-height: 1.2;
   margin: 0;
-  color: var(--font2);
+}
+
+h3 {
+  font-size: clamp(20px, 4vw, 20px);
+  font-weight: 600;
+  line-height: 1.2;
+  margin: 0;
+}
+
+span {
+  font-size: 14px;
+  margin-top: 15px;
+}
+
+a {
+  text-decoration: none;
+  text-transform: uppercase;
+  color: var(--font-color);
+  font-size: clamp(14px, 1.2vw, 16px);
+}
+
+a:hover {
+  color: var(--main-color);
+}
+
+p {
+  font-size: clamp(14px, 1.2vw, 18px);
+  line-height: 1.8;
 }
 
 button {
-  background: var(--btn-color);
-  color: #fff;
-  font-size: clamp(14px, 1vw, 16px);
-  border-radius: 5px;
-  padding: 10px 15px;
-  min-width: 5vw;
   width: fit-content;
-  border: none;
-  cursor: pointer;
+  min-width: 120px;
   height: fit-content;
-  overflow: hidden;
+  border: none;
+  border-radius: 30px;
+  padding: 15px 20px 12px;
+  margin: auto;
+  font-size: clamp(14px, 1vw, 16px);
+  background: var(--main-color);
+  color: #fff;
+  cursor: pointer;
   transition: 0.5s;
+}
+
+button:hover {
+  opacity: 0.8;
 }
 
 caption {
@@ -140,188 +130,80 @@ caption {
   margin-bottom: 20px;
 }
 
-button:hover {
-}
-
-#aside {
-  visibility: hidden;
-  cursor: pointer;
-}
-
-/*Nav Aside*/
-.nav-aside {
+form {
   display: flex;
   flex-direction: column;
-  gap: 2vw;
-  padding: 20px;
-  min-width: 60%;
-  height: 100vb;
+  padding: clamp(20px, 4vw, 50px);
+  background: transparent;
 }
 
-.nav-logo {
+form #input {
   display: grid;
-  position: relative;
-  height: 10vw;
-  width: 8vw;
-  margin: 0 auto;
-  overflow: hidden;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 50px;
+}
+form > *:first-child {
+  margin-bottom: 20px;
 }
 
-.nav-logo img {
-  object-fit: cover;
+input,
+textarea {
+  padding-block: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  background: transparent;
+  outline: none;
 }
 
-body.dark-mode .nav-logo img {
-  content: url("@img/weather/night.png");
+textarea {
+  min-height: 100px;
+  background: transparent;
 }
 
-.nav-menu {
-  display: flex;
-  flex-direction: column;
-}
-
-.nav-aside span {
+input::placeholder {
   font-size: 12px;
   text-transform: uppercase;
-  color: var(--font-color2);
-  margin-bottom: 15px;
+  opacity: 0.8;
 }
 
-a.nav-link {
-  display: flex;
-  align-items: flex-end;
-  gap: 10px;
-  padding: 12px 15px;
-  border-radius: 7px;
-  font-weight: 500;
-  width: auto;
+textarea::placeholder {
+  font-size: 14px;
+  text-transform: uppercase;
+  opacity: 0.8;
 }
 
-a.nav-link:hover {
-  background: var(--btn-color);
-  color: #fff;
-}
-
-a.nav-link img {
-  aspect-ratio: 1;
-  width: 20px;
-  filter: contrast(0.3);
-}
-
-a.nav-link:hover img {
-  filter: invert(1);
-}
-
-/*Nav Aside*/
-
-.copy-group {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
-  gap: 20px;
-}
-
-.copy-items {
+._container {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding: 20px;
-  border-radius: 8px;
-  background-color: var(--main-white);
-  box-shadow: var(--box-shadow1);
-}
-
-.code-block {
-  display: grid;
-  grid-template-columns: auto 40px;
   align-items: center;
-  gap: 10px;
-  background-color: var(--main-overlay);
-  border-radius: 5px;
-  overflow: hidden;
-}
-
-.code-content {
-  display: grid;
-  align-items: center;
-  overflow: hidden;
-  white-space: nowrap;
-  width: auto;
-  padding: 0px 10px;
-  user-select: none;
-  height: 35px;
-}
-
-.copy-button {
-  display: grid;
-  place-items: center;
+  gap: 20px;
+  padding: 7vw 0;
   width: 100%;
-  height: 100%;
-  background: var(--btn-color);
-  cursor: pointer;
-}
-
-.copy-button img {
-  object-fit: contain;
-  width: 40%;
-  filter: invert(1);
-}
-
-@media screen and (max-width: 992px) {
-  .copy-group {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(40%, 1fr));
-  }
+  max-width: 70vw;
+  margin: 0 auto;
 }
 
 @media screen and (max-width: 440px) {
-  #App-layout {
+  ._container {
+    gap: 0;
+    padding: 20px;
+  }
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(45%, 1fr));
+  margin: auto auto;
+  gap: 50px;
+  width: 100%;
+}
+
+@media screen and (max-width: 440px) {
+  .grid-2 {
     display: flex;
     flex-direction: column;
-  }
-
-  .copy-group {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
-  }
-
-  .nav-logo {
-    display: none;
-  }
-
-  .nav-aside span {
-    display: none;
-  }
-
-  .nav-aside {
-    width: fit-content;
-    padding: 15px;
-    background: var(--main-white);
-  }
-
-  #aside {
-    visibility: visible;
-    padding: 10px;
-    border-radius: 8px;
-    width: 40px;
-    aspect-ratio: 1;
-  }
-
-  #aside img {
     width: 100%;
-    filter: invert(1);
-  }
-
-  aside {
-    position: fixed;
-    top: 50px;
-    left: -120%;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    transition: 0.8s;
-  }
-
-  aside.open {
-    position: fixed;
-    left: 0;
   }
 }

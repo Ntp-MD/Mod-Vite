@@ -45,4 +45,70 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.copy-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
+  gap: 20px;
+}
+
+.copy-items {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: var(--main-white);
+  box-shadow: var(--box-shadow1);
+}
+
+.code-block {
+  display: grid;
+  grid-template-columns: auto 40px;
+  align-items: center;
+  gap: 10px;
+  background-color: var(--main-overlay);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.code-content {
+  display: grid;
+  align-items: center;
+  overflow: hidden;
+  white-space: nowrap;
+  width: auto;
+  padding: 0px 10px;
+  user-select: none;
+  height: 35px;
+}
+
+.copy-button {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  background: var(--main-color);
+  cursor: pointer;
+}
+
+.copy-button img {
+  object-fit: contain;
+  width: 40%;
+  filter: invert(1);
+}
+
+@media screen and (max-width: 992px) {
+  .copy-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(40%, 1fr));
+  }
+}
+
+@media screen and (max-width: 440px) {
+  .copy-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+  }
+}
+</style>

@@ -1,34 +1,30 @@
 <template>
-  <div class="nav-aside">
-    <div class="top-aside">
-      <a href="/" class="nav-logo">
-        <img class="light" src="@img/weather/day.png" alt="" />
-      </a>
+  <div id="Nav-header">
+    <div class="header-logo">Mod</div>
+    <div class="header-menu">
+      <router-link class="header-menu-link" to="/">Test space</router-link>
+      <router-link class="header-menu-link" to="/Font">Font Family</router-link>
+      <router-link class="header-menu-link" to="/Embed">embed</router-link>
+      <router-link class="header-menu-link" to="/ChatGPTComponent">Page</router-link>
+      <router-link class="header-menu-link" to="/">Download</router-link>
     </div>
-    <div class="mid-aside">
-      <div class="nav-menu">
-        <span>overview</span>
-        <router-link class="nav-link" to="/"><img src="@img/icons/home.png" alt="" />Test space</router-link>
-        <router-link class="nav-link" to="/Font"><img src="@img/icons/font.png" alt="" />Font Family</router-link>
-        <router-link class="nav-link" to="/"><img src="@img/icons/copy.png" alt="" />page</router-link>
-        <router-link class="nav-link" to="/"><img src="@img/icons/link.png" alt="" />embed</router-link>
-        <router-link class="nav-link" to="/"><img src="@img/icons/download.png" alt="" />download</router-link>
-      </div>
-      <div class="nav-menu">
-        <span>community</span>
-        <router-link class="nav-link" to="/"><img src="@img/icons/calendar.png" alt="" />calendar</router-link>
-        <router-link class="nav-link" to="/"><img src="@img/icons/contact.png" alt="" />contact</router-link>
-        <router-link class="nav-link" to="/"><img src="@img/icons/international.png" alt="" />social</router-link>
-      </div>
-      <div class="nav-menu">
-        <span>preference</span>
-        <router-link class="nav-link" to="/"><img src="@img/icons/account.png" alt="" />account</router-link>
-        <router-link class="nav-link" to="/"><img src="@img//icons/control.png" alt="" />setting</router-link>
-        <router-link class="nav-link" to="/"><img src="@img/icons/logout.png" alt="" />sign out</router-link>
-      </div>
-    </div>
-    <div class="bottom-aside"></div>
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+#Nav-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  height: 50px;
+  max-width: 1600px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.header-menu {
+  display: flex;
+  gap: 20px;
+}
+</style>
