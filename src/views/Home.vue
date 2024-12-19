@@ -34,7 +34,27 @@
           Lorem ipsum, dolor sit amet <br />
           consectetur Veritatis, quasi?
         </h1>
-        <div class="grid-custom-2"></div>
+        <div class="grid-2">
+          <div class="left">
+            <img src="@/assets/images/app1.png" alt="" />
+          </div>
+          <div class="right">
+            <h2>
+              Lorem ipsum dolor sit amet <br />
+              consectetur adipisicing.
+            </h2>
+            <br />
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia suscipit officiis sed earum magnam provident ab saepe soluta, itaque ipsam, excepturi in sapiente quis atque non, nam
+              eum laudantium minus!
+            </p>
+            <br />
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia suscipit officiis sed earum magnam provident ab saepe soluta, itaque ipsam, excepturi in sapiente quis atque non, nam
+              eum laudantium minus!
+            </p>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -82,7 +102,23 @@
   background: #fff;
 }
 
-#section-3 {
+.grid-custom-1 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 50px;
+  margin-top: 50px;
+}
+
+#section-3 .grid-2 {
+  margin: 50px auto;
+  align-items: center;
+  place-items: center;
+  gap: 50px;
+}
+
+#section-3 .left {
+  display: grid;
+  width: 70%;
 }
 
 #section-4 {
@@ -98,7 +134,6 @@
     background: var(--main-overlay);
     border-radius: 15px;
     overflow: hidden;
-    gap: 0;
   }
 }
 
@@ -106,13 +141,6 @@
   background: #fff;
   border-radius: 15px;
   height: 30vw;
-}
-
-.grid-custom-1 {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 50px;
-  margin-top: 50px;
 }
 
 .grid-items {

@@ -25,6 +25,10 @@
   text-align: left;
 }
 
+._container {
+  max-width: 90vw;
+}
+
 .footer-menu {
   display: flex;
   flex-direction: column;
