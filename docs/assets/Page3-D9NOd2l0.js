@@ -1,1 +1,0 @@
-import{_ as o,c as t,a,o as n}from"./index-DoaZOJL7.js";const r={};function c(s,e){return n(),t("div",null,e[0]||(e[0]=[a("h1",null,"Welcome to Page 3",-1)]))}const _=o(r,[["render",c]]);export{_ as default};

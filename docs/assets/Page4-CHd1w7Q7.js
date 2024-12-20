@@ -1,0 +1,1 @@
+import{_ as o,c as n,a as r,o as t}from"./index-C_pduqFA.js";const a={};function c(s,e){return t(),n("div",null,e[0]||(e[0]=[r("h1",null,"Welcome",-1)]))}const _=o(a,[["render",c]]);export{_ as default};
