@@ -187,13 +187,6 @@ textarea::placeholder {
   margin: 0 auto;
 }
 
-.grid-2 {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  margin: auto auto;
-  width: 100%;
-}
-
 @media screen and (max-width: 992px) {
   ._container {
     width: auto;

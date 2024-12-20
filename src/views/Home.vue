@@ -17,28 +17,13 @@
 
     <div id="section-2">
       <div class="_container">
-        <h1>Lorem ipsum dolor sit amet.</h1>
+        <h1>Lorem ipsum, dolor sit amet</h1>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-        <div class="grid-custom-1">
-          <div class="grid-items" v-for="n in 4">
-            <h2>Lorem, ipsum dolor.</h2>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi error culpa saepe totam at quasi.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div id="section-3">
-      <div class="_container">
-        <h1>
-          Lorem ipsum, dolor sit amet <br />
-          consectetur Veritatis, quasi?
-        </h1>
-        <div class="grid-2">
-          <div class="left">
+        <div class="grid-content">
+          <div class="pic">
             <img src="@/assets/images/app1.png" alt="" />
           </div>
-          <div class="right">
+          <div class="content">
             <h2>
               Lorem ipsum dolor sit amet <br />
               consectetur adipisicing.
@@ -58,11 +43,18 @@
       </div>
     </div>
 
+    <div id="section-3">
+      <div class="_container">
+        <h1>Lorem ipsum dolor sit amet.</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+      </div>
+    </div>
+
     <div id="section-4">
       <div class="_container">
         <h1>Lorem ipsum, dolor sit amet</h1>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-        <div class="grid-2">
+        <div class="grid-content">
           <div class="">
             <form>
               <h3>Lorem ipsum dolor sit.</h3>
@@ -102,23 +94,22 @@
   background: #fff;
 }
 
-.grid-custom-1 {
+.grid-content {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 50px;
-  margin-top: 50px;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  place-content: center;
+  min-height: 30vw;
 }
 
-#section-3 .grid-2 {
-  margin: 50px auto;
-  align-items: center;
-  place-items: center;
-  gap: 50px;
+.grid-content > div {
+  height: 100%;
 }
 
-#section-3 .left {
+.grid-content .pic {
   display: grid;
-  width: 70%;
+  margin: auto;
+  max-width: 70%;
+  min-width: 300px;
 }
 
 #section-4 {
@@ -130,7 +121,7 @@
     object-fit: cover;
   }
 
-  .grid-2 {
+  .grid-content {
     background: var(--main-overlay);
     border-radius: 15px;
     overflow: hidden;
@@ -141,17 +132,6 @@
   background: #fff;
   border-radius: 15px;
   height: 30vw;
-}
-
-.grid-items {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  min-height: 300px;
-  background: var(--main-overlay);
-  border-radius: 15px;
-  padding: 20px;
-  box-shadow: var(--box-shadow1);
 }
 </style>
 
