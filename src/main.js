@@ -1,43 +1,45 @@
 import "./css/app.css";
-import "./css/core.css";
 import { createApp } from "vue";
 import App from "@/App.vue";
 import router from "@/router"; // Import the router
 
+// Initialize Vue App
 const app = createApp(App);
 
+// Dynamically import and register all components in the `/components` folder
 const components = import.meta.glob("@/components/*.vue");
 
 for (const path in components) {
   components[path]().then((module) => {
     const component = module.default;
-    app.component(component.name, component); // Use the `name` property from the component
+    if (component?.name) {
+      app.component(component.name, component); // Register by the `name` property
+    } else {
+      console.warn(`Component in ${path} is missing a 'name' property.`);
+    }
   });
 }
 
-app.use(router); // Use the router in the app
+// Use the router in the app
+app.use(router);
 app.mount("#App");
 
+// jQuery Code
 $(document).ready(function () {
+  // Apply dark mode if saved in localStorage
   if (localStorage.getItem("darkMode") === "enabled") {
     $("body").addClass("dark-mode");
   }
-});
 
-$(document).on("click", function (e) {
-  if ($(e.target).closest(".toggle-mode").length) {
+  // Toggle dark mode
+  $(document).on("click", ".toggle-mode", function () {
     $("body").toggleClass("dark-mode");
 
-    // Save the mode in local storage
-    if ($("body").hasClass("dark-mode")) {
-      localStorage.setItem("darkMode", "enabled");
-    } else {
-      localStorage.setItem("darkMode", "disabled");
-    }
-  }
-});
+    // Save the mode in localStorage
+    localStorage.setItem("darkMode", $("body").hasClass("dark-mode") ? "enabled" : "disabled");
+  });
 
-$(document).ready(function () {
+  // Toggle 'open' class on aside when clicking #aside or close it when clicking outside
   $(document).on("click", function (e) {
     if ($(e.target).closest("#aside").length) {
       $("aside").toggleClass("open");

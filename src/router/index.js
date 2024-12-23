@@ -5,7 +5,7 @@ const viewFiles = import.meta.glob("@/views/*.vue");
 
 // Dynamically create routes for each file
 const routes = Object.keys(viewFiles).map((path) => {
-  // Extract the file name (e.g., "Dashboard.vue")
+  // Extract the file name without extension (e.g., "Dashboard" from "Dashboard.vue")
   const name = path.split("/").pop().replace(".vue", "");
 
   return {
@@ -15,20 +15,21 @@ const routes = Object.keys(viewFiles).map((path) => {
   };
 });
 
-// Add a fallback route for unmatched paths
-const notFoundPath = "@/views/NotFound.vue";
-if (viewFiles[notFoundPath]) {
+// Add a fallback route for unmatched paths (NotFound.vue)
+if (viewFiles["/src/views/NotFound.vue"]) {
   routes.push({
     path: "/:pathMatch(.*)*", // Catch-all route
-    component: viewFiles[notFoundPath],
+    component: viewFiles["/src/views/NotFound.vue"], // Dynamically import NotFound component
   });
 }
 
-// Ensure `/Home` redirects to `/`
-routes.push({
-  path: "/Home",
-  redirect: "/",
-});
+// Ensure `/Home` redirects to `/` (if Home.vue exists)
+if (viewFiles["/src/views/Home.vue"]) {
+  routes.push({
+    path: "/Home",
+    redirect: "/",
+  });
+}
 
 // Create the Vue Router instance
 const router = createRouter({

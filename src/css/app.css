@@ -38,21 +38,8 @@ section::-webkit-scrollbar {
   position: relative;
 }
 
-header {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  background: var(--main-white);
-}
-
 main {
   background: var(--main-overlay);
-}
-
-section {
-}
-
-footer {
 }
 
 img {

@@ -1,13 +1,21 @@
+<script>
+import NavHeader from "@/components/NavHeader.vue";
+import FooterSection from "@/components/Footer-Section.vue";
+
+export default {
+  components: {
+    NavHeader,
+    FooterSection,
+  },
+};
+</script>
+
 <template>
-  <header>
-    <Nav-header></Nav-header>
-  </header>
-  <main>
+  <NavHeader />
+  <section>
     <router-view />
-  </main>
-  <footer>
-    <Footer-Section></Footer-Section>
-  </footer>
+  </section>
+  <FooterSection />
 </template>
 
 <style scoped>

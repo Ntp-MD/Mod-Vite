@@ -3,7 +3,7 @@
     <div id="box_slide">
       <div class="box_items">
         <div class="box_items_img">
-          <img src="@/assets/images/1.jpg" />
+          <img src="https://itp1.itopfile.com/ImageServer/z_itp_09062024wnrm/0/0/1z-z1242807270081.jpg" />
         </div>
         <article>
           <span>Lorem, ipsum dolor.</span>
@@ -12,7 +12,7 @@
       </div>
       <div class="box_items">
         <div class="box_items_img">
-          <img src="@/assets/images/2.jpg" />
+          <img src="https://itp1.itopfile.com/ImageServer/z_itp_09062024wnrm/0/0/2z-z164754116619.jpg" />
         </div>
         <article>
           <span>Lorem, ipsum dolor.</span>
@@ -21,7 +21,7 @@
       </div>
       <div class="box_items">
         <div class="box_items_img">
-          <img src="@/assets/images/3.jpg" />
+          <img src="https://itp1.itopfile.com/ImageServer/z_itp_09062024wnrm/0/0/3z-z1521248311050.jpg" />
         </div>
         <article>
           <span>Lorem, ipsum dolor.</span>
@@ -30,7 +30,7 @@
       </div>
       <div class="box_items">
         <div class="box_items_img">
-          <img src="@/assets/images/4.jpg" />
+          <img src="https://itp1.itopfile.com/ImageServer/z_itp_09062024wnrm/0/0/4z-z1191711380622.jpg" />
         </div>
         <article>
           <span>Lorem, ipsum dolor.</span>
@@ -39,7 +39,7 @@
       </div>
       <div class="box_items">
         <div class="box_items_img">
-          <img src="@/assets/images/5.jpg" />
+          <img src="https://itp1.itopfile.com/ImageServer/z_itp_09062024wnrm/0/0/5z-z1024447302513.jpg" />
         </div>
         <article>
           <span>Lorem, ipsum dolor.</span>
@@ -48,7 +48,7 @@
       </div>
       <div class="box_items">
         <div class="box_items_img">
-          <img src="@/assets/images/6.jpg" />
+          <img src="https://itp1.itopfile.com/ImageServer/z_itp_09062024wnrm/0/0/6z-z476741613997.jpg" />
         </div>
         <article>
           <span>Lorem, ipsum dolor.</span>
@@ -60,17 +60,10 @@
   </div>
 </template>
 
-<style scoped>
-@import "@/components/slide1/Slide1.css";
-</style>
-
 <script>
-import { slide1 } from "@/components/slide1/Slide1.js"; // Importing JS module
-
-export default {
-  name: "Slide1",
-  mounted() {
-    slide1(); // Call the imported function when the component is mounted
-  },
-};
+import "@/components/Mod-Slide/modslide.js";
 </script>
+
+<style>
+@import url(modslide.css);
+</style>
