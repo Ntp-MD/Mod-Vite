@@ -40,11 +40,4 @@ $(document).ready(function () {
   });
 
   // Toggle 'open' class on aside when clicking #aside or close it when clicking outside
-  $(document).on("click", function (e) {
-    if ($(e.target).closest("#aside").length) {
-      $("aside").toggleClass("open");
-    } else {
-      $("aside").removeClass("open");
-    }
-  });
 });

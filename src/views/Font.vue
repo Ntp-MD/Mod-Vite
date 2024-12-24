@@ -1,8 +1,7 @@
 <template>
   <div class="_container">
-    <caption>
-      font family test
-    </caption>
+    <div>font family test</div>
+
     <div class="copy-group">
       <div class="copy-items" v-for="font in fonts" :key="font.font_name">
         <h2>{{ font.font_name }}</h2>

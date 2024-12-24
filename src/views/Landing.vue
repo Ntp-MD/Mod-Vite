@@ -3,5 +3,7 @@ import Modslide from "../components/Mod-Slide/modslide.vue";
 </script>
 
 <template>
-  <Modslide></Modslide>
+  <div :key="$route.fullPath">
+    <Modslide></Modslide>
+  </div>
 </template>

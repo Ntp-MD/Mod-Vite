@@ -38,7 +38,7 @@ export default {
 #Nav-header {
   position: sticky;
   top: 0;
-  z-index: 1;
+  z-index: 10;
   background: var(--main-white);
 
   display: flex;
@@ -63,7 +63,7 @@ export default {
 
   .Header-logo {
     position: relative;
-    padding-left: 10px;
+    padding-left: 15px;
     width: 100%;
   }
 
@@ -77,7 +77,7 @@ export default {
     align-items: center;
     gap: 5px;
     height: 50px;
-    width: 45px;
+    width: 50px;
   }
 
   #Nav-toggle div {

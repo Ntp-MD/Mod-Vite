@@ -10,6 +10,10 @@
   font-family: "Poppins", sans-serif;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -106,6 +110,11 @@ button {
 
 button:hover {
   opacity: 0.8;
+}
+
+section {
+  position: relative;
+  overflow: hidden;
 }
 
 caption {

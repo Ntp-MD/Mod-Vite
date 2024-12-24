@@ -97,11 +97,12 @@
 .grid-content {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  place-content: center;
+  place-items: center;
   min-height: 30vw;
 }
 
 .grid-content > div {
+  width: 100%;
   height: 100%;
 }
 

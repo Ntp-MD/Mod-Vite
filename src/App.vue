@@ -13,7 +13,7 @@ export default {
 <template>
   <NavHeader />
   <section>
-    <router-view />
+    <router-view :key="$route.fullPath"></router-view>
   </section>
   <FooterSection />
 </template>
