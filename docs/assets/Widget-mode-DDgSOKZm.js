@@ -1,1 +1,0 @@
-import{_ as o,c as s,a as t,o as c}from"./index-C8Ne8t5t.js";const a={},d={class:"toggle-mode"};function n(r,e){return c(),s("div",d,e[0]||(e[0]=[t("div",{class:"icon-toggle"},null,-1)]))}const l=o(a,[["render",n],["__scopeId","data-v-3ccdb413"]]);export{l as default};

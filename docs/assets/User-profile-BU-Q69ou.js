@@ -1,1 +1,0 @@
-import{_ as t,c as o,a as e,o as a}from"./index-C8Ne8t5t.js";const n="/Mod-Vite/assets/day-and-night-5nCPKua3.png",r={},c={class:"user-box"};function d(_,s){return a(),o("div",c,s[0]||(s[0]=[e("img",{src:n,alt:""},null,-1),e("div",null,"admin",-1)]))}const l=t(r,[["render",d],["__scopeId","data-v-0762081c"]]);export{l as default};
