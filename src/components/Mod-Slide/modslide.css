@@ -13,9 +13,11 @@
   gap: 10px;
   height: 30vw;
   width: 100%;
+  scroll-snap-type: x mandatory;
 }
 
 .slide_items {
+  scroll-snap-align: center;
   position: relative;
   z-index: 1;
   width: 20%;
@@ -79,6 +81,6 @@
 }
 
 .dot.active {
-  width: 30px;
+  width: 50px;
   background-color: #333;
 }

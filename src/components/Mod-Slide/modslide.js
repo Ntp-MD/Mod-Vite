@@ -1,223 +1,136 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const container = document.getElementsByClassName("mod_slide");
-  const items = container.querySelectorAll(".slide_items");
-  const dotIndicators = document.getElementById("dot-indicators");
-  let initialXPosition = null;
-  let currentXPosition = null;
-  const dragThreshold = 20; // Minimum drag distance to switch items
-  let autoplayInterval = null;
-  const autoplayDelay = 3000; // Delay between auto-scrolls (in milliseconds)
+const modSlide = {
+  init() {
+    const container = document.getElementById("mod_slide");
+    if (!container) return; // Ensure the container exists
+    const items = container.querySelectorAll(".slide_items");
+    const dotIndicators = document.getElementById("slide_dot");
+    if (!items.length || !dotIndicators) return; // Ensure items and dots exist
 
-  // Create dots based on the number of items
-  items.forEach((_, index) => {
-    const dot = document.createElement("div");
-    dot.classList.add("dot");
-    dot.dataset.index = index;
-    dotIndicators.appendChild(dot);
-  });
+    let initialXPosition = null;
+    let currentXPosition = null;
+    const dragThreshold = 20; // Minimum drag distance to switch items
+    const autoplayDelay = 3000; // Delay between auto-scrolls (in milliseconds)
+    let autoplayInterval = null;
 
-  // Explicitly set the first item and dot as active on load
-  function setFirstItemActive() {
-    items.forEach((item) => item.classList.remove("active"));
-    dotIndicators.querySelectorAll(".dot").forEach((dot) => dot.classList.remove("active"));
+    // Create dots based on the number of items
+    items.forEach((_, index) => {
+      const dot = document.createElement("div");
+      dot.classList.add("dot");
+      dot.dataset.index = index;
+      dotIndicators.appendChild(dot);
+    });
 
-    items[0].classList.add("active");
-    dotIndicators.children[0].classList.add("active");
-
-    // Reset scroll position to ensure the first item is visible on refresh
-    container.scrollLeft = 1;
-  }
-
-  // Set the first item as active immediately after the DOM is loaded
-  setFirstItemActive();
-
-  // Initialize Intersection Observer but do not observe items yet
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          // Remove active class from all items and dots
-          items.forEach((item) => item.classList.remove("active"));
-          dotIndicators.querySelectorAll(".dot").forEach((dot) => dot.classList.remove("active"));
-
-          // Add active class to the currently visible item and dot
-          entry.target.classList.add("active");
-          dotIndicators.children[Array.from(items).indexOf(entry.target)].classList.add("active");
-        }
+    // Explicitly set the first item and dot as active
+    function setActive(index) {
+      items.forEach((item, i) => {
+        item.classList.toggle("active", i === index);
       });
-    },
-    {
-      root: container,
-      rootMargin: "0px",
-      threshold: 0.8,
+      dotIndicators.querySelectorAll(".dot").forEach((dot, i) => {
+        dot.classList.toggle("active", i === index);
+      });
+      items[index].scrollIntoView({ behavior: "smooth", inline: "start" });
     }
-  );
 
-  // Manually observe items after making sure layout is stable
-  function observeItems() {
-    items.forEach((item) => observer.observe(item));
-  }
+    // Initialize active state for the first item
+    setActive(0);
 
-  // Add click event listeners to dots
-  dotIndicators.addEventListener("click", (event) => {
-    if (event.target.classList.contains("dot")) {
-      const index = parseInt(event.target.dataset.index, 10);
-      const targetItem = items[index];
-
-      if (targetItem) {
-        // Scroll to the target item
-        targetItem.scrollIntoView({ behavior: "smooth", inline: "start" });
-
-        // Update active states
-        items.forEach((item) => item.classList.remove("active"));
-        dotIndicators.querySelectorAll(".dot").forEach((dot) => dot.classList.remove("active"));
-        targetItem.classList.add("active");
-        event.target.classList.add("active");
-
-        // Reset autoplay when user interacts
+    // Add click event listener to dots
+    dotIndicators.addEventListener("click", (event) => {
+      if (event.target.classList.contains("dot")) {
+        const index = parseInt(event.target.dataset.index, 10);
+        setActive(index);
         resetAutoplay();
       }
-    }
-  });
-
-  // Allow every item to trigger active state
-  items.forEach((item, index) => {
-    item.addEventListener("click", () => {
-      // Remove active class from all items and dots
-      items.forEach((item) => item.classList.remove("active"));
-      dotIndicators.querySelectorAll(".dot").forEach((dot) => dot.classList.remove("active"));
-
-      // Set the clicked item as active
-      item.classList.add("active");
-      dotIndicators.children[index].classList.add("active");
-
-      // Scroll to the clicked item
-      item.scrollIntoView({ behavior: "smooth", inline: "start" });
-
-      // Reset autoplay when user interacts
-      resetAutoplay();
     });
-  });
 
-  // Handle snap behavior based on drag
-  const handleDragEnd = () => {
-    if (initialXPosition !== null && currentXPosition !== null) {
-      const dragDistance = currentXPosition - initialXPosition;
+    // Handle dragging behavior
+    function handleDragEnd() {
+      if (initialXPosition !== null && currentXPosition !== null) {
+        const dragDistance = currentXPosition - initialXPosition;
+        const activeIndex = Array.from(items).findIndex((item) => item.classList.contains("active"));
+        let newIndex = activeIndex;
 
-      if (Math.abs(dragDistance) >= dragThreshold) {
-        const direction = dragDistance < 0 ? "left" : "right";
-        let activeItemIndex = Array.from(items).findIndex((item) => item.classList.contains("active"));
-        let newIndex = activeItemIndex;
-
-        // Left drag should go to the next item, right drag should go to the previous
-        if (direction === "left") {
-          newIndex = activeItemIndex + 1 < items.length ? activeItemIndex + 1 : 0; // Loop to first item if at the end
-        } else if (direction === "right") {
-          newIndex = activeItemIndex - 1 >= 0 ? activeItemIndex - 1 : items.length - 1; // Loop to last item if at the start
-        }
-
-        const targetItem = items[newIndex];
-        if (targetItem) {
-          // Scroll to the target item
-          targetItem.scrollIntoView({ behavior: "smooth", inline: "start" });
-
-          // Update active states
-          items.forEach((item) => item.classList.remove("active"));
-          dotIndicators.querySelectorAll(".dot").forEach((dot) => dot.classList.remove("active"));
-          targetItem.classList.add("active");
-          dotIndicators.children[newIndex].classList.add("active");
-
-          // Reset autoplay when user interacts
+        if (Math.abs(dragDistance) >= dragThreshold) {
+          if (dragDistance < 0) {
+            newIndex = (activeIndex + 1) % items.length; // Next item or loop back to the first
+          } else {
+            newIndex = (activeIndex - 1 + items.length) % items.length; // Previous item or loop to the last
+          }
+          setActive(newIndex);
           resetAutoplay();
         }
       }
+      initialXPosition = currentXPosition = null;
     }
 
-    // Reset drag positions
-    initialXPosition = null;
-    currentXPosition = null;
-  };
+    // Event listeners for dragging
+    container.addEventListener("mousedown", (e) => {
+      initialXPosition = e.clientX;
+    });
 
-  // Event listeners for mouse/touch events to track dragging
-  container.addEventListener("mousedown", (e) => {
-    initialXPosition = e.clientX;
-  });
+    container.addEventListener("mousemove", (e) => {
+      if (initialXPosition !== null) {
+        currentXPosition = e.clientX;
+      }
+    });
 
-  container.addEventListener("mousemove", (e) => {
-    if (initialXPosition !== null) {
-      currentXPosition = e.clientX;
-    }
-  });
+    container.addEventListener("mouseup", handleDragEnd);
 
-  container.addEventListener("mouseup", handleDragEnd);
+    container.addEventListener("touchstart", (e) => {
+      initialXPosition = e.touches[0].clientX;
+    });
 
-  container.addEventListener("touchstart", (e) => {
-    initialXPosition = e.touches[0].clientX;
-  });
+    container.addEventListener("touchmove", (e) => {
+      if (initialXPosition !== null) {
+        currentXPosition = e.touches[0].clientX;
+      }
+    });
 
-  container.addEventListener("touchmove", (e) => {
-    if (initialXPosition !== null) {
-      currentXPosition = e.touches[0].clientX;
-    }
-  });
+    container.addEventListener("touchend", handleDragEnd);
 
-  container.addEventListener("touchend", handleDragEnd);
+    // Enable mouse wheel scrolling with looping
+    container.addEventListener("wheel", (e) => {
+      e.preventDefault();
+      const activeIndex = Array.from(items).findIndex((item) => item.classList.contains("active"));
+      let newIndex = activeIndex;
 
-  // Enable mouse wheel scrolling with looping
-  container.addEventListener("wheel", (e) => {
-    e.preventDefault();
-    const activeItemIndex = Array.from(items).findIndex((item) => item.classList.contains("active"));
-    let newIndex = activeItemIndex;
-
-    if (e.deltaY > 0) {
-      newIndex = activeItemIndex + 1 < items.length ? activeItemIndex + 1 : 0; // Loop to first item if at the end
-    } else if (e.deltaY < 0) {
-      newIndex = activeItemIndex - 1 >= 0 ? activeItemIndex - 1 : items.length - 1; // Loop to last item if at the start
-    }
-
-    const targetItem = items[newIndex];
-    if (targetItem) {
-      targetItem.scrollIntoView({ behavior: "smooth", inline: "start" });
-
-      // Update active states
-      items.forEach((item) => item.classList.remove("active"));
-      dotIndicators.querySelectorAll(".dot").forEach((dot) => dot.classList.remove("active"));
-      targetItem.classList.add("active");
-      dotIndicators.children[newIndex].classList.add("active");
-
-      // Reset autoplay when user interacts
+      if (e.deltaY > 0) {
+        newIndex = (activeIndex + 1) % items.length; // Next item or loop back to the first
+      } else {
+        newIndex = (activeIndex - 1 + items.length) % items.length; // Previous item or loop to the last
+      }
+      setActive(newIndex);
       resetAutoplay();
+    });
+
+    // Autoplay functionality
+    function autoplay() {
+      const activeIndex = Array.from(items).findIndex((item) => item.classList.contains("active"));
+      const newIndex = (activeIndex + 1) % items.length; // Next item or loop back to the first
+      setActive(newIndex);
     }
-  });
 
-  // Autoplay function to loop through items
-  function autoplay() {
-    const activeItemIndex = Array.from(items).findIndex((item) => item.classList.contains("active"));
-    let newIndex = activeItemIndex + 1 < items.length ? activeItemIndex + 1 : 0; // Loop to first item if at the end
-
-    const targetItem = items[newIndex];
-    if (targetItem) {
-      targetItem.scrollIntoView({ behavior: "smooth", inline: "start" });
-
-      // Update active states
-      items.forEach((item) => item.classList.remove("active"));
-      dotIndicators.querySelectorAll(".dot").forEach((dot) => dot.classList.remove("active"));
-      targetItem.classList.add("active");
-      dotIndicators.children[newIndex].classList.add("active");
+    function startAutoplay() {
+      autoplayInterval = setInterval(autoplay, autoplayDelay);
     }
-  }
 
-  // Start autoplay
-  function startAutoplay() {
-    autoplayInterval = setInterval(autoplay, autoplayDelay);
-  }
+    function resetAutoplay() {
+      clearInterval(autoplayInterval);
+      startAutoplay();
+    }
 
-  // Reset autoplay whenever user interacts with the carousel
-  function resetAutoplay() {
-    clearInterval(autoplayInterval);
+    // Start autoplay when page loads
     startAutoplay();
-  }
+  },
+  destroy() {
+    // Cleanup any active autoplay interval and event listeners
+    clearInterval(autoplayInterval);
+    // Any other cleanup logic if necessary
+  },
+};
 
-  // Start autoplay when page loads
-  startAutoplay();
-});
+window.onload = function () {
+  modSlide.init();
+};
+
+export default modSlide;
