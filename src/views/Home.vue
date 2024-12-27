@@ -19,11 +19,11 @@
       <div class="_container">
         <h1>Lorem ipsum, dolor sit amet</h1>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-        <div class="grid-content">
-          <div class="pic">
+        <div class="grid-default">
+          <div class="grid-image">
             <img src="@/assets/images/app1.png" alt="" />
           </div>
-          <div class="content">
+          <div class="grid-content">
             <h2>
               Lorem ipsum dolor sit amet <br />
               consectetur adipisicing.
@@ -54,7 +54,7 @@
       <div class="_container">
         <h1>Lorem ipsum, dolor sit amet</h1>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-        <div class="grid-content">
+        <div class="grid-default">
           <div class="">
             <form>
               <h3>Lorem ipsum dolor sit.</h3>
@@ -94,22 +94,22 @@
   background: #fff;
 }
 
-.grid-content {
+.grid-default {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  place-items: center;
-  min-height: 30vw;
+  margin: 50px 0;
 }
 
-.grid-content > div {
+.grid-default > div {
+  display: grid;
   width: 100%;
   height: 100%;
 }
 
-.grid-content .pic {
+.grid-default .grid-image {
   display: grid;
   margin: auto;
-  max-width: 70%;
+  max-width: 25vw;
   min-width: 300px;
 }
 
@@ -122,7 +122,7 @@
     object-fit: cover;
   }
 
-  .grid-content {
+  .grid-default {
     background: var(--main-overlay);
     border-radius: 15px;
     overflow: hidden;

@@ -1,17 +1,17 @@
 <template>
-  <div id="Nav-header">
-    <div class="Header-logo">Mod</div>
+  <div id="nav-header">
+    <div class="header-logo">Mod</div>
     <div id="Nav-toggle" @click="toggleMenu">
       <div :class="{ animate: isMenuOpen }"></div>
       <div :class="{ animate: isMenuOpen }"></div>
       <div :class="{ animate: isMenuOpen }"></div>
     </div>
-    <div :class="['Header-menu', { open: isMenuOpen }]">
-      <router-link class="Header-menu-link" to="/">Frontend</router-link>
-      <router-link class="Header-menu-link" to="/Font">Font Family</router-link>
-      <router-link class="Header-menu-link" to="/Landing">Landing</router-link>
-      <router-link class="Header-menu-link" to="/">Embed</router-link>
-      <router-link class="Header-menu-link" to="/">Download</router-link>
+    <div :class="['header-menu', { open: isMenuOpen }]">
+      <router-link class="header-menu-link" to="/Home">Frontend</router-link>
+      <router-link class="header-menu-link" to="/Font">Font Family</router-link>
+      <router-link class="header-menu-link" to="/Landing">Landing</router-link>
+      <router-link class="header-menu-link" to="/">Embed</router-link>
+      <router-link class="header-menu-link" to="/">Download</router-link>
     </div>
   </div>
 </template>
@@ -35,7 +35,7 @@ export default {
 </script>
 
 <style scoped>
-#Nav-header {
+#nav-header {
   position: sticky;
   top: 0;
   z-index: 10;
@@ -50,18 +50,18 @@ export default {
   box-shadow: 0 0 3px #ccc;
 }
 
-.Header-menu {
+.header-menu {
   display: flex;
   gap: 20px;
 }
 
 @media screen and (max-width: 992px) {
-  #Nav-header {
+  #nav-header {
     display: flex;
     justify-content: space-between;
   }
 
-  .Header-logo {
+  .header-logo {
     position: relative;
     padding-left: 15px;
     width: 100%;
@@ -91,7 +91,7 @@ export default {
     width: 16px;
   }
 
-  .Header-menu {
+  .header-menu {
     position: absolute;
     top: 50px;
     left: -85%;
@@ -106,7 +106,7 @@ export default {
     transition: 0.8s;
   }
 
-  .Header-menu.open {
+  .header-menu.open {
     left: 0;
   }
 }
