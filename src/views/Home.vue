@@ -94,25 +94,6 @@
   background: #fff;
 }
 
-.grid-default {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  margin: 50px 0;
-}
-
-.grid-default > div {
-  display: grid;
-  width: 100%;
-  height: 100%;
-}
-
-.grid-default .grid-image {
-  display: grid;
-  margin: auto;
-  max-width: 25vw;
-  min-width: 300px;
-}
-
 #section-4 {
   background: #fff;
 

@@ -183,7 +183,33 @@ textarea::placeholder {
   margin: 0 auto;
 }
 
+.grid-default {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  margin: 50px 0;
+}
+
+.grid-content {
+  display: grid;
+  width: 100%;
+  height: 100%;
+}
+
+.grid-image {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  max-width: 25vw;
+  min-width: 250px;
+  margin: auto;
+}
+
 @media screen and (max-width: 992px) {
+  .grid-default {
+    display: grid;
+    gap: 50px;
+  }
+
   ._container {
     width: auto;
     max-width: 100%;
