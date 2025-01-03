@@ -7,6 +7,6 @@
 </template>
 
 <style scoped>
-@import url("@/css/app.css");
-@import url("@/css/animation.css");
+@import url("@/style/app.css");
+@import url("@/style/animation.css");
 </style>
