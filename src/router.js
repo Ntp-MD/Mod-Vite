@@ -9,8 +9,8 @@ const routes = Object.keys(viewFiles).map((path) => {
   const name = path.split("/").pop().replace(".vue", "");
 
   return {
-    path: name.toLowerCase() === "Home" ? "/" : `/${name.toLowerCase()}`, // Set "/" for Home.vue
-    name, // Use the file name as the route name
+    path: name.toLowerCase() === "home" ? "/" : `/${name.toLowerCase()}`, // Set "/" for Home.vue
+    name: name.toLowerCase(), // Use the file name as the route name in lowercase
     component: viewFiles[path], // Dynamically imported component
   };
 });
@@ -27,19 +27,6 @@ if (viewFiles["/src/views/NotFound.vue"]) {
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL), // Use HTML5 history mode for routing
   routes,
-});
-
-// Error handling for dynamic imports
-router.beforeEach((to, from, next) => {
-  const matchedRoute = routes.find((route) => route.path === to.path);
-  if (matchedRoute && typeof matchedRoute.component === "function") {
-    matchedRoute.component().catch((err) => {
-      console.error(`Failed to load component for route ${to.path}:`, err);
-      next("/"); // Redirect to home or a custom error page
-    });
-  } else {
-    next();
-  }
 });
 
 export default router;

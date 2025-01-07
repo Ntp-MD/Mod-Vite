@@ -8,5 +8,4 @@
 
 <style scoped>
 @import url("@/style/app.css");
-@import url("@/style/animation.css");
 </style>

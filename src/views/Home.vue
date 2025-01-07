@@ -116,5 +116,3 @@
   height: 30vw;
 }
 </style>
-
-<script></script>

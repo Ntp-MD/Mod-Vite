@@ -1,17 +1,17 @@
 <template>
   <div id="nav-header">
-    <div class="header-logo">Mod</div>
+    <div class="header-logo"><router-link to="/">Mod</router-link></div>
     <div id="Nav-toggle" @click="toggleMenu">
       <div :class="{ animate: isMenuOpen }"></div>
       <div :class="{ animate: isMenuOpen }"></div>
       <div :class="{ animate: isMenuOpen }"></div>
     </div>
     <div :class="['header-menu', { open: isMenuOpen }]">
-      <router-link class="header-menu-link" to="/Home">Frontend</router-link>
-      <router-link class="header-menu-link" to="/Font">Font Family</router-link>
-      <router-link class="header-menu-link" to="/Landing">Landing</router-link>
-      <router-link class="header-menu-link" to="/">Embed</router-link>
-      <router-link class="header-menu-link" to="/">Download</router-link>
+      <router-link class="header-menu-link" to="/">Frontend</router-link>
+      <router-link class="header-menu-link" to="/Font-Family">Font Family</router-link>
+      <router-link class="header-menu-link" to="/Slide">Slide</router-link>
+      <router-link class="header-menu-link" to="">Embed</router-link>
+      <router-link class="header-menu-link" to="">Download</router-link>
     </div>
   </div>
 </template>
