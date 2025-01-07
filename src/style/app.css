@@ -276,6 +276,7 @@ button.package-button {
 
 @media screen and (max-width: 440px) {
   ._container {
+    width: 100vw;
     padding: 50px 30px;
   }
 }
