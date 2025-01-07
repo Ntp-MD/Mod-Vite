@@ -47,6 +47,16 @@
       <div class="_container">
         <h1>Lorem ipsum dolor sit amet.</h1>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <div class="package-content">
+          <div class="package-items" v-for="n in 4">
+            <div class="package-title">Lorem ipsum dolor</div>
+            <div class="package-price">199$</div>
+            <div class="package-details">
+              <div v-for="n in 4">Lorem ipsum dolor sit amet.</div>
+            </div>
+            <button class="package-button">Contact</button>
+          </div>
+        </div>
       </div>
     </div>
 

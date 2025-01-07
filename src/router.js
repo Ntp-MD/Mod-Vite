@@ -9,7 +9,7 @@ const routes = Object.keys(viewFiles).map((path) => {
   const name = path.split("/").pop().replace(".vue", "");
 
   return {
-    path: name.toLowerCase() === "home" ? "/" : `/${name.toLowerCase()}`, // Set "/" for Home.vue
+    path: name.toLowerCase() === "home" ? "/" : `/${name.toLowerCase()}`, // Set "url /" for Home.vue
     name: name.toLowerCase(), // Use the file name as the route name in lowercase
     component: viewFiles[path], // Dynamically imported component
   };
