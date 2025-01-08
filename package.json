@@ -8,7 +8,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "deploy": "npm run build && gh-pages -d dist",
+    "deploy": "npm run build && npm run deploy:move",
+    "deploy:move": "cp -r dist/* . && git add . && git commit -m 'Deploy to GitHub Pages' && git push origin main",
     "build-and-sync": "npm run build && npm run sync"
   },
   "dependencies": {
