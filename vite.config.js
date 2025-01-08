@@ -14,17 +14,8 @@ export default defineConfig({
   ],
   build: {
     outDir: "dist", // Output to the dist directory
-    rollupOptions: {
-      output: {
-        manualChunks(id) {
-          if (id.includes("node_modules")) {
-            return id.toString().split("node_modules/")[1].split("/")[0].toString();
-          }
-        },
-      },
-    },
   },
-  base: "/", // Ensure this matches your repository name
+  base: "/Mod-Vite/", // Ensure this matches your repository name
   server: {
     hmr: true,
   },
