@@ -8,7 +8,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "deploy": "npm run build && gh-pages -d docs",
+    "deploy": "npm run build && gh-pages -d dist",
     "build-and-sync": "npm run build && npm run sync"
   },
   "dependencies": {
