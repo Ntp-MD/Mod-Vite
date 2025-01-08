@@ -13,7 +13,7 @@ export default defineConfig({
     }),
   ],
   build: {
-    outDir: "docs", // Ensure this matches your deployment folder
+    outDir: "dist", // Output to the dist directory
     rollupOptions: {
       output: {
         manualChunks(id) {
@@ -24,7 +24,7 @@ export default defineConfig({
       },
     },
   },
-  base: "/Mod-Vite", // Ensure this matches your repository name
+  base: "/", // Ensure this matches your repository name
   server: {
     hmr: true,
   },
