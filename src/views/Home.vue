@@ -17,11 +17,14 @@
 
     <div id="section-2">
       <div class="_container">
-        <h1>Lorem ipsum, dolor sit amet</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <div class="center">
+          <h1>Lorem ipsum, dolor sit amet</h1>
+          <br />
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        </div>
         <div class="grid-default">
           <div class="grid-image">
-            <img src="@/assets/images/app1.png" alt="" />
+            <img src="@/assets/images/app1.png" width="250px" height="250px" alt="" />
           </div>
           <div class="grid-content">
             <h2>
@@ -45,8 +48,11 @@
 
     <div id="section-3">
       <div class="_container">
-        <h1>Lorem ipsum dolor sit amet.</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <div class="center">
+          <h1>Lorem ipsum, dolor sit amet</h1>
+          <br />
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        </div>
         <div class="package-content">
           <div class="package-items" v-for="n in 4">
             <div class="package-title">Lorem ipsum dolor</div>
@@ -62,8 +68,11 @@
 
     <div id="section-4">
       <div class="_container">
-        <h1>Lorem ipsum, dolor sit amet</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <div class="center">
+          <h1>Lorem ipsum, dolor sit amet</h1>
+          <br />
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        </div>
         <div class="grid-default">
           <div class="">
             <form>
@@ -110,7 +119,7 @@
   & img {
     height: auto;
     width: 100%;
-    object-fit: cover;
+    object-fit: contain;
     aspect-ratio: 1;
   }
 

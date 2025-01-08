@@ -12,26 +12,3 @@
     </div>
   </div>
 </template>
-
-<style scoped>
-#Footer {
-  background: var(--main-white);
-}
-
-.footer-content {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  justify-items: center;
-  text-align: left;
-}
-
-.footer-menu {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-a {
-  text-transform: unset;
-}
-</style>
