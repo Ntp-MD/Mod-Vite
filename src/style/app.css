@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
 :root {
   --main-white: #fff;
   --main-overlay: #f2f5fd;
@@ -46,6 +48,8 @@ main {
 
 img {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 h1 {
@@ -183,23 +187,13 @@ textarea::placeholder {
   margin: clamp(50px, 10vw, 80px) auto;
 }
 
-.center {
-  text-align: center;
-}
-
-.grid-content {
-  display: grid;
-  width: 100%;
-  height: 100%;
-}
-
 .grid-image {
   display: grid;
-  width: 100%;
-  height: 100%;
-  max-width: 20vw;
-  min-width: 250px;
-  margin: auto;
+  place-items: center;
+}
+
+.center {
+  text-align: center;
 }
 
 /*package content*/
@@ -264,7 +258,6 @@ button.package-button {
 
 .footer-content {
   grid-template-columns: repeat(4, 1fr);
-  justify-items: center;
   text-align: left;
 }
 
@@ -285,7 +278,7 @@ button.package-button {
 
   ._container {
     width: 100%;
-    padding: 50px 25px;
+    padding: 50px 20px;
   }
 
   .grid-default {

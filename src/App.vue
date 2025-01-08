@@ -8,8 +8,4 @@
 
 <style scoped>
 @import url("@/style/app.css");
-
-.test {
-  background: var();
-}
 </style>

@@ -24,7 +24,7 @@
         </div>
         <div class="grid-default">
           <div class="grid-image">
-            <img src="@/assets/images/app1.png" width="250px" height="250px" alt="" />
+            <img src="@/assets/images/app1.png" alt="" />
           </div>
           <div class="grid-content">
             <h2>
@@ -70,7 +70,7 @@
       <div class="_container">
         <div class="center">
           <h1>Lorem ipsum, dolor sit amet</h1>
-          <br />
+
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
         </div>
         <div class="grid-default">
@@ -78,25 +78,25 @@
             <form>
               <h3>Lorem ipsum dolor sit.</h3>
               <div id="input">
-                <div><input type="text" name="" id="" placeholder="Firstname" /></div>
-                <div><input type="text" name="" id="" placeholder="Lastname" /></div>
+                <div><input type="text" name="firstname" id="firstname" placeholder="Firstname" /></div>
+                <div><input type="text" name="lastname" id="lastname" placeholder="Lastname" /></div>
               </div>
               <div id="input">
-                <div><input type="text" name="" id="" placeholder="Email" /></div>
-                <div><input type="text" name="" id="" placeholder="Tel" /></div>
+                <div><input type="text" name="email" id="email" placeholder="Email" /></div>
+                <div><input type="text" name="tel" id="tel" placeholder="Tel" /></div>
               </div>
               <div id="input">
-                <div><input type="text" name="" id="" placeholder="Country" /></div>
-                <div><input type="text" name="" id="" placeholder="Company" /></div>
+                <div><input type="text" name="country" id="country" placeholder="Country" /></div>
+                <div><input type="text" name="company" id="company" placeholder="Company" /></div>
               </div>
               <address>
-                <textarea name="" id="" placeholder="Address"></textarea>
+                <textarea name="address" id="address" placeholder="Address"></textarea>
               </address>
               <button>Submit</button>
             </form>
           </div>
           <div class="">
-            <img src="@/assets/images/office1.jpg" alt="" />
+            <img src="@/assets/images/office1.jpg" />
           </div>
         </div>
       </div>
@@ -113,21 +113,18 @@
   background: #fff;
 }
 
+#section-2 img {
+  max-width: 20vw;
+}
+
 #section-4 {
   background: #fff;
+}
 
-  & img {
-    height: auto;
-    width: 100%;
-    object-fit: contain;
-    aspect-ratio: 1;
-  }
-
-  .grid-default {
-    background: var(--main-overlay);
-    border-radius: 15px;
-    overflow: hidden;
-  }
+#section-4 .grid-default {
+  background: var(--main-overlay);
+  border-radius: 15px;
+  overflow: hidden;
 }
 
 .mock {

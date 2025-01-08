@@ -14,8 +14,6 @@ for (const path in components) {
     const component = module.default;
     if (component?.name) {
       app.component(component.name, component); // Register by the `name` property
-    } else {
-      console.warn(`Component in ${path} is missing a 'name' property.`);
     }
   });
 }
