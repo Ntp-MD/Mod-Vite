@@ -1,17 +1,17 @@
 <template>
   <div id="nav-header">
     <div class="header-logo"><router-link to="/">Mod</router-link></div>
-    <div id="Nav-toggle" @click="toggleMenu">
+    <div id="nav-toggle" @click="toggleMenu" ref="navToggle">
       <div :class="{ animate: isMenuOpen }"></div>
       <div :class="{ animate: isMenuOpen }"></div>
       <div :class="{ animate: isMenuOpen }"></div>
     </div>
-    <div :class="['header-menu', { open: isMenuOpen }]">
-      <router-link class="header-menu-link" to="/">Frontend</router-link>
-      <router-link class="header-menu-link" to="/Font-Family">Font Family</router-link>
-      <router-link class="header-menu-link" to="/Slide">Slide</router-link>
-      <router-link class="header-menu-link" to="">Embed</router-link>
-      <router-link class="header-menu-link" to="">Download</router-link>
+    <div :class="['header-menu', { open: isMenuOpen }]" ref="headerMenu">
+      <router-link class="header-menu-link" to="/" @click="closeMenu">Frontend</router-link>
+      <router-link class="header-menu-link" to="/Font-Family" @click="closeMenu">Font Family</router-link>
+      <router-link class="header-menu-link" to="/Slide" @click="closeMenu">Slide</router-link>
+      <router-link class="header-menu-link" to="" @click="closeMenu">Embed</router-link>
+      <router-link class="header-menu-link" to="" @click="closeMenu">Download</router-link>
     </div>
   </div>
 </template>
@@ -22,6 +22,9 @@ export default {
   methods: {
     toggleMenu() {
       this.isMenuOpen = !this.isMenuOpen;
+    },
+    closeMenu() {
+      this.isMenuOpen = false;
     },
   },
   mounted() {
@@ -36,15 +39,13 @@ export default {
 
 <style scoped>
 #nav-header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
   position: sticky;
   top: 0;
   z-index: 10;
   background: var(--main-white);
-
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-
   width: 100vw;
   height: 50px;
   box-shadow: 0 0 3px #ccc;
@@ -67,43 +68,44 @@ export default {
     width: 100%;
   }
 
-  #Nav-toggle {
-    position: absolute;
-    top: 0;
-    right: 0;
+  #nav-toggle {
     display: flex;
+    gap: 5px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 5px;
+    position: absolute;
+    top: 0;
+    right: 0;
     height: 50px;
     width: 50px;
+    cursor: pointer;
   }
 
-  #Nav-toggle div {
+  #nav-toggle div {
     background: var(--font-color2);
     width: 25px;
     height: 3px;
     transition: 0.5s;
+    background-color: #333;
+    transition: all 0.3s ease;
   }
 
-  #Nav-toggle div.animate:nth-child(2) {
+  #nav-toggle div.animate:nth-child(2) {
     width: 16px;
   }
 
   .header-menu {
+    display: flex;
+    flex-direction: column;
     position: absolute;
     top: 50px;
     left: -85%;
-
-    display: flex;
-    flex-direction: column;
-
     height: 100vh;
-    width: 70%;
+    width: 80%;
     padding: 15px;
     background: var(--main-white);
-    transition: 0.8s;
+    transition: 0.8s ease;
   }
 
   .header-menu.open {
