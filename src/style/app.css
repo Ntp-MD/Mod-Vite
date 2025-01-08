@@ -172,13 +172,10 @@ textarea::placeholder {
 }
 
 ._container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
   gap: 20px;
   padding: clamp(50px, 10vw, 150px) 0;
-  width: 100%;
-  max-width: 70vw;
+  width: 70%;
   margin: 0 auto;
 }
 
@@ -259,14 +256,18 @@ button.package-button {
 }
 
 @media screen and (max-width: 992px) {
-  .grid-default {
-    display: grid;
-    gap: 50px;
+  body {
+    overflow-x: hidden;
   }
 
   ._container {
-    width: auto;
-    max-width: 100%;
+    width: 100%;
+    padding: 50px 20px;
+  }
+
+  .grid-default {
+    display: grid;
+    gap: 50px;
   }
 
   .grid-2 {
@@ -275,8 +276,4 @@ button.package-button {
 }
 
 @media screen and (max-width: 440px) {
-  ._container {
-    width: 100vw;
-    padding: 50px 30px;
-  }
 }
