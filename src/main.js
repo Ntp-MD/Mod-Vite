@@ -34,10 +34,6 @@ $(document).ready(function () {
   // Toggle dark mode
   $(document).on("click", ".toggle-mode", function () {
     $("body").toggleClass("dark-mode");
-
-    // Save the mode in localStorage
     localStorage.setItem("darkMode", $("body").hasClass("dark-mode") ? "enabled" : "disabled");
   });
-
-  // Toggle 'open' class on aside when clicking #aside or close it when clicking outside
 });
