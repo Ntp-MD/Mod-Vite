@@ -1,3 +1,7 @@
+<style scoped>
+@import url("@/css/home.css");
+</style>
+
 <template>
   <main>
     <div id="section-1">
@@ -60,6 +64,10 @@
             <div class="package-details">
               <div v-for="n in 4">Lorem ipsum dolor sit amet.</div>
             </div>
+            <div class="package-border"></div>
+            <div class="package-details">
+              <div v-for="n in 2">Lorem ipsum dolor sit amet.</div>
+            </div>
             <button class="package-button">Contact</button>
           </div>
         </div>
@@ -99,33 +107,3 @@
     </div>
   </main>
 </template>
-
-<style scoped>
-#section-1 {
-  text-align: center;
-}
-
-#section-2 {
-  background: #fff;
-}
-
-#section-2 img {
-  max-width: 18vw;
-}
-
-#section-4 {
-  background: #fff;
-}
-
-#section-4 .grid-default {
-  background: var(--main-overlay);
-  border-radius: 15px;
-  overflow: hidden;
-}
-
-.mock {
-  background: #fff;
-  border-radius: 15px;
-  height: 30vw;
-}
-</style>

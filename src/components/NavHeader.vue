@@ -8,6 +8,7 @@
     </div>
     <div :class="['header-menu', { open: isMenuOpen }]" ref="headerMenu">
       <router-link class="header-menu-link" to="/" @click="closeMenu">Frontend</router-link>
+      <router-link class="header-menu-link" to="/About" @click="closeMenu">About</router-link>
       <router-link class="header-menu-link" to="/Font-Family" @click="closeMenu">Font Family</router-link>
       <router-link class="header-menu-link" to="/Slide" @click="closeMenu">Slide</router-link>
       <router-link class="header-menu-link" to="" @click="closeMenu">Embed</router-link>

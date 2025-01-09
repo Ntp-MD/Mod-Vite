@@ -4,6 +4,7 @@
     <section>
       <router-view></router-view>
     </section>
+    <FooterSection />
   </div>
 </template>
 
