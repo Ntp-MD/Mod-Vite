@@ -4,9 +4,9 @@
     <section>
       <router-view></router-view>
     </section>
-    <FooterSection />
   </div>
 </template>
+
 <style scoped>
 @import url("@/style/app.css");
 

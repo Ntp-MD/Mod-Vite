@@ -24,7 +24,7 @@
         </div>
         <div class="grid-default">
           <div class="grid-image">
-            <img src="@/assets/images/app1.png" />
+            <img src="@/assets/images/app1.png" alt="app1" />
           </div>
           <div class="grid-content">
             <h2>
@@ -74,30 +74,26 @@
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
         </div>
         <div class="grid-default">
-          <div class="">
-            <form>
-              <h3>Lorem ipsum dolor sit.</h3>
-              <div id="input">
-                <div><input type="text" name="firstname" id="firstname" placeholder="Firstname" /></div>
-                <div><input type="text" name="lastname" id="lastname" placeholder="Lastname" /></div>
-              </div>
-              <div id="input">
-                <div><input type="text" name="email" id="email" placeholder="Email" /></div>
-                <div><input type="text" name="tel" id="tel" placeholder="Tel" /></div>
-              </div>
-              <div id="input">
-                <div><input type="text" name="country" id="country" placeholder="Country" /></div>
-                <div><input type="text" name="company" id="company" placeholder="Company" /></div>
-              </div>
-              <address>
-                <textarea name="address" id="address" placeholder="Address"></textarea>
-              </address>
-              <button>Submit</button>
-            </form>
-          </div>
-          <div class="">
-            <img src="@/assets/images/office1.jpg" />
-          </div>
+          <form>
+            <h2>Lorem ipsum dolor sit.</h2>
+            <div id="input">
+              <div><input type="text" name="firstname" id="firstname" placeholder="Firstname" /></div>
+              <div><input type="text" name="lastname" id="lastname" placeholder="Lastname" /></div>
+            </div>
+            <div id="input">
+              <div><input type="text" name="email" id="email" placeholder="Email" /></div>
+              <div><input type="text" name="tel" id="tel" placeholder="Tel" /></div>
+            </div>
+            <div id="input">
+              <div><input type="text" name="country" id="country" placeholder="Country" /></div>
+              <div><input type="text" name="company" id="company" placeholder="Company" /></div>
+            </div>
+            <address>
+              <textarea name="address" id="address" placeholder="Address"></textarea>
+            </address>
+            <button>Submit</button>
+          </form>
+          <div class=""><img src="@/assets/images/office1.jpg" alt="office1" /></div>
         </div>
       </div>
     </div>
