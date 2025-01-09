@@ -110,7 +110,7 @@
 }
 
 #section-2 img {
-  max-width: 20vw;
+  max-width: 18vw;
 }
 
 #section-4 {

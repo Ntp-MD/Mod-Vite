@@ -1,4 +1,5 @@
-import "./style/app.css";
+import "./css/app.css";
+import "./css/font.css";
 import { createApp } from "vue";
 import App from "@/App.vue";
 import router from "@/router.js"; // Import the router

@@ -8,7 +8,7 @@
 </template>
 
 <style scoped>
-@import url("@/style/app.css");
+@import url("@/css/app.css");
 
 #app {
   display: flex;
