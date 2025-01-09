@@ -1,15 +1,18 @@
 <template>
-  <NavHeader />
-  <section>
-    <router-view></router-view>
-  </section>
-  <FooterSection />
+  <div id="app">
+    <NavHeader />
+    <section>
+      <router-view></router-view>
+    </section>
+    <FooterSection />
+  </div>
 </template>
-
 <style scoped>
 @import url("@/style/app.css");
 
-.test {
-  background: var();
+#app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 </style>

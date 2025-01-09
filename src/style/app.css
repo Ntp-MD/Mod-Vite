@@ -1,3 +1,5 @@
+@import url("@/style/font.css");
+
 :root {
   --main-white: #fff;
   --main-overlay: #f2f5fd;
@@ -5,7 +7,7 @@
   --font-color2: #535768;
   --main-color: #6161ff;
   --box-shadow1: rgba(97, 97, 255, 0.5) 0px 3px 15px;
-  font-family: "Poppins", sans-serif;
+  font-family: "Poppins";
 }
 
 * {
@@ -46,6 +48,8 @@ main {
 
 img {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 h1 {
@@ -183,23 +187,13 @@ textarea::placeholder {
   margin: clamp(50px, 10vw, 80px) auto;
 }
 
-.center {
-  text-align: center;
-}
-
-.grid-content {
-  display: grid;
-  width: 100%;
-  height: 100%;
-}
-
 .grid-image {
   display: grid;
-  width: 100%;
-  height: 100%;
-  max-width: 20vw;
-  min-width: 250px;
-  margin: auto;
+  place-items: center;
+}
+
+.center {
+  text-align: center;
 }
 
 /*package content*/
@@ -257,27 +251,6 @@ button.package-button {
   width: 85%;
 }
 
-/*footer*/
-#Footer {
-  background: var(--main-overlay);
-}
-
-.footer-content {
-  grid-template-columns: repeat(4, 1fr);
-  justify-items: center;
-  text-align: left;
-}
-
-.footer-menu {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.footer-content a {
-  text-transform: unset;
-}
-
 @media screen and (max-width: 992px) {
   body {
     overflow-x: hidden;
@@ -285,7 +258,7 @@ button.package-button {
 
   ._container {
     width: 100%;
-    padding: 50px 25px;
+    padding: 50px 20px;
   }
 
   .grid-default {
