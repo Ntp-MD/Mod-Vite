@@ -24,7 +24,11 @@
         </div>
         <div class="grid-default">
           <div class="grid-image">
+<<<<<<< HEAD
             <img src="@/assets/images/app1.png" alt="" />
+=======
+            <img src="@/assets/images/app1.png" alt="app1" />
+>>>>>>> main
           </div>
           <div class="grid-content">
             <h2>
@@ -74,6 +78,7 @@
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
         </div>
         <div class="grid-default">
+<<<<<<< HEAD
           <div class="">
             <form>
               <h3>Lorem ipsum dolor sit.</h3>
@@ -98,6 +103,28 @@
           <div class="">
             <img src="@/assets/images/office1.jpg" />
           </div>
+=======
+          <form>
+            <h2>Lorem ipsum dolor sit.</h2>
+            <div id="input">
+              <div><input type="text" name="firstname" id="firstname" placeholder="Firstname" /></div>
+              <div><input type="text" name="lastname" id="lastname" placeholder="Lastname" /></div>
+            </div>
+            <div id="input">
+              <div><input type="text" name="email" id="email" placeholder="Email" /></div>
+              <div><input type="text" name="tel" id="tel" placeholder="Tel" /></div>
+            </div>
+            <div id="input">
+              <div><input type="text" name="country" id="country" placeholder="Country" /></div>
+              <div><input type="text" name="company" id="company" placeholder="Company" /></div>
+            </div>
+            <address>
+              <textarea name="address" id="address" placeholder="Address"></textarea>
+            </address>
+            <button>Submit</button>
+          </form>
+          <div class=""><img src="@/assets/images/office1.jpg" alt="office1" /></div>
+>>>>>>> main
         </div>
       </div>
     </div>
@@ -114,7 +141,11 @@
 }
 
 #section-2 img {
+<<<<<<< HEAD
   max-width: 20vw;
+=======
+  max-width: 18vw;
+>>>>>>> main
 }
 
 #section-4 {

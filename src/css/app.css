@@ -7,7 +7,6 @@
   --font-color2: #535768;
   --main-color: #6161ff;
   --box-shadow1: rgba(97, 97, 255, 0.5) 0px 3px 15px;
-  font-family: "Poppins", sans-serif;
 }
 
 * {
@@ -17,8 +16,10 @@
 body {
   margin: 0;
   padding: 0;
-  font-size: 16px;
   color: var(--font-color);
+  font-size: 16px;
+  font-weight: 400;
+  font-family: "Poppins";
 }
 
 body.dark-mode {
@@ -49,13 +50,17 @@ main {
 img {
   width: 100%;
   height: 100%;
+<<<<<<< HEAD:src/style/app.css
   object-fit: cover;
+=======
+  object-fit: contain;
+>>>>>>> main:src/css/app.css
 }
 
 h1 {
   font-size: clamp(24px, 4vw, 60px);
   font-weight: 200;
-  line-height: 1.2;
+  line-height: 1.5;
   margin: 0;
 }
 
@@ -88,6 +93,7 @@ a {
   text-transform: uppercase;
   color: var(--font-color);
   font-size: clamp(14px, 1.2vw, 16px);
+  font-weight: 400;
 }
 
 a:hover {
@@ -176,8 +182,8 @@ textarea::placeholder {
 ._container {
   display: grid;
   gap: 20px;
-  padding: clamp(50px, 10vw, 150px) 0;
-  width: 70%;
+  padding: clamp(50px, 10vw, 120px) 0;
+  width: 60vw;
   margin: 0 auto;
 }
 
@@ -200,7 +206,7 @@ textarea::placeholder {
 .package-content {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 40px;
+  gap: 20px;
   width: 100%;
   margin: clamp(50px, 10vw, 50px) auto;
 }
@@ -251,6 +257,7 @@ button.package-button {
   width: 85%;
 }
 
+<<<<<<< HEAD:src/style/app.css
 /*footer*/
 #Footer {
   background: var(--main-overlay);
@@ -271,6 +278,8 @@ button.package-button {
   text-transform: unset;
 }
 
+=======
+>>>>>>> main:src/css/app.css
 @media screen and (max-width: 992px) {
   body {
     overflow-x: hidden;
