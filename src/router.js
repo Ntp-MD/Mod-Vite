@@ -28,4 +28,9 @@ const router = createRouter({
   routes,
 });
 
+router.beforeEach((to, from, next) => {
+  // Perform actions before navigation
+  next();
+});
+
 export default router;

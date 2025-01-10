@@ -62,7 +62,7 @@
             <div class="package-title">Lorem ipsum dolor</div>
             <div class="package-price">199$</div>
             <div class="package-details">
-              <div v-for="n in 4">Lorem ipsum dolor sit amet.</div>
+              <div v-for="n in 3">Lorem ipsum dolor sit amet.</div>
             </div>
             <div class="package-border"></div>
             <div class="package-details">
