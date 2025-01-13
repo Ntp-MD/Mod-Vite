@@ -6,18 +6,19 @@
         <h2>{{ font.font_name }}</h2>
         <div class="code-block">
           <div class="code-content">
-            {{ font.font_family }}
-          </div>
-          <div class="copy-button" @click="copyToClipboard(font.font_family)"><img src="@img/icons/link.png" alt="" />
-          </div>
-        </div>
-        <div class="code-block">
-          <div class="code-content">
             {{ font.font_url }}
           </div>
           <div class="copy-button" @click="copyToClipboard(font.font_url)"><img src="@img/icons/link.png" alt="" />
           </div>
         </div>
+        <div class="code-block">
+          <div class="code-content">
+            {{ font.font_family }}
+          </div>
+          <div class="copy-button" @click="copyToClipboard(font.font_family)"><img src="@img/icons/link.png" alt="" />
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
@@ -32,7 +33,7 @@ export default {
       navigator.clipboard
         .writeText(textToCopy)
         .then(() => {
-          alert(`${textToCopy} copied to clipboard!`);
+          // alert(`${textToCopy} copied to clipboard!`);
         })
         .catch((err) => {
           console.error("Failed to copy text: ", err);
@@ -50,7 +51,7 @@ export default {
 <style scoped>
 .copy-group {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(25%, 1fr));
   gap: 20px;
 }
 
