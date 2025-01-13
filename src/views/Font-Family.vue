@@ -1,6 +1,6 @@
 <template>
   <div class="_container">
-    <h1>font family test</h1>
+    <h1>font family</h1>
 
     <div class="copy-group">
       <div class="copy-items" v-for="font in fonts" :key="font.font_name">
