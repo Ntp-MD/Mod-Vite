@@ -37,12 +37,14 @@
             </h2>
             <br />
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia suscipit officiis sed earum magnam provident ab saepe soluta, itaque ipsam, excepturi in sapiente quis atque non, nam
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia suscipit officiis sed earum magnam
+              provident ab saepe soluta, itaque ipsam, excepturi in sapiente quis atque non, nam
               eum laudantium minus!
             </p>
             <br />
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia suscipit officiis sed earum magnam provident ab saepe soluta, itaque ipsam, excepturi in sapiente quis atque non, nam
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia suscipit officiis sed earum magnam
+              provident ab saepe soluta, itaque ipsam, excepturi in sapiente quis atque non, nam
               eum laudantium minus!
             </p>
           </div>

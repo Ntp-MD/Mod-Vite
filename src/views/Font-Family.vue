@@ -1,7 +1,6 @@
 <template>
   <div class="_container">
     <h1>font family</h1>
-
     <div class="copy-group">
       <div class="copy-items" v-for="font in fonts" :key="font.font_name">
         <h2>{{ font.font_name }}</h2>
@@ -9,13 +8,15 @@
           <div class="code-content">
             {{ font.font_family }}
           </div>
-          <div class="copy-button" @click="copyToClipboard(font.font_family)"><img src="@img/icons/link.png" alt="" /></div>
+          <div class="copy-button" @click="copyToClipboard(font.font_family)"><img src="@img/icons/link.png" alt="" />
+          </div>
         </div>
         <div class="code-block">
           <div class="code-content">
             {{ font.font_url }}
           </div>
-          <div class="copy-button" @click="copyToClipboard(font.font_url)"><img src="@img/icons/link.png" alt="" /></div>
+          <div class="copy-button" @click="copyToClipboard(font.font_url)"><img src="@img/icons/link.png" alt="" />
+          </div>
         </div>
       </div>
     </div>
