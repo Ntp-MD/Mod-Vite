@@ -21,20 +21,14 @@
 
     <div id="section-2">
       <div class="_container">
-        <div class="center">
-          <h1>Lorem ipsum, dolor sit amet</h1>
-          <br />
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-        </div>
         <div class="grid-default">
           <div class="grid-image">
             <img src="@/assets/images/app1.png" alt="app1" />
           </div>
           <div class="grid-content">
-            <h2>
-              Lorem ipsum dolor sit amet <br />
-              consectetur adipisicing.
-            </h2>
+            <h1>
+              Lorem ipsum dolor sit amet consectetur.
+            </h1>
             <br />
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia suscipit officiis sed earum magnam
@@ -56,7 +50,6 @@
       <div class="_container">
         <div class="center">
           <h1>Lorem ipsum, dolor sit amet</h1>
-          <br />
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
         </div>
         <div class="package-content">
@@ -68,7 +61,7 @@
             </div>
             <div class="package-border"></div>
             <div class="package-details">
-              <div v-for="n in 2">Lorem ipsum dolor sit amet.</div>
+              <div v-for="n in 1">Lorem ipsum dolor sit amet.</div>
             </div>
             <button class="package-button">Contact</button>
           </div>
@@ -80,7 +73,6 @@
       <div class="_container">
         <div class="center">
           <h1>Lorem ipsum, dolor sit amet</h1>
-
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
         </div>
         <div class="grid-default">
@@ -101,6 +93,7 @@
             <address>
               <textarea name="address" id="address" placeholder="Address"></textarea>
             </address>
+
             <button>Submit</button>
           </form>
           <div class=""><img src="@/assets/images/office1.jpg" alt="office1" /></div>

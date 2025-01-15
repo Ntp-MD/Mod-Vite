@@ -1,10 +1,11 @@
 <template>
   <div id="nav-header">
-    <div class="header-logo"><router-link to="/">Mod</router-link></div>
-    <div id="nav-toggle" @click="toggleMenu" ref="navToggle">
-      <div :class="{ animate: isMenuOpen }"></div>
-      <div :class="{ animate: isMenuOpen }"></div>
-      <div :class="{ animate: isMenuOpen }"></div>
+    <div class="header-logo"><router-link to="/">Mod</router-link>
+      <div id="nav-toggle" @click="toggleMenu" ref="navToggle">
+        <div :class="{ animate: isMenuOpen }"></div>
+        <div :class="{ animate: isMenuOpen }"></div>
+        <div :class="{ animate: isMenuOpen }"></div>
+      </div>
     </div>
     <div :class="['header-menu', { open: isMenuOpen }]" ref="headerMenu">
       <router-link class="header-menu-link" to="/" @click="closeMenu">Frontend</router-link>
@@ -14,6 +15,7 @@
       <router-link class="header-menu-link" to="" @click="closeMenu">Embed</router-link>
       <router-link class="header-menu-link" to="" @click="closeMenu">Download</router-link>
     </div>
+    <button>Dashboard</button>
   </div>
 </template>
 
@@ -40,27 +42,38 @@ export default {
 
 <style scoped>
 #nav-header {
-  display: flex;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: 10% auto 10%;
+  justify-content: space-between;
   align-items: center;
   position: sticky;
   top: 0;
   z-index: 10;
-  background: var(--main-white);
-  width: 100vw;
-  height: 50px;
+  background: #fff;
+  width: 100%;
+  height: auto;
+  padding: 10px clamp(20px, 4vw, 50px);
   box-shadow: 0 0 3px #ccc;
 }
 
 .header-menu {
   display: flex;
+  justify-content: center;
   gap: 20px;
+  width: 100%;
+  background: #fff;
 }
 
 @media screen and (max-width: 992px) {
+  #nav-header button {
+    display: none;
+  }
+
   #nav-header {
     display: flex;
     justify-content: space-between;
+    height: 50px;
+    padding: 0;
   }
 
   .header-logo {
@@ -70,12 +83,12 @@ export default {
   }
 
   #nav-toggle {
+    position: fixed;
     display: flex;
     gap: 5px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    position: absolute;
     top: 0;
     right: 0;
     height: 50px;
@@ -99,13 +112,14 @@ export default {
   .header-menu {
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
     position: absolute;
     top: 50px;
     left: -85%;
     height: 100vh;
     width: 80%;
     padding: 15px;
-    background: var(--main-white);
+    background: #fff;
     transition: 0.8s ease;
   }
 

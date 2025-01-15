@@ -1,10 +1,82 @@
+@font-face {
+  font-family: "Poppins";
+  src: url("@/assets/font/Poppins/Poppins-Thin.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("@/assets/font/Poppins/Poppins-ExtraLight.ttf") format("truetype");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("@/assets/font/Poppins/Poppins-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("@/assets/font/Poppins/Poppins-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("@/assets/font/Poppins/Poppins-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("@/assets/font/Poppins/Poppins-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("@/assets/font/Poppins/Poppins-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("@/assets/font/Poppins/Poppins-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("@/assets/font/Poppins/Poppins-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
-  --main-white: #fff;
-  --main-overlay: #f2f5fd;
-  --font-color: #333;
-  --font-color2: #535768;
-  --main-color: #6161ff;
-  --box-shadow1: rgba(97, 97, 255, 0.5) 0px 3px 15px;
+  --main-color: #fff;
+  --sub-color: #f1f1f1;
+  --font-color: #000;
+  --font-color2: #2f2f2f;
+  --main-color: #000;
+  --box-shadow1: rgba(0, 0, 0, 0.5) 0px 3px 15px;
 }
 
 * {
@@ -12,23 +84,13 @@
 }
 
 body {
+  overflow-x: hidden;
   margin: 0;
   padding: 0;
-  color: var(--font-color);
+  color: var(--font-color2);
   font-size: 16px;
   font-weight: 400;
   font-family: "Poppins";
-}
-
-body.dark-mode {
-  --main-white: #202020;
-  --main-overlay: #252525;
-  --font-color: #fff;
-  --box-shadow1: transparent;
-  --border-color: transparent;
-  & a.nav-link img {
-    filter: invert(1);
-  }
 }
 
 body::-webkit-scrollbar,
@@ -42,7 +104,7 @@ section::-webkit-scrollbar {
 }
 
 main {
-  background: var(--main-overlay);
+  background: var(--sub-color);
 }
 
 img {
@@ -52,9 +114,10 @@ img {
 }
 
 h1 {
-  font-size: clamp(22px, 4vw, 60px);
-  font-weight: 200;
+  font-size: clamp(22px, 4vw, 50px);
+  font-weight: 600;
   line-height: 1.5;
+  text-transform: uppercase;
   margin: 0;
 }
 
@@ -99,8 +162,8 @@ button {
   min-width: 120px;
   height: fit-content;
   border: none;
-  border-radius: 8px;
-  padding: 15px 20px 12px;
+  border-radius: 30px;
+  padding: 14px 30px;
   margin: auto;
   font-size: clamp(14px, 1vw, 16px);
   background: var(--main-color);
@@ -124,14 +187,14 @@ caption {
   text-align: left;
   font-size: clamp(26px, 2vw, 32px);
   font-weight: 700;
-  color: var(--font1);
+  color: var(--font-color);
   margin-bottom: 20px;
 }
 
 form {
   display: flex;
   flex-direction: column;
-  padding: clamp(20px, 4vw, 50px);
+  padding: clamp(20px, 4vw, 70px);
   background: transparent;
 }
 
@@ -156,7 +219,7 @@ textarea {
 }
 
 textarea {
-  height: clamp(60px, 8vw, 80px);
+  height: clamp(60px, 8vw, 120px);
   background: transparent;
 }
 
@@ -175,9 +238,10 @@ textarea::placeholder {
 ._container {
   display: grid;
   gap: 20px;
-  padding: clamp(50px, 7vw, 100px) 0;
-  width: 65vw;
+  padding: clamp(50px, 7vw, 120px) 0;
+  width: 70vw;
   min-width: 900px;
+  min-height: 35vw;
   margin: 0 auto;
 }
 
@@ -197,12 +261,8 @@ textarea::placeholder {
 }
 
 @media screen and (max-width: 992px) {
-  body {
-    overflow-x: hidden;
-  }
-
   ._container {
-    width: 85vw;
+    width: 90vw;
     min-width: auto;
   }
 
