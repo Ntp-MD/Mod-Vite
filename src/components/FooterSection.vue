@@ -17,7 +17,7 @@
   gap: 50px;
   text-align: left;
   width: 100%;
-  height: 25vw;
-  min-height: 350px;
+  height: 20vw;
+  min-height: 300px;
 }
 </style>

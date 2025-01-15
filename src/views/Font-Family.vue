@@ -51,7 +51,7 @@ export default {
 <style scoped>
 .copy-group {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(25%, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(clamp(250px, 30%, 30vw), 1fr));
   gap: 20px;
 }
 
@@ -101,17 +101,10 @@ export default {
   filter: invert(1);
 }
 
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 480px) {
   .copy-group {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(40%, 1fr));
-  }
-}
-
-@media screen and (max-width: 440px) {
-  .copy-group {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+    grid-template-columns: repeat(1, 1fr);
   }
 }
 </style>

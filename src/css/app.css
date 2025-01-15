@@ -175,15 +175,16 @@ textarea::placeholder {
 ._container {
   display: grid;
   gap: 20px;
-  padding: clamp(50px, 10vw, 120px) 0;
+  padding: clamp(50px, 7vw, 100px) 0;
   width: 65vw;
+  min-width: 900px;
   margin: 0 auto;
 }
 
 .grid-default {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-  margin: clamp(50px, 10vw, 80px) auto;
+  margin: clamp(50px, 7vw, 80px) auto;
 }
 
 .grid-image {
@@ -202,6 +203,7 @@ textarea::placeholder {
 
   ._container {
     width: 85vw;
+    min-width: auto;
   }
 
   .grid-default {

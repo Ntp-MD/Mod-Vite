@@ -30,6 +30,26 @@
     "font_url": "<link href='https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@100;200;300;400;500;600;700&display=swap' rel='stylesheet'>"
   },
   {
+    "font_name": "Roboto",
+    "font_family": "font-family: 'Roboto', sans-serif;",
+    "font_url": "<link href='https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap' rel='stylesheet'>"
+  },
+  {
+    "font_name": "Tenor Sans",
+    "font_family": "font-family: 'Tenor Sans', sans-serif;",
+    "font_url": "<link href='https://fonts.googleapis.com/css2?family=Tenor+Sans&display=swap' rel='stylesheet'>"
+  },
+  {
+    "font_name": "Teko",
+    "font_family": "font-family: 'Teko', sans-serif;",
+    "font_url": "<link href='https://fonts.googleapis.com/css2?family=Teko:wght@300..700&display=swap' rel='stylesheet'>"
+  },
+  {
+    "font_name": "Poppins",
+    "font_family": "font-family: 'Poppins', sans-serif;",
+    "font_url": "<link href='https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap' rel='stylesheet'>"
+  },
+  {
     "font_name": "DM Sans",
     "font_family": "font-family: 'DM Sans', sans-serif;",
     "font_url": "<link href='https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap' rel='stylesheet'>"
@@ -44,21 +64,13 @@
     "font_family": "font-family: 'Playfair', serif;",
     "font_url": "<link href='https://fonts.googleapis.com/css2?family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap' rel='stylesheet'>"
   },
-  {
-    "font_name": "Roboto",
-    "font_family": "font-family: 'Roboto', sans-serif;",
-    "font_url": "<link href='https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap' rel='stylesheet'>"
-  },
+
   {
     "font_name": "Open Sans",
     "font_family": "font-family: 'Open Sans', sans-serif;",
     "font_url": "<link href='https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap' rel='stylesheet'>"
   },
-  {
-    "font_name": "Poppins",
-    "font_family": "font-family: 'Poppins', sans-serif;",
-    "font_url": "<link href='https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap' rel='stylesheet'>"
-  },
+
   {
     "font_name": "Philosopher",
     "font_family": "font-family: 'Philosopher', sans-serif;",
@@ -88,16 +100,6 @@
     "font_name": "Quicksand",
     "font_family": "font-family: 'Quicksand', sans-serif;",
     "font_url": "<link href='https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap' rel='stylesheet'>"
-  },
-  {
-    "font_name": "Tenor Sans",
-    "font_family": "font-family: 'Tenor Sans', sans-serif;",
-    "font_url": "<link href='https://fonts.googleapis.com/css2?family=Tenor+Sans&display=swap' rel='stylesheet'>"
-  },
-  {
-    "font_name": "Teko",
-    "font_family": "font-family: 'Teko', sans-serif;",
-    "font_url": "<link href='https://fonts.googleapis.com/css2?family=Teko:wght@300..700&display=swap' rel='stylesheet'>"
   },
   {
     "font_name": "Oswald",
