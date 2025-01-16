@@ -1,12 +1,6 @@
 <template>
   <div id="nav-header">
-    <div class="header-logo"><router-link to="/">Mod</router-link>
-      <div id="nav-toggle" @click="toggleMenu" ref="navToggle">
-        <div :class="{ animate: isMenuOpen }"></div>
-        <div :class="{ animate: isMenuOpen }"></div>
-        <div :class="{ animate: isMenuOpen }"></div>
-      </div>
-    </div>
+    <div class="header-logo"><router-link to="/">Mod</router-link></div>
     <div :class="['header-menu', { open: isMenuOpen }]" ref="headerMenu">
       <router-link class="header-menu-link" to="/" @click="closeMenu">Frontend</router-link>
       <router-link class="header-menu-link" to="/About" @click="closeMenu">About</router-link>
@@ -14,6 +8,11 @@
       <router-link class="header-menu-link" to="/Slide" @click="closeMenu">Slide</router-link>
       <router-link class="header-menu-link" to="" @click="closeMenu">Embed</router-link>
       <router-link class="header-menu-link" to="" @click="closeMenu">Download</router-link>
+    </div>
+    <div id="nav-toggle" @click="toggleMenu" ref="navToggle">
+      <div :class="{ animate: isMenuOpen }"></div>
+      <div :class="{ animate: isMenuOpen }"></div>
+      <div :class="{ animate: isMenuOpen }"></div>
     </div>
     <button>Dashboard</button>
   </div>
@@ -42,16 +41,12 @@ export default {
 
 <style scoped>
 #nav-header {
-  display: grid;
-  grid-template-columns: 10% auto 10%;
+  display: flex;
   justify-content: space-between;
   align-items: center;
-  position: sticky;
-  top: 0;
-  z-index: 10;
   background: #fff;
   width: 100%;
-  height: auto;
+  height: 70px;
   padding: 10px clamp(20px, 4vw, 50px);
   box-shadow: 0 0 3px #ccc;
 }
@@ -72,8 +67,9 @@ export default {
   #nav-header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     height: 50px;
-    padding: 0;
+    padding: 0 10px;
   }
 
   .header-logo {
@@ -82,16 +78,12 @@ export default {
   }
 
   #nav-toggle {
-    position: fixed;
     display: flex;
     gap: 5px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    top: 0;
-    right: 0;
-    height: 50px;
-    width: 50px;
+    height: 100%;
     cursor: pointer;
   }
 

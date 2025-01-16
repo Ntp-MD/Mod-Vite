@@ -1,37 +1,44 @@
 <template>
-  <div id="app">
-    <NavHeader />
+  <div id="AppClient">
+    <header>
+      <NavHeader />
+    </header>
     <main>
       <router-view></router-view>
     </main>
     <footer>
       <FooterSection />
     </footer>
-
   </div>
+
+
 </template>
 
 <style scoped>
 @import url("@/css/app.css");
 
-#app {
-  position: relative;
-  display: grid;
-  grid-template-rows: auto 1fr auto;
+#AppClient {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   min-height: 100vh;
 }
 
-
 header {
-  background: #fff;
-  min-height: 70px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  height: 70px;
 }
+
 
 main {
-  min-height: 70vh;
+  position: relative;
+  overflow: hidden;
 }
 
+
 footer {
-  min-height: 250px;
+  min-height: 300px;
 }
 </style>
