@@ -1,5 +1,5 @@
 <template>
-  <footer style="min-height: 350px;">
+  <div>
     <div class="footer-content">
       <div class="footer-menu" v-for="n in 4" :key="n">
         <h3>Lorem, ipsum dolor.</h3>
@@ -9,19 +9,16 @@
     <div class="footer-copyright">
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis, tenetur!
     </div>
-  </footer>
+  </div>
+
 </template>
 
 <style scoped>
 @import url("@/css/app.css");
 
-footer {
-  display: grid;
-  background: #000;
-  color: #fff;
-}
-
 .footer-content {
+  background: var(--sub-color);
+  color: var(--font-color);
   display: flex;
   justify-content: space-evenly;
   gap: 50px;
@@ -33,8 +30,10 @@ footer {
 }
 
 .footer-copyright {
+  background: var(--sub-color);
+  color: var(--font-color);
   text-align: center;
   padding: 15px;
-  border-top: 1px solid #fff;
+  border-top: 1px solid var(--font-color);
 }
 </style>

@@ -1,12 +1,12 @@
 #section-1 {
   text-align: center;
-  background: #000;
-  color: #fff;
+  background: var(--sub-color);
+  color: var(--font-color);
 }
 
 #section-1 button {
-  background: #fff;
-  color: #000;
+  background: #000;
+  color: #fff;
 }
 
 #section-2 {
@@ -62,13 +62,14 @@
 .package-border {
   width: 100%;
   height: 1px;
-  background: var(--main-color);
+  background: var(--font-color);
 }
 
 .package-items {
   display: grid;
   gap: 20px;
   background: #fff;
+  color: var(--font-color);
   box-shadow: var(--box-shadow1);
   padding: 50px 20px 20px;
   border-radius: 12px;
@@ -76,14 +77,12 @@
 }
 
 .package-title {
-  color: var(--font-color2);
   font-size: 22px;
   font-weight: 400;
 }
 
 .package-price {
   position: relative;
-  color: var(--main-color);
   font-size: 44px;
   font-weight: 600;
 }
@@ -91,17 +90,12 @@
 .package-price::after {
   content: "Per/Month";
   display: block;
-  color: var(--font-color2);
   font-size: 22px;
   font-weight: 400;
 }
 
 .package-price-sub {
   position: relative;
-}
-
-.package-details {
-  color: var(--font-color2);
 }
 
 button.package-button {

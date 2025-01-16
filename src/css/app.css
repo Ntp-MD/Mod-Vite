@@ -1,9 +1,7 @@
 :root {
   --main-color: #fff;
-  --sub-color: #f1f1f1;
-  --font-color: #000;
-  --font-color2: #2f2f2f;
-  --main-color: #000;
+  --sub-color: #f3f3f3;
+  --font-color: #2f2f2f;
   --box-shadow1: rgba(0, 0, 0, 0.5) 0px 3px 15px;
 }
 
@@ -16,7 +14,7 @@ body {
   overflow-x: hidden;
   margin: 0;
   padding: 0;
-  color: var(--font-color2);
+  color: var(--font-color);
   font-size: 16px;
   font-weight: 400;
   font-family: "Roboto", sans-serif;
@@ -96,7 +94,7 @@ button {
   padding: 14px 30px;
   margin: auto;
   font-size: clamp(14px, 1vw, 16px);
-  background: var(--main-color);
+  background: #000;
   color: #fff;
   cursor: pointer;
   transition: 0.5s;

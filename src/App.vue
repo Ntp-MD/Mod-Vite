@@ -4,7 +4,10 @@
     <main>
       <router-view></router-view>
     </main>
-    <FooterSection />
+    <footer>
+      <FooterSection />
+    </footer>
+
   </div>
 </template>
 
@@ -12,8 +15,22 @@
 @import url("@/css/app.css");
 
 #app {
-  display: flex;
-  flex-direction: column;
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
   min-height: 100vh;
+}
+
+header {
+  background: #fff;
+  min-height: 70px;
+}
+
+main {
+  min-height: 70vh;
+}
+
+footer {
+  min-height: 250px;
 }
 </style>
