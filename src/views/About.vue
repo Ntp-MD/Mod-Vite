@@ -1,5 +1,6 @@
 <template>
   <table>
+    <h1>test auto build</h1>
     <thead>
       <tr>
         <th class="main-corner">
