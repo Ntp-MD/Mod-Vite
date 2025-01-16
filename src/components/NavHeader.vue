@@ -78,7 +78,6 @@ export default {
 
   .header-logo {
     position: relative;
-    padding-left: 15px;
     width: 100%;
   }
 

@@ -1,12 +1,7 @@
 #section-1 {
   text-align: center;
-  background: var(--sub-color);
+  background: var(--main-overlay);
   color: var(--font-color);
-}
-
-#section-1 button {
-  background: #000;
-  color: #fff;
 }
 
 #section-2 {
@@ -19,35 +14,21 @@
 }
 
 #section-3 {
-  background: #000;
-  color: #fff;
+  background: var(--main-overlay);
+  color: var(--font-color);
 }
 
 #section-4 {
-  background: #fff;
 }
 
 #section-4 .grid-default {
-  background: #000;
+  background: var(--main-white);
   border-radius: 15px;
   overflow: hidden;
 }
 
-#section-4 form *,
-#section-4 *::placeholder {
-  color: #fff;
-}
-
 #section-4 button {
   margin-top: 20px;
-  background: #fff;
-  color: #000;
-}
-
-.mock {
-  background: #fff;
-  border-radius: 15px;
-  height: 30vw;
 }
 
 /*package content*/
