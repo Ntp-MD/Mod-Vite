@@ -9,6 +9,7 @@ const app = createApp(App)
 // Dynamically import and register all components in the `/components` folder
 const components = import.meta.glob("@/components/*.vue")
 
+<<<<<<< HEAD
 ;(async () => {
   for (const path in components) {
     try {
@@ -21,6 +22,13 @@ const components = import.meta.glob("@/components/*.vue")
       }
     } catch (error) {
       console.error(`Failed to load component at ${path}:`, error)
+=======
+for (const path in components) {
+  components[path]().then((module) => {
+    const component = module.default;
+    if (component?.name) {
+      app.component(component.name, component); // Register by the `name` property
+>>>>>>> a4535f5065425ddd9c4b1480f74994d658774383
     }
   }
 })()

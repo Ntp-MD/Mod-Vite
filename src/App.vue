@@ -12,6 +12,9 @@
 </template>
 
 <style scoped>
+<<<<<<< HEAD
+@import url("@/style/app.css");
+=======
 @import url("@/css/app.css");
 
 #app {
@@ -20,6 +23,7 @@
   grid-template-rows: auto 1fr auto;
   min-height: 100vh;
 }
+<<<<<<< HEAD
 
 header {
   background: #fff;
@@ -33,4 +37,7 @@ main {
 footer {
   min-height: 250px;
 }
+=======
+>>>>>>> main
+>>>>>>> a4535f5065425ddd9c4b1480f74994d658774383
 </style>
