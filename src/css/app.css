@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
-
 :root {
   --main-white: #fff;
   --main-overlay: #f2f5fd;
@@ -39,15 +37,7 @@ main {
 img {
   width: 100%;
   height: 100%;
-<<<<<<< HEAD
   object-fit: cover;
-=======
-<<<<<<< HEAD:src/style/app.css
-  object-fit: cover;
-=======
-  object-fit: contain;
->>>>>>> main:src/css/app.css
->>>>>>> a4535f5065425ddd9c4b1480f74994d658774383
 }
 
 h1 {
@@ -252,7 +242,6 @@ button.package-button {
   width: 85%;
 }
 
-<<<<<<< HEAD:src/style/app.css
 /*footer*/
 #Footer {
   background: var(--main-overlay);
@@ -273,8 +262,6 @@ button.package-button {
   text-transform: unset;
 }
 
-=======
->>>>>>> main:src/css/app.css
 @media screen and (max-width: 992px) {
   ._container {
     display: grid;
