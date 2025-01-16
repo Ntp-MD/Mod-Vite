@@ -17,7 +17,7 @@ body {
   color: var(--font-color);
   font-size: 16px;
   font-weight: 400;
-  font-family: "Poppins", sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 body::-webkit-scrollbar,
@@ -76,12 +76,13 @@ a:hover {
 }
 
 button {
+  display: grid;
   width: fit-content;
-  min-width: 100px;
+  min-width: 140px;
   height: fit-content;
   border: none;
   border-radius: 8px;
-  padding: 13px 30px;
+  padding: 13px;
   margin: auto;
   font-size: clamp(14px, 1vw, 16px);
   background: var(--main-color);
@@ -152,12 +153,13 @@ textarea::placeholder {
 
 ._container {
   display: grid;
+  align-content: center;
   gap: 20px;
-  padding: clamp(50px, 7vw, 120px) 0;
   width: 70vw;
   min-width: 900px;
-  min-height: 35vw;
-  margin: 0 auto;
+  min-height: 30vw;
+  padding: clamp(50px, 10vw, 150px) 0;
+  margin: auto;
 }
 
 .grid-default {

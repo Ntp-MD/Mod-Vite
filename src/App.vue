@@ -6,10 +6,10 @@
     <main>
       <router-view></router-view>
     </main>
-    <footer>
-      <FooterSection />
-    </footer>
   </div>
+  <footer>
+    <FooterSection />
+  </footer>
 
 
 </template>
@@ -20,15 +20,14 @@
 #AppClient {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   min-height: 100vh;
+  position: relative;
 }
 
 header {
   position: sticky;
   top: 0;
   z-index: 10;
-  height: 70px;
 }
 
 
@@ -39,6 +38,7 @@ main {
 
 
 footer {
+  position: relative;
   min-height: 300px;
 }
 </style>

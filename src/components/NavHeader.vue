@@ -51,6 +51,10 @@ export default {
   box-shadow: 0 0 3px #ccc;
 }
 
+.header-logo {
+  min-width: 130px;
+}
+
 .header-menu {
   display: flex;
   justify-content: center;
