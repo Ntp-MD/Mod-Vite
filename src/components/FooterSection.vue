@@ -1,5 +1,5 @@
 <template>
-  <footer>
+  <footer style="min-height: 350px;">
     <div class="footer-content">
       <div class="footer-menu" v-for="n in 4" :key="n">
         <h3>Lorem, ipsum dolor.</h3>
@@ -17,7 +17,6 @@
 
 footer {
   display: grid;
-  min-height: 350px;
   background: #000;
   color: #fff;
 }

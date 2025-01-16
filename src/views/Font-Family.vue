@@ -18,7 +18,6 @@
           <div class="copy-button" @click="copyToClipboard(font.font_family)"><img src="@img/icons/link.png" alt="" />
           </div>
         </div>
-
       </div>
     </div>
   </div>
@@ -61,7 +60,7 @@ export default {
   gap: 10px;
   padding: 20px;
   border-radius: 8px;
-  background-color: var(--main-white);
+  background-color: #fff;
   box-shadow: var(--box-shadow1);
 }
 
@@ -70,7 +69,7 @@ export default {
   grid-template-columns: auto 40px;
   align-items: center;
   gap: 10px;
-  background-color: var(--main-overlay);
+  background-color: var(--sub-color);
   border-radius: 5px;
   overflow: hidden;
 }

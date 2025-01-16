@@ -1,75 +1,3 @@
-@font-face {
-  font-family: "Poppins";
-  src: url("@/assets/font/Poppins/Poppins-Thin.ttf") format("truetype");
-  font-weight: 100;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Poppins";
-  src: url("@/assets/font/Poppins/Poppins-ExtraLight.ttf") format("truetype");
-  font-weight: 200;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Poppins";
-  src: url("@/assets/font/Poppins/Poppins-Light.ttf") format("truetype");
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Poppins";
-  src: url("@/assets/font/Poppins/Poppins-Regular.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Poppins";
-  src: url("@/assets/font/Poppins/Poppins-Medium.ttf") format("truetype");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Poppins";
-  src: url("@/assets/font/Poppins/Poppins-SemiBold.ttf") format("truetype");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Poppins";
-  src: url("@/assets/font/Poppins/Poppins-Bold.ttf") format("truetype");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Poppins";
-  src: url("@/assets/font/Poppins/Poppins-ExtraBold.ttf") format("truetype");
-  font-weight: 800;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Poppins";
-  src: url("@/assets/font/Poppins/Poppins-Black.ttf") format("truetype");
-  font-weight: 900;
-  font-style: normal;
-  font-display: swap;
-}
-
 :root {
   --main-color: #fff;
   --sub-color: #f1f1f1;
@@ -81,6 +9,7 @@
 
 * {
   box-sizing: border-box;
+  letter-spacing: 0.3px;
 }
 
 body {
@@ -90,11 +19,11 @@ body {
   color: var(--font-color2);
   font-size: 16px;
   font-weight: 400;
-  font-family: "Poppins";
+  font-family: "Roboto", sans-serif;
 }
 
 body::-webkit-scrollbar,
-section::-webkit-scrollbar {
+main::-webkit-scrollbar {
   opacity: 0;
   width: 0;
 }
@@ -104,7 +33,8 @@ section::-webkit-scrollbar {
 }
 
 main {
-  background: var(--sub-color);
+  position: relative;
+  overflow: hidden;
 }
 
 img {
@@ -174,11 +104,6 @@ button {
 
 button:hover {
   opacity: 0.8;
-}
-
-section {
-  position: relative;
-  overflow: hidden;
 }
 
 caption {
