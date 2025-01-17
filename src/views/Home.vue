@@ -21,20 +21,16 @@
           <img src="@/assets/images/app1.png" alt="app1" />
         </div>
         <div class="grid-content">
-          <h1>
-            Lorem ipsum dolor sit amet consectetur.
-          </h1>
+          <h1>Lorem ipsum dolor sit amet consectetur.</h1>
           <br />
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia suscipit officiis sed earum magnam
-            provident ab saepe soluta, itaque ipsam, excepturi in sapiente quis atque non, nam
-            eum laudantium minus!
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia suscipit officiis sed earum magnam provident ab saepe soluta, itaque ipsam, excepturi in sapiente quis atque non, nam eum
+            laudantium minus!
           </p>
           <br />
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia suscipit officiis sed earum magnam
-            provident ab saepe soluta, itaque ipsam, excepturi in sapiente quis atque non, nam
-            eum laudantium minus!
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia suscipit officiis sed earum magnam provident ab saepe soluta, itaque ipsam, excepturi in sapiente quis atque non, nam eum
+            laudantium minus!
           </p>
         </div>
       </div>
@@ -97,7 +93,6 @@
   </div>
 </template>
 
-
 <style scoped>
 #section-1 {
   text-align: center;
@@ -118,8 +113,6 @@
   background: var(--main-overlay);
   color: var(--font-color);
 }
-
-#section-4 {}
 
 #section-4 .grid-default {
   background: var(--main-overlay);
@@ -143,7 +136,7 @@
 .package-items {
   display: grid;
   gap: 20px;
-  background: var(--main-white);
+  background: var(--main-bg);
   box-shadow: var(--box-shadow1);
   padding: 50px 20px 20px;
   border-radius: 12px;

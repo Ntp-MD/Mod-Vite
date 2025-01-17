@@ -1,10 +1,11 @@
 :root {
-  --main-white: #fff;
+  --main-color: #6161ff;
   --main-overlay: #f2f5fd;
+  --main-bg: #fff;
   --font-color: #333;
   --font-color2: #535768;
-  --main-color: #6161ff;
   --box-shadow1: rgba(97, 97, 255, 0.5) 0px 3px 15px;
+  --box-shadow2: rgba(204, 204, 204, 0.5) 0px 3px 15px;
 }
 
 * {
@@ -17,7 +18,7 @@ body {
   color: var(--font-color);
   font-size: 16px;
   font-weight: 400;
-  font-family: "Roboto", sans-serif;
+  font-family: "Roboto", serif;
 }
 
 body::-webkit-scrollbar,
@@ -65,7 +66,6 @@ span {
 
 a {
   text-decoration: none;
-  text-transform: uppercase;
   color: var(--font-color);
   font-size: clamp(14px, 1.2vw, 16px);
   font-weight: 400;
@@ -82,9 +82,8 @@ button {
   height: fit-content;
   border: none;
   border-radius: 8px;
-  padding: 13px;
+  padding: 13px 10px;
   margin: auto;
-  font-size: clamp(14px, 1vw, 16px);
   background: var(--main-color);
   color: #fff;
   cursor: pointer;
@@ -93,6 +92,14 @@ button {
 
 button:hover {
   opacity: 0.8;
+}
+
+button a {
+  color: #fff;
+}
+
+button:hover a {
+  color: #fff;
 }
 
 caption {

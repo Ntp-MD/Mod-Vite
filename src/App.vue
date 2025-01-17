@@ -1,17 +1,13 @@
 <template>
+  <header>
+    <NavHeader />
+  </header>
   <div id="AppClient">
-    <header>
-      <NavHeader />
-    </header>
-    <main>
-      <router-view></router-view>
-    </main>
+    <router-view></router-view>
   </div>
   <footer>
     <FooterSection />
   </footer>
-
-
 </template>
 
 <style scoped>
@@ -29,13 +25,6 @@ header {
   top: 0;
   z-index: 10;
 }
-
-
-main {
-  position: relative;
-  overflow: hidden;
-}
-
 
 footer {
   position: relative;

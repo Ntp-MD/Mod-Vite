@@ -1,10 +1,9 @@
 <template>
   <table>
-    <h1>test auto build</h1>
     <thead>
       <tr>
         <th class="main-corner">
-          <div> Abrasive</div>
+          <div>Abrasive</div>
           <div class="line"></div>
           <div>Grit Size</div>
         </th>
@@ -164,7 +163,6 @@
   </table>
 </template>
 
-
 <style scoped>
 table {
   margin: 50px auto;
@@ -206,13 +204,13 @@ td {
   padding: 0;
 }
 
-.main-corner>div:first-child {
+.main-corner > div:first-child {
   position: absolute;
   top: 10%;
   right: 10%;
 }
 
-.main-corner>div:last-child {
+.main-corner > div:last-child {
   position: absolute;
   bottom: 10%;
   left: 10%;

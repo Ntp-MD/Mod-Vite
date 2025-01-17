@@ -14,7 +14,7 @@
       <div :class="{ animate: isMenuOpen }"></div>
       <div :class="{ animate: isMenuOpen }"></div>
     </div>
-    <button>Dashboard</button>
+    <button><router-link to="/Dashboard">Dashboard</router-link></button>
   </div>
 </template>
 
@@ -23,32 +23,37 @@ export default {
   data: () => ({ isMenuOpen: false }),
   methods: {
     toggleMenu() {
-      this.isMenuOpen = !this.isMenuOpen;
+      this.isMenuOpen = !this.isMenuOpen
     },
     closeMenu() {
-      this.isMenuOpen = false;
+      this.isMenuOpen = false
     },
   },
   mounted() {
     document.addEventListener("click", (e) => {
       if (!this.$refs.headerMenu.contains(e.target) && !this.$refs.navToggle.contains(e.target)) {
-        this.isMenuOpen = false;
+        this.isMenuOpen = false
       }
-    });
+    })
   },
-};
+}
 </script>
 
 <style scoped>
 #nav-header {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 20% auto 0 20%;
+  justify-items: center;
   align-items: center;
   background: #fff;
   width: 100%;
   height: 70px;
   padding: 10px clamp(20px, 4vw, 50px);
   box-shadow: 0 0 3px #ccc;
+}
+
+#nav-header {
+  text-transform: uppercase;
 }
 
 .header-logo {
