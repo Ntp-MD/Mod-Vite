@@ -1,7 +1,7 @@
-import { defineConfig } from "vite";
-import vue from "@vitejs/plugin-vue";
-import { resolve } from "path";
-import Components from "unplugin-vue-components/vite";
+import { defineConfig } from "vite"
+import vue from "@vitejs/plugin-vue"
+import Components from "unplugin-vue-components/vite"
+import { resolve } from "path"
 
 export default defineConfig({
   plugins: [
@@ -16,6 +16,13 @@ export default defineConfig({
     outDir: "dist", // Output to the dist directory
   },
   base: "/Mod-Vite/", // Ensure this matches your repository name
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `@import "@/assets/css/variables.scss";`,
+      },
+    },
+  },
   server: {
     hmr: true,
   },
@@ -25,4 +32,4 @@ export default defineConfig({
       "@img": resolve(__dirname, "src/assets/"),
     },
   },
-});
+})

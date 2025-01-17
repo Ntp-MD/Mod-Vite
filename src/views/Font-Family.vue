@@ -48,7 +48,7 @@ export default {
 <style scoped>
 .copy-group {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(clamp(250px, 30%, 30vw), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(clamp(150px, 25%, 30vw), 1fr));
   gap: 20px;
 }
 
