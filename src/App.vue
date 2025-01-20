@@ -12,6 +12,7 @@
 
 <style scoped>
 @import url("@/css/app.css");
+@import url("@/css/font.css");
 
 #AppClient {
   display: flex;

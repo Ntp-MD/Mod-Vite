@@ -41,8 +41,9 @@
 .display-head {
   display: flex;
   justify-content: space-between;
-  padding: 25px 30px;
-  color: var(--gap);
+  padding: 20px 30px;
+  color: var(--font-color2);
+  border-bottom: 1px solid #e4e4e4;
 }
 
 .display-3 {

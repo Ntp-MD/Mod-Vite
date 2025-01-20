@@ -1,7 +1,7 @@
 :root {
+  --main-bg: #fff;
   --main-color: #6161ff;
   --main-overlay: #f2f5fd;
-  --main-bg: #fff;
   --font-color: #333;
   --font-color2: #535768;
   --box-shadow1: rgba(97, 97, 255, 0.5) 0px 3px 15px;
@@ -18,7 +18,7 @@ body {
   color: var(--font-color);
   font-size: 16px;
   font-weight: 400;
-  font-family: "Roboto", serif;
+  font-family: "Poppins";
 }
 
 body::-webkit-scrollbar,
@@ -108,7 +108,6 @@ caption {
   text-align: left;
   font-size: clamp(26px, 2vw, 32px);
   font-weight: 700;
-  color: var(--font1);
   margin-bottom: 20px;
 }
 

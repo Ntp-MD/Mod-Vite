@@ -1,5 +1,4 @@
 import "./css/app.css"
-import "./css/variables.scss"
 import { createApp } from "vue"
 import App from "@/App.vue"
 import router from "@/router.js" // Import the router
