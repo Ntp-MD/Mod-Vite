@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 
 // Dynamically import all `.vue` files from the `views` folder
-const viewFiles = import.meta.glob("@/**/*.vue");
+const viewFiles = import.meta.glob("/src/**/*.vue");
 
 const routes = Object.keys(viewFiles).map((path) => {
   const name = path.split("/").pop().replace(".vue", "");
