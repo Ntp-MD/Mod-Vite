@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 
 // Dynamically import all `.vue` files from the `views` folder
-const viewFiles = import.meta.glob("@/views/*.vue");
+const viewFiles = import.meta.glob("@/**/*.vue");
 
 // Dynamically create routes for each file
 const routes = Object.keys(viewFiles).map((path) => {
