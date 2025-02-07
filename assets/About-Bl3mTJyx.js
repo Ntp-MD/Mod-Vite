@@ -1,0 +1,1 @@
+import{_ as s,c as o,b as t,o as a}from"./index-DvBEb7G9.js";const c={},n={class:"container"};function r(_,e){return a(),o("div",n,e[0]||(e[0]=[t("div",{class:"gallery"},null,-1)]))}const d=s(c,[["render",r],["__scopeId","data-v-924ea430"]]);export{d as default};
