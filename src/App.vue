@@ -24,20 +24,20 @@ const hideThis = computed(() => ["/smo-login", "/smo-register", "/smo-home"].inc
 @import url("@/css/app.css");
 
 #AppClient {
+  position: relative;
   display: flex;
   flex-direction: column;
-  height: 100%;
-  position: relative;
+  min-height: 100vh;
 }
 
 header {
   position: sticky;
   top: 0;
   z-index: 10;
+  height: 70px;
 }
 
 footer {
-  position: relative;
   min-height: 300px;
 }
 </style>
