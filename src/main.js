@@ -27,6 +27,3 @@ const components = import.meta.glob("@/components/*.vue");
 // Use the router in the app
 app.use(router);
 app.mount("#App");
-
-// Initialize jQuery
-initializeJQuery();
