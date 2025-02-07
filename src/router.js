@@ -1,13 +1,14 @@
 import { createRouter, createWebHistory } from "vue-router";
 
 // Dynamically import all `.vue` files from the `views` folder
-const viewFiles = import.meta.glob("/src/**/*.vue");
+const viewFiles = import.meta.glob("@/views/*.vue");
 
+// Dynamically create routes for each file
 const routes = Object.keys(viewFiles).map((path) => {
   const name = path.split("/").pop().replace(".vue", "");
 
   return {
-    path: name.toLowerCase() === "home" ? "" : `/${name.toLowerCase()}`, // Set "url /" for Home.vue
+    path: name.toLowerCase() === "home" ? "/" : `/${name.toLowerCase()}`, // Set "url /" for Home.vue
     name: name.toLowerCase(), // Use the file name as the route name in lowercase
     component: viewFiles[path], // Dynamically imported component
   };

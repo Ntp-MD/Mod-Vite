@@ -16,6 +16,13 @@ export default defineConfig({
     outDir: "dist", // Output to the dist directory
   },
   base: "/Mod-Vite/", // Ensure this matches your repository name
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `@import "@/assets/css/variables.scss";`,
+      },
+    },
+  },
   server: {
     hmr: true,
   },

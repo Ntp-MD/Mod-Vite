@@ -12,6 +12,8 @@
 <script setup>
 import { computed } from "vue";
 import { useRoute } from "vue-router";
+import NavHeader from "./components/NavHeader.vue";
+import FooterSection from "./components/FooterSection.vue";
 
 const route = useRoute();
 
