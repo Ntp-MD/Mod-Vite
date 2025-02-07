@@ -5,7 +5,7 @@
   <div id="Smo-App">
     <div class="smo-screen smo-assets">
       <div class="smo-top">
-        <img src="/src/smo-app/smo-assets/logo/nav-logo.png" v-auto-alt />
+        <img src="/src/smo-app/smo-assets/image/nav-logo.png" v-auto-alt />
       </div>
       <div class="smo-mid">
         <div class="section1">
@@ -19,7 +19,7 @@
 
         <div class="section2">
           <div class="smo-header">
-            <img src="" alt="" />
+            <img src="/src/smo-app/smo-assets/icon/pin.png" alt="" />
             Choose location
           </div>
           <div class="checkbox-location">

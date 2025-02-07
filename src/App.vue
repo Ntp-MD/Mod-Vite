@@ -1,12 +1,12 @@
 <template>
-  <header>
-    <NavHeader v-if="!hideThis" />
+  <header v-if="!hideThis">
+    <NavHeader />
   </header>
   <div id="AppClient">
     <router-view></router-view>
   </div>
-  <footer>
-    <FooterSection v-if="!hideThis" />
+  <footer v-if="!hideThis">
+    <FooterSection />
   </footer>
 </template>
 <script setup>
@@ -25,7 +25,7 @@ const hideThis = computed(() => ["/smo-login", "/smo-register", "/smo-home"].inc
 #AppClient {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  height: 100vh;
   position: relative;
 }
 

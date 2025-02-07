@@ -5,7 +5,7 @@
   <div id="Smo-App">
     <div class="smo-screen smo-login">
       <div class="smo-top">
-        <img src="/src/smo-app/smo-assets/logo/logo.png" v-auto-alt />
+        <img src="/src/smo-app/smo-assets/image/logo.png" v-auto-alt />
       </div>
       <div class="smo-mid">
         <div><input type="text" name="User" id="smo-user" placeholder="Your ID" /></div>

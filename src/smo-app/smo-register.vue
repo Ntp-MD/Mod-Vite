@@ -5,7 +5,7 @@
   <div id="Smo-App">
     <div class="smo-screen smo-register">
       <div class="smo-top">
-        <img src="" v-auto-alt />
+        <img src="/src//smo-app/smo-assets/icon/user-upload.png" v-auto-alt />
       </div>
       <div class="smo-mid">
         <div><input type="text" name="name" id="smo-user" placeholder="Firstname" /></div>
