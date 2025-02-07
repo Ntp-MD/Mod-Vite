@@ -2,19 +2,16 @@
   <div id="nav-header">
     <div class="header-logo"><router-link to="/">Mod</router-link></div>
     <div :class="['header-menu', { open: isMenuOpen }]" ref="headerMenu">
-      <router-link class="header-menu-link" to="/" @click="closeMenu">Frontend</router-link>
-      <router-link class="header-menu-link" to="/About" @click="closeMenu">About</router-link>
+      <router-link class="header-menu-link" to="/" @click="closeMenu">Home</router-link>
       <router-link class="header-menu-link" to="/Font-Family" @click="closeMenu">Font Family</router-link>
       <router-link class="header-menu-link" to="/Slide" @click="closeMenu">Slide</router-link>
-      <router-link class="header-menu-link" to="" @click="closeMenu">Embed</router-link>
-      <router-link class="header-menu-link" to="" @click="closeMenu">Download</router-link>
+      <router-link class="header-menu-link" to="/smo-login" @click="closeMenu">SMO</router-link>
     </div>
     <div id="nav-toggle" @click="toggleMenu" ref="navToggle">
       <div :class="{ animate: isMenuOpen }"></div>
       <div :class="{ animate: isMenuOpen }"></div>
       <div :class="{ animate: isMenuOpen }"></div>
     </div>
-    <button><router-link to="/Dashboard">Dashboard</router-link></button>
   </div>
 </template>
 
@@ -23,20 +20,20 @@ export default {
   data: () => ({ isMenuOpen: false }),
   methods: {
     toggleMenu() {
-      this.isMenuOpen = !this.isMenuOpen
+      this.isMenuOpen = !this.isMenuOpen;
     },
     closeMenu() {
-      this.isMenuOpen = false
+      this.isMenuOpen = false;
     },
   },
   mounted() {
     document.addEventListener("click", (e) => {
       if (!this.$refs.headerMenu.contains(e.target) && !this.$refs.navToggle.contains(e.target)) {
-        this.isMenuOpen = false
+        this.isMenuOpen = false;
       }
-    })
+    });
   },
-}
+};
 </script>
 
 <style scoped>

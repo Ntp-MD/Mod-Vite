@@ -1,14 +1,23 @@
 <template>
   <header>
-    <NavHeader />
+    <NavHeader v-if="!hideThis" />
   </header>
   <div id="AppClient">
     <router-view></router-view>
   </div>
   <footer>
-    <FooterSection />
+    <FooterSection v-if="!hideThis" />
   </footer>
 </template>
+<script setup>
+import { computed } from "vue";
+import { useRoute } from "vue-router";
+
+const route = useRoute();
+
+// Hide NavHeader on specific pages (e.g., "/login")
+const hideThis = computed(() => ["/smo-login", "/smo-register", "/smo-home"].includes(route.path));
+</script>
 
 <style scoped>
 @import url("@/css/app.css");

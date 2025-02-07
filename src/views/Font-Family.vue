@@ -8,13 +8,13 @@
           <div class="code-content">
             {{ font.font_url }}
           </div>
-          <div class="copy-button" @click="copyToClipboard(font.font_url)"><img src="@img/icons/link.png" alt="" /></div>
+          <div class="copy-button" @click="copyToClipboard(font.font_url)"><img src="" alt="" /></div>
         </div>
         <div class="code-block">
           <div class="code-content">
             {{ font.font_family }}
           </div>
-          <div class="copy-button" @click="copyToClipboard(font.font_family)"><img src="@img/icons/link.png" alt="" /></div>
+          <div class="copy-button" @click="copyToClipboard(font.font_family)"><img src="" alt="" /></div>
         </div>
       </div>
     </div>
@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import fontData from "@/data/font-family.json"
+import fontData from "/src/data/font-family.json";
 
 export default {
   methods: {
@@ -33,16 +33,16 @@ export default {
           // alert(`${textToCopy} copied to clipboard!`);
         })
         .catch((err) => {
-          console.error("Failed to copy text: ", err)
-        })
+          console.error("Failed to copy text: ", err);
+        });
     },
   },
   data() {
     return {
       fonts: fontData,
-    }
+    };
   },
-}
+};
 </script>
 
 <style scoped>

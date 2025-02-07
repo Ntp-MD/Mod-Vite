@@ -10,16 +10,16 @@
       <div class="smo-mid">
         <div class="section1">
           <div class="pic">
-            <img src="/src/smo-app/smo-assets/image/home1.png" v-auto-alt />
+            <img src="" v-auto-alt />
           </div>
           <div class="pic">
-            <img src="/src/smo-app/smo-assets/image/home2.png" v-auto-alt />
+            <img src="" v-auto-alt />
           </div>
         </div>
 
         <div class="section2">
           <div class="smo-header">
-            <img src="/src/smo-app/smo-assets/icon/location-pin.png" alt="" />
+            <img src="" alt="" />
             Choose location
           </div>
           <div class="checkbox-location">
@@ -50,7 +50,7 @@
           </div>
 
           <div class="smo-header">
-            <img src="/src/smo-app/smo-assets/icon/location-map.png" alt="" />
+            <img src="" alt="" />
             Choose Province
           </div>
           <div class="smo-select">
@@ -65,37 +65,37 @@
 
         <div class="section3">
           <div class="smo-header">
-            <img src="/src/smo-app/smo-assets/icon/star.png" alt="" />
+            <img src="" alt="" />
             Popular dive site
           </div>
           <div class="popular-slide">
             <div class="pic">
-              <img src="/src/smo-app/smo-assets/image/poppular-site1.png" v-auto-alt />
+              <img src="" v-auto-alt />
             </div>
             <div class="pic">
-              <img src="/src/smo-app/smo-assets/image/poppular-site1.png" v-auto-alt />
+              <img src="" v-auto-alt />
             </div>
           </div>
         </div>
 
         <div class="section4">
           <div class="smo-header">
-            <img src="/src/smo-app/smo-assets/icon/fish2.png" v-auto-alt />
+            <img src="" v-auto-alt />
             Fish identification
           </div>
           <div class="pic">
-            <img src="/src/smo-app/smo-assets/image/fish-identify.png" v-auto-alt />
+            <img src="" v-auto-alt />
           </div>
         </div>
       </div>
 
       <div class="smo-bottom">
         <div class="smo-assets-menu">
-          <router-link class="smo-assets-link" to=""><img src="/src/smo-app/smo-assets/icon/home.png" />Home</router-link>
-          <router-link class="smo-assets-link" to=""><img src="/src/smo-app/smo-assets/icon/dive.png" />Dive</router-link>
-          <router-link class="smo-assets-link" to=""><img src="/src/smo-app/smo-assets/icon/course.png" />Course</router-link>
-          <router-link class="smo-assets-link" to=""><img src="/src/smo-app/smo-assets/icon/tips.png" />Tips</router-link>
-          <router-link class="smo-assets-link" to="/smo-login"><img src="/src/smo-app/smo-assets/icon/log.png" />Log</router-link>
+          <router-link class="smo-assets-link" to=""><img src="" />Home</router-link>
+          <router-link class="smo-assets-link" to=""><img src="" />Dive</router-link>
+          <router-link class="smo-assets-link" to=""><img src="" />Course</router-link>
+          <router-link class="smo-assets-link" to=""><img src="" />Tips</router-link>
+          <router-link class="smo-assets-link" to="/smo-login"><img src="" />Log</router-link>
         </div>
       </div>
     </div>
