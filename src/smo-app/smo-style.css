@@ -1,0 +1,98 @@
+@media screen and (min-width: 992px) {
+  #Smo-App {
+    visibility: hidden;
+  }
+}
+
+#Smo-App * {
+  box-sizing: border-box;
+}
+
+#Smo-App button {
+  background: #0c4a60;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+#Smo-App button.btn-register {
+  background: #ef6c33 !important;
+}
+
+#Smo-App button.btn-guest {
+  opacity: 0.8;
+}
+
+#Smo-App input {
+  display: grid;
+  justify-content: center;
+  border-radius: 30px;
+  background: rgb(255, 255, 255, 0.6);
+  height: 40px;
+  padding-left: 20px;
+}
+
+#Smo-App select {
+  display: grid;
+  justify-content: center;
+  border: 0;
+  border-radius: 5px;
+  outline: none;
+  width: 100%;
+  color: #0c4a60;
+  height: 40px;
+  padding: 0 15px;
+  appearance: none;
+}
+
+.smo-select {
+  position: relative;
+}
+
+.smo-select::after {
+  content: "";
+  background-image: url(/src/smo-app/smo-assets/icon/anchor.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 10px;
+  right: 10px;
+  pointer-events: none;
+}
+
+.smo-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 40px;
+  min-height: 100vh;
+  background-image: url("/src/smo-app/smo-assets/logo/login-screen.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 30%;
+  width: 100%;
+  padding: 0 15%;
+}
+
+.smo-top {
+  display: grid;
+}
+
+.smo-mid {
+  display: grid;
+  gap: 5px;
+}
+
+.smo-bottom {
+  display: grid;
+  gap: 15px;
+}
+
+.reset-password {
+  text-align: right;
+  font-size: 12px;
+  color: #0c4a60;
+}
