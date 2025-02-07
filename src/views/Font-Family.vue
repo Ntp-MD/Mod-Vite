@@ -8,13 +8,13 @@
           <div class="code-content">
             {{ font.font_url }}
           </div>
-          <div class="copy-button" @click="copyToClipboard(font.font_url)"><img src="" alt="" /></div>
+          <div class="copy-button" @click="copyToClipboard(font.font_url)"><img src="/src/assets/icon/link.png" alt="" /></div>
         </div>
         <div class="code-block">
           <div class="code-content">
             {{ font.font_family }}
           </div>
-          <div class="copy-button" @click="copyToClipboard(font.font_family)"><img src="" alt="" /></div>
+          <div class="copy-button" @click="copyToClipboard(font.font_family)"><img src="/src/assets/icon/copy.png" alt="" /></div>
         </div>
       </div>
     </div>

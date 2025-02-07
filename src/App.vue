@@ -15,7 +15,6 @@ import { useRoute } from "vue-router";
 
 const route = useRoute();
 
-// Hide NavHeader on specific pages (e.g., "/login")
 const hideThis = computed(() => ["/smo-login", "/smo-register", "/smo-home"].includes(route.path));
 </script>
 
@@ -25,7 +24,7 @@ const hideThis = computed(() => ["/smo-login", "/smo-register", "/smo-home"].inc
 #AppClient {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100%;
   position: relative;
 }
 
