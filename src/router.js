@@ -6,11 +6,15 @@ const viewFiles = import.meta.glob("@/**/*.vue");
 // Dynamically create routes for each file
 const routes = Object.keys(viewFiles).map((path) => {
   const name = path.split("/").pop().replace(".vue", "");
+  const isToggleHide = path.includes("/smo-app/"); // Check if it's an smo-app route
 
   return {
-    path: name.toLowerCase() === "home" ? "/" : `/${name.toLowerCase()}`, // Set "url /" for Home.vue
-    name: name.toLowerCase(), // Use the file name as the route name in lowercase
-    component: viewFiles[path], // Dynamically imported component
+    path: name.toLowerCase() === "home" ? "/" : `/${name.toLowerCase()}`,
+    name: name.toLowerCase(),
+    component: viewFiles[path],
+    meta: {
+      HideThis: !isToggleHide,
+    },
   };
 });
 

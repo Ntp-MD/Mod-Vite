@@ -1,25 +1,3 @@
-<template>
-  <header v-if="!hideThis">
-    <NavHeader />
-  </header>
-  <div id="AppClient">
-    <router-view></router-view>
-  </div>
-  <footer v-if="!hideThis">
-    <FooterSection />
-  </footer>
-</template>
-<script setup>
-import { computed } from "vue";
-import { useRoute } from "vue-router";
-import NavHeader from "./components/NavHeader.vue";
-import FooterSection from "./components/FooterSection.vue";
-
-const route = useRoute();
-
-const hideThis = computed(() => ["/smo-login", "/smo-register", "/smo-home"].includes(route.path));
-</script>
-
 <style scoped>
 @import url("@/css/app.css");
 
@@ -34,10 +12,28 @@ header {
   position: sticky;
   top: 0;
   z-index: 10;
-  height: 70px;
+  height: clamp(50px, 5vw, 70px);
 }
 
 footer {
   min-height: 300px;
 }
 </style>
+
+<template>
+  <div id="AppClient">
+    <header v-if="route.meta.HideThis">
+      <NavHeader />
+    </header>
+    <router-view></router-view>
+    <footer v-if="route.meta.HideThis">
+      <FooterSection />
+    </footer>
+  </div>
+</template>
+
+<script setup>
+// Use on router to hide
+import { useRoute } from "vue-router";
+const route = useRoute();
+</script>
