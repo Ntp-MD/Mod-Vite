@@ -1,0 +1,92 @@
+/*modquee*/
+.modquee-contanier {
+  position: relative;
+  display: flex;
+  height: 250px;
+  width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.modquee-box {
+  display: flex;
+  position: absolute;
+  top: 0;
+  z-index: 1;
+}
+
+.modquee-box.box1 {
+  animation: linear-left 35s linear infinite;
+  transform: translateX(0%);
+}
+
+.modquee-box.box1.cloned {
+  animation: linear-left-cloned 35s linear infinite;
+  transform: translateX(-100%);
+  z-index: 2;
+}
+
+.modquee-box.box2 {
+  animation: linear-right 35s linear infinite;
+  transform: translateX(0%);
+}
+
+.modquee-box.box2.cloned {
+  animation: linear-right-cloned 35s linear infinite;
+  transform: translateX(-100%);
+  z-index: 2;
+}
+
+.modquee-items {
+  padding: 20px;
+  width: 250px;
+  aspect-ratio: 1;
+}
+
+.modquee-items img {
+  border-radius: 15px;
+  height: 100%;
+  width: 100%;
+}
+
+@keyframes linear-left {
+  from {
+    transform: translateX(0%);
+  }
+
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes linear-left-cloned {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes linear-right {
+  from {
+    transform: translateX(0%);
+  }
+
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes linear-right-cloned {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(0%);
+  }
+}
+
+/*modquee*/

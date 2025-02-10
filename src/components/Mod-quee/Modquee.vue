@@ -1,5 +1,5 @@
 <style>
-@import url("/src/css/Modquee.css");
+@import url("modquee.css");
 </style>
 
 <template>

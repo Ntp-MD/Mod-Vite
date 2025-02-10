@@ -5,7 +5,7 @@
       <router-link class="header-menu-link" to="/" @click="closeMenu">Home</router-link>
       <router-link class="header-menu-link" to="/Font-Family" @click="closeMenu">Font</router-link>
       <router-link class="header-menu-link" to="/Slide" @click="closeMenu">Slide</router-link>
-      <router-link class="header-menu-link" to="/Modquee" @click="closeMenu">Modquee</router-link>
+      <router-link class="header-menu-link" to="/Modquee-Display" @click="closeMenu">Modquee</router-link>
       <router-link class="header-menu-link" to="/smo-login" @click="closeMenu">SMO</router-link>
     </div>
     <div id="nav-toggle" @click="toggleMenu" ref="navToggle">
@@ -60,10 +60,17 @@ export default {
 
 .header-menu {
   display: flex;
+  align-items: center;
   justify-content: end;
-  gap: 20px;
+  gap: 40px;
   width: 100%;
+  height: 100%;
   background: #fff;
+}
+.header-menu a {
+  display: grid;
+  place-items: center;
+  height: 100%;
 }
 
 @media screen and (max-width: 992px) {
