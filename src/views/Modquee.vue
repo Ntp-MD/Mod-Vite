@@ -1,65 +1,71 @@
-<template></template>
-
 <style>
-.modquee-contanier {
-  display: flex;
-  align-items: center;
-  height: 280px;
-  width: 100vw;
-  margin: 0 auto;
-  position: relative;
-  left: -50vw;
-}
-
-.modquee-box {
-  display: flex;
-  position: absolute;
-  top: 0;
-  left: 0;
-  animation: linear-scroll 40s linear infinite;
-  transform: translateX(100%);
-  z-index: 1;
-}
-
-.cloned {
-  animation-delay: 20s;
-  z-index: 0;
-}
-
-.modquee-item {
-  padding: 15px;
-}
-
-.modquee-box img {
-  height: 250px !important;
-  width: 250px !important;
-  border-radius: 25px;
-  box-shadow: 0 4px 18px rgb(0, 0, 0, 0.1);
-}
-
-@keyframes linear-scroll {
-  from {
-    transform: translateX(100%);
-  }
-
-  to {
-    transform: translateX(-100%);
-  }
-}
+@import url("/src/css/Modquee.css");
 </style>
 
-<script>
-const observer = new MutationObserver((mutationsList, observer) => {
-  const modqueeContainer = document.querySelector(".modquee-contanier");
-  const modqueeBox = document.querySelector(".modquee-box");
+<template>
+  <div class="modquee-contanier">
+    <div class="modquee-box box1"></div>
+  </div>
 
-  if (modqueeContainer && modqueeBox) {
+  <div class="modquee-contanier">
+    <div class="modquee-box box2"></div>
+  </div>
+</template>
+
+<script>
+const imageUrls = [
+  "https://itp1.itopfile.com/Images/photos/no-image.jpg",
+  "https://itp1.itopfile.com/Images/photos/no-image.jpg",
+  "https://itp1.itopfile.com/Images/photos/no-image.jpg",
+  "https://itp1.itopfile.com/Images/photos/no-image.jpg",
+  "https://itp1.itopfile.com/Images/photos/no-image.jpg",
+  "https://itp1.itopfile.com/Images/photos/no-image.jpg",
+  "https://itp1.itopfile.com/Images/photos/no-image.jpg",
+  "https://itp1.itopfile.com/Images/photos/no-image.jpg",
+];
+
+const imageUrls2 = [
+  "https://itp1.itopfile.com/Images/photos/no-image.jpg",
+  "https://itp1.itopfile.com/Images/photos/no-image.jpg",
+  "https://itp1.itopfile.com/Images/photos/no-image.jpg",
+  "https://itp1.itopfile.com/Images/photos/no-image.jpg",
+  "https://itp1.itopfile.com/Images/photos/no-image.jpg",
+  "https://itp1.itopfile.com/Images/photos/no-image.jpg",
+  "https://itp1.itopfile.com/Images/photos/no-image.jpg",
+  "https://itp1.itopfile.com/Images/photos/no-image.jpg",
+];
+const observer = new MutationObserver((mutationsList, observer) => {
+  const modqueeContainer1 = document.querySelector(".modquee-contanier .box1");
+  const modqueeContainer2 = document.querySelector(".modquee-contanier .box2");
+
+  if (modqueeContainer1 && modqueeContainer2) {
+    // Function to append images to a given element
+    const appendImages = (element, urls) => {
+      urls.forEach((url) => {
+        const modqueeItems = document.createElement("div");
+        modqueeItems.classList.add("modquee-items");
+        const img = document.createElement("img");
+        img.src = url;
+        img.alt = "";
+        modqueeItems.appendChild(img);
+        element.appendChild(modqueeItems);
+      });
+    };
+
+    // Append images to the original modquee-box
+    appendImages(modqueeContainer1, imageUrls);
+    appendImages(modqueeContainer2, imageUrls2);
+
     const cloneCount = 1;
 
     for (let i = 0; i < cloneCount; i++) {
-      const clonedContent = modqueeBox.cloneNode(true);
-      clonedContent.classList.add("cloned");
-      modqueeContainer.appendChild(clonedContent);
+      const clonedContent1 = modqueeContainer1.cloneNode(true);
+      clonedContent1.classList.add("cloned");
+      modqueeContainer1.parentElement.appendChild(clonedContent1);
+
+      const clonedContent2 = modqueeContainer2.cloneNode(true);
+      clonedContent2.classList.add("cloned");
+      modqueeContainer2.parentElement.appendChild(clonedContent2);
     }
 
     // Stop observing once the desired elements are found and cloned

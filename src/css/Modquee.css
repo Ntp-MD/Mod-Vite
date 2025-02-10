@@ -1,0 +1,61 @@
+.modquee-contanier {
+  position: relative;
+  display: flex;
+  height: 250px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.modquee-box {
+  display: flex;
+  position: absolute;
+  top: 0;
+  z-index: 1;
+}
+
+.modquee-box.box1 {
+  animation: linear-scroll-left 20s linear infinite;
+  transform: translateX(100%);
+}
+
+.modquee-box.box2 {
+  animation: linear-scroll-right 20s linear infinite;
+  transform: translateX(-100%);
+}
+
+.cloned {
+  animation-delay: 10s !important;
+  z-index: 2;
+}
+
+.modquee-items {
+  padding: 20px;
+  width: 250px;
+  aspect-ratio: 1;
+}
+
+.modquee-items img {
+  border-radius: 15px;
+  height: 100%;
+  width: 100%;
+}
+
+@keyframes linear-scroll-left {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes linear-scroll-right {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(100%);
+  }
+}
