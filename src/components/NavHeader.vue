@@ -3,9 +3,9 @@
     <div class="header-logo"><router-link to="/">Mod</router-link></div>
     <div :class="['header-menu', { open: isMenuOpen }]" ref="headerMenu">
       <router-link class="header-menu-link" to="/" @click="closeMenu">Home</router-link>
-      <router-link class="header-menu-link" to="/Font-Family" @click="closeMenu">Font</router-link>
+      <router-link class="header-menu-link" to="/Font" @click="closeMenu">Font</router-link>
       <router-link class="header-menu-link" to="/Slide" @click="closeMenu">Slide</router-link>
-      <router-link class="header-menu-link" to="/Modquee-Display" @click="closeMenu">Modquee</router-link>
+      <router-link class="header-menu-link" to="/Modquee" @click="closeMenu">Modquee</router-link>
       <router-link class="header-menu-link" to="/smo-login" @click="closeMenu">SMO</router-link>
     </div>
     <div id="nav-toggle" @click="toggleMenu" ref="navToggle">

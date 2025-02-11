@@ -1,5 +1,5 @@
-<style>
-@import url("modquee.css");
+<style scope>
+@import url("/src/css/mod-quee.css");
 </style>
 
 <template>

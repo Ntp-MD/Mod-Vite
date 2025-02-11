@@ -1,3 +1,3 @@
 <template>
-  <Modslide></Modslide>
+  <Mod-slide></Mod-slide>
 </template>

@@ -1,5 +1,5 @@
 <template>
-  <Modquee></Modquee>
+  <Mod-quee></Mod-quee>
 </template>
 
 <script></script>

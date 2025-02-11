@@ -43,11 +43,11 @@
 </template>
 
 <style scope>
-@import url(modslide.css);
+@import url("/src/css/mod-slide.css");
 </style>
 
 <script>
-import modSlide from "@/components/Mod-Slide/modslide.js";
+import modSlide from "@/js/mod-slide.js";
 
 export default {
   mounted() {
