@@ -23,16 +23,16 @@ footer {
 <template>
   <div id="AppClient">
     <header v-if="route.meta.HideThis">
-      <NavHeader />
+      <Mode-nav />
     </header>
     <router-view></router-view>
     <footer v-if="route.meta.HideThis">
-      <FooterSection />
+      <Mod-footer />
     </footer>
   </div>
 </template>
 
-<script setup>
+<script>
 // Use on router to hide
 import { useRoute } from "vue-router";
 const route = useRoute();
