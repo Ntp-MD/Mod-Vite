@@ -2,7 +2,7 @@
   <div id="Footer">
     <div class="footer-content">
       <div class="footer-menu" v-for="n in 4" :key="n">
-        <h3>Lorem, ipsum dolor.</h3>
+        <div>Lorem, ipsum dolor.</div>
         <p v-for="n in 4" :key="n">Lorem ipsum dolor sit amet.</p>
       </div>
     </div>

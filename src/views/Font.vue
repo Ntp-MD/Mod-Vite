@@ -1,8 +1,8 @@
 <template>
-  <div class="_container">
+  <div class="container">
     <div class="copy-group">
       <div class="copy-items" v-for="font in fonts" :key="font.font_name">
-        <h2>{{ font.font_name }}</h2>
+        <div class="font-name">{{ font.font_name }}</div>
         <div class="code-block">
           <div class="code-content">
             {{ font.font_url }}
@@ -45,10 +45,16 @@ export default {
 </script>
 
 <style scoped>
+.font-name {
+  font-size: 24px;
+  font-weight: 600;
+}
+
 .copy-group {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(clamp(150px, 25%, 30vw), 1fr));
   gap: 20px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .copy-items {
@@ -58,7 +64,7 @@ export default {
   padding: 20px;
   border-radius: 8px;
   background-color: #fff;
-  box-shadow: var(--text-shadow1);
+  box-shadow: var(--box-shadow1);
 }
 
 .code-block {
@@ -66,7 +72,7 @@ export default {
   grid-template-columns: auto 40px;
   align-items: center;
   gap: 10px;
-  background-color: #f6f6f6;
+  background: var(--main-bg2);
   border-radius: 5px;
   overflow: hidden;
 }

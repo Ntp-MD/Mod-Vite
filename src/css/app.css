@@ -7,10 +7,12 @@
   --font-color1: #000;
   --font-color2: #708586;
   --text-shadow1: 8px 8px 0 rgb(255, 186, 0, 0.8);
+  --box-shadow1: #ddd 0px 3px 15px;
 }
 
 * {
   box-sizing: border-box;
+  line-height: 1;
 }
 
 body {
