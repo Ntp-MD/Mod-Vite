@@ -1,13 +1,13 @@
 <template>
   <div id="AppClient">
     <header v-if="route.meta.HideThis">
-      <Modnav />
+      <Modnav></Modnav>
     </header>
     <main>
       <router-view></router-view>
     </main>
     <footer v-if="route.meta.HideThis">
-      <Modfooter />
+      <Modfooter></Modfooter>
     </footer>
   </div>
 </template>
@@ -16,7 +16,6 @@
 import Modnav from "@/components/Modnav.vue";
 import Modfooter from "@/components/Modfooter.vue";
 import { useRoute } from "vue-router";
-
 const route = useRoute();
 </script>
 

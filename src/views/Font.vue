@@ -1,6 +1,5 @@
 <template>
   <div class="_container">
-    <h1>font family</h1>
     <div class="copy-group">
       <div class="copy-items" v-for="font in fonts" :key="font.font_name">
         <h2>{{ font.font_name }}</h2>
@@ -59,7 +58,7 @@ export default {
   padding: 20px;
   border-radius: 8px;
   background-color: #fff;
-  box-shadow: var(--box-shadow1);
+  box-shadow: var(--text-shadow1);
 }
 
 .code-block {
@@ -88,7 +87,7 @@ export default {
   place-items: center;
   width: 100%;
   height: 100%;
-  background: var(--main-color);
+  background: var(--main-color2);
   cursor: pointer;
 }
 

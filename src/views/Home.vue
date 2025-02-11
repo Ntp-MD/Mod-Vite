@@ -1,46 +1,40 @@
 <template>
   <div id="section-1">
-    <div class="_container">
-      <h1>
-        Lorem ipsum, dolor sit amet <br />
-        consectetur Veritatis, quasi?
-      </h1>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. <br />
-        Deserunt maxime magni debitis nemo esse ut, in veniam molestias ullam commodi.
-      </p>
-      <button>Let' Get Started</button>
-      <span>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia, libero.</span>
+    <div class="container">
+      <div class="group-text1">
+        <h1>the place of enjoyment</h1>
+        <h1>Welcome to life</h1>
+        <button>Booking now</button>
+      </div>
     </div>
   </div>
 
   <div id="section-2">
-    <div class="_container">
+    <div class="container">
+      <div class="group-items" style="display: none">
+        <div class="items" v-for="n in 3">
+          <h3>Lorem, ipsum dolor.</h3>
+          <span>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque, magnam.</span>
+        </div>
+      </div>
       <div class="grid-default">
         <div class="grid-image">
-          <img src="@/assets/images/app1.png" alt="app1" />
+          <img src="/src/assets/beach/bed-beach.jpg" alt="" />
         </div>
-        <div class="grid-content">
-          <h1>Lorem ipsum dolor sit amet consectetur.</h1>
-          <br />
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia suscipit officiis sed earum magnam provident ab saepe soluta, itaque ipsam, excepturi in sapiente quis atque non, nam eum
-            laudantium minus!
-          </p>
-          <br />
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia suscipit officiis sed earum magnam provident ab saepe soluta, itaque ipsam, excepturi in sapiente quis atque non, nam eum
-            laudantium minus!
-          </p>
+        <div class="group-text2">
+          <h2>a vacation</h2>
+          <h2>near your</h2>
+          <h2>home</h2>
+          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dicta delectus vero maiores, labore illo cumque veritatis ipsum dolorem quisquam facere.</p>
         </div>
       </div>
     </div>
   </div>
 
   <div id="section-3">
-    <div class="_container">
+    <div class="container">
       <div class="center">
-        <h1>Lorem ipsum, dolor sit amet</h1>
+        <h2>Lorem ipsum, dolor sit amet</h2>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
       </div>
       <div class="package-content">
@@ -61,23 +55,23 @@
   </div>
 
   <div id="section-4">
-    <div class="_container">
+    <div class="container">
       <div class="center">
-        <h1>Lorem ipsum, dolor sit amet</h1>
+        <h2>Lorem ipsum, dolor sit amet</h2>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
       </div>
       <div class="grid-default">
         <form>
-          <h2>Lorem ipsum dolor sit.</h2>
-          <div id="input">
+          <h3>Lorem ipsum dolor.</h3>
+          <div class="input-group">
             <div><input type="text" name="firstname" id="firstname" placeholder="Firstname" /></div>
             <div><input type="text" name="lastname" id="lastname" placeholder="Lastname" /></div>
           </div>
-          <div id="input">
+          <div class="input-group">
             <div><input type="text" name="email" id="email" placeholder="Email" /></div>
             <div><input type="text" name="tel" id="tel" placeholder="Tel" /></div>
           </div>
-          <div id="input">
+          <div class="input-group">
             <div><input type="text" name="country" id="country" placeholder="Country" /></div>
             <div><input type="text" name="company" id="company" placeholder="Company" /></div>
           </div>
@@ -87,7 +81,7 @@
 
           <button>Submit</button>
         </form>
-        <div class=""><img src="@/assets/images/office1.jpg" alt="office1" /></div>
+        <div class="grid-image"><img src="/src/assets/beach/bed-beach.jpg" alt="office1" /></div>
       </div>
     </div>
   </div>
@@ -95,33 +89,52 @@
 
 <style scoped>
 #section-1 {
+  background-image: url("/src/assets/beach/beach-chairs-tropical-white-sand-beach.jpg");
+  background-size: cover;
+  background-position: 50% 60%;
   text-align: center;
-  background: var(--main-overlay);
-  color: var(--font-color);
+  color: #fff;
 }
 
-#section-2 {
-  background: #fff;
+.group-text1 {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  border-radius: 10px;
+  color: #fff;
 }
 
-#section-2 img {
-  min-width: 250px;
-  max-width: 25vw;
+.group-text1 h1 {
+  color: rgb(255, 255, 255, 1);
+  text-shadow: var(--text-shadow1);
+}
+
+.group-text2 {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 #section-3 {
-  background: var(--main-overlay);
-  color: var(--font-color);
+  background: var(--main-bg2);
+}
+
+#section-3 h2 {
+  color: var(--main-color1);
+}
+
+#section-4 .container {
+  min-height: 30vw;
 }
 
 #section-4 .grid-default {
-  background: var(--main-overlay);
-  border-radius: 15px;
-  overflow: hidden;
+  background: var(--main-bg2);
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
 }
 
-#section-4 button {
-  margin-top: 20px;
+#section-4 form {
+  padding: 50px;
 }
 
 /*package content*/
@@ -135,9 +148,8 @@
 
 .package-items {
   display: grid;
-  gap: 20px;
+  gap: 10px;
   background: var(--main-bg);
-  box-shadow: var(--box-shadow1);
   padding: 50px 20px 20px;
   border-radius: 12px;
   text-align: center;
@@ -176,6 +188,5 @@
 
 button.package-button {
   margin: 20px auto;
-  width: 85%;
 }
 </style>
