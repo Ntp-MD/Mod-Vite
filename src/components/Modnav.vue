@@ -1,12 +1,12 @@
 <template>
   <div id="nav-header">
-    <div class="header-logo"><router-link to="/">Mod</router-link></div>
-    <div :class="['header-menu', { open: isMenuOpen }]" ref="headerMenu">
-      <router-link class="header-menu-link" to="/" @click="closeMenu">Home</router-link>
-      <router-link class="header-menu-link" to="/Font" @click="closeMenu">Font</router-link>
-      <router-link class="header-menu-link" to="/Slide" @click="closeMenu">Slide</router-link>
-      <router-link class="header-menu-link" to="/Modquee" @click="closeMenu">Modquee</router-link>
-      <router-link class="header-menu-link" to="/smo-login" @click="closeMenu">SMO</router-link>
+    <div class="nav-logo"><router-link to="/">Mod</router-link></div>
+    <div :class="['nav-menu', { open: isMenuOpen }]" ref="NavMenu">
+      <router-link class="nav-menu-link" to="/" @click="closeMenu">Home</router-link>
+      <router-link class="nav-menu-link" to="/Font" @click="closeMenu">Font</router-link>
+      <router-link class="nav-menu-link" to="/Slide" @click="closeMenu">Slide</router-link>
+      <router-link class="nav-menu-link" to="/Modquee" @click="closeMenu">Modquee</router-link>
+      <router-link class="nav-menu-link" to="/smo-login" @click="closeMenu">SMO</router-link>
     </div>
     <div id="nav-toggle" @click="toggleMenu" ref="navToggle">
       <div :class="{ animate: isMenuOpen }"></div>
@@ -29,7 +29,7 @@ export default {
   },
   mounted() {
     document.addEventListener("click", (e) => {
-      if (!this.$refs.headerMenu.contains(e.target) && !this.$refs.navToggle.contains(e.target)) {
+      if (!this.$refs.NavMenu.contains(e.target) && !this.$refs.navToggle.contains(e.target)) {
         this.isMenuOpen = false;
       }
     });
@@ -54,23 +54,18 @@ export default {
   text-transform: uppercase;
 }
 
-.header-logo {
+.nav-logo {
   min-width: 130px;
 }
 
-.header-menu {
+.nav-menu {
   display: flex;
   align-items: center;
   justify-content: end;
-  gap: 40px;
+  gap: clamp(15px, 5vw, 30px);
   width: 100%;
   height: 100%;
   background: #fff;
-}
-.header-menu a {
-  display: grid;
-  place-items: center;
-  height: 100%;
 }
 
 @media screen and (max-width: 992px) {
@@ -86,7 +81,7 @@ export default {
     padding: 0 10px;
   }
 
-  .header-logo {
+  .nav-logo {
     position: relative;
     width: 100%;
   }
@@ -114,10 +109,11 @@ export default {
     width: 16px;
   }
 
-  .header-menu {
+  .nav-menu {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    align-items: start;
     position: absolute;
     top: 50px;
     left: -85%;
@@ -128,7 +124,7 @@ export default {
     transition: 0.8s ease;
   }
 
-  .header-menu.open {
+  .nav-menu.open {
     left: 0;
   }
 }

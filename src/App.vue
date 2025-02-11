@@ -1,3 +1,25 @@
+<template>
+  <div id="AppClient">
+    <header v-if="route.meta.HideThis">
+      <Modnav />
+    </header>
+    <main>
+      <router-view></router-view>
+    </main>
+    <footer v-if="route.meta.HideThis">
+      <Modfooter />
+    </footer>
+  </div>
+</template>
+
+<script setup>
+import Modnav from "@/components/Modnav.vue";
+import Modfooter from "@/components/Modfooter.vue";
+import { useRoute } from "vue-router";
+
+const route = useRoute();
+</script>
+
 <style scoped>
 @import url("@/css/app.css");
 
@@ -19,21 +41,3 @@ footer {
   min-height: 300px;
 }
 </style>
-
-<template>
-  <div id="AppClient">
-    <header v-if="route.meta.HideThis">
-      <Mode-nav />
-    </header>
-    <router-view></router-view>
-    <footer v-if="route.meta.HideThis">
-      <Mod-footer />
-    </footer>
-  </div>
-</template>
-
-<script>
-// Use on router to hide
-import { useRoute } from "vue-router";
-const route = useRoute();
-</script>
