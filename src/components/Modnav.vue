@@ -43,11 +43,9 @@ export default {
   grid-template-columns: 20% auto 0;
   justify-items: center;
   align-items: center;
-  background: #fff;
   width: 100%;
   height: 70px;
   padding: 10px clamp(20px, 10vw, 150px);
-  box-shadow: 0 0 3px #ccc;
 }
 
 #nav-header {
@@ -65,10 +63,14 @@ export default {
   gap: clamp(15px, 5vw, 30px);
   width: 100%;
   height: 100%;
-  background: #fff;
+  background: transparent;
 }
 
 @media screen and (max-width: 992px) {
+  .nav-menu {
+    background: #fff;
+  }
+
   #nav-header button {
     display: none;
   }

@@ -1,0 +1,45 @@
+<template>
+  <div id="form-contact">
+    <div class="container">
+      <div class="grid-default">
+        <form>
+          <h3>Lorem ipsum dolor.</h3>
+          <div class="input-group">
+            <div><input type="text" name="firstname" id="firstname" placeholder="Firstname" /></div>
+            <div><input type="text" name="lastname" id="lastname" placeholder="Lastname" /></div>
+          </div>
+          <div class="input-group">
+            <div><input type="text" name="email" id="email" placeholder="Email" /></div>
+            <div><input type="text" name="tel" id="tel" placeholder="Tel" /></div>
+          </div>
+          <div class="input-group">
+            <div><input type="text" name="country" id="country" placeholder="Country" /></div>
+            <div><input type="text" name="company" id="company" placeholder="Company" /></div>
+          </div>
+          <address>
+            <textarea name="address" id="address" placeholder="Address"></textarea>
+          </address>
+
+          <button>Submit</button>
+        </form>
+        <div class="grid-image"><img src="/src/assets/beach/4.jpg" alt="office1" /></div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<style scoped>
+#form-contact .container {
+  min-height: 30vw;
+}
+
+#form-contact .grid-default {
+  background: var(--bg2);
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+
+#form-contact form {
+  padding: 50px;
+}
+</style>

@@ -30,13 +30,22 @@ const route = useRoute();
 }
 
 header {
-  position: sticky;
+  position: fixed;
+  width: 100%;
   top: 0;
   z-index: 10;
   height: clamp(50px, 5vw, 70px);
+  background: rgba(0, 0, 0, 0.5);
 }
 
 footer {
   min-height: 300px;
+}
+
+@media screen and (max-width: 992px) {
+  header {
+    position: relative;
+    background: #fff;
+  }
 }
 </style>

@@ -1,12 +1,11 @@
 :root {
-  --main-bg: #fff;
-  --main-bg2: #f8f8f8;
-  --main-bg3: #708586;
-  --main-color1: #4bbed1;
-  --main-color2: #ffba00;
-  --font-color1: #000;
-  --font-color2: #708586;
-  --text-shadow1: 8px 8px 0 rgb(255, 186, 0, 0.8);
+  --bg: #fff;
+  --bg2: #fafafa;
+  --color1: #4bbed1;
+  --color2: #ffba00;
+  --color3: #708586;
+  --color4: #00516f;
+  --text-shadow1: 8px 8px 0 rgb(255, 186, 0, 0.7);
   --box-shadow1: #ddd 0px 3px 15px;
 }
 
@@ -20,21 +19,33 @@ body {
   padding: 0;
   font-size: 18px;
   font-weight: 400;
-  font-family: "Oswald", sans-serif;
-  color: var(--font-color1);
+  font-family: "Inter", sans-serif;
+  color: #000;
 }
 
 main {
-  padding-bottom: clamp(30px, 10vw, 200px);
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+}
+
+caption {
+  display: grid;
+  text-align: center;
+  margin: 100px 0;
 }
 
 a {
-  color: var(--font-color2);
+  color: #fff;
   text-decoration: none;
   font-size: 18px;
   font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 1px;
+}
+
+a:hover {
+  color: var(--color2);
 }
 
 body::-webkit-scrollbar,
@@ -50,19 +61,21 @@ img {
 }
 
 h1 {
-  font-size: clamp(24px, 10vw, 100px);
+  font-size: clamp(24px, 10vw, 110px);
   font-weight: 800;
   line-height: 1;
   margin: 0;
   text-transform: uppercase;
+  color: var(--color1);
 }
 
 h2 {
-  font-size: clamp(20px, 7vw, 70px);
-  font-weight: 600;
+  font-size: clamp(20px, 7vw, 80px);
+  font-weight: 800;
   line-height: 1;
   margin: 0;
   text-transform: uppercase;
+  color: var(--color1);
 }
 
 h3 {
@@ -71,11 +84,13 @@ h3 {
   line-height: 1;
   margin: 0;
   text-transform: uppercase;
+  color: var(--color1);
 }
 
 p {
   line-height: 1.8;
   margin: 0;
+  color: var(--color3);
 }
 
 span {
@@ -95,14 +110,14 @@ button {
   margin: auto;
   cursor: pointer;
   text-transform: uppercase;
-  background: var(--main-color2);
+  background: var(--color2);
   color: #fff;
   font-size: 18px;
   transition: 0.5s;
 }
 
 button:hover {
-  background: var(--main-color1);
+  background: rgba(75, 189, 209, 0.7);
 }
 
 button a {
@@ -162,17 +177,21 @@ textarea::placeholder {
   display: grid;
   place-items: center;
   min-width: 900px;
-  min-height: 40vw;
+  min-height: 35vw;
   width: 70vw;
   margin: auto;
-  padding: clamp(50px, 10vw, 100px) 0;
 }
 
 .grid-default {
+  position: relative;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: clamp(30px, 5vw, 50px);
-  margin: clamp(50px, 10vw, 100px) auto;
+  gap: clamp(30px, 6vw, 60px);
+}
+
+.grid-default > div {
+  position: relative;
+  height: 100%;
 }
 
 .grid-image {

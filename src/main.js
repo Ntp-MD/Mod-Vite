@@ -7,7 +7,7 @@ import router from "@/router.js"; // Import the router
 const app = createApp(App);
 
 // Dynamically import and register all components in the `/components` folder
-const components = import.meta.glob("@/**/*.vue");
+const components = import.meta.glob("@/components/**/*.vue");
 (async () => {
   for (const path in components) {
     try {

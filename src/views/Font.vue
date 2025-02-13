@@ -72,7 +72,7 @@ export default {
   grid-template-columns: auto 40px;
   align-items: center;
   gap: 10px;
-  background: var(--main-bg2);
+  background: var(--bg2);
   border-radius: 5px;
   overflow: hidden;
 }
@@ -93,7 +93,7 @@ export default {
   place-items: center;
   width: 100%;
   height: 100%;
-  background: var(--main-color2);
+  background: var(--color2);
   cursor: pointer;
 }
 
