@@ -3,37 +3,37 @@
     <div id="mod_slide">
       <div class="slide_items">
         <div class="slide_img">
-          <img src="https://itp1.itopfile.com/ImageServer/z_itp_09062024wnrm/0/0/1z-z1242807270081.jpg" />
+          <img src="/src/assets/beach/2.jpg" />
         </div>
         <div class="slide_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, sint.</div>
       </div>
       <div class="slide_items">
         <div class="slide_img">
-          <img src="https://itp1.itopfile.com/ImageServer/z_itp_09062024wnrm/0/0/2z-z164754116619.jpg" />
+          <img src="/src/assets/beach/3.jpg" />
         </div>
         <div class="slide_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, sint.</div>
       </div>
       <div class="slide_items">
         <div class="slide_img">
-          <img src="https://itp1.itopfile.com/ImageServer/z_itp_09062024wnrm/0/0/3z-z1521248311050.jpg" />
+          <img src="/src/assets/beach/4.jpg" />
         </div>
         <div class="slide_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, sint.</div>
       </div>
       <div class="slide_items">
         <div class="slide_img">
-          <img src="https://itp1.itopfile.com/ImageServer/z_itp_09062024wnrm/0/0/4z-z1191711380622.jpg" />
+          <img src="/src/assets/beach/6.jpg" />
         </div>
         <div class="slide_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, sint.</div>
       </div>
       <div class="slide_items">
         <div class="slide_img">
-          <img src="https://itp1.itopfile.com/ImageServer/z_itp_09062024wnrm/0/0/5z-z1024447302513.jpg" />
+          <img src="/src/assets/beach/7.jpg" />
         </div>
         <div class="slide_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, sint.</div>
       </div>
       <div class="slide_items">
         <div class="slide_img">
-          <img src="https://itp1.itopfile.com/ImageServer/z_itp_09062024wnrm/0/0/6z-z476741613997.jpg" />
+          <img src="/src/assets/beach/8.jpg" />
         </div>
         <div class="slide_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, sint.</div>
       </div>

@@ -16,12 +16,30 @@
         </div>
       </div>
       <div class="facility-info-2">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+        <div>
+          <img src="/src//assets/icon/disco.png" alt="" />
+          <p>clubhouse</p>
+        </div>
+        <div>
+          <img src="/src//assets/icon/mall.png" alt="" />
+          <p>shopping mall</p>
+        </div>
+        <div>
+          <img src="/src//assets/icon/bed.png" alt="" />
+          <p>golf court</p>
+        </div>
+        <div>
+          <img src="/src//assets/icon/pool.png" alt="" />
+          <p>swinning pool</p>
+        </div>
+        <div>
+          <img src="/src//assets/icon/garden.png" alt="" />
+          <p>garden park</p>
+        </div>
+        <div>
+          <img src="/src//assets/icon/drink.png" alt="" />
+          <p>nightbar</p>
+        </div>
       </div>
     </div>
   </div>
@@ -69,11 +87,36 @@ span {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 5px;
+  background: var(--bg2);
+}
+
+.facility-info-2 p {
+  font-size: 22px;
+  font-weight: 800;
+  color: #fff;
+  text-transform: uppercase;
 }
 
 .facility-info-2 > div {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
   min-height: 350px;
   background: var(--color2);
+  color: #fff;
+  transition: 0.3s;
+}
+
+.facility-info-2 > div:hover {
+  background: var(--color1);
+}
+
+.facility-info-2 img {
+  width: 30%;
+  height: auto;
+  aspect-ratio: 1;
+  filter: invert(1);
 }
 </style>

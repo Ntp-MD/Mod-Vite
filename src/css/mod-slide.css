@@ -8,7 +8,6 @@
 
 #mod_slide {
   overflow-x: auto;
-  overflow-y: hidden;
   display: flex;
   gap: 10px;
   height: 30vw;
@@ -58,7 +57,7 @@
   width: 100%;
   bottom: -50%;
   padding: 15px;
-  background: rgb(0, 0, 0, 80%);
+  background: var(--color2);
   color: #fff;
   transition: 0.3s ease-in-out;
 }
@@ -82,5 +81,5 @@
 
 .dot.active {
   width: 50px;
-  background-color: #333;
+  background: var(--color1);
 }

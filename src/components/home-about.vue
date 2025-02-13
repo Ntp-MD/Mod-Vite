@@ -33,7 +33,7 @@
 p {
   position: absolute;
   left: -100px;
-  bottom: -50%;
+  bottom: -35%;
   z-index: -1;
   padding: 100px;
   width: calc(100% + 80px);
@@ -42,7 +42,7 @@ p {
 }
 
 .grid-image {
-  box-shadow: -40px 40px 0 rgb(255, 186, 0);
+  box-shadow: -60px 60px 0 rgb(255, 186, 0);
 }
 
 .group-text2 {
