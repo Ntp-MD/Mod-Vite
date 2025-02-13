@@ -5,4 +5,11 @@
   <form-contact></form-contact>
 </template>
 
-<style></style>
+<style>
+header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 10;
+}
+</style>
