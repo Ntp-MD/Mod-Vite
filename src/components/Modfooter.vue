@@ -11,9 +11,12 @@
 </template>
 
 <style scoped>
+#Footer {
+  background: var(--bg2);
+  color: var(--color3);
+}
+
 .footer-content {
-  background: var(--main-color1);
-  color: #fff;
   display: flex;
   justify-content: space-evenly;
   gap: 50px;
@@ -24,10 +27,8 @@
 }
 
 .footer-copyright {
-  background: var(--main-color2);
-  color: var(--font-color1);
   text-align: center;
-  padding: 15px;
+  padding: 20px;
   border-top: 1px solid var(--font-color);
 }
 </style>

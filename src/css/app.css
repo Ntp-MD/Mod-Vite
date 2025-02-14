@@ -7,6 +7,7 @@
   --color4: #2a5360;
   --text-shadow1: 8px 8px 0 rgb(255, 186, 0, 0.7);
   --box-shadow1: #ddd 0px 3px 15px;
+  --gap-content: clamp(50px, 20vw, 300px);
 }
 
 * {
@@ -26,7 +27,7 @@ body {
 main {
   display: flex;
   flex-direction: column;
-  gap: 100px;
+  padding: var(--gap-content) 0;
 }
 
 caption {
@@ -95,7 +96,6 @@ p {
 
 span {
   font-size: 14px;
-  margin-top: 15px;
   text-transform: uppercase;
 }
 
@@ -177,7 +177,7 @@ textarea::placeholder {
   display: grid;
   place-items: center;
   min-width: 900px;
-  min-height: 35vw;
+  min-height: 40vw;
   width: 70vw;
   margin: auto;
 }

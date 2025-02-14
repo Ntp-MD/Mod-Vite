@@ -3,7 +3,7 @@
     <div class="container">
       <div class="grid-default">
         <form>
-          <h3>Lorem ipsum dolor.</h3>
+          <h3>Contact us</h3>
           <div class="input-group">
             <div><input type="text" name="firstname" id="firstname" placeholder="Firstname" /></div>
             <div><input type="text" name="lastname" id="lastname" placeholder="Lastname" /></div>
@@ -29,14 +29,18 @@
 </template>
 
 <style scoped>
+#form-contact {
+  padding-top: 200px;
+}
+
 #form-contact .container {
   min-height: 30vw;
+  border-radius: 15px;
+  overflow: hidden;
 }
 
 #form-contact .grid-default {
   background: var(--bg2);
-  border-top-left-radius: 15px;
-  border-bottom-left-radius: 15px;
 }
 
 #form-contact form {

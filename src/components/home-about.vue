@@ -26,10 +26,6 @@
 </template>
 
 <style scoped>
-#home-about {
-  margin-bottom: 150px;
-}
-
 p {
   position: absolute;
   left: -100px;

@@ -1,5 +1,5 @@
 <template>
-  <div class="facility-content">
+  <div id="facility-content">
     <div class="facility-info">
       <div class="facility-info-1">
         <div class="facility-info-1-text">
@@ -25,7 +25,7 @@
           <p>shopping mall</p>
         </div>
         <div>
-          <img src="/src//assets/icon/bed.png" alt="" />
+          <img src="/src//assets/icon/birdie.png" alt="" />
           <p>golf court</p>
         </div>
         <div>
@@ -46,7 +46,7 @@
 </template>
 
 <style scoped>
-.facility-content {
+#facility-content {
   background: var(--bg2);
 }
 
@@ -102,8 +102,8 @@ span {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 10px;
-  min-height: 350px;
+  gap: 15px;
+  min-height: 320px;
   background: var(--color2);
   color: #fff;
   transition: 0.3s;
