@@ -7,7 +7,7 @@
   --color4: #2a5360;
   --text-shadow1: 8px 8px 0 rgb(255, 186, 0, 0.7);
   --box-shadow1: #ddd 0px 3px 15px;
-  --gap-content: clamp(50px, 20vw, 300px);
+  --gap-content: clamp(50px, 20vw, 150px);
 }
 
 * {
@@ -177,9 +177,9 @@ textarea::placeholder {
   display: grid;
   place-items: center;
   min-width: 900px;
-  min-height: 40vw;
+  min-height: 35vw;
   width: 70vw;
-  margin: auto;
+  margin: var(--gap-content) auto;
 }
 
 .grid-default {

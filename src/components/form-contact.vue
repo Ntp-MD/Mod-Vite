@@ -30,7 +30,6 @@
 
 <style scoped>
 #form-contact {
-  padding-top: 200px;
 }
 
 #form-contact .container {
