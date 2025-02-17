@@ -82,11 +82,11 @@ p {
   }
 
   #intro-banner {
-    min-height: 500px;
+    min-height: 550px;
   }
 
   .intro-banner-text {
-    top: 10%;
+    top: 20%;
     gap: 20px;
     padding: 5px;
   }

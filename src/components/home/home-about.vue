@@ -64,7 +64,7 @@ main#home-about {
     position: unset;
     width: 100%;
     padding: 20px;
-    margin-top: 20px;
+    margin: 20px -20px 20px;
   }
 
   .grid-image {

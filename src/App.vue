@@ -39,7 +39,8 @@ footer {
 
 @media screen and (max-width: 992px) {
   header {
-    position: relative;
+    position: fixed;
+    top: 0;
     background: #fff;
   }
 }
