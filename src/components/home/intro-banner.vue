@@ -91,4 +91,10 @@ p {
     padding: 5px;
   }
 }
+
+@media screen and (max-width: 370px) {
+  h1 {
+    font-size: 28px;
+  }
+}
 </style>
