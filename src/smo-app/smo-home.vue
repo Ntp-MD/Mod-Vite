@@ -3,7 +3,7 @@
 </style>
 <template>
   <div id="Smo-App">
-    <div class="smo-screen smo-assets">
+    <div class="smo-screen smo-home">
       <div class="smo-top">
         <img src="/src/smo-app/smo-assets/image/nav-logo.png" v-auto-alt />
       </div>
@@ -90,12 +90,12 @@
       </div>
 
       <div class="smo-bottom">
-        <div class="smo-assets-menu">
-          <router-link class="smo-assets-link" to="/smp-home"><img src="/src/smo-app/smo-assets/icon/home.png" />Home</router-link>
-          <router-link class="smo-assets-link" to=""><img src="/src/smo-app/smo-assets/icon/dive.png" />Dive</router-link>
-          <router-link class="smo-assets-link" to=""><img src="/src/smo-app/smo-assets/icon/course.png" />Course</router-link>
-          <router-link class="smo-assets-link" to=""><img src="/src/smo-app/smo-assets/icon/tips.png" />Tips</router-link>
-          <router-link class="smo-assets-link" to="/smo-login"><img src="/src/smo-app/smo-assets/icon/log.png" />Log</router-link>
+        <div class="smo-home-menu">
+          <router-link class="smo-home-link" to="/smp-home"><img src="/src/smo-app/smo-assets/icon/home.png" />Home</router-link>
+          <router-link class="smo-home-link" to=""><img src="/src/smo-app/smo-assets/icon/dive.png" />Dive</router-link>
+          <router-link class="smo-home-link" to=""><img src="/src/smo-app/smo-assets/icon/course.png" />Course</router-link>
+          <router-link class="smo-home-link" to=""><img src="/src/smo-app/smo-assets/icon/tips.png" />Tips</router-link>
+          <router-link class="smo-home-link" to="/smo-login"><img src="/src/smo-app/smo-assets/icon/log.png" />Log</router-link>
         </div>
       </div>
     </div>
@@ -117,11 +117,11 @@ export default {
 </script>
 
 <style scoped>
-.smo-screen.smo-assets {
+.smo-screen.smo-home {
   background-image: unset !important;
 }
 
-.smo-assets {
+.smo-home {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -130,11 +130,11 @@ export default {
   gap: 0;
 }
 
-.smo-assets img {
+.smo-home img {
   object-fit: contain;
 }
 
-.smo-assets .smo-top {
+.smo-home .smo-top {
   position: sticky;
   top: 0;
   background: #0c4a60;
@@ -177,25 +177,25 @@ export default {
   z-index: 1;
 }
 
-.smo-assets-menu {
+.smo-home-menu {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   background: #0c4a60;
   height: 100%;
 }
 
-.smo-assets-menu a {
+.smo-home-menu a {
   display: grid;
   place-items: center;
   gap: 2px;
-  padding: 10px 0 5px;
+  padding: 12px 0px;
   color: #fff;
   font-weight: 300;
   font-size: 12px;
   height: 100%;
 }
 
-.smo-assets-menu a:first-child {
+.smo-home-menu a:first-child {
   background: #ef6c33;
 }
 
@@ -205,7 +205,7 @@ export default {
   height: fit-content;
 }
 
-.smo-assets-menu img {
+.smo-home-menu img {
   aspect-ratio: 1;
   width: 22px;
   object-fit: contain;
@@ -227,7 +227,7 @@ export default {
   color: #0c4a60;
 }
 
-.smo-assets select {
+.smo-home select {
   outline: none;
   padding-left: 5px;
   border: 1px solid #0c4a60 !important;
