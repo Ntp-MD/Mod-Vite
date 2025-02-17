@@ -1,20 +1,18 @@
 <template>
   <div id="AppClient">
     <header v-if="route.meta.HideThis">
-      <Modnav></Modnav>
+      <NavHeader></NavHeader>
     </header>
-    <main>
-      <router-view></router-view>
-    </main>
+    <router-view></router-view>
     <footer v-if="route.meta.HideThis">
-      <Modfooter></Modfooter>
+      <NavFooter></NavFooter>
     </footer>
   </div>
 </template>
 
 <script setup>
-import Modnav from "@/components/Modnav.vue";
-import Modfooter from "@/components/Modfooter.vue";
+import NavHeader from "@/components/core/NavHeader.vue";
+import NavFooter from "@/components/core/NavFooter.vue";
 import { useRoute } from "vue-router";
 const route = useRoute();
 </script>

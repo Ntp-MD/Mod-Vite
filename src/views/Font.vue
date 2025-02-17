@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <main>
     <div class="copy-group">
       <div class="copy-items" v-for="font in fonts" :key="font.font_name">
         <div class="font-name">{{ font.font_name }}</div>
@@ -17,7 +17,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </main>
 </template>
 
 <script>

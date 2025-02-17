@@ -7,12 +7,22 @@
   --color4: #2a5360;
   --text-shadow1: 8px 8px 0 rgb(255, 186, 0, 0.7);
   --box-shadow1: #ddd 0px 3px 15px;
-  --gap-content: clamp(50px, 20vw, 150px);
+  --gap-content: clamp(50px, 20vw, 200px);
 }
 
 * {
   box-sizing: border-box;
   line-height: 1;
+}
+
+main {
+  display: grid;
+  place-items: center;
+  min-width: 900px;
+  min-height: 30vw;
+  width: 70vw;
+  margin: auto;
+  padding: var(--gap-content) 0;
 }
 
 body {
@@ -22,18 +32,6 @@ body {
   font-weight: 400;
   font-family: "Inter", sans-serif;
   color: #000;
-}
-
-main {
-  display: flex;
-  flex-direction: column;
-  padding: var(--gap-content) 0;
-}
-
-caption {
-  display: grid;
-  text-align: center;
-  margin: 100px 0;
 }
 
 a {
@@ -63,11 +61,13 @@ img {
 
 h1 {
   font-size: clamp(24px, 10vw, 110px);
-  font-weight: 800;
+  font-weight: 900;
   line-height: 1;
   margin: 0;
   text-transform: uppercase;
   color: var(--color1);
+  font-family: "Noto Serif", serif;
+  letter-spacing: 8px;
 }
 
 h2 {
@@ -117,7 +117,7 @@ button {
 }
 
 button:hover {
-  background: rgba(75, 189, 209, 0.7);
+  background: rgba(75, 189, 209, 0.8);
 }
 
 button a {
@@ -173,15 +173,6 @@ textarea::placeholder {
   opacity: 0.8;
 }
 
-.container {
-  display: grid;
-  place-items: center;
-  min-width: 900px;
-  min-height: 35vw;
-  width: 70vw;
-  margin: var(--gap-content) auto;
-}
-
 .grid-default {
   position: relative;
   display: grid;
@@ -203,11 +194,6 @@ textarea::placeholder {
   text-align: center;
 }
 
-.bg-sand {
-  background-image: url("/src/assets/beach/bg-sand.png");
-  background-size: cover;
-}
-
 @media screen and (max-width: 992px) {
   body {
     overflow-x: hidden;
@@ -221,10 +207,6 @@ textarea::placeholder {
   .grid-default {
     display: grid;
     gap: 50px;
-  }
-
-  .grid-2 {
-    margin: 0;
   }
 }
 

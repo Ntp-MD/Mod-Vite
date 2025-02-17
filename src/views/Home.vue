@@ -12,8 +12,4 @@ header {
   top: 0;
   z-index: 10;
 }
-
-main {
-  padding: 0 0 150px !important;
-}
 </style>
