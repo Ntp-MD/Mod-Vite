@@ -7,7 +7,7 @@
   --color4: #2a5360;
   --text-shadow1: 8px 8px 0 rgb(255, 186, 0, 0.7);
   --box-shadow1: #ddd 0px 3px 15px;
-  --gap-content: clamp(50px, 20vw, 200px);
+  --gap-content: clamp(50px, 10vw, 200px);
 }
 
 * {
@@ -35,7 +35,6 @@ body {
 }
 
 a {
-  color: #fff;
   text-decoration: none;
   font-size: 18px;
   font-weight: 400;
@@ -60,7 +59,7 @@ img {
 }
 
 h1 {
-  font-size: clamp(24px, 10vw, 110px);
+  font-size: clamp(50px, 6vw, 110px);
   font-weight: 900;
   line-height: 1;
   margin: 0;
@@ -71,7 +70,7 @@ h1 {
 }
 
 h2 {
-  font-size: clamp(20px, 7vw, 80px);
+  font-size: clamp(40px, 4vw, 80px);
   font-weight: 800;
   line-height: 1;
   margin: 0;
@@ -80,7 +79,7 @@ h2 {
 }
 
 h3 {
-  font-size: clamp(20px, 6vw, 60px);
+  font-size: clamp(30px, 3vw, 60px);
   font-weight: 800;
   line-height: 1;
   margin: 0;
@@ -194,19 +193,25 @@ textarea::placeholder {
   text-align: center;
 }
 
+@media screen and (max-width: 1600px) {
+  body {
+    font-size: 16px;
+  }
+}
+
 @media screen and (max-width: 992px) {
   body {
     overflow-x: hidden;
   }
 
-  .container {
+  main {
     width: 90%;
     min-width: auto;
   }
 
   .grid-default {
     display: grid;
-    gap: 50px;
+    gap: 20px;
   }
 }
 

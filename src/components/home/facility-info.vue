@@ -91,7 +91,7 @@ span {
 }
 
 .facility-info-2 p {
-  font-size: 22px;
+  font-size: clamp(18px, 1vw, 20px);
   font-weight: 800;
   color: #fff;
   text-transform: uppercase;
@@ -103,7 +103,7 @@ span {
   justify-content: center;
   align-items: center;
   gap: 15px;
-  min-height: 320px;
+  min-height: clamp(250px, 15vw, 350px);
   background: var(--color2);
   color: #fff;
   transition: 0.3s;
@@ -118,5 +118,27 @@ span {
   height: auto;
   aspect-ratio: 1;
   filter: invert(1);
+}
+
+@media screen and (max-width: 480px) {
+  .facility-info {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    padding-top: 50px;
+    gap: 20px;
+  }
+
+  .facility-info-1-text {
+    position: relative;
+    top: 0;
+    right: -30px;
+    text-align: left;
+    gap: 20px;
+  }
+
+  .facility-info-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 </style>

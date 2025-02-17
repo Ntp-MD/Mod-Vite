@@ -48,6 +48,10 @@ export default {
   padding: 10px clamp(20px, 10vw, 150px);
 }
 
+#nav-header a {
+  color: #fff;
+}
+
 #nav-header {
   text-transform: uppercase;
 }
@@ -73,6 +77,10 @@ export default {
 
   #nav-header button {
     display: none;
+  }
+
+  #nav-header a {
+    color: #333;
   }
 
   #nav-header {

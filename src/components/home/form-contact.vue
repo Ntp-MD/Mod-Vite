@@ -2,7 +2,7 @@
   <main id="form-contact">
     <div class="grid-default">
       <form>
-        <h3>Contact us</h3>
+        <h3>Contact Reserved</h3>
         <div class="input-group">
           <div><input type="text" name="firstname" id="firstname" placeholder="Firstname" /></div>
           <div><input type="text" name="lastname" id="lastname" placeholder="Lastname" /></div>
@@ -38,5 +38,11 @@
 
 #form-contact form {
   padding: 50px;
+}
+
+@media screen and (max-width: 480px) {
+  #form-contact form {
+    padding: 25px;
+  }
 }
 </style>

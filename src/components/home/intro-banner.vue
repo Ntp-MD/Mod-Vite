@@ -27,13 +27,11 @@
 }
 
 .bg-bottom {
+  content: url("/Mod-Vite/src/assets/images/wave-forge2.png");
   position: absolute;
   bottom: -5px;
-  height: 250px;
+  height: clamp(100px, 10vw, 200px);
   width: 100%;
-  background-image: url(/Mod-Vite/src/assets/images/wave-forge2.png);
-  background-size: 100%;
-  background-repeat: no-repeat;
   z-index: 0;
 }
 
@@ -43,7 +41,6 @@ h1 {
 
 p {
   color: #fff;
-  font-size: 22px;
 }
 
 .bg-overlay {
@@ -56,7 +53,8 @@ p {
 
 .bg-overlay video {
   position: absolute;
-  top: -70%;
+  height: 100%;
+  top: 0;
 }
 
 .intro-banner-text {
@@ -70,5 +68,27 @@ p {
   right: 0;
   text-align: center;
   z-index: 1;
+}
+
+@media screen and (max-width: 1600px) {
+  #intro-banner {
+    min-height: 65vw;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  h1 {
+    font-size: 32px;
+  }
+
+  #intro-banner {
+    min-height: 500px;
+  }
+
+  .intro-banner-text {
+    top: 10%;
+    gap: 20px;
+    padding: 5px;
+  }
 }
 </style>

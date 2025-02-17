@@ -14,10 +14,10 @@
         <h2>a vacation</h2>
         <h2>near your</h2>
         <h2>home</h2>
-        <p>
+        <div class="home-about-content">
           Completely remodeled and new for 2017, the new management is bringing you a Playa Pool Club facility with all the amenities and more of a private club, but without the expensive bond to join. Explore our membership options, see upcoming
           events, and view our gallery to learn more about the plans for our new facility.
-        </p>
+        </div>
       </div>
     </div>
   </main>
@@ -29,15 +29,16 @@ main#home-about {
   position: relative;
 }
 
-p {
+.home-about-content {
   position: absolute;
-  left: -100px;
-  bottom: -35%;
+  top: clamp(100px, 40%, 200px);
+  left: -5vw;
   z-index: -1;
-  padding: 100px;
+  padding: clamp(50px, 5vw, 100px);
   width: calc(100% + 80px);
   background: var(--bg2);
   color: var(--color3);
+  line-height: 1.5;
 }
 
 .grid-image {
@@ -48,5 +49,26 @@ p {
   display: flex;
   flex-direction: column;
   gap: 20px;
+}
+
+@media screen and (max-width: 480px) {
+  main#home-about {
+    margin-bottom: auto;
+  }
+
+  .grid-content {
+    margin-top: 40px;
+  }
+
+  .home-about-content {
+    position: unset;
+    width: 100%;
+    padding: 20px;
+    margin-top: 20px;
+  }
+
+  .grid-image {
+    box-shadow: -30px 30px 0 rgb(255, 186, 0);
+  }
 }
 </style>
