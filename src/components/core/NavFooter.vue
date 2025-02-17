@@ -34,4 +34,10 @@
   padding: 20px;
   border-top: 1px solid var(--font-color);
 }
+
+@media screen and (max-width: 992px) {
+  .footer-content {
+    display: none;
+  }
+}
 </style>
