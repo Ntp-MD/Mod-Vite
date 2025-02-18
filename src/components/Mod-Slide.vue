@@ -1,42 +1,44 @@
 <template>
   <div class="container_slide">
     <div class="title-section">
-      <h1>gallery</h1>
+      <h2>gallery</h2>
     </div>
     <div id="box_slide">
       <div class="slide_items">
         <div class="slide_img">
-          <img src="/src/assets/beach/2.jpg" />
+          <img src="/src/assets/beach/gallery1.jpg" />
         </div>
         <div class="slide_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, sint.</div>
       </div>
       <div class="slide_items">
         <div class="slide_img">
-          <img src="/src/assets/beach/9.jpg" />
+          <img src="/src/assets/beach/gallery3.jpg" />
         </div>
         <div class="slide_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, sint.</div>
       </div>
       <div class="slide_items">
         <div class="slide_img">
-          <img src="/src/assets/beach/4.jpg" />
+          <img src="/src/assets/beach/gallery4.jpg" />
+        </div>
+        <div class="slide_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, sint.</div>
+      </div>
+
+      <div class="slide_items">
+        <div class="slide_img">
+          <img src="/src/assets/beach/gallery8.jpg" />
         </div>
         <div class="slide_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, sint.</div>
       </div>
       <div class="slide_items">
         <div class="slide_img">
-          <img src="/src/assets/beach/6.jpg" />
+          <img src="/src/assets/beach/gallery7.jpg" />
         </div>
         <div class="slide_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, sint.</div>
       </div>
+
       <div class="slide_items">
         <div class="slide_img">
-          <img src="/src/assets/beach/7.jpg" />
-        </div>
-        <div class="slide_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, sint.</div>
-      </div>
-      <div class="slide_items">
-        <div class="slide_img">
-          <img src="/src/assets/beach/8.jpg" />
+          <img src="/src/assets/beach/gallery6.jpg" />
         </div>
         <div class="slide_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, sint.</div>
       </div>
