@@ -24,9 +24,9 @@
 </template>
 
 <style scoped>
-main#home-about {
-  margin-bottom: 200px;
+#home-about {
   position: relative;
+  margin-bottom: 100px;
 }
 
 .home-about-content {
@@ -35,10 +35,9 @@ main#home-about {
   left: -5vw;
   z-index: -1;
   padding: clamp(50px, 5vw, 100px);
-  width: calc(100% + 80px);
+  width: 100%;
   background: var(--bg2);
   color: var(--color3);
-  line-height: 1.5;
 }
 
 .grid-image {
@@ -52,23 +51,23 @@ main#home-about {
 }
 
 @media screen and (max-width: 480px) {
-  main#home-about {
-    margin-bottom: auto;
+  #home-about {
+    margin: 0;
   }
 
   .grid-content {
-    margin-top: 40px;
-  }
-
-  .home-about-content {
-    position: unset;
-    width: 100%;
-    padding: 20px;
-    margin: 20px -20px 20px;
+    margin-top: 30px;
   }
 
   .grid-image {
     box-shadow: -30px 30px 0 rgb(255, 186, 0);
+  }
+
+  .home-about-content {
+    position: unset;
+    width: 99%;
+    padding: 15px 0;
+    background: #fff;
   }
 }
 </style>

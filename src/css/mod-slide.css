@@ -1,18 +1,13 @@
 .container_slide {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
+  margin: 150px 0 0;
 }
 
-#mod_slide {
-  overflow-x: auto;
+#box_slide {
+  overflow: hidden;
   display: flex;
   gap: 10px;
-  height: 30vw;
+  min-height: 30vw;
   width: 100%;
-  scroll-snap-type: x mandatory;
 }
 
 .slide_items {

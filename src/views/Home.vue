@@ -2,6 +2,7 @@
   <intro-banner></intro-banner>
   <home-about></home-about>
   <facility-info></facility-info>
+  <Mod-slide></Mod-slide>
   <form-contact></form-contact>
 </template>
 

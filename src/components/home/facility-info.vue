@@ -129,9 +129,8 @@ span {
   }
 
   .facility-info-1-text {
-    position: relative;
-    top: 0;
-    right: -30px;
+    position: unset;
+    padding-left: 20px;
     text-align: left;
     gap: 20px;
   }

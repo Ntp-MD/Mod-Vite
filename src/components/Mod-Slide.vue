@@ -1,6 +1,9 @@
 <template>
   <div class="container_slide">
-    <div id="mod_slide">
+    <div class="title-section">
+      <h1>gallery</h1>
+    </div>
+    <div id="box_slide">
       <div class="slide_items">
         <div class="slide_img">
           <img src="/src/assets/beach/2.jpg" />
@@ -9,7 +12,7 @@
       </div>
       <div class="slide_items">
         <div class="slide_img">
-          <img src="/src/assets/beach/3.jpg" />
+          <img src="/src/assets/beach/9.jpg" />
         </div>
         <div class="slide_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, sint.</div>
       </div>
@@ -65,7 +68,7 @@ export default {
   methods: {
     initializeSlider() {
       // Ensure the required elements are available before initializing the script
-      const container = document.getElementById("mod_slide");
+      const container = document.getElementById("box_slide");
       const items = container ? container.querySelectorAll(".slide_items") : [];
       const dotIndicators = container ? document.getElementById("slide_dot") : null;
 

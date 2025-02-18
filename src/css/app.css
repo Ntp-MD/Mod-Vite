@@ -12,7 +12,7 @@
 
 * {
   box-sizing: border-box;
-  line-height: 1;
+  line-height: 1.5;
 }
 
 main {
@@ -72,7 +72,7 @@ h1 {
 h2 {
   font-size: clamp(40px, 4vw, 80px);
   font-weight: 800;
-  line-height: 1;
+  line-height: 1.1;
   margin: 0;
   text-transform: uppercase;
   color: var(--color1);
@@ -81,7 +81,7 @@ h2 {
 h3 {
   font-size: clamp(30px, 3vw, 60px);
   font-weight: 800;
-  line-height: 1;
+  line-height: 1.1;
   margin: 0;
   text-transform: uppercase;
   color: var(--color1);
@@ -189,8 +189,12 @@ textarea::placeholder {
   height: 100%;
 }
 
-.center {
+.title-section {
   text-align: center;
+  margin: 30px 0 50px;
+}
+
+.title-section h1 {
 }
 
 @media screen and (max-width: 1600px) {
@@ -205,7 +209,8 @@ textarea::placeholder {
   }
 
   main {
-    width: 90%;
+    width: 100%;
+    padding: 0 20px;
     min-width: auto;
   }
 

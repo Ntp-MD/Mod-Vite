@@ -1,6 +1,6 @@
 const modSlide = {
   init() {
-    const container = document.getElementById("mod_slide");
+    const container = document.getElementById("box_slide");
     if (!container) return; // Ensure the container exists
     const items = container.querySelectorAll(".slide_items");
     const dotIndicators = document.getElementById("slide_dot");
@@ -28,11 +28,21 @@ const modSlide = {
       dotIndicators.querySelectorAll(".dot").forEach((dot, i) => {
         dot.classList.toggle("active", i === index);
       });
-      items[index].scrollIntoView({ behavior: "smooth", inline: "start" });
+
+      items[index].querySelectorAll("a, button, input, textarea, select").forEach((el) => {
+        el.addEventListener("focus", (e) => {
+          e.preventDefault(); // Prevent default scrolling on focus
+        });
+      });
+
+      // items[index].scrollIntoView({ behavior: "smooth", inline: "start" });
     }
 
     // Initialize active state for the first item
-    setActive(0);
+    const activeSlide = container.querySelector(".slide_items.active");
+    if (!activeSlide) {
+      setActive(0); // Only set the first active slide if none is currently active
+    }
 
     // Add click event listener to dots
     dotIndicators.addEventListener("click", (event) => {
@@ -89,6 +99,7 @@ const modSlide = {
     container.addEventListener("touchend", handleDragEnd);
 
     // Enable mouse wheel scrolling with looping
+    /*
     container.addEventListener("wheel", (e) => {
       e.preventDefault();
       const activeIndex = Array.from(items).findIndex((item) => item.classList.contains("active"));
@@ -102,6 +113,7 @@ const modSlide = {
       setActive(newIndex);
       resetAutoplay();
     });
+  */
 
     // Autoplay functionality
     function autoplay() {

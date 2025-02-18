@@ -43,5 +43,9 @@ footer {
     top: 0;
     background: #fff;
   }
+
+  #AppClient {
+    gap: 50px;
+  }
 }
 </style>

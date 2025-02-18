@@ -85,6 +85,9 @@ p {
     min-height: 550px;
   }
 
+  .bg-overlay video {
+  }
+
   .intro-banner-text {
     top: 20%;
     gap: 20px;
