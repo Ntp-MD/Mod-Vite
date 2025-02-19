@@ -10,7 +10,7 @@ const modSlide = {
     let currentXPosition = null;
     const dragThreshold = 20; // Minimum drag distance to switch items
     const autoplayDelay = 3000; // Delay between auto-scrolls (in milliseconds)
-    let autoplayInterval = null;
+    let autoplayInterval = null; // Set it to null initially to track if interval is active
 
     // Create dots based on the number of items
     items.forEach((_, index) => {
@@ -127,8 +127,10 @@ const modSlide = {
     }
 
     function resetAutoplay() {
-      clearInterval(autoplayInterval);
-      startAutoplay();
+      if (autoplayInterval !== null) {
+        clearInterval(autoplayInterval); // Clear existing interval if present
+      }
+      startAutoplay(); // Restart the autoplay with a fresh interval
     }
 
     // Start autoplay when page loads
@@ -136,7 +138,9 @@ const modSlide = {
   },
   destroy() {
     // Cleanup any active autoplay interval and event listeners
-    clearInterval(autoplayInterval);
+    if (autoplayInterval !== null) {
+      clearInterval(autoplayInterval);
+    }
     // Any other cleanup logic if necessary
   },
 };

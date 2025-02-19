@@ -1,5 +1,5 @@
 <template>
-  <main id="home-about">
+  <main>
     <div class="group-items" style="display: none">
       <div class="items" v-for="n in 3">
         <h3>Lorem, ipsum dolor.</h3>
@@ -14,7 +14,7 @@
         <h2>a vacation</h2>
         <h2>near your</h2>
         <h2>home</h2>
-        <div class="home-about-content">
+        <div class="grid-content-block">
           Completely remodeled and new for 2017, the new management is bringing you a Playa Pool Club facility with all the amenities and more of a private club, but without the expensive bond to join. Explore our membership options, see upcoming
           events, and view our gallery to learn more about the plans for our new facility.
         </div>
@@ -24,24 +24,32 @@
 </template>
 
 <style scoped>
-#home-about {
+main {
   position: relative;
   margin-bottom: 100px;
 }
 
-.home-about-content {
-  position: absolute;
-  top: clamp(100px, 40%, 200px);
-  left: -5vw;
-  z-index: -1;
-  padding: clamp(50px, 5vw, 100px);
-  width: 100%;
-  background: var(--bg2);
-  color: var(--color3);
+.grid-image {
+  box-shadow: -60px 60px 0 #ffba00;
 }
 
-.grid-image {
-  box-shadow: -60px 60px 0 rgb(255, 186, 0);
+.grid-content {
+  position: relative;
+  z-index: -1;
+}
+
+.grid-content h2 {
+  position: relative;
+  z-index: 1;
+}
+
+.grid-content-block {
+  position: relative;
+  padding: 20px;
+  width: 70%;
+  background: var(--bg2);
+  color: var(--color3);
+  box-shadow: -20px 20px 0 100px var(--bg2);
 }
 
 .group-text2 {
@@ -51,7 +59,7 @@
 }
 
 @media screen and (max-width: 480px) {
-  #home-about {
+  main {
     margin: 0;
   }
 
@@ -63,11 +71,12 @@
     box-shadow: -30px 30px 0 rgb(255, 186, 0);
   }
 
-  .home-about-content {
+  .grid-content-block {
     position: unset;
-    width: 99%;
-    padding: 15px 0;
-    background: #fff;
+    width: 100%;
+    box-shadow: unset;
+    background: transparent;
+    padding-left: 0;
   }
 }
 </style>

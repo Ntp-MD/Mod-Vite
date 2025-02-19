@@ -3,6 +3,7 @@
 }
 
 #box_slide {
+  position: relative;
   overflow: hidden;
   display: flex;
   gap: 10px;
@@ -16,6 +17,7 @@
   position: relative;
   z-index: 1;
   width: 20%;
+  height: 100%;
   transition: 0.3s ease-in-out;
 }
 
@@ -78,4 +80,43 @@
 .dot.active {
   width: 50px;
   background: var(--color1);
+}
+
+@media screen and (max-width: 992px) {
+  .container_slide {
+    margin: 20px 0 0;
+  }
+}
+
+@media screen and (max-width: 440px) {
+  .container_slide {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #box_slide {
+    height: 350px;
+    min-height: auto;
+  }
+
+  .slide_items {
+    position: absolute;
+    width: 100%;
+    z-index: 0;
+    padding-bottom: 60px;
+    opacity: 0.1;
+    transition: 1.5s ease-in-out;
+  }
+
+  .slide_items.active {
+    z-index: 1;
+    width: 100%;
+    opacity: 1;
+  }
+
+  .slide_text {
+    visibility: visible;
+    padding: 10px;
+    bottom: 0;
+  }
 }

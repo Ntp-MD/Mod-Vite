@@ -1,5 +1,5 @@
 <template>
-  <main id="form-contact">
+  <main>
     <div class="grid-default">
       <form>
         <h3>Contact Reserved</h3>
@@ -27,7 +27,7 @@
 </template>
 
 <style scoped>
-#form-contact {
+main {
   border-radius: 15px;
   overflow: hidden;
 }
@@ -41,8 +41,8 @@
 }
 
 @media screen and (max-width: 480px) {
-  #form-contact form {
-    padding: 25px;
+  form {
+    padding: 15px;
   }
 }
 </style>

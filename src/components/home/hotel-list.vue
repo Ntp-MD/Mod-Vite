@@ -1,5 +1,5 @@
 <template>
-  <main id="hotel-list">
+  <main>
     <div class="hotel-list">
       <div class="hotel-list-item" v-for="n in 4">
         <div class="hotel-image">
