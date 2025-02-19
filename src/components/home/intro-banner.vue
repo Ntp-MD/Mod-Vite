@@ -4,8 +4,14 @@
       <video src="/src/assets/video/beach2.mp4" autoplay loop muted></video>
     </div>
     <div class="intro-banner-text">
-      <h1>Welcome to</h1>
-      <h1>your holiday</h1>
+      <div class="for-pc">
+        <h1>Welcome to</h1>
+        <h1>your holiday</h1>
+      </div>
+      <div class="for-mobile">
+        <h1>Welcome</h1>
+        <h3>to your holiday</h3>
+      </div>
 
       <button>Booking now</button>
       <p>
@@ -35,8 +41,10 @@
   z-index: 0;
 }
 
-h1 {
+h1,
+h3 {
   color: rgb(255, 255, 255, 0.9);
+  font-family: "Noto Serif", serif;
 }
 
 p {
@@ -76,16 +84,19 @@ p {
   }
 }
 
+@media screen and (min-width: 600px) {
+  .for-mobile {
+    display: none;
+  }
+}
+
 @media screen and (max-width: 992px) {
   h1 {
     font-size: 32px;
   }
 
   #intro-banner {
-    min-height: 550px;
-  }
-
-  .bg-overlay video {
+    min-height: 500px;
   }
 
   .intro-banner-text {
@@ -95,9 +106,38 @@ p {
   }
 }
 
-@media screen and (max-width: 370px) {
+@media screen and (max-width: 440px) {
+  .intro-banner-text {
+    top: 25%;
+  }
+
+  .for-pc {
+    display: none;
+  }
+
+  .bg-overlay video {
+    top: 40px;
+    left: -45vw;
+  }
   h1 {
-    font-size: 28px;
+    font-size: 45px;
+  }
+
+  h3 {
+    font-size: 22px;
+
+    margin-top: 15px;
+    letter-spacing: 3px;
+  }
+
+  p {
+    display: none;
+    font-size: 16px;
+    padding: 0 20px;
+  }
+
+  button {
+    margin-top: 10%;
   }
 }
 </style>

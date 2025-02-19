@@ -30,6 +30,7 @@
 main {
   border-radius: 15px;
   overflow: hidden;
+  background: var(--bg2);
 }
 
 #form-contact .grid-default {
@@ -40,9 +41,20 @@ main {
   padding: 50px;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 992px) {
   form {
-    padding: 15px;
+    padding: clamp(30px, 5vw, 50px) 15px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  textarea {
+    min-height: 120px;
+    margin-bottom: 30px;
+  }
+
+  input {
+    height: 50px;
   }
 }
 </style>

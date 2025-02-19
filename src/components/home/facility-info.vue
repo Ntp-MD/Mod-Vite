@@ -95,6 +95,9 @@ span {
   font-weight: 800;
   color: #fff;
   text-transform: uppercase;
+  text-align: center;
+  line-height: 1.3;
+  min-height: 45px;
 }
 
 .facility-info-2 > div {
@@ -103,7 +106,7 @@ span {
   justify-content: center;
   align-items: center;
   gap: 15px;
-  min-height: clamp(250px, 15vw, 350px);
+  min-height: clamp(200px, 15vw, 350px);
   background: var(--color2);
   color: #fff;
   transition: 0.3s;

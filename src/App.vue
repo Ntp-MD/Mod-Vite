@@ -19,29 +19,4 @@ const route = useRoute();
 
 <style scoped>
 @import url("@/css/app.css");
-
-#AppClient {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-header {
-  height: clamp(50px, 5vw, 70px);
-  background: rgba(0, 0, 0, 0.5);
-}
-
-footer {
-  min-height: 300px;
-}
-
-@media screen and (max-width: 992px) {
-  header {
-    position: fixed;
-    top: 0;
-    background: #fff;
-  }
-}
 </style>

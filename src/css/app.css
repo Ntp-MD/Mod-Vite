@@ -10,6 +10,23 @@
   --gap-content: clamp(50px, 10vw, 200px);
 }
 
+#AppClient {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+header {
+  height: clamp(50px, 5vw, 70px);
+  background: rgba(0, 0, 0, 0.5);
+}
+
+footer {
+  min-height: 300px;
+}
+
 * {
   box-sizing: border-box;
   line-height: 1.5;
@@ -103,7 +120,7 @@ button {
   place-items: center;
   width: fit-content;
   min-width: 180px;
-  height: 60px;
+  height: 55px;
   padding: 0 30px;
   border: none;
   margin: auto;
@@ -191,7 +208,7 @@ textarea::placeholder {
 
 .title-section {
   text-align: center;
-  margin: 30px 0 50px;
+  margin: 30px 0;
 }
 
 .title-section h1 {
@@ -208,6 +225,12 @@ textarea::placeholder {
     gap: 50px;
   }
 
+  header {
+    position: fixed;
+    top: 0;
+    background: #fff;
+  }
+
   body {
     overflow-x: hidden;
   }
@@ -220,7 +243,7 @@ textarea::placeholder {
 
   .grid-default {
     display: grid;
-    gap: 20px;
+    gap: 30px;
   }
 }
 

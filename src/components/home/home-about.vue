@@ -58,17 +58,29 @@ main {
   gap: 20px;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 992px) {
   main {
-    margin: 0;
-  }
-
-  .grid-content {
-    margin-top: 30px;
+    position: relative;
+    right: -30px;
   }
 
   .grid-image {
     box-shadow: -30px 30px 0 rgb(255, 186, 0);
+  }
+
+  .grid-content-block {
+    box-shadow: -20px 20px 0 80px var(--bg2);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  main {
+    margin: 0;
+    right: 0;
+  }
+
+  .grid-content {
+    margin-top: 30px;
   }
 
   .grid-content-block {
