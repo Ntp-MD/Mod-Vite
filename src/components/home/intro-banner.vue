@@ -27,7 +27,7 @@
 }
 
 .bg-bottom {
-  content: url("/Mod-Vite/src/assets/images/wave-forge2.png");
+  content: url("/src/assets/images/wave-forge2.png");
   position: absolute;
   bottom: -5px;
   height: clamp(100px, 10vw, 200px);
