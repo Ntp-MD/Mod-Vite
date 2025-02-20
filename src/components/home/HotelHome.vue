@@ -1,34 +1,47 @@
 <template>
-  <main>
+  <section>
+    <form class="hotel-filter">
+      <div class="input-group">
+        <div><input type="text" name="firstname" id="firstname" placeholder="Firstname" /></div>
+        <div><input type="text" name="lastname" id="lastname" placeholder="Lastname" /></div>
+      </div>
+      <div class="input-group">
+        <div><input type="text" name="email" id="email" placeholder="Email" /></div>
+        <div><input type="text" name="tel" id="tel" placeholder="Tel" /></div>
+      </div>
+    </form>
     <div class="hotel-list">
-      <div class="hotel-list-item" v-for="n in 4">
+      <div class="hotel-list-item" v-for="n in 5">
         <div class="hotel-image">
-          <img src="/src/assets/beach/3.jpg" alt="" />
+          <img src="/src/assets/beach/gallery3.jpg" alt="" />
         </div>
         <div class="hotel-content">
-          <div class="hotel-name">Residence 1</div>
+          <div class="hotel-name">Residence Park</div>
           <div class="hotel-title">
-            <div class="hotel-price">2990 THB /Month</div>
-            <div class="hotel-location">Pattaya/Chonburi</div>
+            <div class="hotel-price">2990 THB / Month</div>
+            <div class="hotel-location">Pattaya / Chonburi</div>
           </div>
           <div class="hotel-info">
             <div class="info-icon"><img src="/src/assets/icon/bed.png" alt="" />5 <span>Room</span></div>
             <div class="info-icon"><img src="/src/assets/icon/bath.png" alt="" />2 <span>Room</span></div>
-            <div class="info-icon"><img src="/src/assets/icon/living-room.png" alt="" />1 <span>Room</span></div>
             <div class="info-icon"><img src="/src/assets/icon/kitchen.png" alt="" />1 <span>Room</span></div>
-            <div class="info-icon"><img src="/src/assets/icon/pool.png" alt="" />10<span>Mm</span></div>
+            <div class="info-icon"><img src="/src/assets/icon/pool.png" alt="" />1<span>Space</span></div>
           </div>
         </div>
       </div>
     </div>
-  </main>
+  </section>
 </template>
 
 <style scoped>
+section {
+  min-height: auto;
+}
+
 .hotel-list {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 30px;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
   font-size: 14px;
 }
 
@@ -41,21 +54,22 @@
 }
 
 .hotel-image {
+  width: 100%;
   height: auto;
+  aspect-ratio: 4/3;
 }
 
 .hotel-content {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  padding: 20px 20px 25px;
-  border-radius: 0 0 15px 15px;
+  gap: 5px;
+  padding: 5px 20px 25px;
 }
 
 .hotel-name {
   font-size: 18px;
   font-weight: 700;
-  text-transform: uppercase;
+  color: var(--color4);
 }
 
 .hotel-title {
@@ -80,7 +94,7 @@
 .hotel-info {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 15px 30px;
+  gap: 10px;
 }
 
 .info-icon {

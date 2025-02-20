@@ -18,27 +18,27 @@
       <div class="facility-info-2">
         <div>
           <img src="/src//assets/icon/disco.png" alt="" />
-          <p>clubhouse</p>
+          clubhouse
         </div>
         <div>
           <img src="/src//assets/icon/mall.png" alt="" />
-          <p>shopping mall</p>
+          shopping mall
         </div>
         <div>
           <img src="/src//assets/icon/birdie.png" alt="" />
-          <p>golf court</p>
+          golf court
         </div>
         <div>
           <img src="/src//assets/icon/pool.png" alt="" />
-          <p>swinning pool</p>
+          swinning pool
         </div>
         <div>
           <img src="/src//assets/icon/garden.png" alt="" />
-          <p>garden park</p>
+          garden park
         </div>
         <div>
           <img src="/src//assets/icon/drink.png" alt="" />
-          <p>nightbar</p>
+          nightbar
         </div>
       </div>
     </main>
@@ -63,6 +63,7 @@ main {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 0;
+  padding: 0 !important;
 }
 
 .facility-info-1 {
@@ -94,19 +95,20 @@ main {
 }
 
 .facility-info-2 div {
-  font-size: clamp(18px, 1vw, 20px);
+  font-size: clamp(14px, 1vw, 20px);
   font-weight: 800;
   color: #fff;
   text-transform: uppercase;
   text-align: center;
   line-height: 1.3;
-  min-height: 45px;
+  padding: 10px;
 }
 
 .facility-info-2 > div {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  gap: 10px;
   align-items: center;
   min-height: clamp(200px, 20vw, 320px);
   background: var(--color2);
@@ -120,6 +122,7 @@ main {
 
 .facility-info-2 img {
   width: 30%;
+  min-width: 35px;
   height: auto;
   aspect-ratio: 1;
   filter: invert(1);
@@ -130,16 +133,19 @@ main {
     display: grid;
     grid-template-columns: 45% auto;
     place-content: center;
-    padding: 0;
   }
 
   .facility-info-1-text {
     gap: 10px;
     width: 100%;
   }
+}
 
-  .facility-info-2 > div {
-    padding: 10px;
+@media screen and (max-width: 480px) {
+  .facility-info-1-text {
+    padding: 20px;
+    text-align: left;
+    gap: 10px;
   }
 }
 </style>

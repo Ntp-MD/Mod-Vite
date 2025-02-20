@@ -3,13 +3,13 @@
     <div class="bg-overlay">
       <video src="/src/assets/video/beach2.mp4" autoplay loop muted></video>
     </div>
-    <div class="intro-banner-text">
+    <div class="intro-banner-content">
       <div class="for-pc">
         <h1>Welcome to</h1>
         <h1>your holiday</h1>
       </div>
       <button>Booking now</button>
-      <div>
+      <div class="banner-text">
         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente natus labore<br />
         alias quia possimus nihil, tenetur minima hic qui obcaecati.
       </div>
@@ -38,7 +38,7 @@
 
 h1,
 h3 {
-  color: rgb(255, 255, 255, 0.9);
+  color: rgb(255, 255, 255, 0.85);
 }
 
 .bg-overlay {
@@ -55,7 +55,7 @@ h3 {
   top: 0;
 }
 
-.intro-banner-text {
+.intro-banner-content {
   display: grid;
   place-content: center;
   place-items: center;
@@ -66,5 +66,31 @@ h3 {
   right: 0;
   text-align: center;
   z-index: 1;
+}
+
+@media screen and (min-width: 1900px) {
+  h1 {
+    font-size: 140px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #intro-banner {
+    min-height: 550px;
+  }
+
+  h1 {
+    font-size: 34px;
+    line-height: 1.5;
+  }
+
+  .intro-banner-content {
+    gap: 30px;
+  }
+
+  .banner-text {
+    font-size: 14px;
+    padding: 0 35px;
+  }
 }
 </style>

@@ -69,7 +69,7 @@ menu {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 60px;
+    height: 50px;
     padding: 0 20px;
     background: rgba(0, 0, 0, 0.9);
   }
@@ -108,7 +108,7 @@ menu {
     align-items: start;
     gap: 15px;
     position: absolute;
-    top: 60px;
+    top: 50px;
     left: -85%;
     height: 100vh;
     width: 80%;

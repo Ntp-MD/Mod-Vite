@@ -45,6 +45,10 @@ export default {
 </script>
 
 <style scoped>
+section {
+  margin-top: 150px;
+}
+
 .font-name {
   font-size: 24px;
   font-weight: 600;

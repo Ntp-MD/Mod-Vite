@@ -73,6 +73,10 @@ section {
 }
 
 @media screen and (max-width: 480px) {
+  .grid-image {
+    box-shadow: -20px 20px 0 rgb(255, 186, 0);
+  }
+
   .grid-content {
     margin-top: 30px;
   }
