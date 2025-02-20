@@ -1,12 +1,6 @@
 <template>
-  <main>
-    <div class="group-items" style="display: none">
-      <div class="items" v-for="n in 3">
-        <h3>Lorem, ipsum dolor.</h3>
-        <span>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque, magnam.</span>
-      </div>
-    </div>
-    <div class="grid-default">
+  <section>
+    <main>
       <div class="grid-image">
         <img src="/src/assets/beach/7.jpg" alt="" />
       </div>
@@ -19,14 +13,14 @@
           events, and view our gallery to learn more about the plans for our new facility.
         </div>
       </div>
-    </div>
-  </main>
+    </main>
+  </section>
 </template>
 
 <style scoped>
-main {
+section {
   position: relative;
-  margin-bottom: 100px;
+  top: -5vw;
 }
 
 .grid-image {
@@ -46,10 +40,10 @@ main {
 .grid-content-block {
   position: relative;
   padding: 20px;
-  width: 70%;
+  width: clamp(350px, 30vw, 500px);
   background: var(--bg2);
   color: var(--color3);
-  box-shadow: -20px 20px 0 100px var(--bg2);
+  box-shadow: -20px 20px 0 clamp(70px, 10vw, 100px) var(--bg2);
 }
 
 .group-text2 {
@@ -58,10 +52,14 @@ main {
   gap: 20px;
 }
 
-@media screen and (max-width: 992px) {
+@media screen and (min-width: 768px) and (max-width: 992px) {
+  section {
+    left: 50px;
+  }
+
   main {
-    position: relative;
-    right: -30px;
+    display: grid;
+    grid-template-columns: 40% auto;
   }
 
   .grid-image {
@@ -69,16 +67,12 @@ main {
   }
 
   .grid-content-block {
-    box-shadow: -20px 20px 0 80px var(--bg2);
+    box-shadow: -20px 20px 0 clamp(50px, 10vw, 100px) var(--bg2);
+    padding-left: 0;
   }
 }
 
 @media screen and (max-width: 480px) {
-  main {
-    margin: 0;
-    right: 0;
-  }
-
   .grid-content {
     margin-top: 30px;
   }

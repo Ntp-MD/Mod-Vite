@@ -1,17 +1,17 @@
 <template>
-  <div id="facility-content">
-    <div class="facility-info">
+  <section>
+    <main>
       <div class="facility-info-1">
         <div class="facility-info-1-text">
-          <span>More than just a pool </span>
+          <sub>More than just a pool </sub>
           <div>
             <h2>our pool</h2>
             <h2>facilities</h2>
           </div>
           <div>
-            <p>We offer all the options that a traditional</p>
-            <p>club does without an expensive bond</p>
-            <p>required to join</p>
+            <div>We offer all the options that a traditional</div>
+            <div>club does without an expensive bond</div>
+            <div>required to join</div>
           </div>
         </div>
       </div>
@@ -41,16 +41,17 @@
           <p>nightbar</p>
         </div>
       </div>
-    </div>
-  </div>
+    </main>
+  </section>
 </template>
 
 <style scoped>
-#facility-content {
+section {
   background: var(--bg2);
+  width: 100%;
 }
 
-span {
+sub {
   font-family: "Playfair", serif;
   font-style: italic;
   font-size: 20px;
@@ -58,9 +59,10 @@ span {
   color: var(--color4);
 }
 
-.facility-info {
+main {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  gap: 0;
 }
 
 .facility-info-1 {
@@ -74,13 +76,14 @@ span {
 }
 
 .facility-info-1-text {
-  position: absolute;
-  top: 20%;
-  right: 15%;
+  position: relative;
+  padding-right: clamp(30px, 4vw, 70px);
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 30px;
   text-align: right;
+  height: 100%;
 }
 
 .facility-info-2 {
@@ -90,7 +93,7 @@ span {
   background: var(--bg2);
 }
 
-.facility-info-2 p {
+.facility-info-2 div {
   font-size: clamp(18px, 1vw, 20px);
   font-weight: 800;
   color: #fff;
@@ -105,8 +108,7 @@ span {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 15px;
-  min-height: clamp(200px, 15vw, 350px);
+  min-height: clamp(200px, 20vw, 320px);
   background: var(--color2);
   color: #fff;
   transition: 0.3s;
@@ -123,24 +125,21 @@ span {
   filter: invert(1);
 }
 
-@media screen and (max-width: 480px) {
-  .facility-info {
+@media screen and (min-width: 768px) and (max-width: 992px) {
+  main {
     display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    padding-top: 50px;
-    gap: 20px;
+    grid-template-columns: 45% auto;
+    place-content: center;
+    padding: 0;
   }
 
   .facility-info-1-text {
-    position: unset;
-    padding-left: 20px;
-    text-align: left;
-    gap: 20px;
+    gap: 10px;
+    width: 100%;
   }
 
-  .facility-info-2 {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+  .facility-info-2 > div {
+    padding: 10px;
   }
 }
 </style>

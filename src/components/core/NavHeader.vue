@@ -1,19 +1,19 @@
 <template>
-  <div id="nav-header">
+  <nav id="nav-header">
     <div class="nav-logo"><router-link to="/">Mod</router-link></div>
-    <div :class="['nav-menu', { open: isMenuOpen }]" ref="NavMenu">
+    <menu :class="['nav-menu', { open: isMenuOpen }]" ref="NavMenu">
       <router-link class="nav-menu-link" to="/" @click="closeMenu">Home</router-link>
       <router-link class="nav-menu-link" to="/Font" @click="closeMenu">Font</router-link>
       <router-link class="nav-menu-link" to="/Slide" @click="closeMenu">Slide</router-link>
       <router-link class="nav-menu-link" to="/Modquee" @click="closeMenu">Modquee</router-link>
       <router-link class="nav-menu-link" to="/smo-login" @click="closeMenu">SMO</router-link>
-    </div>
+    </menu>
     <div id="nav-toggle" @click="toggleMenu" ref="navToggle">
       <div :class="{ animate: isMenuOpen }"></div>
       <div :class="{ animate: isMenuOpen }"></div>
       <div :class="{ animate: isMenuOpen }"></div>
     </div>
-  </div>
+  </nav>
 </template>
 
 <script>
@@ -38,7 +38,7 @@ export default {
 </script>
 
 <style scoped>
-#nav-header {
+nav {
   display: grid;
   grid-template-columns: 20% auto 0;
   justify-items: center;
@@ -46,21 +46,11 @@ export default {
   width: 100%;
   height: 70px;
   padding: 10px clamp(20px, 10vw, 150px);
-}
-
-#nav-header a {
-  color: #fff;
-}
-
-#nav-header {
   text-transform: uppercase;
+  line-height: 1;
 }
 
-.nav-logo {
-  min-width: 130px;
-}
-
-.nav-menu {
+menu {
   display: flex;
   align-items: center;
   justify-content: end;
@@ -71,29 +61,21 @@ export default {
 }
 
 @media screen and (max-width: 992px) {
-  .nav-menu {
-    background: #fff;
-  }
-
-  #nav-header button {
+  nav button {
     display: none;
   }
 
-  #nav-header a {
-    color: #333;
-  }
-
-  #nav-header {
+  nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 50px;
-    padding: 0 10px;
+    height: 60px;
+    padding: 0 20px;
+    background: rgba(0, 0, 0, 0.9);
   }
 
-  .nav-logo {
-    position: relative;
-    width: 100%;
+  menu {
+    gap: 0;
   }
 
   #nav-toggle {
@@ -111,7 +93,7 @@ export default {
     width: 25px;
     height: 3px;
     transition: 0.5s;
-    background-color: #333;
+    background-color: #fff;
     transition: all 0.3s ease;
   }
 
@@ -119,19 +101,21 @@ export default {
     width: 16px;
   }
 
-  .nav-menu {
+  menu {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: start;
+    gap: 15px;
     position: absolute;
-    top: 50px;
+    top: 60px;
     left: -85%;
     height: 100vh;
     width: 80%;
-    padding: 15px;
-    background: #fff;
-    transition: 0.8s ease;
+    padding: 20px;
+    margin: 0;
+    background: rgba(0, 0, 0, 0.9);
+    transition: 0.5s ease;
   }
 
   .nav-menu.open {
