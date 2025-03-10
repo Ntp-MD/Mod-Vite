@@ -5,25 +5,52 @@
 }
 
 #Smo-App {
-  max-height: 100%;
+  --smo-color: #ef6c33;
+  --smo-color2: #0c4a60;
+  background-image: url("/src/smo-app/smo-assets/image/login-screen.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 30%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 100vh;
+  width: 100%;
+  padding: 70px 20px 50px;
 }
 
-#Smo-App * {
-  box-sizing: border-box;
+#Smo-App img {
+  max-width: 250px;
+  margin: auto;
+}
+
+#Smo-App > div {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#Smo-App select,
+#Smo-App button,
+#Smo-App input {
+  width: 100%;
+  margin: 0 auto;
+  height: 45px;
+  padding: 0 20px;
+  border-radius: 30px;
 }
 
 #Smo-App button {
-  background: #0c4a60;
+  background: var(--smo-color2);
   border-radius: 30px;
   font-size: 16px;
   font-weight: 600;
   letter-spacing: 0.5px;
-  min-width: 200px;
-  height: 50px;
+  max-width: 200px;
 }
 
 #Smo-App button.btn-register {
-  background: #ef6c33 !important;
+  background: var(--smo-color);
 }
 
 #Smo-App button.btn-guest {
@@ -33,27 +60,23 @@
 #Smo-App input {
   display: grid;
   justify-content: center;
-  border-radius: 30px;
   background: rgb(255, 255, 255, 0.6);
-  height: 40px;
-  padding-left: 20px;
+  max-width: 270px;
 }
 
 #Smo-App select {
-  display: grid;
-  justify-content: center;
-  border: 0;
-  border-radius: 5px;
-  outline: none;
-  width: 100%;
-  color: #0c4a60;
-  height: 40px;
-  padding: 0 15px;
   appearance: none;
+  border-radius: 5px;
+  border: 0;
+  outline: none;
+  color: var(--smo-color2);
 }
 
 .smo-select {
+  max-width: 260px;
+  width: 100%;
   position: relative;
+  margin: 0 auto;
 }
 
 .smo-select::after {
@@ -69,37 +92,9 @@
   pointer-events: none;
 }
 
-.smo-screen {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 40px;
-  height: 100vh;
-  width: 100%;
-  background-image: url("/src/smo-app/smo-assets/image/login-screen.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: 50% 30%;
-
-  padding: 0 15%;
-}
-
-.smo-top {
-  display: grid;
-}
-
-.smo-mid {
-  display: grid;
-  gap: 5px;
-}
-
-.smo-bottom {
-  display: grid;
-  gap: 15px;
-}
-
 .reset-password {
   text-align: right;
   font-size: 12px;
-  color: #0c4a60;
+  color: var(--smo-color2);
+  max-width: 300px;
 }

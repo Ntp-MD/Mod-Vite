@@ -1,19 +1,20 @@
 <template>
-  <nav id="nav-header">
-    <div class="nav-logo"><router-link to="/">Mod</router-link></div>
-    <menu :class="['nav-menu', { open: isMenuOpen }]" ref="NavMenu">
+  <div id="nav-header">
+    <div class="nav-logo"><router-link to="/">Mod.IO</router-link></div>
+    <nav :class="['nav-menu', { open: isMenuOpen }]" ref="NavMenu">
       <router-link class="nav-menu-link" to="/" @click="closeMenu">Home</router-link>
       <router-link class="nav-menu-link" to="/Font" @click="closeMenu">Font</router-link>
       <router-link class="nav-menu-link" to="/Slide" @click="closeMenu">Slide</router-link>
+      <router-link class="nav-menu-link" to="/Planet" @click="closeMenu">Planet</router-link>
       <router-link class="nav-menu-link" to="/Modquee" @click="closeMenu">Modquee</router-link>
       <router-link class="nav-menu-link" to="/smo-login" @click="closeMenu">SMO</router-link>
-    </menu>
+    </nav>
     <div id="nav-toggle" @click="toggleMenu" ref="navToggle">
       <div :class="{ animate: isMenuOpen }"></div>
       <div :class="{ animate: isMenuOpen }"></div>
       <div :class="{ animate: isMenuOpen }"></div>
     </div>
-  </nav>
+  </div>
 </template>
 
 <script>
@@ -38,7 +39,12 @@ export default {
 </script>
 
 <style scoped>
-nav {
+.nav-logo a {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+#nav-header {
   display: grid;
   grid-template-columns: 20% auto 0;
   justify-items: center;
@@ -50,7 +56,7 @@ nav {
   line-height: 1;
 }
 
-menu {
+nav {
   display: flex;
   align-items: center;
   justify-content: end;
@@ -60,22 +66,18 @@ menu {
   background: transparent;
 }
 
-@media screen and (max-width: 992px) {
-  nav button {
-    display: none;
-  }
-
-  nav {
+@media screen and (max-width: 1200px) {
+  #nav-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 50px;
     padding: 0 20px;
-    background: rgba(0, 0, 0, 0.9);
+    background: var(--color);
   }
 
-  menu {
-    gap: 0;
+  #nav-header button {
+    display: none;
   }
 
   #nav-toggle {
@@ -89,7 +91,6 @@ menu {
   }
 
   #nav-toggle div {
-    background: var(--font-color2);
     width: 25px;
     height: 3px;
     transition: 0.5s;
@@ -101,7 +102,7 @@ menu {
     width: 16px;
   }
 
-  menu {
+  nav {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -114,7 +115,7 @@ menu {
     width: 80%;
     padding: 20px;
     margin: 0;
-    background: rgba(0, 0, 0, 0.9);
+    background: var(--color);
     transition: 0.5s ease;
   }
 

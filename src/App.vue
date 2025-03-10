@@ -3,7 +3,9 @@
     <header v-if="route.meta.HideThis">
       <NavHeader></NavHeader>
     </header>
-    <router-view></router-view>
+    <main>
+      <router-view></router-view>
+    </main>
     <footer v-if="route.meta.HideThis">
       <NavFooter></NavFooter>
     </footer>
@@ -11,8 +13,8 @@
 </template>
 
 <script setup>
-import NavHeader from "@/components/core/NavHeader.vue";
-import NavFooter from "@/components/core/NavFooter.vue";
+import NavHeader from "@/components/Header.vue";
+import NavFooter from "@/components/Footer.vue";
 import { useRoute } from "vue-router";
 const route = useRoute();
 </script>

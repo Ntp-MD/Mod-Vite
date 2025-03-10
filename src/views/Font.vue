@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="container">
     <div class="copy-group">
       <div class="copy-items" v-for="font in fonts" :key="font.font_name">
         <div class="font-name">{{ font.font_name }}</div>
@@ -7,13 +7,17 @@
           <div class="code-content">
             {{ font.font_url }}
           </div>
-          <div class="copy-button" @click="copyToClipboard(font.font_url)"><img src="/src/assets/icon/link.png" alt="" /></div>
+          <div class="copy-button" @click="copyToClipboard(font.font_url)">
+            <img src="/src/assets/icon/link.png" alt="" />
+          </div>
         </div>
         <div class="code-block">
           <div class="code-content">
             {{ font.font_family }}
           </div>
-          <div class="copy-button" @click="copyToClipboard(font.font_family)"><img src="/src/assets/icon/copy.png" alt="" /></div>
+          <div class="copy-button" @click="copyToClipboard(font.font_family)">
+            <img src="/src/assets/icon/copy.png" alt="" />
+          </div>
         </div>
       </div>
     </div>
@@ -56,29 +60,30 @@ section {
 
 .copy-group {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(clamp(150px, 25%, 30vw), 1fr));
-  gap: 20px;
-  font-family: Arial, Helvetica, sans-serif;
+  grid-template-columns: repeat(auto-fit, minmax(clamp(150px, 30%, 30vw), 1fr));
+  gap: 50px;
 }
 
 .copy-items {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  padding: 20px;
-  border-radius: 8px;
-  background-color: #fff;
-  box-shadow: var(--box-shadow1);
+  padding: 30px;
+  border-radius: 25px;
+  background: var(--linear3);
+  min-height: auto;
 }
 
 .code-block {
   display: grid;
   grid-template-columns: auto 40px;
   align-items: center;
-  gap: 10px;
-  background: var(--bg2);
+  gap: 5px;
+  background: #fff;
+  color: var(--color1);
   border-radius: 5px;
   overflow: hidden;
+  font-size: 14px;
 }
 
 .code-content {
@@ -97,7 +102,7 @@ section {
   place-items: center;
   width: 100%;
   height: 100%;
-  background: var(--color2);
+  background: var(--color3);
   cursor: pointer;
 }
 

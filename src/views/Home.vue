@@ -1,8 +1,7 @@
 <template>
-  <BannerHome></BannerHome>
-  <AboutHome></AboutHome>
-  <FacilityIHome></FacilityIHome>
-  <FormHome></FormHome>
+  <BannerIntro></BannerIntro>
+  <About></About>
+  <Overview></Overview>
 </template>
 
 <style></style>
