@@ -1,5 +1,3 @@
-<style></style>
-
 <template>
   <div class="bydsusco_maincontainer">
     <div class="bydsusco_container">
@@ -13,10 +11,10 @@
           </div>
           <div class="bydsusco_topic_select">
             <select name="bydsuscoCar" id="bydsuscoCar" class="form-select">
-              <option value="0" selected>BYD ATTO 3 Extended 24</option>
-
-              <option value="1">NEW BYD DOLPHIN Extended</option>
-              <option value="2">NEW BYD DOLPHIN Standard</option>
+              <option value="16" selected>NEW BYD ATTO 3 Premium 24</option>
+              <option value="0">NEW BYD ATTO 3 Extended 24</option>
+              <option value="1">NEW BYD DOLPHIN Standard</option>
+              <option value="2">NEW BYD DOLPHIN Extended</option>
               <option value="3">BYD SEAL Dynamic RWD</option>
               <option value="4">BYD SEAL Premium RWD</option>
               <option value="5">BYD SEAL Performance AWD</option>
@@ -75,258 +73,293 @@
 </template>
 
 <script>
+//mod lasted 26/4/2025
 $(document).ready(function () {
   let carData = [
     //BYD ATTO 3 Extended 24
     {
-      carImageUrl: "https://itp1.itopfile.com/ImageServer/z_itp_13082023hglw/0/0/Atto-Extended-24z-z109073477884.png",
+      carId: "0",
+      carImageUrl: "http://itp1.itopfile.com/ImageServer/z_itp_13082023hglw/1376/0/NewBYDATTO3(localproduction)Whitez-z1046854208768.png",
       carName1: "ATTO 3 24",
       carName2: "Extended",
-      carPriceText: "899,900",
-      carPrice: 899900,
+      carPriceText: "799,900",
+      carPrice: 799900,
       carInstallmentDetails: [
         {
           carRatePricePercent: 5,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [4.09, 4.39, 4.69, 4.99] },
+          carMonthPaid: { percentPerMonth: [4.09, 4.39, 4.69, 4.99] },
         },
         {
           carRatePricePercent: 10,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [3.69, 3.99, 4.29, 4.59] },
+          carMonthPaid: { percentPerMonth: [3.69, 3.99, 4.29, 4.59] },
         },
         {
           carRatePricePercent: 15,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [3.09, 3.39, 3.59, 4.29] },
+          carMonthPaid: { percentPerMonth: [3.09, 3.39, 3.59, 4.29] },
         },
         {
           carRatePricePercent: 20,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [2.69, 2.89, 3.39, 3.79] },
+          carMonthPaid: { percentPerMonth: [2.69, 2.89, 3.19, 3.79] },
         },
         {
           carRatePricePercent: 25,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [1.98, 2.69, 3.39, 3.69] },
+          carMonthPaid: { percentPerMonth: [1.98, 2.69, 2.99, 3.69] },
         },
         {
           carRatePricePercent: 30,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [1.98, 2.45, 2.89, 3.59] },
-        },
-      ],
-    },
-    //DOLPHIN Extended
-    {
-      carImageUrl: "https://itp1.itopfile.com/ImageServer/z_itp_13082023hglw/0/0/Dolphin-Extendedz-z1103390912531.png",
-      carName1: "DOLPHIN",
-      carName2: "Extended Range 490 km.",
-      carPriceText: "709,900",
-      carPrice: 709900,
-      carInstallmentDetails: [
-        {
-          carRatePricePercent: 5,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [4.09, 4.39, 4.69, 4.99] },
-        },
-        {
-          carRatePricePercent: 10,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [3.69, 3.99, 4.29, 4.59] },
-        },
-        {
-          carRatePricePercent: 15,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [3.09, 3.39, 3.59, 4.29] },
-        },
-        {
-          carRatePricePercent: 20,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [2.69, 2.89, 3.39, 3.79] },
-        },
-        {
-          carRatePricePercent: 25,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [1.98, 2.69, 3.39, 3.69] },
-        },
-        {
-          carRatePricePercent: 30,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [1.98, 2.45, 2.89, 3.59] },
+          carMonthPaid: { percentPerMonth: [1.98, 2.45, 2.89, 3.59] },
         },
       ],
     },
     //DOLPHIN Standard
     {
+      carId: "1",
       carImageUrl: "https://itp1.itopfile.com/ImageServer/z_itp_13082023hglw/0/0/Dolphin-Standardz-z575687640133.png",
       carName1: "DOLPHIN",
       carName2: "Standard Range 410 km.",
-      carPriceText: "569,900",
-      carPrice: 569900,
+      carPriceText: "499,900",
+      carPrice: 499900,
       carInstallmentDetails: [
         {
+          carRatePricePercent: 5,
+          carMonthPaid: { percentPerMonth: [4.09, 4.39, 4.69, 4.99] },
+        },
+        {
           carRatePricePercent: 10,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [3.69, 3.99, 4.29, 4.59] },
+          carMonthPaid: { percentPerMonth: [3.69, 3.99, 4.29, 4.59] },
         },
         {
           carRatePricePercent: 15,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [3.09, 3.39, 3.59, 4.29] },
+          carMonthPaid: { percentPerMonth: [3.09, 3.39, 3.59, 4.29] },
         },
         {
           carRatePricePercent: 20,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [2.69, 2.89, 3.19, 3.79] },
+          carMonthPaid: { percentPerMonth: [2.69, 2.89, 3.19, 3.79] },
         },
         {
           carRatePricePercent: 25,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [1.98, 2.69, 2.99, 3.69] },
+          carMonthPaid: { percentPerMonth: [1.98, 2.69, 2.99, 3.69] },
         },
         {
           carRatePricePercent: 30,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [1.98, 2.45, 2.89, 3.59] },
+          carMonthPaid: { percentPerMonth: [1.98, 2.45, 2.89, 3.59] },
         },
       ],
     },
-    //BYD SEAL Dynamic
+    //DOLPHIN Extended
     {
-      carImageUrl: "https://itp1.itopfile.com/ImageServer/z_itp_13082023hglw/0/0/Seal-Dynamicz-z338669778231.png",
-      carName1: "SEAL",
-      carName2: "Dynamic RWD 510 km.",
-      carPriceText: "1,199,000",
-      carPrice: 1199000,
+      carId: "2",
+      carImageUrl: "https://itp1.itopfile.com/ImageServer/z_itp_13082023hglw/0/0/Dolphin-Extendedz-z1103390912531.png",
+      carName1: "DOLPHIN",
+      carName2: "Extended Range 490 km.",
+      carPriceText: "599,900",
+      carPrice: 599900,
       carInstallmentDetails: [
         {
+          carRatePricePercent: 5,
+          carMonthPaid: { percentPerMonth: [4.09, 4.39, 4.69, 4.99] },
+        },
+        {
           carRatePricePercent: 10,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [3.69, 3.99, 4.29, 4.59] },
+          carMonthPaid: { percentPerMonth: [3.69, 3.99, 4.29, 4.59] },
         },
         {
           carRatePricePercent: 15,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [3.09, 3.39, 3.59, 4.29] },
+          carMonthPaid: { percentPerMonth: [3.09, 3.39, 3.59, 4.29] },
         },
         {
           carRatePricePercent: 20,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [2.69, 2.89, 3.19, 3.79] },
+          carMonthPaid: { percentPerMonth: [2.69, 2.89, 3.19, 3.79] },
         },
         {
           carRatePricePercent: 25,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [1.98, 2.69, 2.99, 3.69] },
+          carMonthPaid: { percentPerMonth: [1.98, 2.69, 2.99, 3.69] },
         },
         {
           carRatePricePercent: 30,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [1.98, 2.45, 2.89, 3.59] },
+          carMonthPaid: { percentPerMonth: [1.98, 2.45, 2.89, 3.59] },
+        },
+      ],
+    },
+
+    //BYD SEAL Dynamic
+    {
+      carId: "3",
+      carImageUrl: "https://itp1.itopfile.com/ImageServer/z_itp_13082023hglw/0/0/Seal-Dynamicz-z338669778231.png",
+      carName1: "SEAL",
+      carName2: "Dynamic RWD 510 km.",
+      carPriceText: "999,900",
+      carPrice: 999900,
+      carInstallmentDetails: [
+        {
+          carRatePricePercent: 5,
+          carMonthPaid: { percentPerMonth: [4.09, 4.39, 4.69, 4.99] },
+        },
+        {
+          carRatePricePercent: 10,
+          carMonthPaid: { percentPerMonth: [3.69, 3.99, 4.29, 4.59] },
+        },
+        {
+          carRatePricePercent: 15,
+          carMonthPaid: { percentPerMonth: [3.09, 3.39, 3.59, 4.29] },
+        },
+        {
+          carRatePricePercent: 20,
+          carMonthPaid: { percentPerMonth: [2.69, 2.89, 3.19, 3.79] },
+        },
+        {
+          carRatePricePercent: 25,
+          carMonthPaid: { percentPerMonth: [1.98, 2.69, 2.99, 3.69] },
+        },
+        {
+          carRatePricePercent: 30,
+          carMonthPaid: { percentPerMonth: [1.98, 2.45, 2.89, 3.59] },
         },
       ],
     },
     //BYD SEAL Premium
     {
+      carId: "4",
       carImageUrl: "https://itp1.itopfile.com/ImageServer/z_itp_13082023hglw/0/0/Seal-Premiumz-z311859941759.png",
       carName1: "SEAL",
       carName2: "Premium RWD 650 km.",
-      carPriceText: "1,399,000",
-      carPrice: 1399000,
+      carPriceText: "1,099,900",
+      carPrice: 1099900,
       carInstallmentDetails: [
         {
+          carRatePricePercent: 5,
+          carMonthPaid: { percentPerMonth: [4.09, 4.39, 4.69, 4.99] },
+        },
+        {
           carRatePricePercent: 10,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [3.69, 3.99, 4.29, 4.59] },
+          carMonthPaid: { percentPerMonth: [3.69, 3.99, 4.29, 4.59] },
         },
         {
           carRatePricePercent: 15,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [3.09, 3.39, 3.59, 4.29] },
+          carMonthPaid: { percentPerMonth: [3.09, 3.39, 3.59, 4.29] },
         },
         {
           carRatePricePercent: 20,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [2.69, 2.89, 3.19, 3.79] },
+          carMonthPaid: { percentPerMonth: [2.69, 2.89, 3.19, 3.79] },
         },
         {
           carRatePricePercent: 25,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [1.98, 2.69, 2.99, 3.69] },
+          carMonthPaid: { percentPerMonth: [1.98, 2.69, 2.99, 3.69] },
         },
         {
           carRatePricePercent: 30,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [1.98, 2.45, 2.89, 3.59] },
+          carMonthPaid: { percentPerMonth: [1.98, 2.45, 2.89, 3.59] },
         },
       ],
     },
     //BYD SEAL Performance
     {
+      carId: "5",
       carImageUrl: "https://itp1.itopfile.com/ImageServer/z_itp_13082023hglw/0/0/Seal-Performacez-z12969357071.png",
       carName1: "SEAL",
       carName2: "Performance AWD 580 km.",
-      carPriceText: "1,499,000",
-      carPrice: 1499000,
+      carPriceText: "1,199,900",
+      carPrice: 1199900,
       carInstallmentDetails: [
         {
+          carRatePricePercent: 5,
+          carMonthPaid: { percentPerMonth: [4.09, 4.39, 4.69, 4.99] },
+        },
+        {
           carRatePricePercent: 10,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [3.69, 3.99, 4.29, 4.59] },
+          carMonthPaid: { percentPerMonth: [3.69, 3.99, 4.29, 4.59] },
         },
         {
           carRatePricePercent: 15,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [3.09, 3.39, 3.59, 4.29] },
+          carMonthPaid: { percentPerMonth: [3.09, 3.39, 3.59, 4.29] },
         },
         {
           carRatePricePercent: 20,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [2.69, 2.89, 3.19, 3.79] },
+          carMonthPaid: { percentPerMonth: [2.69, 2.89, 3.19, 3.79] },
         },
         {
           carRatePricePercent: 25,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [1.98, 2.69, 2.99, 3.69] },
+          carMonthPaid: { percentPerMonth: [1.98, 2.69, 2.99, 3.69] },
         },
         {
           carRatePricePercent: 30,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [1.98, 2.45, 2.89, 3.59] },
+          carMonthPaid: { percentPerMonth: [1.98, 2.45, 2.89, 3.59] },
         },
       ],
     },
     //BYD SEALION 6 Dynamic
     {
+      carId: "6",
       carImageUrl: "https://itp1.itopfile.com/ImageServer/z_itp_13082023hglw/0/0/Sealion-6-Dynamicz-z907323662593.png",
       carName1: "SEALION 6",
       carName2: "Dynamic",
-      carPriceText: "939,900",
-      carPrice: 939900,
+      carPriceText: "899,900",
+      carPrice: 899900,
       carInstallmentDetails: [
         {
+          carRatePricePercent: 5,
+          carMonthPaid: { percentPerMonth: [4.09, 4.39, 4.69, 4.99] },
+        },
+        {
           carRatePricePercent: 10,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [3.69, 3.99, 4.29, 4.59] },
+          carMonthPaid: { percentPerMonth: [3.69, 3.99, 4.29, 4.59] },
         },
         {
           carRatePricePercent: 15,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [3.09, 3.39, 3.59, 4.29] },
+          carMonthPaid: { percentPerMonth: [3.09, 3.39, 3.59, 4.29] },
         },
         {
           carRatePricePercent: 20,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [2.69, 2.89, 3.19, 3.79] },
+          carMonthPaid: { percentPerMonth: [2.69, 2.89, 3.19, 3.79] },
         },
         {
           carRatePricePercent: 25,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [1.98, 2.69, 2.99, 3.69] },
+          carMonthPaid: { percentPerMonth: [1.98, 2.69, 2.99, 3.69] },
         },
         {
           carRatePricePercent: 30,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [1.98, 2.45, 2.89, 3.59] },
+          carMonthPaid: { percentPerMonth: [1.98, 2.45, 2.89, 3.59] },
         },
       ],
     },
     //BYD SEALION 6 Premium
     {
-      carImageUrl: "https://itp1.itopfile.com/ImageServer/z_itp_13082023hglw/0/0/Sealion-6-Premiumz-z1580769346254.png",
+      carId: "7",
+      carImageUrl: "http://itp1.itopfile.com/ImageServer/z_itp_13082023hglw/1410/0/BYD-12-1z-z346285238073.png",
       carName1: "SEALION 6",
       carName2: "Premium",
-      carPriceText: "1,039,900",
-      carPrice: 1039900,
+      carPriceText: "999,900",
+      carPrice: 999900,
       carInstallmentDetails: [
         {
+          carRatePricePercent: 5,
+          carMonthPaid: { percentPerMonth: [4.09, 4.39, 4.69, 4.99] },
+        },
+        {
           carRatePricePercent: 10,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [3.69, 3.99, 4.29, 4.59] },
+          carMonthPaid: { percentPerMonth: [3.69, 3.99, 4.29, 4.59] },
         },
         {
           carRatePricePercent: 15,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [3.09, 3.39, 3.59, 4.29] },
+          carMonthPaid: { percentPerMonth: [3.09, 3.39, 3.59, 4.29] },
         },
         {
           carRatePricePercent: 20,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [2.69, 2.89, 3.19, 3.79] },
+          carMonthPaid: { percentPerMonth: [2.69, 2.89, 3.19, 3.79] },
         },
         {
           carRatePricePercent: 25,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [1.98, 2.69, 2.99, 3.69] },
+          carMonthPaid: { percentPerMonth: [1.98, 2.69, 2.99, 3.69] },
         },
         {
           carRatePricePercent: 30,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [1.98, 2.45, 2.89, 3.59] },
+          carMonthPaid: { percentPerMonth: [1.98, 2.45, 2.89, 3.59] },
         },
       ],
     },
     //BYD M6 Dynamic
     {
+      carId: "8",
       carImageUrl: "https://itp1.itopfile.com/ImageServer/z_itp_13082023hglw/0/0/M6-Dynamicz-z171573915743.png",
       carName1: "M6",
       carName2: "Dynamic",
@@ -335,32 +368,33 @@ $(document).ready(function () {
       carInstallmentDetails: [
         {
           carRatePricePercent: 5,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [4.09, 4.39, 4.69, 4.99] },
+          carMonthPaid: { percentPerMonth: [4.09, 4.39, 4.69, 4.99] },
         },
         {
           carRatePricePercent: 10,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [3.69, 3.99, 4.29, 4.59] },
+          carMonthPaid: { percentPerMonth: [3.69, 3.99, 4.29, 4.59] },
         },
         {
           carRatePricePercent: 15,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [3.09, 3.39, 3.59, 4.29] },
+          carMonthPaid: { percentPerMonth: [3.09, 3.39, 3.59, 4.29] },
         },
         {
           carRatePricePercent: 20,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [2.69, 2.89, 3.19, 3.79] },
+          carMonthPaid: { percentPerMonth: [2.69, 2.89, 3.19, 3.79] },
         },
         {
           carRatePricePercent: 25,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [1.98, 2.69, 2.99, 3.69] },
+          carMonthPaid: { percentPerMonth: [1.98, 2.69, 2.99, 3.69] },
         },
         {
           carRatePricePercent: 30,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [1.98, 2.45, 2.89, 3.59] },
+          carMonthPaid: { percentPerMonth: [1.98, 2.45, 2.89, 3.59] },
         },
       ],
     },
     //BYD M6 Extended
     {
+      carId: "9",
       carImageUrl: "https://itp1.itopfile.com/ImageServer/z_itp_13082023hglw/0/0/M6-Extendedz-z262469479662.png",
       carName1: "M6",
       carName2: "Extended",
@@ -369,101 +403,103 @@ $(document).ready(function () {
       carInstallmentDetails: [
         {
           carRatePricePercent: 5,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [4.09, 4.39, 4.69, 4.99] },
+          carMonthPaid: { percentPerMonth: [4.09, 4.39, 4.69, 4.99] },
         },
         {
           carRatePricePercent: 10,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [3.69, 3.99, 4.29, 4.59] },
+          carMonthPaid: { percentPerMonth: [3.69, 3.99, 4.29, 4.59] },
         },
         {
           carRatePricePercent: 15,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [3.09, 3.39, 3.59, 4.29] },
+          carMonthPaid: { percentPerMonth: [3.09, 3.39, 3.59, 4.29] },
         },
         {
           carRatePricePercent: 20,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [2.69, 2.89, 3.19, 3.79] },
+          carMonthPaid: { percentPerMonth: [2.69, 2.89, 3.19, 3.79] },
         },
         {
           carRatePricePercent: 25,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [1.98, 2.69, 2.99, 3.69] },
+          carMonthPaid: { percentPerMonth: [1.98, 2.69, 2.99, 3.69] },
         },
         {
           carRatePricePercent: 30,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [1.98, 2.45, 2.89, 3.59] },
+          carMonthPaid: { percentPerMonth: [1.98, 2.45, 2.89, 3.59] },
         },
       ],
     },
     //BYD SEALION 7 Premium
     {
+      carId: "10",
       carImageUrl: "https://itp1.itopfile.com/ImageServer/z_itp_13082023hglw/0/0/Sealion-7-Premiumz-z729332427395.png",
       carName1: "SEALION7",
       carName2: "Premium",
-      carPriceText: "1,249,900",
-      carPrice: 1249900,
+      carPriceText: "1,149,900",
+      carPrice: 1149900,
       carInstallmentDetails: [
         {
           carRatePricePercent: 5,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [4.09, 4.39, 4.69, 4.99] },
+          carMonthPaid: { percentPerMonth: [4.09, 4.39, 4.69, 4.99] },
         },
         {
           carRatePricePercent: 10,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [3.69, 3.99, 4.29, 4.59] },
+          carMonthPaid: { percentPerMonth: [3.69, 3.99, 4.29, 4.59] },
         },
         {
           carRatePricePercent: 15,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [3.09, 3.39, 3.59, 4.29] },
+          carMonthPaid: { percentPerMonth: [3.09, 3.39, 3.59, 4.29] },
         },
         {
           carRatePricePercent: 20,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [2.69, 2.89, 3.19, 3.79] },
+          carMonthPaid: { percentPerMonth: [2.69, 2.89, 3.19, 3.79] },
         },
         {
           carRatePricePercent: 25,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [1.98, 2.69, 2.99, 3.69] },
+          carMonthPaid: { percentPerMonth: [1.98, 2.69, 2.99, 3.69] },
         },
         {
           carRatePricePercent: 30,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [1.98, 2.45, 2.89, 3.59] },
+          carMonthPaid: { percentPerMonth: [1.98, 2.45, 2.89, 3.59] },
         },
       ],
     },
     //BYD SEALION 7 Performance
     {
-      carImageUrl:
-        "https://itp1.itopfile.com/ImageServer/z_itp_13082023hglw/0/0/Sealion-7-Performancez-z936022421655.png",
+      carId: "11",
+      carImageUrl: "https://itp1.itopfile.com/ImageServer/z_itp_13082023hglw/0/0/Sealion-7-Performancez-z936022421655.png",
       carName1: "SEALION7",
       carName2: "AWD Performance",
-      carPriceText: "1,399,900",
-      carPrice: 1399900,
+      carPriceText: "1,249,900",
+      carPrice: 1249900,
       carInstallmentDetails: [
         {
           carRatePricePercent: 5,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [4.09, 4.39, 4.69, 4.99] },
+          carMonthPaid: { percentPerMonth: [4.09, 4.39, 4.69, 4.99] },
         },
         {
           carRatePricePercent: 10,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [3.69, 3.99, 4.29, 4.59] },
+          carMonthPaid: { percentPerMonth: [3.69, 3.99, 4.29, 4.59] },
         },
         {
           carRatePricePercent: 15,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [3.09, 3.39, 3.59, 4.29] },
+          carMonthPaid: { percentPerMonth: [3.09, 3.39, 3.59, 4.29] },
         },
         {
           carRatePricePercent: 20,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [2.69, 2.89, 3.19, 3.79] },
+          carMonthPaid: { percentPerMonth: [2.69, 2.89, 3.19, 3.79] },
         },
         {
           carRatePricePercent: 25,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [1.98, 2.69, 2.99, 3.69] },
+          carMonthPaid: { percentPerMonth: [1.98, 2.69, 2.99, 3.69] },
         },
         {
           carRatePricePercent: 30,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [1.98, 2.45, 2.89, 3.59] },
+          carMonthPaid: { percentPerMonth: [1.98, 2.45, 2.89, 3.59] },
         },
       ],
     },
     //BYD T3
     {
+      carId: "12",
       carImageUrl: "https://itp1.itopfile.com/ImageServer/z_itp_13082023hglw/0/0/T3z-z877711029520.png",
       carName1: "T3",
       carName2: "ELECTRIC CARGOVAN",
@@ -472,24 +508,25 @@ $(document).ready(function () {
       carInstallmentDetails: [
         {
           carRatePricePercent: 10,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [3.99, 3.99, 4.29, 4.94] },
+          carMonthPaid: { percentPerMonth: [3.69, 3.99, 4.29, 4.94] },
         },
         {
           carRatePricePercent: 15,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [3.39, 3.39, 3.69, 4.44] },
+          carMonthPaid: { percentPerMonth: [3.09, 3.39, 3.69, 4.44] },
         },
         {
           carRatePricePercent: 20,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [2.69, 2.89, 3.39, 3.94] },
+          carMonthPaid: { percentPerMonth: [2.69, 2.89, 3.39, 3.94] },
         },
         {
           carRatePricePercent: 25,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [2.19, 2.79, 3.29, 3.74] },
+          carMonthPaid: { percentPerMonth: [2.19, 2.79, 3.29, 3.74] },
         },
       ],
     },
     //BYD E6
     {
+      carId: "13",
       carImageUrl: "https://itp1.itopfile.com/ImageServer/z_itp_13082023hglw/0/0/E6z-z862197735525.png",
       carName1: "E6",
       carName2: "ELECTRIC VEHICLE",
@@ -498,28 +535,29 @@ $(document).ready(function () {
       carInstallmentDetails: [
         {
           carRatePricePercent: 10,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [3.69, 3.99, 4.29, 4.94] },
+          carMonthPaid: { percentPerMonth: [3.69, 3.99, 4.29, 4.94] },
         },
         {
           carRatePricePercent: 15,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [3.09, 3.39, 3.59, 4.29] },
+          carMonthPaid: { percentPerMonth: [3.09, 3.39, 3.59, 4.29] },
         },
         {
           carRatePricePercent: 20,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [2.69, 2.89, 3.19, 3.79] },
+          carMonthPaid: { percentPerMonth: [2.69, 2.89, 3.19, 3.79] },
         },
         {
           carRatePricePercent: 25,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [1.98, 2.69, 2.99, 3.69] },
+          carMonthPaid: { percentPerMonth: [1.98, 2.69, 2.99, 3.69] },
         },
         {
           carRatePricePercent: 30,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [1.98, 2.45, 2.89, 3.59] },
+          carMonthPaid: { percentPerMonth: [1.98, 2.45, 2.89, 3.59] },
         },
       ],
     },
     //DENZA D9 Premium
     {
+      carId: "14",
       carImageUrl: "https://itp1.itopfile.com/ImageServer/z_itp_13082023hglw/0/0/Denza-D9-Premiumz-z687725877121.png",
       carName1: "DENZA D9",
       carName2: "Premium",
@@ -528,30 +566,30 @@ $(document).ready(function () {
       carInstallmentDetails: [
         {
           carRatePricePercent: 10,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [3.59, 3.89, 4.19, 4.49] },
+          carMonthPaid: { percentPerMonth: [3.59, 3.89, 4.19, 4.49] },
         },
         {
           carRatePricePercent: 15,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [2.99, 3.29, 3.49, 4.19] },
+          carMonthPaid: { percentPerMonth: [2.99, 3.29, 3.49, 4.19] },
         },
         {
           carRatePricePercent: 20,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [2.59, 2.79, 3.09, 3.69] },
+          carMonthPaid: { percentPerMonth: [2.59, 2.79, 3.09, 3.69] },
         },
         {
           carRatePricePercent: 25,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [1.88, 2.59, 2.89, 3.59] },
+          carMonthPaid: { percentPerMonth: [1.88, 2.59, 2.89, 3.59] },
         },
         {
           carRatePricePercent: 30,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [1.88, 2.35, 2.79, 3.49] },
+          carMonthPaid: { percentPerMonth: [1.88, 2.35, 2.79, 3.49] },
         },
       ],
     },
     //DENZA D9 AWD Performance
     {
-      carImageUrl:
-        "https://itp1.itopfile.com/ImageServer/z_itp_13082023hglw/0/0/Denza-D9-Performancez-z520082036768.png",
+      carId: "15",
+      carImageUrl: "https://itp1.itopfile.com/ImageServer/z_itp_13082023hglw/0/0/Denza-D9-Performancez-z520082036768.png",
       carName1: "DENZA D9",
       carName2: "AWD Performance",
       carPriceText: "2,699,900",
@@ -559,23 +597,58 @@ $(document).ready(function () {
       carInstallmentDetails: [
         {
           carRatePricePercent: 10,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [3.59, 3.89, 4.19, 4.49] },
+          carMonthPaid: { percentPerMonth: [3.59, 3.89, 4.19, 4.49] },
         },
         {
           carRatePricePercent: 15,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [2.99, 3.29, 3.49, 4.19] },
+          carMonthPaid: { percentPerMonth: [2.99, 3.29, 3.49, 4.19] },
         },
         {
           carRatePricePercent: 20,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [2.59, 2.79, 3.09, 3.69] },
+          carMonthPaid: { percentPerMonth: [2.59, 2.79, 3.09, 3.69] },
         },
         {
           carRatePricePercent: 25,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [1.88, 2.59, 2.89, 3.59] },
+          carMonthPaid: { percentPerMonth: [1.88, 2.59, 2.89, 3.59] },
         },
         {
           carRatePricePercent: 30,
-          carMonthPaid: { month: [48, 60, 72, 84], percentPerMonth: [1.88, 2.35, 2.79, 3.49] },
+          carMonthPaid: { percentPerMonth: [1.88, 2.35, 2.79, 3.49] },
+        },
+      ],
+    },
+    //BYD ATTO 3 Premiu, 24
+    {
+      carId: "16",
+      carImageUrl: "http://itp1.itopfile.com/ImageServer/z_itp_13082023hglw/1376/0/NewBYDATTO3(localproduction)Whitez-z1046854208768.png",
+      carName1: "ATTO 3 24",
+      carName2: "Premium",
+      carPriceText: "699,900",
+      carPrice: 699900,
+      carInstallmentDetails: [
+        {
+          carRatePricePercent: 5,
+          carMonthPaid: { percentPerMonth: [4.09, 4.39, 4.69, 4.99] },
+        },
+        {
+          carRatePricePercent: 10,
+          carMonthPaid: { percentPerMonth: [3.69, 3.99, 4.29, 4.59] },
+        },
+        {
+          carRatePricePercent: 15,
+          carMonthPaid: { percentPerMonth: [3.09, 3.39, 3.59, 4.29] },
+        },
+        {
+          carRatePricePercent: 20,
+          carMonthPaid: { percentPerMonth: [2.69, 2.89, 3.19, 3.79] },
+        },
+        {
+          carRatePricePercent: 25,
+          carMonthPaid: { percentPerMonth: [1.98, 2.69, 2.99, 3.69] },
+        },
+        {
+          carRatePricePercent: 30,
+          carMonthPaid: { percentPerMonth: [1.98, 2.45, 2.89, 3.59] },
         },
       ],
     },
@@ -585,16 +658,14 @@ $(document).ready(function () {
   function renderResultInstallment(carIndex) {
     let installmentIndex = Number($("#InstallmentDuration").val());
     let installmentMonthIndex = [48, 60, 72, 84][Number($("#inputRageBydsusco").val())];
-    let calculatedResult = carData[carIndex].carInstallmentDetails.find(
-      (x) => x.carRatePricePercent === installmentIndex
-    );
+    let calculatedResult = carData[carIndex].carInstallmentDetails.find((x) => x.carRatePricePercent === installmentIndex);
 
     if (!calculatedResult) {
       $(".bydsusco_result_calculated_container").empty().append("<div>No data available for this selection.</div>");
       return;
     }
 
-    let monthIndex = calculatedResult.carMonthPaid.month.indexOf(installmentMonthIndex); // [48, 60, 72, 84]
+    let monthIndex = Number($("#inputRageBydsusco").val());
     let interestRate = calculatedResult.carMonthPaid.percentPerMonth[monthIndex] / 100 / 12;
     const carPrice = carData[carIndex].carPrice;
     const downPrice = Math.round((carPrice * installmentIndex) / 100);
@@ -610,7 +681,6 @@ $(document).ready(function () {
       `);
   }
 
-  // Price/Month
   function calculateMonthlyPayment(excellentPrice, monthlyInterestRate, numberOfPayments) {
     const totalInterest = excellentPrice * monthlyInterestRate * numberOfPayments;
     const totalPayment = excellentPrice + totalInterest;
@@ -686,3 +756,295 @@ $(document).ready(function () {
     .trigger("input");
 });
 </script>
+<style scoped>
+/*calc*/
+.bydsusco_maincontainer {
+  width: 100%;
+  background-image: url(https://itp1.itopfile.com/ImageServer/z_itp_18092022t6wg/831/0/white-tunnel-with-light-end-3d-renderingz-z387796491816.webp);
+  background-size: cover;
+  min-height: 50vw;
+  color: #444;
+  line-height: 1;
+  padding-top: 100px;
+}
+
+.bydsusco_top_container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 15px;
+}
+
+.bydsusco_topic {
+  font-size: clamp(24px, 5vw, 40px);
+  font-weight: 500;
+}
+
+.bydsusco_container select {
+  position: relative;
+  border: 2px solid rgb(223, 223, 223);
+  padding: 0 25px;
+  width: 100%;
+  height: 52px;
+  border-radius: 30px;
+  -webkit-appearance: none;
+  appearance: none;
+  outline: unset;
+  font-size: clamp(20px, 1vw, 22px);
+  color: #444;
+}
+
+.bydsusco_topic_select {
+  display: flex;
+  align-items: center;
+  position: relative;
+  min-width: 400px;
+  margin: 0 auto;
+}
+
+.InstallmentDurationClass {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.bydsusco_topic_select::after,
+.InstallmentDurationClass::after {
+  content: "▼";
+  font-size: 1rem;
+  position: relative;
+  top: 0;
+  right: 35px;
+  width: 0;
+}
+
+.bydsusco_middle_container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 50px;
+  padding: 2vw 20vw;
+  align-items: center;
+}
+
+.bydsusco_inside_right_container {
+  width: 85%;
+  margin: auto;
+}
+
+.bydsusco_calculator_container {
+  background: rgb(47 46 46 / 85%);
+  border-radius: 30px;
+}
+
+.bydsusco_calculator_inside {
+  display: flex;
+  flex-direction: column;
+  color: #bfbfbf;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  height: 100%;
+  font-size: clamp(20px, 1vw, 22px);
+}
+
+.bydsusco_result_text1 {
+  margin: 50px 0 25px;
+}
+
+.bydsusco_result_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.bydsusco_result_image {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.bydsusco_result_image > img {
+  min-height: 300px !important;
+  object-fit: contain;
+}
+
+.bydsusco_result_name1 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  align-items: end;
+  text-align: left;
+  padding: 0 20px;
+}
+
+.bydsusco_result_name1 img {
+  max-width: 250px;
+  object-fit: contain;
+}
+
+.bydsusco_result_name1 span {
+  font-size: clamp(24px, 3vw, 40px);
+  font-weight: 500;
+}
+
+.bydsusco_result_name2 span {
+  font-size: clamp(22px, 5vw, 24px);
+  font-weight: 500;
+}
+
+.bydsusco_result_price {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.bydsusco_price_text1,
+.bydsusco_price_text3 {
+  font-size: clamp(22px, 5vw, 24px);
+}
+
+.bydsusco_price_text2 {
+  font-size: clamp(22px, 5vw, 38px);
+  font-weight: 600;
+}
+
+.selectResult_container {
+  height: 50px;
+  position: relative;
+  margin: 0 0 30px;
+  padding: 0 25px;
+}
+
+.selectResult_container::before {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  display: block;
+  content: "";
+  width: 85%;
+  background: #bebebe;
+  height: 3px;
+  margin: auto;
+}
+
+#inputRageBydsusco {
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 80%;
+  height: 100%;
+  margin: auto;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  border: unset;
+  z-index: 1000;
+}
+
+#inputRageBydsusco::-webkit-slider-thumb {
+  position: relative;
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  background: #444;
+  cursor: pointer;
+  border-radius: 50%;
+  border: 5px solid #bebebe;
+}
+
+.monthCountClass {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 0 25px;
+  height: 50px;
+  font-size: clamp(16px, 0.5vw, 18px);
+}
+
+.monthCountClass > div {
+  position: relative;
+  height: 100%;
+}
+
+/*fake dot*/
+.monthCountClass > div::before {
+  position: absolute;
+  top: -60px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  display: block;
+  content: "";
+  width: 12px;
+  height: 12px;
+  background: #bebebe;
+  border-radius: 50%;
+}
+
+.bydsusco_result_calculated_container {
+  background-color: #fff;
+  color: #000;
+  width: 95%;
+  margin: 15px auto;
+  border-radius: 30px;
+  padding: 25px;
+}
+
+.bydsusco_result_calculated_inside {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.flex_bydsusco_result {
+  display: grid;
+  grid-template-columns: 40% 40% 20%;
+  width: 100%;
+  text-align: left;
+}
+
+.flex_bydsusco_result span:nth-child(2) {
+  font-weight: 500;
+}
+
+@media screen and (min-width: 600px) and (max-width: 1200px) {
+  .bydsusco_middle_container {
+    gap: 20px;
+    padding: clamp(20px, 6vw, 100px);
+  }
+
+  .bydsusco_inside_right_container {
+    width: 100%;
+  }
+
+  .bydsusco_result_calculated_container {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  div#background6515306d53502700135c95b1 {
+    margin: -10px;
+  }
+
+  .bydsusco_middle_container {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    padding: 10px;
+  }
+
+  .bydsusco_topic_select {
+    width: 90%;
+    min-width: auto;
+  }
+
+  .bydsusco_inside_right_container {
+    width: 100%;
+  }
+}
+</style>

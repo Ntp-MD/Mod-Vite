@@ -54,14 +54,14 @@ section {
 }
 
 .font-name {
-  font-size: 24px;
+  font-size: 100%;
   font-weight: 600;
 }
 
 .copy-group {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(clamp(150px, 30%, 30vw), 1fr));
-  gap: 50px;
+  grid-template-columns: repeat(auto-fit, minmax(clamp(150px, 25vw, 20%), 1fr));
+  gap: 15px;
 }
 
 .copy-items {
