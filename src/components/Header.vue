@@ -6,7 +6,7 @@
       <router-link class="nav-menu-link" to="/Font" @click="closeMenu">Font</router-link>
       <router-link class="nav-menu-link" to="/Slide" @click="closeMenu">Slide</router-link>
       <router-link class="nav-menu-link" to="/Planet" @click="closeMenu">Planet</router-link>
-      <router-link class="nav-menu-link" to="/Modquee" @click="closeMenu">Modquee</router-link>
+      <router-link class="nav-menu-link" to="/CS" @click="closeMenu">CS</router-link>
       <router-link class="nav-menu-link" to="/smo-login" @click="closeMenu">SMO</router-link>
     </nav>
     <div id="nav-toggle" @click="toggleMenu" ref="navToggle">
@@ -50,8 +50,8 @@ export default {
   justify-items: center;
   align-items: center;
   width: 100%;
-  height: 70px;
-  padding: 10px clamp(20px, 10vw, 150px);
+  min-height: 100px;
+  padding: 0 10vw;
   text-transform: uppercase;
   line-height: 1;
 }

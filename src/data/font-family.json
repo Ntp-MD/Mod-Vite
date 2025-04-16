@@ -25,6 +25,11 @@
     "font_url": "<link href=\"https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap\" rel=\"stylesheet\">"
   },
   {
+    "font_name": "Anuphan",
+    "font_family": "font-family: 'Anuphan', sans-serif;",
+    "font_url": "<link href=\"https://fonts.googleapis.com/css2?family=Anuphan:wght@100..700&display=swap\" rel=\"stylesheet\">"
+  },
+  {
     "font_name": "Outfit",
     "font_family": "font-family: 'Outfit', sans-serif;",
     "font_url": "<link href=\"https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap\" rel=\"stylesheet\">"

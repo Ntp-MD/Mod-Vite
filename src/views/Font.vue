@@ -49,8 +49,11 @@ export default {
 </script>
 
 <style scoped>
-section {
-  margin-top: 150px;
+.copy-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(clamp(150px, 30%, 20vw), 1fr));
+  gap: 15px;
+  margin: 100px 0;
 }
 
 .font-name {
@@ -58,32 +61,27 @@ section {
   font-weight: 600;
 }
 
-.copy-group {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(clamp(150px, 25vw, 20%), 1fr));
-  gap: 15px;
-}
-
 .copy-items {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  padding: 30px;
-  border-radius: 25px;
-  background: var(--linear3);
+  padding: 15px;
+  border-radius: 12px;
   min-height: auto;
+  border: 1px solid var(--bg-main2);
 }
 
 .code-block {
   display: grid;
-  grid-template-columns: auto 40px;
+  grid-template-columns: auto 35px;
   align-items: center;
-  gap: 5px;
   background: #fff;
   color: var(--color1);
   border-radius: 5px;
   overflow: hidden;
   font-size: 14px;
+  border: 1px solid var(--bg-main2);
+  font-family: monospace;
 }
 
 .code-content {
@@ -91,8 +89,8 @@ section {
   align-items: center;
   overflow: hidden;
   white-space: nowrap;
-  width: auto;
-  padding: 0px 10px;
+  width: 100%;
+  padding-left: 10px;
   user-select: none;
   height: 35px;
 }
@@ -109,7 +107,6 @@ section {
 .copy-button img {
   object-fit: contain;
   width: 40%;
-  filter: invert(1);
 }
 
 @media screen and (max-width: 480px) {

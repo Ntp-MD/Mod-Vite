@@ -1,5 +1,12 @@
 .container_slide {
   margin: 150px 0 0;
+  max-width: 1500px;
+  margin: auto;
+  min-height: 120vh;
+}
+
+.title-section {
+  margin: 50px 0;
 }
 
 #box_slide {
@@ -55,7 +62,7 @@
   width: 100%;
   bottom: -50%;
   padding: 15px;
-  background: var(--color2);
+  background: #000;
   color: #fff;
   transition: 0.3s ease-in-out;
 }
@@ -72,14 +79,14 @@
   width: 15px;
   height: 15px;
   border-radius: 30px;
-  background-color: #ccc;
+  background: #000;
   transition: 0.3s;
   cursor: pointer;
 }
 
 .dot.active {
   width: 50px;
-  background: var(--color1);
+  background: red;
 }
 
 @media screen and (max-width: 992px) {
