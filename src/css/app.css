@@ -24,17 +24,15 @@
 }
 
 header {
-  background: #000;
+  background: #fff;
   height: 100px;
 }
 
 header a {
-  color: #fff;
+  color: #000;
 }
 
 footer {
-  position: absolute;
-  bottom: 0;
   display: grid;
   place-items: center;
   background: var(--bg-color2);
@@ -47,10 +45,10 @@ footer {
 body {
   margin: 0;
   padding: 0;
-  font-size: clamp(14px, 1vw, 20px);
+  font-size: clamp(14px, 1vw, 18px);
   background: var(--bg-color);
   color: var(--font-color);
-  font-family: "Inter", sans-serif;
+  font-family: "Onest", sans-serif;
 }
 
 main {
@@ -64,21 +62,18 @@ main {
 }
 
 section {
+  position: relative;
   display: grid;
   align-items: center;
-  width: 100%;
-  min-height: 40vw;
-  position: relative;
   scroll-snap-align: center;
+  margin-bottom: var(--gap-content);
 }
 
 .container {
-  display: grid;
-  place-content: center;
-  place-items: center;
   min-width: 900px;
   width: 70vw;
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
   height: 100%;
 }
 
@@ -101,21 +96,25 @@ img {
 
 h1 {
   font-size: clamp(30px, 4.5vw, 60px);
-  font-weight: 800;
-  margin: 0;
-  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 1px;
 }
 
 h2 {
-  font-size: clamp(24px, 3.5vw, 60px);
-  font-weight: 700;
+  font-size: clamp(24px, 3vw, 30px);
+
   margin: 0;
 }
 
 h3 {
-  font-size: clamp(18px, 2.5vw, 30px);
-  font-weight: 700;
+  font-size: clamp(18px, 2vw, 24px);
   margin: 0;
+}
+
+span {
+  color: #777;
+  font-weight: 800;
+  letter-spacing: 1px;
 }
 
 button {
@@ -164,42 +163,28 @@ textarea {
 }
 
 .grid-default {
-  position: relative;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: clamp(30px, 15vw, 100px);
+  grid-template-columns: repeat(2, 1fr);
+  width: inherit;
 }
 
-.grid-default > div {
-  position: relative;
-  width: 100%;
-  height: 100%;
+.grid-default :is(h1, h2, h3) {
+  margin: 0;
 }
 
-.grid-image {
-  display: grid;
-  place-items: center;
-}
-
-.grid-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-.grid-text {
-  display: flex;
-  flex-direction: column;
+.mock-section {
+  display: block;
+  background: #f1f1f1;
+  height: 30vw;
+  width: inherit;
 }
 
 .no-image {
   display: block;
   width: 100%;
-  height: 100%;
-  border-radius: 30px;
+  height: auto;
   overflow: hidden;
-  background: var(--color);
-  box-shadow: var(--box-shadow1);
+  background: #f1f1f1;
 }
 
 @media screen and (max-width: 1200px) {

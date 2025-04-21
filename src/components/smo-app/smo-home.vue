@@ -4,7 +4,7 @@
 <template>
   <div id="Smo-App">
     <div class="smo-top">
-      <img src="/src/smo-app/smo-assets/image/nav-logo.png" />
+      <img src="/src/components/smo-app/smo-assets/image/nav-logo.png" />
     </div>
     <div class="smo-mid">
       <div class="section1">
@@ -18,7 +18,7 @@
 
       <div class="section2">
         <div class="smo-header">
-          <img src="/src/smo-app/smo-assets/icon/pin.png" alt="" />
+          <img src="/src/components/smo-app/smo-assets/icon/pin.png" alt="" />
           Choose location
         </div>
         <div class="checkbox-location">
@@ -49,7 +49,7 @@
         </div>
 
         <div class="smo-header">
-          <img src="/src/smo-app/smo-assets/icon/pin2.png" alt="" />
+          <img src="/src/components/smo-app/smo-assets/icon/pin2.png" alt="" />
           Choose Province
         </div>
         <div class="smo-select">
@@ -64,7 +64,7 @@
 
       <div class="section3">
         <div class="smo-header">
-          <img src="/src/smo-app/smo-assets/icon/star.png" />
+          <img src="/src/components/smo-app/smo-assets/icon/star.png" />
           Popular dive site
         </div>
         <div class="popular-slide">
@@ -79,7 +79,7 @@
 
       <div class="section4">
         <div class="smo-header">
-          <img src="/src/smo-app/smo-assets/icon/fish.png" v-auto-alt />
+          <img src="/src/components/smo-app/smo-assets/icon/fish.png" v-auto-alt />
           Fish identification
         </div>
         <div class="pic">
@@ -89,18 +89,18 @@
     </div>
     <div class="smo-bottom">
       <div class="smo-home-menu">
-        <router-link class="smo-home-link" to="/smp-home"><img src="/src/smo-app/smo-assets/icon/home.png" />Home</router-link>
-        <router-link class="smo-home-link" to=""><img src="/src/smo-app/smo-assets/icon/dive.png" />Dive</router-link>
-        <router-link class="smo-home-link" to=""><img src="/src/smo-app/smo-assets/icon/course.png" />Course</router-link>
-        <router-link class="smo-home-link" to=""><img src="/src/smo-app/smo-assets/icon/tips.png" />Tips</router-link>
-        <router-link class="smo-home-link" to="/smo-login"><img src="/src/smo-app/smo-assets/icon/log.png" />Log</router-link>
+        <router-link class="smo-home-link" to="/smp-home"><img src="/src/components/smo-app/smo-assets/icon/home.png" />Home</router-link>
+        <router-link class="smo-home-link" to=""><img src="/src/components/smo-app/smo-assets/icon/dive.png" />Dive</router-link>
+        <router-link class="smo-home-link" to=""><img src="/src/components/smo-app/smo-assets/icon/course.png" />Course</router-link>
+        <router-link class="smo-home-link" to=""><img src="/src/components/smo-app/smo-assets/icon/tips.png" />Tips</router-link>
+        <router-link class="smo-home-link" to="/smo-login"><img src="/src/components/smo-app/smo-assets/icon/log.png" />Log</router-link>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import provinceData from "@/data/province.json";
+import provinceData from "/src/assets/data/province.json";
 
 export default {
   data() {

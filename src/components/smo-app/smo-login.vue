@@ -1,7 +1,7 @@
 <template>
   <div id="Smo-App">
     <div class="smo-top">
-      <img src="/src/smo-app/smo-assets/image/logo.png" v-auto-alt />
+      <img src="/src/components/smo-app/smo-assets/image/logo.png" v-auto-alt />
     </div>
     <div class="smo-mid">
       <div><input type="text" name="User" id="smo-user" placeholder="Your ID" /></div>

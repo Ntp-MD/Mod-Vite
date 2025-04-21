@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import fontData from "/src/data/font-family.json";
+import fontData from "/src/assets/data/font-family.json";
 
 export default {
   methods: {

@@ -18,7 +18,3 @@ import NavFooter from "@/components/Footer.vue";
 import { useRoute } from "vue-router";
 const route = useRoute();
 </script>
-
-<style scoped>
-@import url("@/css/app.css");
-</style>
