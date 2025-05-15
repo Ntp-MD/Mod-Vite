@@ -1,20 +1,18 @@
 <template>
-  <div id="nav-header">
-    <div class="nav-logo"><router-link to="/">Mod.IO</router-link></div>
-    <nav :class="['nav-menu', { open: isMenuOpen }]" ref="NavMenu">
-      <router-link class="nav-menu-link" to="/" @click="closeMenu">Home</router-link>
-      <router-link class="nav-menu-link" to="/Font" @click="closeMenu">Font</router-link>
-      <router-link class="nav-menu-link" to="/Slide" @click="closeMenu">Slide</router-link>
-      <router-link class="nav-menu-link" to="/Planet" @click="closeMenu">Planet</router-link>
-      <router-link class="nav-menu-link" to="/ITP" @click="closeMenu">ITP</router-link>
-      <router-link class="nav-menu-link" to="/smo-login" @click="closeMenu">SMO</router-link>
-    </nav>
+  <nav id="nav-header" :class="['nav-menu', { open: isMenuOpen }]" ref="NavMenu">
+    <div id="nav-logo"><router-link to="/">Mod.IO</router-link></div>
+    <router-link class="nav-menu-link" to="/" @click="closeMenu">Home</router-link>
+    <router-link class="nav-menu-link" to="/Font" @click="closeMenu">Font</router-link>
+    <router-link class="nav-menu-link" to="/Slide" @click="closeMenu">Slide</router-link>
+    <router-link class="nav-menu-link" to="/Free" @click="closeMenu">Free Space</router-link>
+    <router-link class="nav-menu-link" to="/Planet" @click="closeMenu">Planet</router-link>
+    <router-link class="nav-menu-link" to="/smo-login" @click="closeMenu">SMO</router-link>
     <div id="nav-toggle" @click="toggleMenu" ref="navToggle">
       <div :class="{ animate: isMenuOpen }"></div>
       <div :class="{ animate: isMenuOpen }"></div>
       <div :class="{ animate: isMenuOpen }"></div>
     </div>
-  </div>
+  </nav>
 </template>
 
 <script>
@@ -39,35 +37,30 @@ export default {
 </script>
 
 <style scoped>
-.nav-logo {
-  text-align: left;
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  min-height: 100px;
+  text-transform: uppercase;
+  line-height: 1;
+  padding: 0 5vw;
 }
 
-.nav-logo a {
+#nav-logo {
+  flex: 1;
+}
+
+#nav-logo a {
   font-size: 30px;
   font-weight: 700;
   text-align: left;
 }
 
-#nav-header {
-  display: grid;
-  grid-template-columns: 20% auto 0;
-  align-items: center;
-  width: 100%;
-  min-height: 100px;
-  padding: 0 15vw;
-  text-transform: uppercase;
-  line-height: 1;
-}
-
-nav {
-  display: flex;
-  align-items: center;
-  justify-content: end;
-  gap: clamp(15px, 5vw, 30px);
-  width: 100%;
-  height: 100%;
-  background: transparent;
+#nav-toggle {
+  display: none;
 }
 
 @media screen and (max-width: 1200px) {

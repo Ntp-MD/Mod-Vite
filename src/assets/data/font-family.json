@@ -139,5 +139,15 @@
     "font_name": "Chonburi",
     "font_family": "font-family: 'Chonburi', serif;",
     "font_url": "<link href=\"https://fonts.googleapis.com/css2?family=Chonburi&display=swap\" rel=\"stylesheet\">"
+  },
+  {
+    "font_name": "Figtree",
+    "font_family": "font-family: 'Figtree', sans-serif;",
+    "font_url": "<link href=\"https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap\" rel=\"stylesheet\">"
+  },
+  {
+    "font_name": "Orbitron",
+    "font_family": "font-family: 'Orbitron', sans-serif;",
+    "font_url": "<link href=\"https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap\" rel=\"stylesheet\">"
   }
 ]

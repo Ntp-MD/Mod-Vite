@@ -1,7 +1,3 @@
-<style scope>
-@import url("/src/css/mod-quee.css");
-</style>
-
 <template>
   <div class="modquee-contanier">
     <div class="modquee-box box1"></div>

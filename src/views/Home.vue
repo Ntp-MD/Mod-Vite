@@ -1,83 +1,125 @@
 <template>
-  <section id="section1">
-    <div class="banner-1">
+  <section id="intro-slide">
+    <div>
       <div class="no-content"></div>
       <img src="/src/assets/images/banner-1.jpg" alt="" width="100%" />
     </div>
   </section>
-  <section id="section2">
-    <div class="container">
-      <sup>Interior Design</sup>
+
+  <section id="present-section">
+    <sup>Interior Design</sup>
+    <h1>
+      Lorem ipsum <br />
+      dolor sit amet consectetur.
+    </h1>
+    <article class="review-grid">
+      <figure>
+        <img src="/src/assets/images/1.jpg" alt="" />
+        <figcaption>Lorem, ipsum dolor.</figcaption>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        <div class="btn-view">View more<sub>&rarr;</sub></div>
+      </figure>
+      <figure>
+        <img src="/src/assets/images/2.jpg" alt="" />
+        <figcaption>Lorem, ipsum dolor.</figcaption>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        <div class="btn-view">View more<sub>&rarr;</sub></div>
+      </figure>
+      <figure>
+        <img src="/src/assets/images/3.jpg" alt="" />
+        <figcaption>Lorem, ipsum dolor.</figcaption>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        <div class="btn-view">View more<sub>&rarr;</sub></div>
+      </figure>
+      <div class="review-grid-text">
+        <h1>
+          Lorem ipsum <br />
+          dolor sit amet
+        </h1>
+        <div class="btn-view">View more<sub>&rarr;</sub></div>
+      </div>
+    </article>
+  </section>
+
+  <section id="preview-section">
+    <div class="">
       <h1>
-        Lorem ipsum <br />
-        dolor sit amet consectetur.
+        Lorem<br />
+        ipsum dolor<br />
+        sit amet elit.
       </h1>
-      <article class="review-grid">
-        <figure>
-          <img src="/src/assets/images/1.jpg" alt="" />
-          <figcaption>Lorem, ipsum dolor.</figcaption>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-          <div class="btn-view">View more<sub>&rarr;</sub></div>
-        </figure>
-        <figure>
-          <img src="/src/assets/images/2.jpg" alt="" />
-          <figcaption>Lorem, ipsum dolor.</figcaption>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-          <div class="btn-view">View more<sub>&rarr;</sub></div>
-        </figure>
-        <figure>
-          <img src="/src/assets/images/3.jpg" alt="" />
-          <figcaption>Lorem, ipsum dolor.</figcaption>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-          <div class="btn-view">View more<sub>&rarr;</sub></div>
-        </figure>
-        <div class="review-grid-text">
-          <h1>
-            Lorem ipsum <br />
-            dolor sit amet
-          </h1>
-          <div class="btn-view">View more<sub>&rarr;</sub></div>
-        </div>
-      </article>
+      <sup>Interior Design</sup>
+    </div>
+    <div class="collapse-pic">
+      <img src="/src/assets/images/5.jpg" />
+      <img src="/src/assets/images/6.jpg" />
     </div>
   </section>
-  <section id="section3">
-    <div class="container">
-      <div class="name0">
-        <h1>
-          Lorem ipsum dolor<br />
-          sit amet
-        </h1>
-        <div class="name1">
-          <div class="no-image" v-for="n in 3"></div>
-        </div>
+
+  <section id="gallery-section">
+    <div class="gallery-text">
+      <sup>Interior Design</sup>
+      <h1>
+        Lorem ipsum dolor<br />
+        sit amet
+      </h1>
+      <div class="gallery-pic">
+        <img src="/src/assets/images/1.jpg" alt="" />
+        <img src="/src/assets/images/2.jpg" alt="" />
+        <img src="/src/assets/images/3.jpg" alt="" />
+        <img src="/src/assets/images/4.jpg" alt="" />
       </div>
     </div>
   </section>
+  <section id="form-section">
+    <form id="contact-form" action="">
+      <fieldset>
+        <label for="">Name</label>
+        <input type="text" placeholder="" />
+      </fieldset>
+      <fieldset>
+        <label for="">Lastname</label>
+        <input type="text" placeholder="" />
+      </fieldset>
+      <fieldset>
+        <label for="">Email</label>
+        <input type="text" placeholder="" />
+      </fieldset>
+      <fieldset>
+        <label for="">Tel</label>
+        <input type="text" placeholder="" />
+      </fieldset>
 
-  <section id="section4">
-    <div class="container"></div>
+      <textarea name="" cols="30" rows="10" placeholder="Message" id=""></textarea>
+    </form>
   </section>
-  <section id="section5">
-    <div class="container"></div>
-  </section>
-  <section id="section4">
-    <div class="container"></div>
-  </section>
+  <section id="section4"></section>
 </template>
 
 <style>
-.banner-1 {
+div > h1:first-of-type {
+  padding-left: 30px;
+  border-left: 5px solid #feb68e;
+}
+
+/**/
+#intro-slide > div {
   display: grid;
   grid-template-columns: 20% auto;
 }
 
-.banner-1 img {
+#intro-slide img {
   max-height: 90vh;
 }
 
-#section1 .no-content {
+#intro-slide .no-content {
   background: #2b2b2b;
+}
+/**/
+
+/**/
+section#present-section {
+  padding: var(--main-padding);
 }
 
 article.review-grid {
@@ -87,8 +129,15 @@ article.review-grid {
 }
 
 .review-grid-text {
-  border-left: 2px solid #feb68e;
-  padding-left: 30px;
+  display: grid;
+  justify-content: space-around;
+  padding-left: 25px;
+  border-left: 3px solid #feb68e;
+}
+
+.review-grid-text h1 {
+  padding: 0 !important;
+  border: none !important;
 }
 
 .btn-view {
@@ -97,18 +146,78 @@ article.review-grid {
   gap: 10px;
   font-size: 16px;
 }
+/**/
 
-.name1 {
+section#preview-section {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-}
-#section3 {
+  grid-template-columns: 30% auto;
+  padding: var(--main-padding);
   background: #2b2b2b;
+  color: #fff;
+  min-height: 50vw;
+}
+
+section#preview-section > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+section#preview-section sup {
   color: #fff;
 }
 
-#section5 {
+.collapse-pic {
+  position: relative;
+  top: -15%;
+  min-height: 0;
+  width: 100%;
+}
+
+.collapse-pic img {
+  position: relative;
+  width: 60%;
+  aspect-ratio: 5/3;
+  object-fit: contain;
+  z-index: 1;
+}
+
+.collapse-pic img:last-child {
+  position: absolute;
+  bottom: -30%;
+  right: 15%;
+  z-index: 0;
+}
+
+/**/
+section#form-section {
+  padding: var(--main-padding);
   background: var(--bg-color3);
+}
+
+form#contact-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+form#contact-form label {
+  color: #fff;
+}
+
+form#contact-form fieldset {
+  flex: 1 45%;
+}
+/**/
+
+section#gallery-section {
+  padding: var(--main-padding);
+}
+
+.gallery-pic {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  min-height: 20vw;
 }
 </style>
