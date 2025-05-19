@@ -100,7 +100,7 @@
 </template>
 
 <script>
-import provinceData from "/src/assets/data/province.json";
+import provinceData from "/SSR/data/province.json";
 
 export default {
   data() {

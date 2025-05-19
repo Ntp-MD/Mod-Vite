@@ -3,8 +3,9 @@
     <div id="nav-logo"><router-link to="/">Mod.IO</router-link></div>
     <router-link class="nav-menu-link" to="/" @click="closeMenu">Home</router-link>
     <router-link class="nav-menu-link" to="/Font" @click="closeMenu">Font</router-link>
-    <router-link class="nav-menu-link" to="/Slide" @click="closeMenu">Slide</router-link>
+    <router-link class="nav-menu-link" to="/OnlinePromotion" @click="closeMenu">Online-Promotion</router-link>
     <router-link class="nav-menu-link" to="/Free" @click="closeMenu">Free Space</router-link>
+    <router-link class="nav-menu-link" to="/Slide" @click="closeMenu">Slide</router-link>
     <router-link class="nav-menu-link" to="/Planet" @click="closeMenu">Planet</router-link>
     <router-link class="nav-menu-link" to="/smo-login" @click="closeMenu">SMO</router-link>
     <div id="nav-toggle" @click="toggleMenu" ref="navToggle">
