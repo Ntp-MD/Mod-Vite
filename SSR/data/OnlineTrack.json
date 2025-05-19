@@ -16,7 +16,7 @@
     "www.viveperfume.com",
     "www.prestigehouse.co.th"
   ],
-  "Waiting": [],
+  "Waiting": ["www.msswitch.co.th", "www.ecsystemth.com", "www.asasappakij.com"],
   "Complete": [
     "www.majorsolarcell.com",
     "www.tgcis.com",
@@ -32,9 +32,6 @@
     "www.viveperfume.com",
     "www.graphichub88.com",
     "www.viveperfume.com",
-    "www.prestigehouse.co.th",
-    "www.ecsystemth.com",
-    "www.asasappakij.com",
-    "www.msswitch.co.th"
+    "www.prestigehouse.co.th"
   ]
 }

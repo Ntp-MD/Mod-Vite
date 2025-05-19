@@ -8,13 +8,16 @@
           <label for="select-all-current">Select All</label>
         </div>
       </div>
-
       <div class="list-group">
         <div v-for="site in currentSites" :key="'current-' + site" class="list-item">
           <input type="checkbox" :value="site" v-model="selectedCurrentSites" :id="'current-' + site.replace(/\./g, '-')" />
           <label :for="'current-' + site.replace(/\./g, '-')">{{ site }}</label>
         </div>
       </div>
+      <div class="add-box">
+        <input v-model="newCurrentSite" placeholder="Enter new site" />
+      </div>
+      <div class="action-button" @click="addNewCurrentSite">Add</div>
     </div>
     <div class="SwapCard">
       <div @click="moveSelectedFromCurrentToWaiting">Next</div>
@@ -53,7 +56,7 @@
           <label :for="'complete-' + site.replace(/\./g, '-')">{{ site }}</label>
         </div>
       </div>
-      <div class="clear-button" @click="moveSelectedFromWaitingToComplete">Clear</div>
+      <div class="action-button" @click="clearAllComplete">Clear Select</div>
     </div>
   </div>
 </template>
@@ -70,6 +73,7 @@ export default {
       selectedCurrentSites: [],
       selectedWaitingSites: [],
       selectedCompleteSites: [],
+      newCurrentSite: "",
     };
   },
 
@@ -107,7 +111,7 @@ export default {
   },
 
   mounted() {
-    axios.get("http://localhost:3001/data").then((res) => {
+    axios.get("https://mod-vite.onrender.com/data").then((res) => {
       const data = res.data;
       this.currentSites = JSON.parse(localStorage.getItem("promoApp_currentSites")) || data.Current || [];
       this.waitingSites = JSON.parse(localStorage.getItem("promoApp_waitingSites")) || data.Waiting || [];
@@ -157,6 +161,29 @@ export default {
       this.syncToServer();
     },
 
+    /*
+    clearSelectedComplete() {
+      this.completeSites = this.completeSites.filter((site) => !this.selectedCompleteSites.includes(site));
+      this.selectedCompleteSites = [];
+      this.syncToServer();
+    },
+    */
+
+    clearAllComplete() {
+      this.completeSites = [];
+      this.selectedCompleteSites = [];
+      this.syncToServer();
+    },
+
+    addNewCurrentSite() {
+      const site = this.newCurrentSite.trim();
+      if (site && !this.currentSites.includes(site)) {
+        this.currentSites.push(site);
+        this.newCurrentSite = "";
+        this.syncToServer();
+      }
+    },
+
     syncToServer() {
       const updatedData = {
         Current: this.currentSites,
@@ -164,7 +191,7 @@ export default {
         Complete: this.completeSites,
       };
       axios
-        .post("http://localhost:3001/update-data", updatedData)
+        .post("https://mod-vite.onrender.com/update-data", updatedData)
         .then(() => {
           console.log("Data synced to server.");
         })
@@ -183,25 +210,28 @@ export default {
   color: #444;
   width: 100%;
   max-width: 1200px;
-  margin: 100px auto;
+  margin: 50px auto;
 }
 
 .list-title {
   display: flex;
   justify-content: space-between;
-  padding: 15px 15px 0;
 }
 
 .list-group {
   display: flex;
   flex-direction: column;
-  gap: 5px;
   height: 100%;
-  padding: 10px 15px;
   border: 1px solid #ccc;
   background: #fff;
   overflow-y: scroll;
-  margin: 15px;
+}
+
+.list-item {
+  display: grid;
+  grid-template-columns: 15px auto;
+  gap: 5px;
+  padding: 5px 10px;
 }
 
 .CurrentCard,
@@ -209,10 +239,12 @@ export default {
 .CompleteCard {
   display: flex;
   flex-direction: column;
+  gap: 10px;
   flex: 2;
   border: 1px solid #ccc;
   border-radius: 5px;
   background: #f9f9f9;
+  padding: 20px;
 }
 
 .SwapCard {
@@ -239,26 +271,30 @@ export default {
   background-color: #e0e0e0;
 }
 
-.list-item {
-  display: grid;
-  grid-template-columns: 15px auto;
-  gap: 5px;
-}
-
 .selectAll {
   display: grid;
   grid-template-columns: 15px auto;
   gap: 5px;
 }
 
-.clear-button {
+.action-button {
   cursor: pointer;
-  padding: 10px 12px;
   border: 1px solid #ccc;
   background-color: #f0f0f0;
   border-radius: 4px;
   text-align: center;
   user-select: none;
-  margin: 0px 20px 10px;
+  padding: 10px;
+}
+
+.add-box input {
+  background: #fff;
+  border: 1px solid #ccc;
+  min-height: 40px;
+  padding: 5px;
+}
+
+.add-box input::placeholder {
+  color: #444;
 }
 </style>
