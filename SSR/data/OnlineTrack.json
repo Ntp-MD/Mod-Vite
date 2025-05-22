@@ -1,37 +1,75 @@
 {
   "Current": [
-    "www.majorsolarcell.com",
-    "www.tgcis.com",
-    "www.veducons.com",
-    "www.matasports.com",
-    "www.thaweeagrotrade.com",
-    "www.wr-furanddec.com",
-    "www.ncktrading.com",
-    "www.ndsignrich.com",
-    "www.epina.co.th",
-    "www.thaiagrotosic.com",
-    "www.biopalm.net",
-    "www.viveperfume.com",
-    "www.graphichub88.com",
-    "www.viveperfume.com",
-    "www.prestigehouse.co.th"
+    {
+      "name": "www.tgcis.com",
+      "addedAt": "2025-05-21T06:26:21.170Z"
+    },
+    {
+      "name": "www.veducons.com",
+      "addedAt": "2025-05-21T06:26:25.546Z"
+    },
+    {
+      "name": "www.matasports.com",
+      "addedAt": "2025-05-21T06:26:48.282Z"
+    },
+    {
+      "name": "www.thaweeagrotrade.com",
+      "addedAt": "2025-05-21T06:27:02.018Z"
+    },
+    {
+      "name": "www.wr-furanddec.com",
+      "addedAt": "2025-05-21T06:27:05.730Z"
+    },
+    {
+      "name": "www.ncktrading.com",
+      "addedAt": "2025-05-21T06:27:08.842Z"
+    },
+    {
+      "name": "www.ndsignrich.com",
+      "addedAt": "2025-05-21T06:27:11.818Z"
+    },
+    {
+      "name": "www.epina.co.th",
+      "addedAt": "2025-05-21T06:27:15.474Z"
+    },
+    {
+      "name": "www.thaiagrotosic.com",
+      "addedAt": "2025-05-21T06:27:19.274Z"
+    },
+    {
+      "name": "www.biopalm.net",
+      "addedAt": "2025-05-21T06:27:23.242Z"
+    },
+    {
+      "name": "www.viveperfume.com",
+      "addedAt": "2025-05-21T06:27:28.090Z"
+    },
+    {
+      "name": "www.graphichub88.com",
+      "addedAt": "2025-05-21T06:27:31.242Z"
+    },
+    {
+      "name": "www.prestigehouse.co.th",
+      "addedAt": "2025-05-21T06:27:58.506Z"
+    },
+    {
+      "name": "www.ecsystemth.com",
+      "addedAt": "2025-05-21T06:28:03.786Z"
+    }
   ],
-  "Waiting": ["www.msswitch.co.th", "www.ecsystemth.com", "www.asasappakij.com"],
-  "Complete": [
-    "www.majorsolarcell.com",
-    "www.tgcis.com",
-    "www.veducons.com",
-    "www.matasports.com",
-    "www.thaweeagrotrade.com",
-    "www.wr-furanddec.com",
-    "www.ncktrading.com",
-    "www.ndsignrich.com",
-    "www.epina.co.th",
-    "www.thaiagrotosic.com",
-    "www.biopalm.net",
-    "www.viveperfume.com",
-    "www.graphichub88.com",
-    "www.viveperfume.com",
-    "www.prestigehouse.co.th"
-  ]
+  "Waiting": [
+    {
+      "name": "www.msswitch.co.th",
+      "addedAt": "2025-05-21T06:31:25.490Z"
+    },
+    {
+      "name": "www.asasappakij.com",
+      "addedAt": "2025-05-21T06:31:31.938Z"
+    },
+    {
+      "name": "www.majorsolarcell.com",
+      "addedAt": "2025-05-21T06:26:15.922Z"
+    }
+  ],
+  "Complete": []
 }

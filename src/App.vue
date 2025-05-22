@@ -3,9 +3,16 @@
     <header v-if="route.meta.HideThis">
       <NavHeader></NavHeader>
     </header>
-    <main>
-      <router-view></router-view>
-    </main>
+    <section>
+      <NavAside></NavAside>
+      <main>
+        <NavAside></NavAside>
+        <div class="display-content">
+          <router-view></router-view>
+        </div>
+      </main>
+    </section>
+
     <footer v-if="route.meta.HideThis">
       <NavFooter></NavFooter>
     </footer>

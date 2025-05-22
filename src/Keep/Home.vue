@@ -97,6 +97,20 @@
 </template>
 
 <style>
+:root {
+  --main-padding: clamp(15px, 10vw, 150px) clamp(15px, 12vw, 200px);
+  --bg-color: #fff;
+  --bg-color2: #2b2b2b;
+  --bg-color3: #3a3e4a;
+  --bg-btn: #3a3e4a;
+  --font-color: #3a3e4a;
+  --font-color2: #fff;
+  --gap-text: clamp(20px, 5vw, 50px);
+  --gap-content: clamp(50px, 100%, 100px);
+  --color: #feb68e;
+  --bg-color20: #eeeff3;
+}
+
 div > h1:first-of-type {
   padding-left: 30px;
   border-left: 5px solid #feb68e;

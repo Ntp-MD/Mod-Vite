@@ -1,27 +1,49 @@
 :root {
-  --main-padding: clamp(15px, 10vw, 150px) clamp(15px, 12vw, 200px);
-  --bg-color: #fff;
-  --bg-color2: #2b2b2b;
-  --bg-color3: #3a3e4a;
-  --bg-btn: #3a3e4a;
-  --font-color: #3a3e4a;
-  --font-color2: #fff;
-  --gap-text: clamp(20px, 5vw, 50px);
-  --gap-content: clamp(50px, 100%, 100px);
-  --color: #feb68e;
-  --bg-color20: #eeeff3;
+  --ui-bg1: #272822;
+  --ui-bg2: #1e1f1c;
+  --ui-bg3: #2b2b2b;
+  --ui-bg4: #3a3e4a;
+  --border-radius: 10px;
+  --border-color: #444;
+  --gap: 20px;
 }
 
 #AppClient {
   position: relative;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
-  font-family: "Onest", sans-serif;
+  height: 100vh;
+  font-family: monospace;
+}
+
+#AppClient > section {
+  display: grid;
+  grid-template-columns: 15% auto;
+  height: 100%;
+  overflow: hidden;
+}
+
+#AppClient > section > main {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  background: var(--ui-bg2);
+  padding: 20px;
+}
+
+main > .display-content {
+  background: var(--ui-bg1);
+  height: calc(100% - 50px);
+  overflow-y: scroll;
 }
 
 ::-webkit-scrollbar {
-  display: none;
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #444;
 }
 
 * {
@@ -29,18 +51,13 @@
 }
 
 header {
-  background: #fff;
-  height: 100px;
-}
-
-header a {
-  color: #000;
+  background: var(--ui-bg1);
 }
 
 footer {
   display: grid;
   place-items: center;
-  background: var(--bg-color2);
+  background: var(--ui-bg1);
   width: 100%;
   min-height: 60px;
   z-index: 1;
@@ -50,22 +67,7 @@ footer {
 body {
   margin: 0;
   padding: 0;
-  font-size: clamp(14px, 1vw, 18px);
-  background: var(--bg-color);
-  color: var(--font-color);
-}
-
-main {
-  display: flex;
-  flex-direction: column;
-  overflow-x: hidden;
-  overflow-y: auto;
-  width: 100%;
-  height: 100%;
-}
-
-main > section:not(:first-child) {
-  padding: 10vw 0;
+  font-size: 16px;
 }
 
 section {
@@ -96,7 +98,7 @@ figcaption {
 
 a {
   text-decoration: none;
-  font-size: 18px;
+  font-size: 1em;
   font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 1px;

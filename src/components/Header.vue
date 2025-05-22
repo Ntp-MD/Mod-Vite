@@ -1,13 +1,7 @@
 <template>
   <nav id="nav-header" :class="['nav-menu', { open: isMenuOpen }]" ref="NavMenu">
     <div id="nav-logo"><router-link to="/">Mod.IO</router-link></div>
-    <router-link class="nav-menu-link" to="/" @click="closeMenu">Home</router-link>
-    <router-link class="nav-menu-link" to="/Font" @click="closeMenu">Font</router-link>
-    <router-link class="nav-menu-link" to="/OnlinePromotion" @click="closeMenu">Online-Promotion</router-link>
-    <router-link class="nav-menu-link" to="/Free" @click="closeMenu">Free Space</router-link>
-    <router-link class="nav-menu-link" to="/Slide" @click="closeMenu">Slide</router-link>
-    <router-link class="nav-menu-link" to="/Planet" @click="closeMenu">Planet</router-link>
-    <router-link class="nav-menu-link" to="/smo-login" @click="closeMenu">SMO</router-link>
+    <router-link class="nav-menu-link" to="/Dashboard" @click="closeMenu">Dashboard</router-link>
     <div id="nav-toggle" @click="toggleMenu" ref="navToggle">
       <div :class="{ animate: isMenuOpen }"></div>
       <div :class="{ animate: isMenuOpen }"></div>
@@ -44,10 +38,14 @@ nav {
   align-items: center;
   gap: 20px;
   width: 100%;
-  min-height: 100px;
+  min-height: 70px;
   text-transform: uppercase;
   line-height: 1;
-  padding: 0 5vw;
+  padding: 0 15px;
+}
+
+nav a {
+  color: #fff;
 }
 
 #nav-logo {
@@ -92,7 +90,6 @@ nav {
     width: 25px;
     height: 3px;
     transition: 0.5s;
-    background-color: #fff;
     transition: all 0.3s ease;
   }
 
