@@ -40,7 +40,10 @@
           <div :for="'waiting-' + (site.name || '').replace(/\./g, '-')">{{ site.name }}</div>
         </div>
       </div>
-      <input type="search" v-model="searchQuery" placeholder="Search Website" />
+      <div class="search-box">
+        <input class="search-input" type="search" v-model="searchQuery" placeholder="Search Website" />
+        <img src="/src/assets/icon/search.png" alt="" />
+      </div>
     </div>
     <div class="SwapCard">
       <div class="PrevSwap" @click="moveSelectedFromWaitingToComplete">
@@ -81,5 +84,5 @@ export default {
 </script>
 
 <style scoped>
-@import url(/src/css/OnlinePromotion.css);
+@import url(/src/css/OnlineDisplay.css);
 </style>

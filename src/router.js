@@ -9,7 +9,7 @@ const routes = Object.keys(viewFiles).map((path) => {
   const isToggleHide = path.includes("/smo-app/"); // Check if it's an smo-app route
 
   return {
-    path: name.toLowerCase() === "font" ? "/" : `/${name.toLowerCase()}`,
+    path: name.toLowerCase() === "fontdisplay" ? "/" : `/${name.toLowerCase()}`,
     name: name.toLowerCase(),
     component: viewFiles[path],
     meta: {

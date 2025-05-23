@@ -97,28 +97,22 @@ watchEffect(() => {
 }
 
 .js-file .file-header {
-  background-color: #ffe100;
-  color: #000;
 }
 
 .css-file .file-header {
-  background-color: #2f78ff;
-  color: #fff;
 }
 
 .html-file .file-header {
-  background-color: #ff5733;
-  color: #fff;
 }
 
 .file-content {
   white-space: pre-wrap;
   word-wrap: break-word;
-  background-color: #fafafa;
+  background: var(--ui-bg1);
   padding: 15px;
   margin: 0;
   overflow-y: auto;
-  color: #333;
+  color: var(--ui-font);
   border: 1px solid #ddd;
 }
 </style>

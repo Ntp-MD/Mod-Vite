@@ -12,14 +12,21 @@
 
 #NavAside a {
   text-transform: unset;
-  color: #fff;
+  color: var(--ui-font);
 }
 
 .NavAsideTop {
-  border-top: 1px solid #444;
+  display: grid;
+  grid-template-columns: 40px auto;
+  align-items: center;
+  gap: 15px;
+  padding: 10px 15px;
   border-bottom: 1px solid #444;
-  text-align: left;
-  padding: 15px;
+}
+
+.NavAsideTop img {
+  filter: invert(1);
+  object-fit: cover;
 }
 
 .NavAsideMid {
@@ -28,24 +35,29 @@
   justify-content: center;
   gap: 5px;
   padding: 15px;
-
   height: -webkit-fill-available;
 }
 
 .NavAsideBottom {
   text-align: left;
   padding: 15px;
+  border-top: 1px solid #444;
+  border-bottom: 1px solid #444;
 }
 </style>
 
 <template>
   <div id="NavAside">
-    <div class="NavAsideTop">Dashboard</div>
+    <div class="NavAsideTop">
+      <img src="/src/assets/icon/user.png" alt="" />
+
+      Adminstrator
+    </div>
     <div class="NavAsideMid">
       <router-link class="nav-menu-link" to="/" @click="closeMenu">Font Family</router-link>
-      <router-link class="nav-menu-link" to="/OnlineTrack" @click="closeMenu">Online Track</router-link>
-      <router-link class="nav-menu-link" to="/ListDemo" @click="closeMenu">List Demo</router-link>
-      <router-link class="nav-menu-link" to="/blank" @click="closeMenu">Calendar</router-link>
+      <router-link class="nav-menu-link" to="/OnlineDisplay" @click="closeMenu">Online Track</router-link>
+      <router-link class="nav-menu-link" to="/DemoDisplay" @click="closeMenu">List Demo</router-link>
+      <router-link class="nav-menu-link" to="/QuickAccess" @click="closeMenu">QuickAccess</router-link>
       <router-link class="nav-menu-link" to="/blank" @click="closeMenu">Peference </router-link>
       <router-link class="nav-menu-link" to="/blank" @click="closeMenu">Setting</router-link>
     </div>

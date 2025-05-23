@@ -15,7 +15,6 @@ export default {
   },
 
   computed: {
-    // Sorted from oldest to newest
     sortedCurrentSites() {
       return [...this.currentSites].sort((a, b) => new Date(a.addedAt) - new Date(b.addedAt));
     },
@@ -27,13 +26,13 @@ export default {
     },
 
     filteredCurrentSites() {
-      return this.sortedCurrentSites.filter((site) => site.name.toLowerCase().includes(this.searchQuery.toLowerCase()));
+      return this.sortedCurrentSites.filter(this.matchesSearch);
     },
     filteredWaitingSites() {
-      return this.sortedWaitingSites.filter((site) => site.name.toLowerCase().includes(this.searchQuery.toLowerCase()));
+      return this.sortedWaitingSites.filter(this.matchesSearch);
     },
     filteredCompleteSites() {
-      return this.sortedCompleteSites.filter((site) => site.name.toLowerCase().includes(this.searchQuery.toLowerCase()));
+      return this.sortedCompleteSites.filter(this.matchesSearch);
     },
 
     isAllCurrentSelected() {
@@ -95,9 +94,19 @@ export default {
   },
 
   methods: {
+    matchesSearch(site) {
+      const query = this.searchQuery.toLowerCase();
+      return (
+        site.name.toLowerCase().includes(query) ||
+        (site.note && site.note.toLowerCase().includes(query)) ||
+        (site.status && site.status.toLowerCase().includes(query))
+      );
+    },
+
     isMatch(name) {
       return this.searchQuery && name.toLowerCase().includes(this.searchQuery.toLowerCase());
     },
+
     toggleSelectAll(group) {
       switch (group) {
         case "current":
@@ -121,9 +130,7 @@ export default {
       const itemsToAdd = selectedSites.filter((item) => !this[destinationArrayName].some((site) => site.name === item.name));
 
       this[destinationArrayName].push(...itemsToAdd);
-
       this[sourceArrayName] = this[sourceArrayName].filter((site) => !selectedNames.includes(site.name));
-
       this[selectedNamesArrayName] = [];
     },
 
@@ -135,12 +142,10 @@ export default {
       this._moveSelectedItems("waitingSites", "currentSites", "selectedWaitingSiteNames");
       this.syncToServer();
     },
-
     moveSelectedFromWaitingToComplete() {
       this._moveSelectedItems("waitingSites", "completeSites", "selectedWaitingSiteNames");
       this.syncToServer();
     },
-
     moveSelectedFromCompleteToWaiting() {
       this._moveSelectedItems("completeSites", "waitingSites", "selectedCompleteSiteNames");
       this.syncToServer();

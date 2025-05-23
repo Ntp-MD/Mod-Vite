@@ -1,8 +1,10 @@
 :root {
-  --ui-bg1: #272822;
-  --ui-bg2: #1e1f1c;
+  --ui-bg1: #262723;
+  --ui-bg2: #2d2d2a;
   --ui-bg3: #2b2b2b;
   --ui-bg4: #3a3e4a;
+  --ui-font: #e2e2e2;
+  --focus: #4abdff;
   --border-radius: 10px;
   --border-color: #444;
   --gap: 20px;
@@ -18,7 +20,7 @@
 
 #AppClient > section {
   display: grid;
-  grid-template-columns: 15% auto;
+  grid-template-columns: 15% auto 50px;
   height: 100%;
   overflow: hidden;
 }
@@ -29,29 +31,63 @@
   height: 100%;
   overflow: hidden;
   background: var(--ui-bg2);
-  padding: 20px;
+  padding: 15px;
 }
 
-main > .display-content {
+.display-content {
   background: var(--ui-bg1);
   height: calc(100% - 50px);
+  padding: 20px;
+}
+.display-content > div {
+  position: relative;
   overflow-y: scroll;
+  overflow-x: hidden;
+  height: 100%;
+  padding-right: 15px;
+}
+
+.search-box {
+  border: 1px solid #444;
+}
+
+.search-box,
+.edit-box {
+  display: grid;
+  grid-template-columns: auto 15px;
+  align-items: center;
+  width: 100%;
+  padding: 0 10px;
+  height: 45px;
+}
+
+.search-box img,
+.edit-box img {
+  object-fit: contain;
+  filter: invert(1);
+  cursor: pointer;
+  user-select: none;
 }
 
 ::-webkit-scrollbar {
   background: transparent;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #444;
+  background: #ccc;
+  border-radius: var(--border-radius);
+  min-height: 5%;
 }
 
 * {
   box-sizing: border-box;
+  color: var(--ui-font);
 }
 
 header {
   background: var(--ui-bg1);
+  border-bottom: 1px solid #444;
 }
 
 footer {
@@ -59,9 +95,10 @@ footer {
   place-items: center;
   background: var(--ui-bg1);
   width: 100%;
-  min-height: 60px;
+  min-height: 50px;
   z-index: 1;
   color: #fff;
+  border-top: 1px solid #444;
 }
 
 body {
@@ -178,11 +215,11 @@ input,
 textarea {
   width: 100%;
   border: none;
-  border-bottom: 1px solid #ccc;
   background: transparent;
   outline: none;
   padding: 0;
   margin: 0;
+  color: #fff;
 }
 
 textarea {
@@ -235,6 +272,10 @@ textarea {
   section {
     height: auto;
     padding: 50px 20px !important;
+  }
+
+  #AppClient {
+    display: none;
   }
 }
 

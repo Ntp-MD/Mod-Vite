@@ -8,15 +8,13 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 app.use(cors());
-app.use(express.json()); // for parsing application/json
+app.use(express.json());
 
-// ✅ Path to your JSON file (e.g., ./data/OnlineTrack.json)
-const OnlineTrackData = path.join(__dirname, "data", "OnlineTrack.json");
-const listDemoData = path.join(__dirname, "data", "ListDemo.json");
+const OnlineDisplayData = path.join(__dirname, "data", "OnlineDisplay.json");
+const DemoDisplayData = path.join(__dirname, "data", "DemoDisplay.json");
 
-// ✅ GET /data — Load data from file
-app.get("/data", (req, res) => {
-  fs.readFile(OnlineTrackData, "utf8", (err, data) => {
+app.get("/OnlineDisplayGet", (req, res) => {
+  fs.readFile(OnlineDisplayData, "utf8", (err, data) => {
     if (err) {
       console.error("Read error:", err);
       return res.status(500).json({ error: "Failed to read data file" });
@@ -30,9 +28,9 @@ app.get("/data", (req, res) => {
   });
 });
 
-app.post("/update-data", (req, res) => {
+app.post("/OnlineDisplayPost", (req, res) => {
   const newData = req.body;
-  fs.writeFile(OnlineTrackData, JSON.stringify(newData, null, 2), (err) => {
+  fs.writeFile(OnlineDisplayData, JSON.stringify(newData, null, 2), (err) => {
     if (err) {
       console.error("Write error:", err);
       return res.status(500).json({ error: "Failed to write data file" });
@@ -41,30 +39,30 @@ app.post("/update-data", (req, res) => {
   });
 });
 
-app.get("/list-demo-data", (req, res) => {
-  console.log("Received request /list-demo-data");
-  fs.readFile(listDemoData, "utf8", (err, data) => {
+app.get("/DemoDisplayGet", (req, res) => {
+  console.log("Received request /DemoDisplayGet");
+  fs.readFile(DemoDisplayData, "utf8", (err, data) => {
     if (err) {
-      console.error("Read error (ListDemo):", err);
-      return res.status(500).json({ error: "Failed to read ListDemo data file" });
+      console.error("Read error (DemoDisplay):", err);
+      return res.status(500).json({ error: "Failed to read DemoDisplay data file" });
     }
     try {
       const jsonData = JSON.parse(data);
-      console.log("ListDemo data loaded:", jsonData);
+      console.log("DemoDisplay data loaded:", jsonData);
       res.json(jsonData);
     } catch (parseErr) {
-      console.error("Parse error (ListDemo):", parseErr);
-      res.status(500).json({ error: "Corrupted JSON data in ListDemo" });
+      console.error("Parse error (DemoDisplay):", parseErr);
+      res.status(500).json({ error: "Corrupted JSON data in DemoDisplay" });
     }
   });
 });
 
-app.post("/update-list-demo-data", (req, res) => {
+app.post("/DemoDisplayPost", (req, res) => {
   const newData = req.body;
-  fs.writeFile(listDemoData, JSON.stringify(newData, null, 2), (err) => {
+  fs.writeFile(DemoDisplayData, JSON.stringify(newData, null, 2), (err) => {
     if (err) {
-      console.error("Write error (ListDemo):", err);
-      return res.status(500).json({ error: "Failed to write ListDemo data file" });
+      console.error("Write error (DemoDisplay):", err);
+      return res.status(500).json({ error: "Failed to write DemoDisplay data file" });
     }
     res.json({ success: true });
   });

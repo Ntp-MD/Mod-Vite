@@ -1,7 +1,7 @@
 <template>
-  <section class="container">
-    <div class="copy-group">
-      <div class="copy-items" v-for="font in fonts" :key="font.font_name">
+  <div class="FontDisplay">
+    <div class="font-group">
+      <div class="font-items" v-for="font in fonts" :key="font.font_name">
         <div class="font-name">{{ font.font_name }}</div>
         <div class="code-block">
           <div class="code-content">
@@ -21,11 +21,11 @@
         </div>
       </div>
     </div>
-  </section>
+  </div>
 </template>
 
 <script>
-import fontData from "/SSR/data/font-family.json";
+import fontData from "/SSR/data/FontFamily.json";
 
 export default {
   methods: {
@@ -49,15 +49,11 @@ export default {
 </script>
 
 <style scoped>
-.copy-group {
+.font-group {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(clamp(150px, 30%, 20vw), 1fr));
   gap: 15px;
   margin: 0;
-}
-
-.copy-group * {
-  color: #fff;
 }
 
 .font-name {
@@ -65,7 +61,7 @@ export default {
   font-weight: 600;
 }
 
-.copy-items {
+.font-items {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -114,7 +110,7 @@ export default {
 }
 
 @media screen and (max-width: 480px) {
-  .copy-group {
+  .font-group {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
   }

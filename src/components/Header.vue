@@ -1,6 +1,6 @@
 <template>
   <nav id="nav-header" :class="['nav-menu', { open: isMenuOpen }]" ref="NavMenu">
-    <div id="nav-logo"><router-link to="/">Mod.IO</router-link></div>
+    <div id="nav-logo"><router-link to="/">Mod</router-link></div>
     <router-link class="nav-menu-link" to="/Dashboard" @click="closeMenu">Dashboard</router-link>
     <div id="nav-toggle" @click="toggleMenu" ref="navToggle">
       <div :class="{ animate: isMenuOpen }"></div>
@@ -38,10 +38,9 @@ nav {
   align-items: center;
   gap: 20px;
   width: 100%;
-  min-height: 70px;
   text-transform: uppercase;
   line-height: 1;
-  padding: 0 15px;
+  padding: 10px 15px;
 }
 
 nav a {

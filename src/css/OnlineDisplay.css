@@ -3,8 +3,7 @@
   height: 100%;
   width: 100%;
   margin: auto;
-  color: #fff;
-  font-family: monospace;
+  padding: 20px;
 }
 
 .list-title {
@@ -46,7 +45,7 @@
   grid-template-columns: 15px auto;
   align-items: center;
   gap: 10px;
-  padding: 5px 10px;
+  padding: 8px 10px;
   border-top: 1px solid transparent;
   border-right: 1px solid transparent;
   border-left: 1px solid transparent;
@@ -65,9 +64,8 @@
   flex-direction: column;
   gap: 10px;
   flex: 2;
-  border-radius: 10px;
+  border-radius: var(--border-radius);
   background: var(--dh-bg1);
-  padding: 20px;
 }
 
 .SwapCard {
@@ -114,19 +112,8 @@
   width: fit-content;
 }
 
-.add-btn {
-  background: #56d524;
-}
-
-.clear-btn {
-  background: red;
-}
-
-.PromoPanel input {
-  border: 1px solid #444;
-  min-height: 40px;
-  padding: 10px 15px;
-  color: #fff;
+.action-button:hover {
+  border: 1px solid #4abdff;
 }
 
 .PromoPanel input::placeholder {
