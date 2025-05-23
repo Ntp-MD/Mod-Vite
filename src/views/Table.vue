@@ -6,12 +6,37 @@
   <div>
     <div class="TableBody">
       <div class="TableBoard">
-        <div class="TableFlob"></div>
+        <div class="AI PlayerDetail">
+          <div class="PlayerHand">7 J</div>
+          <div class="PlayerName">Bob</div>
+          <div class="PlayerMoney">100 $</div>
+        </div>
+        <div class="AI PlayerDetail">
+          <div class="PlayerHand">7 J</div>
+          <div class="PlayerName">AI 2</div>
+          <div class="PlayerMoney">100 $</div>
+        </div>
+        <div class="AI PlayerDetail">
+          <div class="PlayerHand">7 J</div>
+          <div class="PlayerName">AI 3</div>
+          <div class="PlayerMoney">100 $</div>
+        </div>
+        <div class="AI PlayerDetail">
+          <div class="PlayerHand">7 J</div>
+          <div class="PlayerName">Bob</div>
+          <div class="PlayerMoney">100 $</div>
+        </div>
+        <div class="AI PlayerDetail">
+          <div class="PlayerHand">7 J</div>
+          <div class="PlayerName">Bob</div>
+          <div class="PlayerMoney">100 $</div>
+        </div>
         <div class="MainPlayer PlayerDetail">
           <div class="PlayerHand">7 J</div>
           <div class="PlayerName">Bob</div>
           <div class="PlayerMoney">100 $</div>
         </div>
+        <div class="TableFlob"></div>
       </div>
 
       <div class="PlayerAction">
@@ -52,6 +77,42 @@
   border: 1px solid var(--focus);
 }
 
+.TableBoard > div.AI:nth-child(2) {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.TableBoard > div.AI:nth-child(3) {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: auto;
+}
+
+.TableBoard > div.AI:nth-child(4) {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+}
+.TableBoard > div.AI:nth-child(5) {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+}
+
+.MainPlayer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+
 .TableFlob {
   position: absolute;
   inset: 0;
@@ -68,14 +129,6 @@
   min-width: 150px;
   width: fit-content;
   border: 1px solid #444;
-}
-
-.MainPlayer {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 20px;
-  margin: auto;
 }
 
 .PlayerAction {
