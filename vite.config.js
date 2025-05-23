@@ -18,6 +18,9 @@ export default defineConfig({
   base: "/Mod-Vite/", // Ensure this matches your repository name
   server: {
     hmr: true,
+    watch: {
+      usePolling: true, // This can help in environments where file system events are not reliably detected
+    },
   },
   resolve: {
     alias: {
