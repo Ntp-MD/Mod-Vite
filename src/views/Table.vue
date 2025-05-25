@@ -1,78 +1,95 @@
 <style scoped>
 @import url(/src/css/Table.css);
 </style>
+
 <template>
   <div>
     <div class="TableBody">
-      <div class="TimelineLog">
-        <h3>Action Timeline</h3>
-        <div v-for="(round, index) in roundLogs" :key="index" class="round-log">
-          <h4>Round {{ index + 1 }}</h4>
-          <div>
-            <div v-for="(entry, i) in round" :key="i">{{ entry }}</div>
+      <div class="PlayerTable">
+        <div v-for="(name, i) in playerNames" :key="i" class="player" :class="{ active: i === currentPlayer, folded: playerFolded[i] }">
+          <h3>
+            {{ name }}
+            <span class="text-gray-400 text-sm">({{ playerPositions[i] }})</span>
+          </h3>
+          <div v-if="i === 0 || !playerFolded[i]" class="HandCard">
+            <div v-for="(card, cIndex) in hands[i]" :key="cIndex" class="Card" :class="getSuitClass(card.suit)">
+              <div class="rank">{{ card.rank }}</div>
+              <div class="suit">{{ card.suit }}</div>
+            </div>
           </div>
+          <p>Money: ${{ playerMoney[i] }}</p>
+          <p>Bet: ${{ playerBets[i] }}</p>
+          <p>{{ playerDialog[i] }}</p>
         </div>
       </div>
-
       <div class="TableBoard">
-        <div class="TableFlob">
-          <div class="TableFlobCard" v-if="flop && flop.length">{{ formatHand(flop) }}</div>
-        </div>
-        <div class="PoolMoney">{{ pot }}$</div>
-        <div class="PlayerTable">
-          <div v-for="(name, i) in playerNames" :key="i" class="player" :class="{ active: i === currentPlayer, folded: playerFolded[i] }">
-            <h3>
-              {{ name }} <span class="text-gray-400 text-sm">({{ playerPositions[i] }})</span>
-            </h3>
-            <div v-if="i === 0 || !playerFolded[i]">
-              <p>Cards: {{ formatHand(hands[i]) }}</p>
-            </div>
-            <p>Money: ${{ playerMoney[i] }}</p>
-            <p>Bet: ${{ playerBets[i] }}</p>
-            <p>{{ playerDialog[i] }}</p>
+        <div class="TableSetting">
+          <!-- Existing controls -->
+          <div>
+            <label>
+              Number of Players:
+              <input type="number" v-model.number="numPlayers" min="2" max="6" />
+            </label>
           </div>
+          <div>
+            <label>
+              Difficulty:
+              <select v-model="difficulty">
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+              </select>
+            </label>
+          </div>
+          <div>
+            <label>
+              Starting Money:
+              <input type="number" v-model.number="startingMoney" min="100" />
+            </label>
+          </div>
+          <button @click="startGame" :disabled="gamePhase !== 'idle'">Start Game</button>
+
+          <button @click="startNewRound">Next Round</button>
+
+          <button @click="resetGame">Reset</button>
+
+          <p>Current Game Phase: {{ gamePhase }}</p>
         </div>
+
+        <div class="TableFlob">
+          <div class="TableFlobCard" v-if="flop && flop.length">
+            <div v-for="(card, index) in flop" :key="index" class="Card" :class="getSuitClass(card.suit)">
+              <div class="rank">{{ card.rank }}</div>
+              <div class="suit">{{ card.suit }}</div>
+            </div>
+          </div>
+          <div class="PoolMoney">{{ pot }}$</div>
+        </div>
+
         <div class="PlayerActionGroup1">
           <button :disabled="!canCheck" @click="playerAction('check')">Check</button>
           <button :disabled="!canCall" @click="playerAction('call', callAmount)">{{ `Call $${callAmount}` }}</button>
-          <button @click="playerAction('raise', raiseInput)">Raise ${{ raiseInput }}</button>
+          <button :disabled="!canRaise" @click="playerAction('raise', raiseInput)">Raise ${{ raiseInput }}</button>
           <button @click="playerAction('fold')">Fold</button>
         </div>
 
         <div class="PlayerActionGroup2">
           <div v-for="chip in raiseChips" :key="chip" class="chip-control">
-            <button @click="raiseInput = Math.max(minRaiseAmount, raiseInput - chip)">-</button>
-            <button @click="raiseInput = chip">${{ chip }}</button>
-
-            <button @click="raiseInput = Math.min(maxRaiseAmount, raiseInput + chip)">+</button>
+            <button @click="decreaseRaise(chip)">-</button>
+            <button @click="setRaise(chip)">${{ chip }}</button>
+            <button @click="increaseRaise(chip)">+</button>
           </div>
         </div>
-      </div>
 
-      <div class="Table-setting" v-if="gamePhase === 'idle'">
-        <div>
-          <label>
-            Number of Players:
-            <input type="number" v-model.number="numPlayers" min="2" max="6" />
-          </label>
+        <div class="TimelineLog">
+          <div>Action Timeline</div>
+          <div v-for="(round, index) in roundLogs" :key="index" class="round-log">
+            <h4>Round {{ index + 1 }}</h4>
+            <div>
+              <div v-for="(entry, i) in round" :key="i">{{ entry }}</div>
+            </div>
+          </div>
         </div>
-        <div>
-          <label>
-            Difficulty:
-            <select v-model="difficulty">
-              <option value="easy">Easy</option>
-              <option value="medium">Medium</option>
-              <option value="hard">Hard</option>
-            </select>
-          </label>
-        </div>
-        <div>
-          <label>
-            Starting Money:
-            <input type="number" v-model.number="startingMoney" min="100" />
-          </label>
-        </div>
-        <button @click="startGame">Start New Round</button>
       </div>
     </div>
   </div>
@@ -84,7 +101,6 @@ import { ref, computed } from "vue";
 // ======== State & Reactive Variables ========
 const roundLogs = ref([]);
 const currentRound = ref(1);
-
 const deck = ref([]);
 const hands = ref({});
 const playerNames = ref([]);
@@ -94,40 +110,31 @@ const playerFolded = ref([]);
 const playerDialog = ref([]);
 const playerPositions = ref([]);
 const hasActed = ref([]);
-const callAmount = computed(() => currentMaxBet.value - playerBets.value[0]);
-const callLabel = computed(() => `Call $${callAmount.value}`);
-const raiseChips = [10, 20, 50, 100, 200];
-const minRaiseAmount = 10;
-const raiseInput = ref(minRaiseAmount);
-const maxRaiseAmount = computed(() => {
-  return playerMoney.value[0] || 0;
-});
-
 const pot = ref(0);
 const currentPlayer = ref(0);
 const gamePhase = ref("idle");
 const flop = ref([]);
 const currentMaxBet = ref(0);
-
-const numPlayers = ref(6);
+const numPlayers = ref(5);
 const difficulty = ref("medium");
 const startingMoney = ref(1000);
 const dealerPosition = ref(0);
+const raiseChips = [10, 20, 30, 50, 100];
+const minRaiseAmount = 10;
+const raiseInput = ref(minRaiseAmount);
 
-// ======== Computed Properties ========
-const canCheck = computed(() => currentMaxBet.value === playerBets.value[0]);
-const canCall = computed(() => currentMaxBet.value > playerBets.value[0] && playerMoney.value[0] >= currentMaxBet.value - playerBets.value[0]);
-const canRaise = computed(() => playerMoney.value[0] > currentMaxBet.value - playerBets.value[0]);
-const canFold = ref(true);
-const canBet = ref(true);
+const callAmount = computed(() => Math.max(0, currentMaxBet.value - (playerBets.value[0] || 0)));
 
-function decreaseRaise() {
-  raiseInput.value = Math.max(raiseInput.value - raiseStep, minRaiseAmount);
-}
+const maxRaiseAmount = computed(() => {
+  // Player 0's max raise = their money + their current bet minus currentMaxBet (to allow re-raise)
+  return playerMoney.value[0] + (playerBets.value[0] || 0);
+});
 
-function increaseRaise() {
-  raiseInput.value = Math.min(raiseInput.value + raiseStep, maxRaiseAmount.value);
-}
+const canCheck = computed(() => currentMaxBet.value === (playerBets.value[0] || 0));
+const canCall = computed(
+  () => currentMaxBet.value > (playerBets.value[0] || 0) && playerMoney.value[0] >= currentMaxBet.value - (playerBets.value[0] || 0)
+);
+const canRaise = computed(() => playerMoney.value[0] > currentMaxBet.value - (playerBets.value[0] || 0));
 
 // ======== Utility Functions ========
 function addLog(message) {
@@ -135,6 +142,21 @@ function addLog(message) {
     roundLogs.value[currentRound.value - 1] = [];
   }
   roundLogs.value[currentRound.value - 1].push(message);
+}
+
+function getSuitClass(suit) {
+  switch (suit) {
+    case "♠":
+      return "spades";
+    case "♥":
+      return "hearts";
+    case "♦":
+      return "diamonds";
+    case "♣":
+      return "clubs";
+    default:
+      return "";
+  }
 }
 
 function createShuffledDeck() {
@@ -146,7 +168,12 @@ function createShuffledDeck() {
       cards.push({ rank, suit });
     }
   }
-  return cards.sort(() => Math.random() - 0.5);
+  // Shuffle deck
+  for (let i = cards.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [cards[i], cards[j]] = [cards[j], cards[i]];
+  }
+  return cards;
 }
 
 function dealHands(count, cardsPerHand) {
@@ -157,12 +184,8 @@ function dealHands(count, cardsPerHand) {
   return result;
 }
 
-function formatHand(hand) {
-  if (!hand || !Array.isArray(hand)) return "";
-  return hand.map((c) => c.rank + c.suit).join(" ");
-}
-
 function evaluateHand(hand) {
+  // Simple sum of card ranks for demo purposes
   const map = { 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7, 8: 8, 9: 9, 10: 10, J: 11, Q: 12, K: 13, A: 14 };
   return hand.reduce((acc, c) => acc + (map[c.rank] || 0), 0);
 }
@@ -196,6 +219,63 @@ function startGame() {
   }
   currentMaxBet.value = ante;
   addLog(`--- Round ${currentRound.value} ---`);
+
+  currentPlayer.value = 0;
+  nextTurn();
+}
+
+function resetGame() {
+  dealerPosition.value = 0;
+  currentRound.value = 1;
+  roundLogs.value = [];
+  gamePhase.value = "idle";
+  playerNames.value = [];
+  playerMoney.value = [];
+  playerBets.value = [];
+  playerFolded.value = [];
+  playerDialog.value = [];
+  playerPositions.value = [];
+  hasActed.value = [];
+  flop.value = [];
+  pot.value = 0;
+  currentPlayer.value = 0;
+  deck.value = [];
+  hands.value = {};
+  raiseInput.value = minRaiseAmount;
+
+  addLog("Game reset. Configure settings and click 'Start Game' to begin.");
+}
+
+function startNewRound() {
+  dealerPosition.value = (dealerPosition.value + 1) % numPlayers.value; // Move dealer position
+  currentRound.value++;
+  roundLogs.value.push([]); // New log array for new round
+
+  deck.value = createShuffledDeck();
+  flop.value = [];
+  pot.value = 0;
+  currentPlayer.value = 0;
+  gamePhase.value = "betting";
+  currentMaxBet.value = 0;
+
+  hands.value = dealHands(numPlayers.value, 2);
+  playerBets.value = Array(numPlayers.value).fill(0);
+  playerFolded.value = Array(numPlayers.value).fill(false);
+  playerDialog.value = Array(numPlayers.value).fill("");
+  hasActed.value = Array(numPlayers.value).fill(false);
+  assignPositions();
+
+  const ante = 10;
+  for (let i = 0; i < numPlayers.value; i++) {
+    playerMoney.value[i] -= ante;
+    playerBets.value[i] = ante;
+    pot.value += ante;
+    addLog(`${playerNames.value[i]} posts ante $${ante}`);
+  }
+  currentMaxBet.value = ante;
+  addLog(`--- Round ${currentRound.value} ---`);
+
+  currentPlayer.value = 0;
   nextTurn();
 }
 
@@ -209,8 +289,7 @@ function assignPositions() {
 
 // ======== Game Flow / Phases ========
 async function nextTurn() {
-  console.log("nextTurn called, currentPlayer:", currentPlayer.value);
-
+  // Skip folded players or those already acted in this betting round
   if (playerFolded.value.filter((f) => !f).length <= 1) {
     gamePhase.value = "showdown";
     determineWinner();
@@ -224,94 +303,111 @@ async function nextTurn() {
   }
 
   if (currentPlayer.value === 0) {
-    console.log("Waiting for player input...");
+    // Player's turn - wait for input
+    addLog("Your turn.");
     return;
   }
 
+  // AI turn
   const action = getAIAction(currentPlayer.value);
   await new Promise((resolve) => setTimeout(resolve, 1000));
   addLog(`${playerNames.value[currentPlayer.value]} chooses to ${action}`);
   handleAction(currentPlayer.value, action);
   hasActed.value[currentPlayer.value] = true;
 
+  // Move to next player
   currentPlayer.value = (currentPlayer.value + 1) % numPlayers.value;
 
+  // If all acted or folded, progress phase
   if (hasActed.value.every((acted, i) => acted || playerFolded.value[i])) {
     hasActed.value = Array(numPlayers.value).fill(false);
+    playerBets.value = Array(numPlayers.value).fill(0);
+    currentMaxBet.value = 0;
 
     if (gamePhase.value === "betting") {
       dealInitialFlop();
       addLog("--- Flop ---");
-      return;
     } else if (gamePhase.value === "flop") {
       revealTurnCard();
       addLog("--- Turn ---");
-      return;
     } else if (gamePhase.value === "turn") {
       revealRiverCard();
       addLog("--- River ---");
-      return;
     } else if (gamePhase.value === "river") {
       gamePhase.value = "showdown";
       determineWinner();
       return;
     }
+    currentPlayer.value = 0;
   }
-
   await nextTurn();
 }
 
 function dealInitialFlop() {
-  playerBets.value = Array(numPlayers.value).fill(0);
-  currentMaxBet.value = 0;
   flop.value = deck.value.splice(0, 3);
-  currentPlayer.value = 0;
-  hasActed.value = Array(numPlayers.value).fill(false);
   gamePhase.value = "flop";
+  hasActed.value = Array(numPlayers.value).fill(false);
 }
 
 function revealTurnCard() {
-  playerBets.value = Array(numPlayers.value).fill(0);
-  currentMaxBet.value = 0;
   flop.value.push(deck.value.splice(0, 1)[0]);
-  currentPlayer.value = 0;
-  hasActed.value = Array(numPlayers.value).fill(false);
   gamePhase.value = "turn";
+  hasActed.value = Array(numPlayers.value).fill(false);
 }
 
 function revealRiverCard() {
-  playerBets.value = Array(numPlayers.value).fill(0);
-  currentMaxBet.value = 0;
   flop.value.push(deck.value.splice(0, 1)[0]);
-  currentPlayer.value = 0;
-  hasActed.value = Array(numPlayers.value).fill(false);
   gamePhase.value = "river";
-}
-
-function revealNextFlopCard() {
-  flop.value.push(deck.value.splice(0, 1)[0]);
-  currentPlayer.value = 0;
   hasActed.value = Array(numPlayers.value).fill(false);
 }
 
 // ======== Player Actions ========
 async function playerAction(action, amount = 0) {
+  if (currentPlayer.value !== 0) return; // Only allow player 0 to act here
+
   if (action === "raise") {
-    if (amount < minRaiseAmount.value) {
-      addLog(`Raise must be at least $${minRaiseAmount.value}`);
+    if (amount < minRaiseAmount) {
+      addLog(`Raise must be at least $${minRaiseAmount}`);
       return;
     }
-    if (amount > playerMoney.value[0]) {
+    if (amount > maxRaiseAmount.value) {
       addLog("Not enough chips to raise that amount!");
       return;
     }
-    playerMoney.value[0] -= amount;
-    playerBets.value[0] += amount;
-    pot.value += amount;
-    currentMaxBet.value = Math.max(currentMaxBet.value, playerBets.value[0]);
+    const toCall = currentMaxBet.value - (playerBets.value[0] || 0);
+    const totalRaise = toCall + amount; // raise includes call + raise amount
+
+    if (playerMoney.value[0] < totalRaise) {
+      addLog("Not enough chips to raise that amount!");
+      return;
+    }
+
+    playerMoney.value[0] -= totalRaise;
+    playerBets.value[0] += totalRaise;
+    pot.value += totalRaise;
+    currentMaxBet.value = playerBets.value[0];
     addLog(`${playerNames.value[0]} raises $${amount}`);
+  } else if (action === "call") {
+    const toCall = currentMaxBet.value - (playerBets.value[0] || 0);
+    if (playerMoney.value[0] < toCall) {
+      addLog("Not enough chips to call!");
+      return;
+    }
+    playerMoney.value[0] -= toCall;
+    playerBets.value[0] += toCall;
+    pot.value += toCall;
+    addLog(`${playerNames.value[0]} calls $${toCall}`);
+  } else if (action === "check") {
+    if (currentMaxBet.value > (playerBets.value[0] || 0)) {
+      addLog("Cannot check, must call or fold.");
+      return;
+    }
+    addLog(`${playerNames.value[0]} checks.`);
+  } else if (action === "fold") {
+    playerFolded.value[0] = true;
+    addLog(`${playerNames.value[0]} folds.`);
   }
-  // handle other actions ...
+
   hasActed.value[0] = true;
   currentPlayer.value = 1;
   await nextTurn();
@@ -323,7 +419,7 @@ function handleAction(i, action) {
     playerFolded.value[i] = true;
     dialog = "I fold...";
   } else if (action === "raise") {
-    const raiseAmount = 20;
+    const raiseAmount = 20; // AI fixed raise amount
     if (playerMoney.value[i] < raiseAmount) {
       dialog = "Can't raise, fold instead.";
       playerFolded.value[i] = true;
@@ -333,65 +429,84 @@ function handleAction(i, action) {
       currentMaxBet.value = Math.max(currentMaxBet.value, playerBets.value[i]);
       pot.value += raiseAmount;
       dialog = "I raise!";
+      // Reset hasActed for all except folded and current raiser (to force another round)
       hasActed.value = hasActed.value.map((_, idx) => playerFolded.value[idx] || idx === i);
     }
   } else if (action === "call") {
-    const callAmt = currentMaxBet.value - playerBets.value[i];
-    if (playerMoney.value[i] < callAmt) {
-      playerFolded.value[i] = true;
-      dialog = "Can't call. I fold.";
-    } else {
-      playerMoney.value[i] -= callAmt;
-      playerBets.value[i] += callAmt;
-      pot.value += callAmt;
+    const toCall = currentMaxBet.value - (playerBets.value[i] || 0);
+    if (playerMoney.value[i] >= toCall) {
+      playerMoney.value[i] -= toCall;
+      playerBets.value[i] += toCall;
+      pot.value += toCall;
       dialog = "I call.";
+    } else {
+      playerFolded.value[i] = true;
+      dialog = "Can't call, so fold.";
     }
   } else if (action === "check") {
-    dialog = "Check.";
+    dialog = "I check.";
   }
-  playerDialog.value[i] = `${playerNames.value[i]}: ${dialog}`;
+  playerDialog.value[i] = dialog;
+  hasActed.value[i] = true;
 }
 
-// ======== AI Logic ========
+// Simple AI logic based on difficulty (only medium here for example)
 function getAIAction(i) {
-  const handValue = evaluateHand(hands.value[i]);
-  const callAmount = currentMaxBet.value - playerBets.value[i];
-
-  if (playerMoney.value[i] < callAmount) return "fold";
-
-  if (callAmount === 0) {
-    if (handValue > 20) return "raise";
-    return "check";
+  if (playerFolded.value[i]) return "fold";
+  if (difficulty.value === "easy") {
+    return Math.random() > 0.5 ? "call" : "fold";
+  } else if (difficulty.value === "medium") {
+    if (playerBets.value[i] < currentMaxBet.value) {
+      return "call";
+    }
+    return Math.random() > 0.3 ? "check" : "raise";
   } else {
-    if (handValue > 22) return "raise";
-    if (handValue > 15) return "call";
-    return "fold";
+    // hard
+    if (playerBets.value[i] < currentMaxBet.value) return "call";
+    return "raise";
   }
 }
 
-// ======== Winner Calculation ========
+// ======== Winner Determination ========
 function determineWinner() {
-  const scores = playerNames.value
-    .map((name, i) => ({
-      name,
-      score: evaluateHand(hands.value[i].concat(flop.value)),
-      folded: playerFolded.value[i],
-      index: i,
-    }))
-    .filter((p) => !p.folded)
-    .sort((a, b) => b.score - a.score);
-
-  if (scores.length === 0) {
-    addLog("No winner - all folded.");
-    gamePhase.value = "idle";
-    return;
+  const activePlayers = playerFolded.value.map((folded, i) => (!folded ? i : null)).filter((v) => v !== null);
+  if (activePlayers.length === 1) {
+    addLog(`${playerNames.value[activePlayers[0]]} wins the pot of $${pot.value} (all others folded)`);
+    playerMoney.value[activePlayers[0]] += pot.value;
+    pot.value = 0;
+  } else {
+    const handValues = activePlayers.map((i) => {
+      const combined = [...hands.value[i], ...flop.value];
+      return { player: i, value: evaluateHand(combined) };
+    });
+    handValues.sort((a, b) => b.value - a.value);
+    const winner = handValues[0].player;
+    addLog(`${playerNames.value[winner]} wins the pot of $${pot.value} with best hand.`);
+    playerMoney.value[winner] += pot.value;
+    pot.value = 0;
   }
+  // Don't set idle, instead start new round after delay
+  setTimeout(() => {
+    startNewRound();
+  }, 3000); // 3 seconds delay to see the winner logs
+}
 
-  const winner = scores[0];
-  playerMoney.value[winner.index] += pot.value;
-  playerDialog.value[winner.index] = `${winner.name}: I win! 🎉`;
-  addLog(`${winner.name} wins the pot of $${pot.value}!`);
-  gamePhase.value = "idle";
-  dealerPosition.value = (dealerPosition.value + 1) % numPlayers.value;
+// ======== Raise Amount Controls ========
+function decreaseRaise(amount) {
+  if (raiseInput.value - amount >= minRaiseAmount) {
+    raiseInput.value -= amount;
+  }
+}
+
+function increaseRaise(amount) {
+  if (raiseInput.value + amount <= maxRaiseAmount.value) {
+    raiseInput.value += amount;
+  }
+}
+
+function setRaise(amount) {
+  if (amount >= minRaiseAmount && amount <= maxRaiseAmount.value) {
+    raiseInput.value = amount;
+  }
 }
 </script>
