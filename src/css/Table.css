@@ -170,3 +170,15 @@ button:disabled {
   height: 55px;
   border-radius: 3px;
 }
+.player.active {
+  border: 3px solid #2a9d8f; /* teal border for active player */
+  transition: border-color 0.3s ease;
+}
+
+.player.active.you {
+  border-color: greenyellow; /* coral/red for your turn */
+}
+
+.player.active.ai {
+  border-color: var(--focus); /* dark blue for AI turn */
+}

@@ -6,20 +6,29 @@
   <div>
     <div class="TableBody">
       <div class="PlayerTable">
-        <div v-for="(name, i) in playerNames" :key="i" class="player" :class="{ active: i === currentPlayer, folded: playerFolded[i] }">
-          <h3>
-            {{ name }}
-            <span class="text-gray-400 text-sm">({{ playerPositions[i] }})</span>
-          </h3>
+        <div
+          v-for="(name, i) in playerNames"
+          :key="i"
+          class="PlayerDetail"
+          :class="{
+            active: i === currentPlayer,
+            folded: playerFolded[i],
+            you: i === 0 && i === currentPlayer,
+            ai: i !== 0 && i === currentPlayer,
+          }"
+        >
+          <div>
+            {{ name }}({{ playerPositions[i] }})
+            <div>${{ playerMoney[i] }}</div>
+          </div>
           <div v-if="i === 0 || !playerFolded[i]" class="HandCard">
             <div v-for="(card, cIndex) in hands[i]" :key="cIndex" class="Card" :class="getSuitClass(card.suit)">
               <div class="rank">{{ card.rank }}</div>
               <div class="suit">{{ card.suit }}</div>
             </div>
           </div>
-          <p>Money: ${{ playerMoney[i] }}</p>
-          <p>Bet: ${{ playerBets[i] }}</p>
-          <p>{{ playerDialog[i] }}</p>
+          <div>Bet: ${{ playerBets[i] }}</div>
+          <div>{{ playerDialog[i] }}</div>
         </div>
       </div>
       <div class="TableBoard">
@@ -52,8 +61,6 @@
           <button @click="startNewRound">Next Round</button>
 
           <button @click="resetGame">Reset</button>
-
-          <p>Current Game Phase: {{ gamePhase }}</p>
         </div>
 
         <div class="TableFlob">
@@ -64,6 +71,7 @@
             </div>
           </div>
           <div class="PoolMoney">{{ pot }}$</div>
+          <div>Current Game Phase: {{ gamePhase }}</div>
         </div>
 
         <div class="PlayerActionGroup1">
