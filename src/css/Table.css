@@ -1,6 +1,6 @@
 .TableLayout {
   display: grid;
-  grid-template-columns: 20% 20% auto;
+  grid-template-columns: 20% 30% auto;
   overflow: hidden;
 }
 
@@ -16,6 +16,11 @@
 
 .TableLayout :is(button, input):hover {
   border: 1px solid var(--focus);
+}
+
+.TableLayout :is(button, input):disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .PlayerLineup {
@@ -91,7 +96,9 @@
   place-items: center;
   width: 30px;
   aspect-ratio: 2/1;
+  /*
   border: 1px solid #444;
+  */
   border-radius: 3px;
 }
 
@@ -101,8 +108,10 @@
 }
 
 .ChipGroup {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
+  width: fit-content;
 }
 
 .ChipControl {
