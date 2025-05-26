@@ -1,184 +1,124 @@
-input,
-select,
-button {
-  height: 40px;
+.TableLayout {
+  display: grid;
+  grid-template-columns: 20% 20% auto;
+  overflow: hidden;
+}
+
+.TableLayout :is(button, input) {
+  border-radius: 3px;
   border: 1px solid #444;
-  width: fit-content;
-  padding: 10px;
-  background: var(--ui-bg2);
-  border-radius: 5px;
-  outline: unset;
-}
-
-button {
   cursor: pointer;
+  height: 40px;
+  width: fit-content;
+  min-width: auto;
+  padding: 0 15px;
 }
 
-button:hover {
+.TableLayout :is(button, input):hover {
   border: 1px solid var(--focus);
 }
 
-option {
-  background: transparent;
-}
-
-button:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-}
-
-.TableBody {
-  position: relative;
-  display: grid;
-  grid-template-columns: 20% auto;
-  width: 100%;
+.PlayerLineup {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   height: 100%;
-  gap: 20px;
-}
-
-.TableSetting {
-  display: flex;
-  gap: 10px;
-  width: 100%;
-}
-
-.TimelineLog {
-  height: -webkit-fill-available;
-  padding: 20px;
   border: 1px solid #444;
+  padding: 20px;
 }
 
-.TableAction {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+.PlayerFrame {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border: 1px solid #444;
+  padding: 10px;
+}
+
+.PlayerFrame.active {
+  border: 1px solid var(--focus);
+}
+
+.PlayerPosition {
+  display: grid;
+  align-items: start;
+  justify-content: end;
+  gap: 3px;
+}
+
+.PlayerBet {
+  display: grid;
+  align-items: end;
+  justify-content: end;
+}
+
+.PlayerName {
+}
+
+.PlayerName > div {
 }
 
 .TableBoard {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  padding: 20px;
-  position: relative;
+  height: 100%;
   border: 1px solid #444;
+  padding: 20px;
 }
 
-.TableLog {
+.TableSetting {
   display: flex;
-  flex-direction: column;
-  height: 100%;
+  gap: 10px;
 }
 
 .TableFlob {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  align-items: center;
-  border: 1px solid #444;
-  height: 20%;
-  padding: 20px;
-  height: fit-content;
-}
-
-.PlayerDetail.active {
   border: 1px solid var(--focus);
-}
-
-.PlayerDetail.folded {
-  opacity: 0.4;
-  text-decoration: line-through;
-}
-
-.PlayerTable {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.PlayerDetail {
-  display: grid;
-  border: 1px solid #444;
-  padding: 15px;
-  gap: 10px;
-}
-
-.PlayerAction {
-  display: grid;
-  gap: 20px;
-}
-
-.PlayerActionControl {
-  grid-template-columns: repeat(2, 1fr);
-}
-
-.PlayerActionGroup1 {
-  display: flex;
-  gap: 20px;
-}
-
-.PlayerActionGroup2 {
-  display: flex;
-  gap: 20px;
-}
-.PlayerActionGroup2 > button {
-  display: flex;
-  justify-content: space-around;
-}
-
-.PlayerDialog {
-  color: #fff;
-}
-
-.ChipControl {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-}
-
-.chip-control {
-  display: flex;
-  align-items: center;
-  color: #fff;
-}
-
-.chip-control > button {
-  display: grid;
+  padding: 20px;
   place-items: center;
-  border: 1px solid #444;
-  height: 100%;
-  padding: 5px 15px;
-  width: fit-content !important;
-  min-width: auto;
-}
-
-.GroupCard {
-  display: flex;
-  gap: 10px;
+  gap: 5px;
 }
 
 .TableFlobCard,
-.HandCard {
+.PlayerHand {
+  display: flex;
+  gap: 10px;
+}
+
+.CardBody {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  aspect-ratio: 2/1;
+  border: 1px solid #444;
+  border-radius: 3px;
+}
+
+.PlayerActionGroup {
   display: flex;
   gap: 20px;
 }
 
-.Card {
-  display: grid;
-  place-items: center;
+.ChipGroup {
+  display: flex;
+  gap: 20px;
+}
+
+.ChipControl {
+  display: flex;
+  justify-content: center;
   border: 1px solid #444;
-  width: 40px;
-  height: 55px;
-  border-radius: 3px;
-}
-.player.active {
-  border: 3px solid #2a9d8f; /* teal border for active player */
-  transition: border-color 0.3s ease;
+  width: fit-content;
 }
 
-.player.active.you {
-  border-color: greenyellow; /* coral/red for your turn */
+.ChipControl button {
+  border: 1px solid transparent;
 }
 
-.player.active.ai {
-  border-color: var(--focus); /* dark blue for AI turn */
+.TimelineLog {
+  border: 1px solid #444;
+  height: 100%;
+  padding: 20px;
+  overflow-y: scroll;
 }

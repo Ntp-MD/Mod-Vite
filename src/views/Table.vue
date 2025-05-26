@@ -3,100 +3,76 @@
 </style>
 
 <template>
-  <div>
-    <div class="TableBody">
-      <div class="PlayerTable">
-        <div
-          v-for="(name, i) in playerNames"
-          :key="i"
-          class="PlayerDetail"
-          :class="{
-            active: i === currentPlayer,
-            folded: playerFolded[i],
-            you: i === 0 && i === currentPlayer,
-            ai: i !== 0 && i === currentPlayer,
-          }"
-        >
-          <div>
-            {{ name }}({{ playerPositions[i] }})
-            <div>${{ playerMoney[i] }}</div>
+  <div class="TableLayout">
+    <div class="PlayerLineup">
+      <div>Player Lineup</div>
+      <div
+        v-for="(name, i) in playerNames"
+        :key="i"
+        class="PlayerFrame"
+        :class="{
+          active: i === currentPlayer,
+          folded: playerFolded[i],
+          you: i === 0 && i === currentPlayer,
+          ai: i !== 0 && i === currentPlayer,
+        }"
+      >
+        <div class="PlayerName">
+          {{ name }}
+        </div>
+
+        <div class="PlayerPosition">
+          <div>${{ playerMoney[i] }}</div>
+          <div>({{ playerPositions[i] }})</div>
+        </div>
+        <div v-if="i === 0 || !playerFolded[i]" class="PlayerHand">
+          <div v-for="(card, cIndex) in hands[i]" :key="cIndex" class="CardBody" :class="getSuitClass(card.suit)">
+            <div class="RankCard">{{ card.rank }}</div>
+            <div class="SuitCard">{{ card.suit }}</div>
           </div>
-          <div v-if="i === 0 || !playerFolded[i]" class="HandCard">
-            <div v-for="(card, cIndex) in hands[i]" :key="cIndex" class="Card" :class="getSuitClass(card.suit)">
-              <div class="rank">{{ card.rank }}</div>
-              <div class="suit">{{ card.suit }}</div>
-            </div>
-          </div>
-          <div>Bet: ${{ playerBets[i] }}</div>
-          <div>{{ playerDialog[i] }}</div>
+        </div>
+        <div class="PlayerBet">Bet: ${{ playerBets[i] }}</div>
+      </div>
+    </div>
+    <div class="TimelineLog">
+      <div>Action Timeline</div>
+      <div v-for="(round, index) in roundLogs" :key="index" class="RoundLog">
+        <h4>Round {{ index + 1 }}</h4>
+        <div>
+          <div v-for="(entry, i) in round" :key="i">{{ entry }}</div>
         </div>
       </div>
-      <div class="TableBoard">
-        <div class="TableSetting">
-          <!-- Existing controls -->
-          <div>
-            <label>
-              Number of Players:
-              <input type="number" v-model.number="numPlayers" min="2" max="6" />
-            </label>
-          </div>
-          <div>
-            <label>
-              Difficulty:
-              <select v-model="difficulty">
-                <option value="easy">Easy</option>
-                <option value="medium">Medium</option>
-                <option value="hard">Hard</option>
-              </select>
-            </label>
-          </div>
-          <div>
-            <label>
-              Starting Money:
-              <input type="number" v-model.number="startingMoney" min="100" />
-            </label>
-          </div>
-          <button @click="startGame" :disabled="gamePhase !== 'idle'">Start Game</button>
+    </div>
+    <div class="TableBoard">
+      <div class="TableSetting">
+        <button @click="startGame" :disabled="gamePhase !== 'idle'">Start Game</button>
+        <button @click="resetGame">Reset</button>
+      </div>
 
-          <button @click="startNewRound">Next Round</button>
-
-          <button @click="resetGame">Reset</button>
-        </div>
-
-        <div class="TableFlob">
-          <div class="TableFlobCard" v-if="flop && flop.length">
-            <div v-for="(card, index) in flop" :key="index" class="Card" :class="getSuitClass(card.suit)">
-              <div class="rank">{{ card.rank }}</div>
-              <div class="suit">{{ card.suit }}</div>
-            </div>
-          </div>
-          <div class="PoolMoney">{{ pot }}$</div>
-          <div>Current Game Phase: {{ gamePhase }}</div>
-        </div>
-
-        <div class="PlayerActionGroup1">
-          <button :disabled="!canCheck" @click="playerAction('check')">Check</button>
-          <button :disabled="!canCall" @click="playerAction('call', callAmount)">{{ `Call $${callAmount}` }}</button>
-          <button :disabled="!canRaise" @click="playerAction('raise', raiseInput)">Raise ${{ raiseInput }}</button>
-          <button @click="playerAction('fold')">Fold</button>
-        </div>
-
-        <div class="PlayerActionGroup2">
-          <div v-for="chip in raiseChips" :key="chip" class="chip-control">
-            <button @click="decreaseRaise(chip)">-</button>
-            <button @click="setRaise(chip)">${{ chip }}</button>
-            <button @click="increaseRaise(chip)">+</button>
+      <div class="TableFlob">
+        <div class="TableFlobCard" v-if="flop && flop.length">
+          <div v-for="(card, index) in flop" :key="index" class="CardBody" :class="getSuitClass(card.suit)">
+            <div class="RankCard">{{ card.rank }}</div>
+            <div class="SuitCard">{{ card.suit }}</div>
           </div>
         </div>
+        <div class="PoolMoney">{{ pot }}$</div>
+        <div>Current Game Phase: {{ gamePhase }}</div>
+      </div>
 
-        <div class="TimelineLog">
-          <div>Action Timeline</div>
-          <div v-for="(round, index) in roundLogs" :key="index" class="round-log">
-            <h4>Round {{ index + 1 }}</h4>
-            <div>
-              <div v-for="(entry, i) in round" :key="i">{{ entry }}</div>
-            </div>
-          </div>
+      <div class="PlayerActionGroup">
+        <button :disabled="!canCheck" @click="playerAction('check')">Check</button>
+        <button :disabled="!canCall" @click="playerAction('call', callAmount)">{{ `Call $${callAmount}` }}</button>
+        <button :disabled="!canRaise" @click="playerAction('raise', raiseInput)">Raise ${{ raiseInput }}</button>
+        <button @click="playerAction('fold')">Fold</button>
+        <button @click="startNewRound">Next</button>
+      </div>
+
+      <div class="ChipGroup">
+        <div v-for="chip in raiseChips" :key="chip" class="ChipControl">
+          <button @click="decreaseRaise(chip)">-</button>
+          <button @click="setRaise(chip)">${{ chip }}</button>
+          <button @click="increaseRaise(chip)">+</button>
         </div>
       </div>
     </div>
@@ -124,7 +100,7 @@ const gamePhase = ref("idle");
 const flop = ref([]);
 const currentMaxBet = ref(0);
 const numPlayers = ref(5);
-const difficulty = ref("medium");
+const difficulty = ref("hard");
 const startingMoney = ref(1000);
 const dealerPosition = ref(0);
 const raiseChips = [10, 20, 30, 50, 100];
@@ -218,14 +194,14 @@ function startGame() {
   hasActed.value = Array(numPlayers.value).fill(false);
   assignPositions();
 
-  const ante = 10;
+  const CostStartPool = 10;
   for (let i = 0; i < numPlayers.value; i++) {
-    playerMoney.value[i] -= ante;
-    playerBets.value[i] = ante;
-    pot.value += ante;
-    addLog(`${playerNames.value[i]} posts ante $${ante}`);
+    playerMoney.value[i] -= CostStartPool;
+    playerBets.value[i] = CostStartPool;
+    pot.value += CostStartPool;
+    addLog(`${playerNames.value[i]} Send $${CostStartPool} to Pool`);
   }
-  currentMaxBet.value = ante;
+  currentMaxBet.value = CostStartPool;
   addLog(`--- Round ${currentRound.value} ---`);
 
   currentPlayer.value = 0;
@@ -273,14 +249,14 @@ function startNewRound() {
   hasActed.value = Array(numPlayers.value).fill(false);
   assignPositions();
 
-  const ante = 10;
+  const CostStartPool = 10;
   for (let i = 0; i < numPlayers.value; i++) {
-    playerMoney.value[i] -= ante;
-    playerBets.value[i] = ante;
-    pot.value += ante;
-    addLog(`${playerNames.value[i]} posts ante $${ante}`);
+    playerMoney.value[i] -= CostStartPool;
+    playerBets.value[i] = CostStartPool;
+    pot.value += CostStartPool;
+    addLog(`${playerNames.value[i]} posts CostStartPool $${CostStartPool}`);
   }
-  currentMaxBet.value = ante;
+  currentMaxBet.value = CostStartPool;
   addLog(`--- Round ${currentRound.value} ---`);
 
   currentPlayer.value = 0;
