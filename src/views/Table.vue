@@ -44,6 +44,7 @@
       </div>
     </div>
     <div class="TableBoard">
+      <div>Table Setting</div>
       <div class="TableSetting">
         <button @click="startGame" :disabled="gamePhase !== 'idle'">Start Game</button>
         <button @click="resetGame">Reset</button>
@@ -104,12 +105,12 @@ const playerBets = ref([]);
 const playerFolded = ref([]);
 const playerDialog = ref([]);
 const playerPositions = ref([]);
+const playerOrder = ref([]);
 const hasActed = ref([]);
 
 /* ============ Constants ============ */
 const raiseChips = [10, 20, 30, 50, 100];
 const minRaiseAmount = 10;
-const allowedRaises = [10, 30, 50, 150, 300];
 
 /* ============ Computed ============ */
 const callAmount = computed(() => Math.max(0, currentMaxBet.value - (playerBets.value[0] || 0)));
@@ -202,11 +203,20 @@ function getHandRank(hand) {
 }
 
 function assignPositions() {
+  dealerPosition.value = Math.floor(Math.random() * numPlayers.value);
   const labels = ["Dealer", "SB", "BB", "UTG", "MP", "CO"];
   for (let i = 0; i < numPlayers.value; i++) {
     const relative = (i - dealerPosition.value + numPlayers.value) % numPlayers.value;
     playerPositions.value[i] = labels[relative] || `P${i}`;
   }
+}
+
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
 }
 
 /* ============ Game Setup & Reset ============ */
@@ -219,7 +229,7 @@ function startGame() {
   currentPlayer.value = 0;
   gamePhase.value = "betting";
   currentMaxBet.value = 0;
-
+  playerOrder.value = shuffleArray([...Array(numPlayers.value).keys()]);
   playerNames.value = Array.from({ length: numPlayers.value }, (_, i) => (i === 0 ? "You" : `AI ${i}`));
   hands.value = dealHands(numPlayers.value, 2);
   playerMoney.value = Array(numPlayers.value).fill(startingMoney.value);
@@ -230,16 +240,27 @@ function startGame() {
 
   assignPositions();
 
-  const CostStartPool = 10;
-  for (let i = 0; i < numPlayers.value; i++) {
-    playerMoney.value[i] -= CostStartPool;
-    playerBets.value[i] = CostStartPool;
-    pot.value += CostStartPool;
-    addLog(`${playerNames.value[i]}  ${CostStartPool}`);
-  }
-  currentMaxBet.value = CostStartPool;
+  const smallBlind = 10;
+  const bigBlind = 20;
+
+  const sbIndex = (dealerPosition.value + 1) % numPlayers.value;
+  const bbIndex = (dealerPosition.value + 2) % numPlayers.value;
+
+  playerMoney.value[sbIndex] -= smallBlind;
+  playerBets.value[sbIndex] = smallBlind;
+  pot.value += smallBlind;
+  addLog(`${playerNames.value[sbIndex]} posts small blind: ${smallBlind}`);
+
+  playerMoney.value[bbIndex] -= bigBlind;
+  playerBets.value[bbIndex] = bigBlind;
+  pot.value += bigBlind;
+  addLog(`${playerNames.value[bbIndex]} posts big blind: ${bigBlind}`);
+
+  currentMaxBet.value = bigBlind;
   addLog(`--- Round ${currentRound.value} ---`);
-  currentPlayer.value = 0;
+
+  currentPlayer.value = (bbIndex + 1) % numPlayers.value;
+
   nextTurn();
 }
 
@@ -284,14 +305,14 @@ function startNewRound() {
 
   assignPositions();
 
-  const CostStartPool = 10;
+  const CostRound = 10;
   for (let i = 0; i < numPlayers.value; i++) {
-    playerMoney.value[i] -= CostStartPool;
-    playerBets.value[i] = CostStartPool;
-    pot.value += CostStartPool;
-    addLog(`${playerNames.value[i]} posts $${CostStartPool}`);
+    playerMoney.value[i] -= CostRound;
+    playerBets.value[i] = CostRound;
+    pot.value += CostRound;
+    addLog(`${playerNames.value[i]} posts $${CostRound}`);
   }
-  currentMaxBet.value = CostStartPool;
+  currentMaxBet.value = CostRound;
   addLog(`--- Round ${currentRound.value} ---`);
   currentPlayer.value = 0;
   nextTurn();
@@ -340,7 +361,7 @@ async function nextTurn() {
       }
 
       currentPlayer.value = 0;
-      setTimeout(() => nextTurn(), 100);
+      setTimeout(() => nextTurn(), 500);
       return;
     }
     addLog(`${playerNames.value[currentPlayer.value]}: ${playerDialog.value[currentPlayer.value]}`);
@@ -348,13 +369,35 @@ async function nextTurn() {
 
   // If it's your turn
   if (currentPlayer.value === 0) {
-    addLog("Your turn.");
     return;
+  }
+
+  function nextPhase() {
+    hasActed.value = Array(numPlayers.value).fill(false);
+    currentPlayer.value = getNextActivePlayer(dealerPosition.value);
+
+    if (gamePhase.value === "betting") {
+      flop.value = deck.value.splice(0, 3); // Reveal Flop
+      addLog("--- Flop ---");
+      gamePhase.value = "flop";
+    } else if (gamePhase.value === "flop") {
+      flop.value.push(...deck.value.splice(0, 1)); // Reveal Turn
+      addLog("--- Turn ---");
+      gamePhase.value = "turn";
+    } else if (gamePhase.value === "turn") {
+      flop.value.push(...deck.value.splice(0, 1)); // Reveal River
+      addLog("--- River ---");
+      gamePhase.value = "river";
+    } else if (gamePhase.value === "river") {
+      addLog("--- Showdown ---");
+      gamePhase.value = "showdown";
+      handleShowdown();
+    }
   }
 
   // AI action
   const action = getAIAction(currentPlayer.value);
-  await new Promise((resolve) => setTimeout(resolve, 200));
+  await new Promise((resolve) => setTimeout(resolve, 500));
   addLog(`${playerNames.value[currentPlayer.value]} chooses to ${action}`);
   handleAction(currentPlayer.value, action);
   hasActed.value[currentPlayer.value] = true;
@@ -393,7 +436,7 @@ async function nextTurn() {
   }
 
   // Call again to move to next valid turn
-  setTimeout(() => nextTurn(), 100); // SAFE async loop
+  setTimeout(() => nextTurn(), 200); // SAFE async loop
 }
 
 /* ============ Dealing Phases ============ */
@@ -453,7 +496,7 @@ function playerAction(action, amount = 0) {
   hasActed.value[0] = true;
   currentPlayer.value = (currentPlayer.value + 1) % numPlayers.value;
 
-  setTimeout(() => nextTurn(), 100);
+  setTimeout(() => nextTurn(), 500);
 }
 /* ============ AI Decision Logic ============ */
 function getAIAction(index) {
@@ -463,7 +506,6 @@ function getAIAction(index) {
 
   if (playerFolded.value[index]) return "fold";
 
-  // Simple logic based on random decisions and available money
   if (toCall === 0) {
     // No one has raised yet; consider checking or raising
     if (Math.random() < 0.7) {
@@ -575,7 +617,7 @@ function determineWinner() {
   addLog(`--- End of Round ${currentRound.value} ---`);
 
   // Automatically start new round after delay
-  setTimeout(() => startNewRound(), 3000);
+  setTimeout(() => startNewRound(), 5000);
 }
 
 /* ============ Raise Control ============ */
