@@ -24,7 +24,7 @@
           <div>${{ playerMoney[i] }}</div>
           <div>({{ playerPositions[i] }})</div>
         </div>
-        <div v-if="i === 0 || !playerFolded[i]" class="PlayerHand">
+        <div class="PlayerHand">
           <div v-for="(card, cIndex) in hands[i]" :key="cIndex" class="CardBody" :class="getSuitClass(card.suit)">
             <div class="RankCard">{{ card.rank }}</div>
             <div class="SuitCard">{{ card.suit }}</div>
@@ -512,34 +512,39 @@ function getAIAction(index) {
   const bet = playerBets.value[index];
   const toCall = currentMaxBet.value - bet;
   const money = playerMoney.value[index];
+  const isFolded = playerFolded.value[index];
 
-  if (playerFolded.value[index]) return "fold";
+  if (isFolded) return "fold";
 
+  const callRatio = toCall / money;
+
+  // When there's nothing to call, decide between checking and an aggressive raise
   if (toCall === 0) {
-    // No one has raised yet; consider checking or raising
-    if (Math.random() < 0.7) {
-      return "check";
-    } else {
-      return "raise";
-    }
-  } else if (toCall <= money * 0.2) {
-    // Low call amount compared to available money
-    if (Math.random() < 0.7) {
-      return "call";
-    } else {
-      return "raise";
-    }
-  } else if (toCall <= money * 0.5) {
-    // Moderate call amount
-    if (Math.random() < 0.5) {
-      return "call";
-    } else {
-      return "fold";
-    }
-  } else {
-    // Too expensive
+    const random = Math.random();
+    if (random < 0.6) return "check"; // More likely to check
+    if (random < 0.9) return "raise"; // Sometimes raise
+    return "call"; // Rarely just call for randomness
+  }
+
+  // Low call amount (<= 20% of stack)
+  if (callRatio <= 0.2) {
+    const random = Math.random();
+    if (random < 0.6) return "call";
+    if (random < 0.85) return "raise";
     return "fold";
   }
+
+  // Moderate call amount (<= 50% of stack)
+  if (callRatio <= 0.5) {
+    const random = Math.random();
+    if (random < 0.5) return "call";
+    if (random < 0.75) return "fold";
+    return "raise";
+  }
+
+  // High call amount (> 50% of stack) – too risky
+  const random = Math.random();
+  return random < 0.9 ? "fold" : "call"; // Mostly fold, sometimes risk a call
 }
 
 /* ======== Handle AI Actions with Validity Checks ======== */

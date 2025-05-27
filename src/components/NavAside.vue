@@ -77,11 +77,13 @@ export default {
     },
   },
   mounted() {
+    /*
     document.addEventListener("click", (e) => {
       if (!this.$refs.NavMenu.contains(e.target) && !this.$refs.navToggle.contains(e.target)) {
         this.isMenuOpen = false;
       }
     });
+    */
   },
 };
 </script>
