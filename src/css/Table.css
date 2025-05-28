@@ -39,8 +39,12 @@
   padding: 10px;
 }
 
-.PlayerFrame.active {
+.activePlayers {
   border: 1px solid var(--focus);
+}
+
+.foldedPlayers {
+  opacity: 0.2;
 }
 
 .PlayerPosition {
@@ -55,12 +59,6 @@
   display: grid;
   align-items: end;
   justify-content: end;
-}
-
-.PlayerName {
-}
-
-.PlayerName > div {
 }
 
 .TableBoard {
