@@ -1,6 +1,6 @@
 .TableLayout {
-  display: grid;
-  grid-template-columns: 25% 35% auto;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
 }
 
@@ -24,19 +24,36 @@
 }
 
 .PlayerLineup {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
   gap: 10px;
-  height: 100%;
   border: 1px solid #444;
   padding: 20px;
+  min-height: 140px;
 }
 
 .PlayerFrame {
+  flex: 1;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+  overflow: hidden;
   border: 1px solid #444;
   padding: 10px;
+}
+
+.PlayerName {
+  display: flex;
+  gap: 5px;
+}
+
+.PlayerAction {
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  position: relative;
 }
 
 .activePlayers {
@@ -44,6 +61,7 @@
 }
 
 .foldedPlayers {
+  display: none;
   opacity: 0.2;
 }
 
@@ -62,8 +80,8 @@
 }
 
 .TableBoard {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 30% auto 30%;
   gap: 20px;
   height: 100%;
   border: 1px solid #444;
@@ -71,8 +89,14 @@
 }
 
 .TableSetting {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
   display: flex;
   gap: 10px;
+  width: 100%;
+  margin: auto;
 }
 
 .TableFlob {
@@ -84,6 +108,18 @@
   gap: 5px;
 }
 
+.TimelineLog {
+  border: 1px solid #444;
+  height: 100%;
+  padding: 20px;
+  overflow-y: scroll;
+}
+
+.TimelineRound {
+  border-bottom: 1px solid #444;
+  padding-bottom: 20px;
+}
+
 .TableFlobCard,
 .PlayerHand {
   display: flex;
@@ -93,15 +129,15 @@
 .CardBody {
   display: grid;
   place-items: center;
-  width: 30px;
-  aspect-ratio: 2/1;
-  /*
+  width: 35px;
+  height: 45px;
+  aspect-ratio: 5/3;
   border: 1px solid #444;
-  */
   border-radius: 3px;
+  padding: 3px;
 }
 
-.PlayerActionGroup {
+.ActionButton {
   display: flex;
   gap: 20px;
 }
@@ -122,16 +158,4 @@
 
 .ChipControl button {
   border: 1px solid transparent;
-}
-
-.TimelineLog {
-  border: 1px solid #444;
-  height: 100%;
-  padding: 20px;
-  overflow-y: scroll;
-}
-
-.TimelineRound {
-  border-bottom: 1px solid #444;
-  padding-bottom: 20px;
 }
