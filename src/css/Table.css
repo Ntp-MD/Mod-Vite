@@ -176,7 +176,7 @@
   }
   .PlayerAction {
     gap: 10px;
-    padding: 20px;
+    padding: 0;
   }
 
   .ChipGroup > * {
