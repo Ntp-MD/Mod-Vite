@@ -11,7 +11,6 @@
           <router-view></router-view>
         </div>
       </main>
-      <QuicksAside></QuicksAside>
     </section>
     <!--
     <footer v-if="route.meta.HideThis">

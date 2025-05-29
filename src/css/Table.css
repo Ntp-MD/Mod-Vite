@@ -1,7 +1,11 @@
 .TableLayout {
+  --gap: 20px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  height: 100vh;
+  gap: var(--gap);
+  padding-bottom: 20px;
 }
 
 .TableLayout :is(button, input) {
@@ -12,6 +16,7 @@
   width: fit-content;
   min-width: auto;
   padding: 0 15px;
+  white-space: nowrap;
 }
 
 .TableLayout :is(button, input):hover {
@@ -23,13 +28,14 @@
   cursor: not-allowed;
 }
 
+.TableLayout * {
+  font-size: clamp(10px, 1vw, 16px);
+}
+
 .PlayerLineup {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  gap: 10px;
   border: 1px solid #444;
-  padding: 20px;
-  min-height: 140px;
 }
 
 .PlayerFrame {
@@ -37,11 +43,11 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   align-items: center;
-  gap: 10px;
+  gap: var(--gap);
+  padding: var(--gap);
   white-space: nowrap;
   overflow: hidden;
   border: 1px solid #444;
-  padding: 10px;
 }
 
 .PlayerName {
@@ -51,7 +57,7 @@
 
 .PlayerAction {
   display: flex;
-  gap: 20px;
+  gap: var(--gap);
   flex-direction: column;
   position: relative;
 }
@@ -79,23 +85,10 @@
   justify-content: end;
 }
 
-.TableBoard {
-  display: flex;
-  gap: 20px;
-  height: 100%;
-  border: 1px solid #444;
-  padding: 20px;
-}
-
-.TableBoard > div {
-  flex: 1;
-}
-
 .TableSetting {
   display: flex;
-  gap: 10px;
+  gap: var(--gap);
   width: 100%;
-  margin: auto;
 }
 
 .TableFlob {
@@ -109,42 +102,42 @@
 
 .TimelineLog {
   border: 1px solid #444;
-  height: 100%;
-  padding: 20px;
+  padding: var(--gap);
   overflow-y: scroll;
 }
 
 .TimelineRound {
   border-bottom: 1px solid #444;
-  padding-bottom: 20px;
+  padding-bottom: var(--gap);
 }
 
 .TableFlobCard,
 .PlayerHand {
   display: flex;
-  gap: 10px;
+  gap: var(--gap);
 }
 
 .CardBody {
   display: grid;
+  place-content: center;
   place-items: center;
-  width: 35px;
-  height: 45px;
-  aspect-ratio: 5/3;
+  width: 30px;
+  height: auto;
+  aspect-ratio: 3/4;
   border: 1px solid #444;
   border-radius: 3px;
-  padding: 3px;
+  line-height: 1;
 }
 
 .ActionButton {
   display: flex;
-  gap: 20px;
+  gap: var(--gap);
 }
 
 .ChipButton {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: var(--gap);
 }
 
 .TableSetting > *,
@@ -165,55 +158,24 @@
 }
 
 @media screen and (max-width: 480px) {
-  .TableLayout * {
-    font-size: 10px;
-  }
-  .TableBoard {
-    display: flex;
-    flex-direction: column;
-    padding: 0;
-    gap: 0;
-  }
-  .PlayerAction {
-    gap: 10px;
-    padding: 0;
-  }
-
-  .ChipGroup > * {
-    flex: 25%;
-  }
-
-  .PlayerLineup {
-    padding: 0;
-    gap: 0;
-    min-height: auto;
-  }
-
-  .TimelineLog {
-    max-height: 170px;
-    overflow: scroll;
-  }
-
-  .PlayerFrame {
-    display: flex !important;
-    flex-direction: column;
-    gap: 5px;
-  }
-
-  .PlayerPos {
-    display: none;
+  .TableLayout {
+    --gap: 10px;
+    justify-content: space-between;
   }
 
   .CardBody {
-    width: 20px;
-    height: auto;
+    width: 18px;
   }
 
-  .ChipButton {
-    gap: 10px;
+  .TimelineLog {
+    height: 100%;
+    max-height: 30%;
   }
 
-  .TableSetting {
-    margin: 0;
+  .PlayerFrame,
+  .PlayerName {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
   }
 }

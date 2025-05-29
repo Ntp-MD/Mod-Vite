@@ -20,7 +20,7 @@
 
 #AppClient > section {
   display: grid;
-  grid-template-columns: 15% auto 50px;
+  grid-template-columns: 15% auto;
   height: 100%;
   overflow: hidden;
 }
@@ -265,36 +265,20 @@ textarea {
 }
 
 @media screen and (max-width: 480px) {
-  section,
-  main {
-    overflow: unset !important;
-    height: auto !important;
-  }
-
-  .QuicksAside {
-    display: none !important;
-  }
-
-  header {
-    display: none !important;
-  }
-
-  footer {
+  #NavAside {
     display: none !important;
   }
 
   #AppClient > section {
     display: flex !important;
-    flex-direction: column !important;
   }
 
-  .display-content,
   main {
-    height: 100vh;
     padding: 0 !important;
   }
-}
 
-#NavAside {
-  display: none !important;
+  .display-content {
+    height: 100%;
+    padding: 10px;
+  }
 }
