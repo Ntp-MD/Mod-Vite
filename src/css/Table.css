@@ -208,4 +208,12 @@
     width: 20px;
     height: auto;
   }
+
+  .ChipButton {
+    gap: 10px;
+  }
+
+  .TableSetting {
+    margin: 0;
+  }
 }
