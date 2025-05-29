@@ -176,6 +176,7 @@
   }
   .PlayerAction {
     gap: 10px;
+    padding: 20px;
   }
 
   .ChipGroup > * {
@@ -189,7 +190,7 @@
   }
 
   .TimelineLog {
-    height: 200px;
+    max-height: 170px;
     overflow: scroll;
   }
 
