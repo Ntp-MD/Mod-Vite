@@ -6,7 +6,6 @@
     <section>
       <NavAside></NavAside>
       <main>
-        <NavAside></NavAside>
         <div class="display-content">
           <router-view></router-view>
         </div>

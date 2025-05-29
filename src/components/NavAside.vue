@@ -49,16 +49,14 @@
 <template>
   <div id="NavAside">
     <div class="NavAsideTop">
-      <img src="/src/assets/icon/user.png" alt="" />
-
-      Adminstrator
+      <router-link class="nav-menu-link" to="/" @click="closeMenu"> <img src="/src/assets/icon/user.png" alt="" /></router-link>
     </div>
     <div class="NavAsideMid">
-      <router-link class="nav-menu-link" to="/" @click="closeMenu">Font Family</router-link>
+      <router-link class="nav-menu-link" to="/FontDisplay" @click="closeMenu">Font Family</router-link>
       <router-link class="nav-menu-link" to="/OnlineDisplay" @click="closeMenu">Online Track</router-link>
       <router-link class="nav-menu-link" to="/DemoDisplay" @click="closeMenu">List Demo</router-link>
       <router-link class="nav-menu-link" to="/QuickAccess" @click="closeMenu">QuickAccess</router-link>
-      <router-link class="nav-menu-link" to="/Table" @click="closeMenu">Table </router-link>
+      <router-link class="nav-menu-link" to="/" @click="closeMenu">Table </router-link>
       <router-link class="nav-menu-link" to="/blank" @click="closeMenu">Setting</router-link>
     </div>
     <div class="NavAsideBottom">Version 1.0.0</div>

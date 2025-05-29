@@ -265,8 +265,10 @@ textarea {
 }
 
 @media screen and (max-width: 480px) {
-  #NavAside {
-    display: none !important;
+  section,
+  main {
+    overflow: unset !important;
+    height: auto !important;
   }
 
   .QuicksAside {
@@ -290,5 +292,9 @@ textarea {
   main {
     height: 100vh;
     padding: 0 !important;
+  }
+  .NavAsideMid,
+  .NavAsideBottom {
+    display: none !important;
   }
 }
