@@ -185,11 +185,18 @@
   .PlayerLineup {
     padding: 0;
     gap: 0;
+    min-height: auto;
+  }
+
+  .TimelineLog {
+    height: 200px;
+    overflow: scroll;
   }
 
   .PlayerFrame {
     display: flex !important;
     flex-direction: column;
+    gap: 5px;
   }
 
   .PlayerPos {

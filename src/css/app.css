@@ -293,8 +293,8 @@ textarea {
     height: 100vh;
     padding: 0 !important;
   }
-  .NavAsideMid,
-  .NavAsideBottom {
-    display: none !important;
-  }
+}
+
+#NavAside {
+  display: none !important;
 }
