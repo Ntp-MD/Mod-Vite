@@ -59,10 +59,10 @@
           <button :disabled="!canGoAllIn" @click="playerAction('all-in')">All-In</button>
           <button @click="playerAction('fold')">Fold</button>
         </div>
-        <div class="ChipGroup">
-          <div v-for="chip in raiseChips" :key="chip" class="ChipControl">
+        <div class="ChipButton">
+          <div v-for="chip in raiseChips" :key="chip" class="ChipBtn">
             <button @click="decreaseRaise(chip)">-</button>
-            <button @click="setRaise(chip)">${{ chip }}</button>
+            <button @click="increaseRaise(chip)">${{ chip }}</button>
             <button @click="increaseRaise(chip)">+</button>
           </div>
         </div>

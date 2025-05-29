@@ -493,12 +493,8 @@ export function playerAction(action, amount = 0) {
     currentMaxBet.value = playerBets.value[0];
     lastRaiser.value = 0;
     msg = `You raised $${raise} (to $${playerBets.value[0]})`;
-    // Reset hasActed for other players as this is a raise
-    hasActed.value = hasActed.value.map((_, idx) => {
-      if (idx === 0) return true; // The raiser (player 0) has acted
-      if (playerFolded.value[idx]) return true; // Folded players remain acted/folded
-      return false; // Other active players need to act again
-    });
+    // Reset hasActed: raiser (0) and folded players have acted, others need to act.
+    hasActed.value = hasActed.value.map((_, idx) => idx === 0 || playerFolded.value[idx]);
   } else if (action === "all-in") {
     const allInAmountFromStack = playerMoney.value[0];
     playerMoney.value[0] = 0;
@@ -511,7 +507,7 @@ export function playerAction(action, amount = 0) {
       currentMaxBet.value = playerBets.value[0];
       lastRaiser.value = 0;
       // Reset hasActed for other players as this is effectively a raise
-      hasActed.value = hasActed.value.map((_, idx) => (idx === 0 || playerFolded.value[idx] ? true : false));
+      hasActed.value = hasActed.value.map((_, idx) => idx === 0 || playerFolded.value[idx]);
       msg += ", raising the bet!";
     }
   }

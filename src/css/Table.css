@@ -80,19 +80,18 @@
 }
 
 .TableBoard {
-  display: grid;
-  grid-template-columns: 30% auto 30%;
+  display: flex;
   gap: 20px;
   height: 100%;
   border: 1px solid #444;
   padding: 20px;
 }
 
+.TableBoard > div {
+  flex: 1;
+}
+
 .TableSetting {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
   display: flex;
   gap: 10px;
   width: 100%;
@@ -142,14 +141,19 @@
   gap: 20px;
 }
 
-.ChipGroup {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+.ChipButton {
+  display: flex;
+  flex-wrap: wrap;
   gap: 20px;
-  width: fit-content;
 }
 
-.ChipControl {
+.TableSetting > *,
+.ActionButton > *,
+.ChipGroup > * {
+  flex: 1;
+}
+
+.ChipBtn {
   display: flex;
   justify-content: center;
   border: 1px solid #444;
@@ -158,4 +162,18 @@
 
 .ChipControl button {
   border: 1px solid transparent;
+}
+
+@media screen and (max-width: 480px) {
+  .TableLayout * {
+    font-size: 10px;
+  }
+  .TableBoard {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ChipGroup > * {
+    flex: 25%;
+  }
 }
