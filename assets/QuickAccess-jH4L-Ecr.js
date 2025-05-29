@@ -1,4 +1,4 @@
-import{_,r as d,p as b,a as e,F as v,g as y,b as a,o as i,n as w,t as u}from"./index-Bic-Kurd.js";const x=`<script>\r
+import{_,r as d,p as b,a as e,F as v,g as y,b as a,o as i,n as w,t as u}from"./index-C_OXJN2n.js";const x=`<script>\r
   $(window).scroll(function () {\r
     if ($(this).scrollTop() > 0) {\r
       $(".itopplus-banner").addClass("itopplus-sticky");\r
