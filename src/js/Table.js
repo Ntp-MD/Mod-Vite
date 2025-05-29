@@ -14,7 +14,7 @@ const currentMaxBet = ref(0);
 export const raiseInput = ref(5);
 const CostRound = 5;
 const numPlayers = ref(6);
-const startingMoney = ref(1000);
+const startingMoney = ref(100);
 const dealerPosition = ref(0);
 export const playerNames = ref([]);
 export const playerMoney = ref([]);
@@ -88,7 +88,15 @@ function createShuffledDeck() {
 function dealHands(count, cardsPerHand) {
   const result = {};
   for (let i = 0; i < count; i++) {
-    result[i] = deck.value.splice(0, cardsPerHand);
+    if (playerMoney.value[i] > 0) {
+      result[i] = deck.value.splice(0, cardsPerHand);
+      // playerFolded.value[i] should be false here if they have money,
+      // as it's reset at the start of a new round.
+    } else {
+      result[i] = []; // No cards for busted players
+      playerFolded.value[i] = true; // Mark them as folded for this round
+      addLog(`${playerNames.value[i]} is out of money and cannot be dealt cards.`);
+    }
   }
   return result;
 }
@@ -212,36 +220,70 @@ export function startGame() {
   pot.value = 0;
   currentPlayer.value = 0;
   gamePhase.value = "betting";
-  currentMaxBet.value = 0;
+
   playerOrder.value = shuffleArray([...Array(numPlayers.value).keys()]);
   playerNames.value = Array.from({ length: numPlayers.value }, (_, i) => (i === 0 ? "You" : `AI ${i}`));
-  hands.value = dealHands(numPlayers.value, 2);
+
   playerMoney.value = Array(numPlayers.value).fill(startingMoney.value);
   playerBets.value = Array(numPlayers.value).fill(0);
   playerFolded.value = Array(numPlayers.value).fill(false);
   playerDialog.value = Array(numPlayers.value).fill("");
   hasActed.value = Array(numPlayers.value).fill(false);
 
+  hands.value = dealHands(numPlayers.value, 2);
+
   assignPositions();
 
   const smallBlind = CostRound * 1;
   const bigBlind = CostRound * 2;
 
-  const sbIndex = (dealerPosition.value + 1) % numPlayers.value;
-  const bbIndex = (dealerPosition.value + 2) % numPlayers.value;
+  let sbIndex, bbIndex;
+  if (numPlayers.value === 2) {
+    sbIndex = dealerPosition.value; // Dealer is SB
+    bbIndex = (dealerPosition.value + 1) % numPlayers.value; // Other player is BB
+  } else {
+    sbIndex = (dealerPosition.value + 1) % numPlayers.value;
+    bbIndex = (dealerPosition.value + 2) % numPlayers.value;
+  }
+
   addLog(`--- Round ${currentRound.value} ---`);
-  playerMoney.value[sbIndex] -= smallBlind;
-  playerBets.value[sbIndex] = smallBlind;
-  pot.value += smallBlind;
-  addLog(`${playerNames.value[sbIndex]} posts small blind: ${smallBlind}$`);
+  // Post Small Blind
+  if (!playerFolded.value[sbIndex] && playerMoney.value[sbIndex] > 0) {
+    const actualSmallBlind = Math.min(smallBlind, playerMoney.value[sbIndex]);
+    playerMoney.value[sbIndex] -= actualSmallBlind;
+    playerBets.value[sbIndex] = actualSmallBlind;
+    pot.value += actualSmallBlind;
+    addLog(`${playerNames.value[sbIndex]} posts small blind: ${actualSmallBlind}$`);
+    if (playerMoney.value[sbIndex] === 0 && actualSmallBlind > 0) {
+      addLog(`${playerNames.value[sbIndex]} is all-in with the small blind.`);
+    }
+  } else if (playerMoney.value[sbIndex] <= 0) {
+    addLog(`${playerNames.value[sbIndex]} is out of money and cannot post small blind.`);
+    playerFolded.value[sbIndex] = true;
+  }
 
-  playerMoney.value[bbIndex] -= bigBlind;
-  playerBets.value[bbIndex] = bigBlind;
-  pot.value += bigBlind;
-  addLog(`${playerNames.value[bbIndex]} posts big blind: ${bigBlind}$`);
+  // Post Big Blind
+  if (!playerFolded.value[bbIndex] && playerMoney.value[bbIndex] > 0) {
+    const actualBigBlind = Math.min(bigBlind, playerMoney.value[bbIndex]);
+    playerMoney.value[bbIndex] -= actualBigBlind;
+    playerBets.value[bbIndex] = actualBigBlind;
+    pot.value += actualBigBlind;
+    addLog(`${playerNames.value[bbIndex]} posts big blind: ${actualBigBlind}$`);
+    if (playerMoney.value[bbIndex] === 0 && actualBigBlind > 0) {
+      addLog(`${playerNames.value[bbIndex]} is all-in with the big blind.`);
+    }
+  } else if (playerMoney.value[bbIndex] <= 0) {
+    addLog(`${playerNames.value[bbIndex]} is out of money and cannot post big blind.`);
+    playerFolded.value[bbIndex] = true;
+  }
 
-  currentMaxBet.value = bigBlind;
-  currentPlayer.value = (bbIndex + 1) % numPlayers.value;
+  currentMaxBet.value = Math.max(playerBets.value[sbIndex] || 0, playerBets.value[bbIndex] || 0);
+
+  if (numPlayers.value === 2) {
+    currentPlayer.value = sbIndex; // SB (dealer) acts first pre-flop in heads-up
+  } else {
+    currentPlayer.value = (bbIndex + 1) % numPlayers.value; // UTG acts first
+  }
 
   nextTurn();
 }
@@ -273,16 +315,19 @@ export function startNewRound() {
   currentRound.value++;
   roundLogs.value.push([]);
   deck.value = createShuffledDeck();
-  flop.value = [];
+
   pot.value = 0;
-  currentPlayer.value = 0;
+
   gamePhase.value = "betting";
   currentMaxBet.value = 0;
-  hands.value = dealHands(numPlayers.value, 2);
+
   playerBets.value = Array(numPlayers.value).fill(0);
   playerFolded.value = Array(numPlayers.value).fill(false);
   playerDialog.value = Array(numPlayers.value).fill("");
   hasActed.value = Array(numPlayers.value).fill(false);
+
+  hands.value = dealHands(numPlayers.value, 2);
+  flop.value = []; // Reset flop here, after dealing hands from the new deck
 
   assignPositions();
   addLog(`--- Round ${currentRound.value} ---`);
@@ -304,21 +349,42 @@ export function startNewRound() {
   }
 
   // Post Small Blind
-  const actualSmallBlind = Math.min(smallBlindAmount, playerMoney.value[sbIndex] + (playerBets.value[sbIndex] || 0));
-  playerMoney.value[sbIndex] -= actualSmallBlind;
-  playerBets.value[sbIndex] = (playerBets.value[sbIndex] || 0) + actualSmallBlind;
-  pot.value += actualSmallBlind;
-  addLog(`${playerNames.value[sbIndex]} posts small blind: ${actualSmallBlind}$`);
+  if (!playerFolded.value[sbIndex] && playerMoney.value[sbIndex] > 0) {
+    const actualSmallBlind = Math.min(smallBlindAmount, playerMoney.value[sbIndex]);
+    playerMoney.value[sbIndex] -= actualSmallBlind;
+    playerBets.value[sbIndex] = actualSmallBlind; // playerBets was reset, so direct assignment
+    pot.value += actualSmallBlind;
+    addLog(`${playerNames.value[sbIndex]} posts small blind: ${actualSmallBlind}$`);
+    if (playerMoney.value[sbIndex] === 0 && actualSmallBlind > 0) {
+      addLog(`${playerNames.value[sbIndex]} is all-in with the small blind.`);
+    }
+  } else if (playerMoney.value[sbIndex] <= 0) {
+    addLog(`${playerNames.value[sbIndex]} is out of money and cannot post small blind.`);
+    playerFolded.value[sbIndex] = true;
+  }
 
   // Post Big Blind
-  const actualBigBlind = Math.min(bigBlindAmount, playerMoney.value[bbIndex] + (playerBets.value[bbIndex] || 0));
-  playerMoney.value[bbIndex] -= actualBigBlind;
-  playerBets.value[bbIndex] = (playerBets.value[bbIndex] || 0) + actualBigBlind;
-  pot.value += actualBigBlind;
-  addLog(`${playerNames.value[bbIndex]} posts big blind: ${actualBigBlind}$`);
+  if (!playerFolded.value[bbIndex] && playerMoney.value[bbIndex] > 0) {
+    const actualBigBlind = Math.min(bigBlindAmount, playerMoney.value[bbIndex]);
+    playerMoney.value[bbIndex] -= actualBigBlind;
+    playerBets.value[bbIndex] = actualBigBlind; // playerBets was reset, so direct assignment
+    pot.value += actualBigBlind;
+    addLog(`${playerNames.value[bbIndex]} posts big blind: ${actualBigBlind}$`);
+    if (playerMoney.value[bbIndex] === 0 && actualBigBlind > 0) {
+      addLog(`${playerNames.value[bbIndex]} is all-in with the big blind.`);
+    }
+  } else if (playerMoney.value[bbIndex] <= 0) {
+    addLog(`${playerNames.value[bbIndex]} is out of money and cannot post big blind.`);
+    playerFolded.value[bbIndex] = true;
+  }
 
-  currentMaxBet.value = playerBets.value[bbIndex]; // BB sets the current max bet
-  currentPlayer.value = (bbIndex + 1) % numPlayers.value; // Action starts after BB (or with SB in heads-up)
+  currentMaxBet.value = Math.max(playerBets.value[sbIndex] || 0, playerBets.value[bbIndex] || 0);
+
+  if (numPlayers.value === 2) {
+    currentPlayer.value = sbIndex; // SB (dealer) acts first pre-flop in heads-up
+  } else {
+    currentPlayer.value = (bbIndex + 1) % numPlayers.value; // UTG acts first
+  }
 
   nextTurn();
 }
@@ -412,6 +478,7 @@ async function nextTurn() {
         playerFolded.value[currentPlayer.value] = true;
         hasActed.value[currentPlayer.value] = true; // Mark as acted (by folding due to error)
       }
+
       // The game will attempt to continue with this AI folded.
     }
 
@@ -499,6 +566,10 @@ export function playerAction(action, amount = 0) {
       if (playerFolded.value[idx]) return true; // Folded players remain acted/folded
       return false; // Other active players need to act again
     });
+
+    if (currentPlayer.value === 0) {
+      raiseInput.value = 0;
+    }
   } else if (action === "all-in") {
     const allInAmountFromStack = playerMoney.value[0];
     playerMoney.value[0] = 0;

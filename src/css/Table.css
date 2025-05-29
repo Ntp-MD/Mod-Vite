@@ -6,6 +6,9 @@
   height: 100vh;
   gap: var(--gap);
   padding-bottom: 20px;
+  min-height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
 }
 
 .TableLayout :is(button) {
@@ -104,6 +107,7 @@
   border: 1px solid #444;
   padding: var(--gap);
   overflow-y: scroll;
+  max-height: 40vh;
 }
 
 .TimelineRound {
