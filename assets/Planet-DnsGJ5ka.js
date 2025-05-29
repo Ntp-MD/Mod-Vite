@@ -1,1 +1,0 @@
-import{_ as t,a,b as s,o}from"./index-DqYwAogV.js";const c={},n={class:"system"};function r(l,e){return o(),a("div",n,e[0]||(e[0]=[s("div",{class:"planet"},null,-1),s("div",{class:"orbit"},[s("div",{class:"object"})],-1)]))}const i=t(c,[["render",r]]);export{i as default};
