@@ -161,7 +161,6 @@
 @media screen and (max-width: 480px) {
   .TableLayout {
     --gap: 10px;
-    justify-content: space-between;
     min-height: 100vh;
     max-height: 100vh;
     overflow: hidden;
@@ -179,6 +178,21 @@
 
   .PlayerLineup {
     min-height: 20vh;
+  }
+
+  .TableFlob {
+    min-height: 10vh;
+  }
+
+  .PlayerAction {
+    min-height: 5vh;
+  }
+
+  .ChipButton {
+    min-height: 10vh;
+  }
+
+  .TableSetting {
   }
 
   .PlayerFrame,
