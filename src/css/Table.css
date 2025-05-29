@@ -171,9 +171,33 @@
   .TableBoard {
     display: flex;
     flex-direction: column;
+    padding: 0;
+    gap: 0;
+  }
+  .PlayerAction {
+    gap: 10px;
   }
 
   .ChipGroup > * {
     flex: 25%;
+  }
+
+  .PlayerLineup {
+    padding: 0;
+    gap: 0;
+  }
+
+  .PlayerFrame {
+    display: flex !important;
+    flex-direction: column;
+  }
+
+  .PlayerPos {
+    display: none;
+  }
+
+  .CardBody {
+    width: 20px;
+    height: auto;
   }
 }

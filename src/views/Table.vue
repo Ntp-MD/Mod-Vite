@@ -18,7 +18,7 @@
       >
         <div class="PlayerName">
           <div>{{ playerNames }}</div>
-          <div>({{ playerPositions[i] }})</div>
+          <div class="PlayerPos">({{ playerPositions[i] }})</div>
         </div>
         <div class="PlayerPosition">
           <div>${{ playerMoney[i] }}</div>
