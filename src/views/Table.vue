@@ -42,7 +42,7 @@
       <div class="PoolMoney">{{ pot }}$</div>
       <div>Current Game Phase: {{ gamePhase }}</div>
     </div>
-    <div class="TimelineLog">
+    <div class="TimelineLog" ref="timelineLogRef">
       <div v-for="(round, index) in roundLogs" :key="index" class="RoundLog">
         <div>Round {{ index + 1 }}</div>
         <div>
@@ -69,17 +69,15 @@
     </div>
     <div class="TableSetting">
       <button @click="startGame" :disabled="gamePhase !== 'idle'">Start Game</button>
-      <button @click="startNewRound" :disabled="gamePhase !== 'betting'">Next</button>
+      <button @click="startNewRound">Next</button>
       <button @click="resetGame">Reset</button>
     </div>
   </div>
 </template>
 
 <script setup>
+import { ref, watch, nextTick } from "vue";
 import {
-  playerNames,
-  currentPlayer,
-  playerFolded,
   playerPositions,
   playerMoney,
   hands,
@@ -103,7 +101,25 @@ import {
   startGame,
   startNewRound,
   resetGame,
+  playerNames, // Moved from the combined import
+  currentPlayer, // Moved from the combined import
+  playerFolded, // Moved from the combined import
   maxRaiseAmount, // Exported because increaseRaise uses it
   minRaiseAmount, // Exported because decreaseRaise, playerAction, resetGame use it
 } from "../js/Table.js";
+
+const timelineLogRef = ref(null);
+
+watch(
+  roundLogs,
+  () => {
+    nextTick(() => {
+      if (timelineLogRef.value) {
+        // timelineLogRef.value will now be the <div class="TimelineLog">
+        timelineLogRef.value.scrollTop = timelineLogRef.value.scrollHeight;
+      }
+    });
+  },
+  { deep: true }
+); // Use deep watch as roundLogs is an array of arrays
 </script>

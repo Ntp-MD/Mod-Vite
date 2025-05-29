@@ -493,8 +493,12 @@ export function playerAction(action, amount = 0) {
     currentMaxBet.value = playerBets.value[0];
     lastRaiser.value = 0;
     msg = `You raised $${raise} (to $${playerBets.value[0]})`;
-    // Reset hasActed: raiser (0) and folded players have acted, others need to act.
-    hasActed.value = hasActed.value.map((_, idx) => idx === 0 || playerFolded.value[idx]);
+    // Reset hasActed for other players as this is a raise
+    hasActed.value = hasActed.value.map((_, idx) => {
+      if (idx === 0) return true; // The raiser (player 0) has acted
+      if (playerFolded.value[idx]) return true; // Folded players remain acted/folded
+      return false; // Other active players need to act again
+    });
   } else if (action === "all-in") {
     const allInAmountFromStack = playerMoney.value[0];
     playerMoney.value[0] = 0;
@@ -507,9 +511,13 @@ export function playerAction(action, amount = 0) {
       currentMaxBet.value = playerBets.value[0];
       lastRaiser.value = 0;
       // Reset hasActed for other players as this is effectively a raise
-      hasActed.value = hasActed.value.map((_, idx) => idx === 0 || playerFolded.value[idx]);
+      hasActed.value = hasActed.value.map((_, idx) => (idx === 0 || playerFolded.value[idx] ? true : false));
       msg += ", raising the bet!";
     }
+    // The following two lines seem to be a copy-paste error from the 'raise' block and were causing issues.
+    // lastRaiser.value = 0; // Already set if it's a raise
+    // msg = `You raised $${raise} (to $${playerBets.value[0]})`; // Overwrites the all-in message
+    // The hasActed reset for 'raise' was also duplicated here.
   }
 
   addLog(msg);
@@ -524,7 +532,7 @@ function getAIAction(index) {
   const toCall = currentMaxBet.value - bet;
   const money = playerMoney.value[index];
   const potSize = pot.value;
-  const aggressionFactor = Math.random() * 0.4 + 0.35; // AI personality: 0.35 (less aggressive) to 0.75 (more aggressive)
+  const aggressionFactor = Math.random() * 0.4 + 0.6; // AI personality: 0.35 (less aggressive) to 0.75 (more aggressive)
 
   const aiFullHand = hands.value[index].concat(flop.value);
   const handEval = evaluateHand(aiFullHand); // { handName, handRank, highCard, values }
@@ -552,16 +560,16 @@ function getAIAction(index) {
       baseRaiseRatio = 0.4 + Math.random() * 0.4;
     } // 40-80% for strong hands
     else if (rank >= 2) {
-      baseRaiseRatio = 0.25 + Math.random() * 0.3; // 25-55% for bluffs (e.g. as a bluff)
-    }
+      baseRaiseRatio = 0.3 + Math.random() * 0.25; // 30-55% for medium (value/semi-bluff)
+    } // 25-50% for medium (value/semi-bluff) - OLD
+    else {
+      baseRaiseRatio = 0.25 + Math.random() * 0.3; // 25-55% for bluffs
+    } // 20-40% for bluffs
 
     let raiseAmount = potSize * baseRaiseRatio;
-    // Adjust by aggression. aggressionFactor is 0.35 (passive) to 0.75 (aggressive). Midpoint is 0.55.
-    // This yields a multiplier of 0.90 (-10%) for most passive, 1.10 (+10%) for most aggressive.
-    const neutralAggression = 0.55;
-    const aggressionMultiplier = 1 + (aggressionFactor - neutralAggression) * 0.5; // e.g., * 0.5 gives +/-10% swing
-    raiseAmount *= aggressionMultiplier;
-    // Ensure raise is at least minRaiseAmount and rounded to nearest 5
+    raiseAmount *= 1 + (aggressionFactor - 0.5) * 0.5; // Adjust by aggression (+/- 25%)
+
+    // Ensure raise is at least minRaiseAmount and rounded
     return Math.max(minRaiseAmount, Math.round(raiseAmount / 5) * 5);
   };
 
@@ -617,7 +625,7 @@ function getAIAction(index) {
     // Weak Hand (High Card)
     if (toCall === 0) {
       // Option to check or bluff
-      return Math.random() < 0.2 + aggressionFactor * 0.15 ? { action: "raise", amount: calculateRaiseAmount() } : { action: "check" }; // Increased bluffing
+      return Math.random() < 0.2 + aggressionFactor * 0.5 ? { action: "raise", amount: calculateRaiseAmount() } : { action: "check" }; // Increased bluffing
     } else {
       // Only call if very cheap (good pot odds) or occasionally bluff call
       // More liberal calling with weak hands / bluff catching
