@@ -192,9 +192,6 @@
     min-height: 10vh;
   }
 
-  .TableSetting {
-  }
-
   .PlayerFrame,
   .PlayerName {
     display: flex;

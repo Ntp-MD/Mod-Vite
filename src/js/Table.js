@@ -11,10 +11,10 @@ export const pot = ref(0);
 export const currentPlayer = ref(0);
 export const gamePhase = ref("idle");
 const currentMaxBet = ref(0);
-export const raiseInput = ref(5);
-const CostRound = 5;
-const numPlayers = ref(6);
-const startingMoney = ref(1000);
+export const raiseInput = ref(0);
+const CostRound = 10;
+const numPlayers = ref(5);
+const startingMoney = ref(500);
 const dealerPosition = ref(0);
 export const playerNames = ref([]);
 export const playerMoney = ref([]);
@@ -26,15 +26,20 @@ const playerOrder = ref([]);
 const hasActed = ref([]);
 
 /* ============ Constants ============ */
-export const raiseChips = [5, 10, 20, 50, 100, 200];
-export const minRaiseAmount = 5;
+export const raiseChips = [10, 20, 30, 50, 100];
+export const minRaiseAmount = 10;
 
 /* ============ Computed ============ */
 export const callAmount = computed(() => Math.max(0, currentMaxBet.value - (playerBets.value[0] || 0)));
 
 export const maxRaiseAmount = computed(() => playerMoney.value[0] + (playerBets.value[0] || 0));
 
-export const canCheck = computed(() => currentMaxBet.value === (playerBets.value[0] || 0));
+export const canCheck = computed(() => {
+  if (gamePhase.value === "idle") {
+    return false;
+  }
+  return currentMaxBet.value === (playerBets.value[0] || 0);
+});
 
 export const canCall = computed(
   () => currentMaxBet.value > (playerBets.value[0] || 0) && playerMoney.value[0] >= currentMaxBet.value - (playerBets.value[0] || 0)
@@ -42,7 +47,14 @@ export const canCall = computed(
 
 export const canRaise = computed(() => playerMoney.value[0] > currentMaxBet.value - (playerBets.value[0] || 0));
 
-export const canGoAllIn = computed(() => playerMoney.value[0] > 0 && gamePhase.value !== "idle" && gamePhase.value !== "showdown");
+export const canFold = computed(() => {
+  if (gamePhase.value === "idle") {
+    return false;
+  }
+  return true; // Folding is generally always allowed when game is active and it's your turn
+});
+
+export const canAll = computed(() => playerMoney.value[0] > 0 && gamePhase.value !== "idle" && gamePhase.value !== "showdown");
 
 const lastRaiser = ref(null);
 
@@ -224,23 +236,32 @@ export function startGame() {
 
   assignPositions();
 
-  const smallBlind = CostRound * 1;
-  const bigBlind = CostRound * 2;
+  const smallBlindAmount = CostRound * 1;
+  const bigBlindAmount = CostRound * 2;
 
   const sbIndex = (dealerPosition.value + 1) % numPlayers.value;
   const bbIndex = (dealerPosition.value + 2) % numPlayers.value;
   addLog(`--- Round ${currentRound.value} ---`);
-  playerMoney.value[sbIndex] -= smallBlind;
-  playerBets.value[sbIndex] = smallBlind;
-  pot.value += smallBlind;
-  addLog(`${playerNames.value[sbIndex]} posts small blind: ${smallBlind}$`);
 
-  playerMoney.value[bbIndex] -= bigBlind;
-  playerBets.value[bbIndex] = bigBlind;
-  pot.value += bigBlind;
-  addLog(`${playerNames.value[bbIndex]} posts big blind: ${bigBlind}$`);
+  // Post Small Blind (capped at player's money, playerBets are 0 at this stage)
+  const actualSmallBlind = Math.min(smallBlindAmount, playerMoney.value[sbIndex]);
+  playerMoney.value[sbIndex] -= actualSmallBlind;
+  playerBets.value[sbIndex] += actualSmallBlind;
+  pot.value += actualSmallBlind;
+  if (actualSmallBlind > 0) {
+    addLog(`${playerNames.value[sbIndex]} posts small blind: ${actualSmallBlind}$`);
+  }
 
-  currentMaxBet.value = bigBlind;
+  // Post Big Blind (capped at player's money, playerBets are 0 at this stage)
+  const actualBigBlind = Math.min(bigBlindAmount, playerMoney.value[bbIndex]);
+  playerMoney.value[bbIndex] -= actualBigBlind;
+  playerBets.value[bbIndex] += actualBigBlind;
+  pot.value += actualBigBlind;
+  if (actualBigBlind > 0) {
+    addLog(`${playerNames.value[bbIndex]} posts big blind: ${actualBigBlind}$`);
+  }
+
+  currentMaxBet.value = playerBets.value[bbIndex]; // BB sets the current max bet
   currentPlayer.value = (bbIndex + 1) % numPlayers.value;
 
   nextTurn();
@@ -308,14 +329,18 @@ export function startNewRound() {
   playerMoney.value[sbIndex] -= actualSmallBlind;
   playerBets.value[sbIndex] = (playerBets.value[sbIndex] || 0) + actualSmallBlind;
   pot.value += actualSmallBlind;
-  addLog(`${playerNames.value[sbIndex]} posts small blind: ${actualSmallBlind}$`);
+  if (actualSmallBlind > 0) {
+    addLog(`${playerNames.value[sbIndex]} posts small blind: ${actualSmallBlind}$`);
+  }
 
   // Post Big Blind
   const actualBigBlind = Math.min(bigBlindAmount, playerMoney.value[bbIndex] + (playerBets.value[bbIndex] || 0));
   playerMoney.value[bbIndex] -= actualBigBlind;
   playerBets.value[bbIndex] = (playerBets.value[bbIndex] || 0) + actualBigBlind;
   pot.value += actualBigBlind;
-  addLog(`${playerNames.value[bbIndex]} posts big blind: ${actualBigBlind}$`);
+  if (actualBigBlind > 0) {
+    addLog(`${playerNames.value[bbIndex]} posts big blind: ${actualBigBlind}$`);
+  }
 
   currentMaxBet.value = playerBets.value[bbIndex]; // BB sets the current max bet
   currentPlayer.value = (bbIndex + 1) % numPlayers.value; // Action starts after BB (or with SB in heads-up)
@@ -324,31 +349,69 @@ export function startNewRound() {
 }
 
 function proceedToNextPhase() {
-  hasActed.value = Array(numPlayers.value).fill(false);
+  // Reset for the new betting round
   playerBets.value = Array(numPlayers.value).fill(0);
   currentMaxBet.value = 0;
   lastRaiser.value = null;
+  // hasActed is reset by the deal/reveal functions below
+
+  let logMessage = "";
+  let roundEnded = false;
 
   if (gamePhase.value === "betting") {
-    dealInitialFlop();
-    addLog("--- Flop ---");
-    gamePhase.value = "flop";
+    dealInitialFlop(); // Sets gamePhase to "flop", resets hasActed
+    logMessage = "--- Flop ---";
   } else if (gamePhase.value === "flop") {
-    revealTurnCard();
-    addLog("--- Turn ---");
-    gamePhase.value = "turn";
+    revealTurnCard(); // Sets gamePhase to "turn", resets hasActed
+    logMessage = "--- Turn ---";
   } else if (gamePhase.value === "turn") {
-    revealRiverCard();
-    addLog("--- River ---");
-    gamePhase.value = "river";
+    revealRiverCard(); // Sets gamePhase to "river", resets hasActed
+    logMessage = "--- River ---";
   } else if (gamePhase.value === "river") {
     gamePhase.value = "showdown";
     determineWinner();
-    return true; // signal end of game
+    roundEnded = true;
+  } else {
+    console.error("proceedToNextPhase called with unexpected gamePhase:", gamePhase.value);
+    roundEnded = true; // Halt progression
   }
 
-  currentPlayer.value = 0;
-  return false; // game continues
+  if (logMessage) {
+    addLog(logMessage);
+  }
+
+  if (roundEnded) {
+    return true; // Signal end of game (round) or error halt
+  }
+
+  // Determine who acts first in the new betting round (post-flop, post-turn, post-river)
+  let firstToAct = -1;
+  let startIndex;
+
+  if (numPlayers.value === 2) {
+    // Heads-up: Dealer (SB) acts first post-flop.
+    startIndex = dealerPosition.value;
+  } else {
+    // 3+ players: SB (or first active player to dealer's left) acts first post-flop.
+    startIndex = (dealerPosition.value + 1) % numPlayers.value;
+  }
+
+  for (let i = 0; i < numPlayers.value; i++) {
+    const playerIndex = (startIndex + i) % numPlayers.value;
+    if (!playerFolded.value[playerIndex]) {
+      firstToAct = playerIndex;
+      break;
+    }
+  }
+
+  if (firstToAct !== -1) {
+    currentPlayer.value = firstToAct;
+  } else {
+    // This should be caught by nextTurn's check for <=1 active players.
+    console.error("CRITICAL: No active player found to start new betting round in proceedToNextPhase.");
+  }
+
+  return false; // Game continues to the new betting round
 }
 
 let isRunning = false; // <-- Put this at the top of your module/script, outside the function
@@ -469,21 +532,32 @@ export function playerAction(action, amount = 0) {
     playerFolded.value[0] = true;
     msg = "You folded.";
   } else if (action === "check") {
+    if (!canCheck.value) {
+      addLog("You cannot check, there is a bet to call or action is not on you.");
+      return;
+    }
     msg = "You checked.";
   } else if (action === "call") {
+    if (!canCall.value) {
+      addLog("You cannot call (not enough money, no bet to call, or action is not on you).");
+      return;
+    }
     const call = callAmount.value;
     playerMoney.value[0] -= call;
     playerBets.value[0] += call;
     pot.value += call;
     msg = `You called $${call}`;
   } else if (action === "raise") {
+    if (!canRaise.value) {
+      addLog("You cannot raise (e.g. not enough funds above the call amount, or action is not on you).");
+      return;
+    }
     const call = callAmount.value;
     const raise = Math.max(minRaiseAmount, amount);
     const total = call + raise;
 
     if (playerMoney.value[0] < total) {
-      msg = "Not enough money to raise.";
-      addLog(msg); // Log the error message
+      addLog("Not enough money for this specific raise amount.");
       return;
     }
 
@@ -500,6 +574,10 @@ export function playerAction(action, amount = 0) {
       return false; // Other active players need to act again
     });
   } else if (action === "all-in") {
+    if (!canAll.value) {
+      addLog("You cannot go all-in at this time (e.g. game not active, or action not on you).");
+      return;
+    }
     const allInAmountFromStack = playerMoney.value[0];
     playerMoney.value[0] = 0;
     playerBets.value[0] += allInAmountFromStack;
@@ -759,10 +837,8 @@ function determineWinner() {
 
   addLog(`--- End of Round ${currentRound.value} ---`);
 
-  /*
   // Automatically start new round after delay
-  setTimeout(() => startNewRound(), 5000);
-  */
+  setTimeout(() => startNewRound(), 1500);
 }
 
 /* ============ Raise Control ============ */

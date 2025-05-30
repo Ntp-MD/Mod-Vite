@@ -1,7 +1,3 @@
-<style scoped>
-@import url(/src/css/Table.css);
-</style>
-
 <template>
   <div class="TableLayout">
     <div class="PlayerLineup">
@@ -52,10 +48,10 @@
     </div>
     <div class="PlayerAction">
       <div class="ActionButton">
-        <button :disabled="!canCheck" @click="playerAction('check')">Check</button>
-        <button :disabled="!canCall" @click="playerAction('call', callAmount)">{{ `Call $${callAmount}` }}</button>
-        <button :disabled="!canRaise" @click="playerAction('raise', raiseInput)">Raise ${{ raiseInput }}</button>
-        <button :disabled="!canGoAllIn" @click="playerAction('all-in')">All-In</button>
+        <button @click="playerAction('check')" :disabled="!canCheck">Check</button>
+        <button @click="playerAction('call', callAmount)" :disabled="!canCall">{{ `Call $${callAmount}` }}</button>
+        <button @click="playerAction('raise', raiseInput)" :disabled="!canRaise">Raise ${{ raiseInput }}</button>
+        <button @click="playerAction('all-in')" :disabled="!canAll">All-In</button>
         <button @click="playerAction('fold')">Fold</button>
       </div>
     </div>
@@ -68,7 +64,7 @@
     </div>
     <div class="TableSetting">
       <button @click="startGame" :disabled="gamePhase !== 'idle'">Start Game</button>
-      <button @click="startNewRound">Next</button>
+      <button @click="startNewRound" :disabled="gamePhase === 'idle'">Next</button>
       <button @click="resetGame">Reset</button>
     </div>
   </div>
@@ -92,7 +88,7 @@ import {
   callAmount,
   canRaise,
   raiseInput,
-  canGoAllIn,
+  canAll,
   raiseChips,
   decreaseRaise,
   setRaise,
@@ -122,3 +118,7 @@ watch(
   { deep: true }
 ); // Use deep watch as roundLogs is an array of arrays
 </script>
+
+<style scoped>
+@import url(/src/css/Table.css);
+</style>
