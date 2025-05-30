@@ -23,7 +23,6 @@ export const playerBets = ref([]);
 export const playerFolded = ref([]);
 const playerDialog = ref([]);
 export const playerPositions = ref([]);
-const playerOrder = ref([]);
 const hasActed = ref([]);
 
 /* ============ Constants ============ */
@@ -226,7 +225,6 @@ export function startGame() {
   currentPlayer.value = 0;
   gamePhase.value = "betting";
   currentMaxBet.value = 0;
-  playerOrder.value = shuffleArray([...Array(numPlayers.value).keys()]);
   playerNames.value = Array.from({ length: numPlayers.value }, (_, i) => (i === 0 ? "You" : `AI ${i}`));
   hands.value = dealHands(numPlayers.value, 2);
   playerMoney.value = Array(numPlayers.value).fill(startingMoney.value);
@@ -245,21 +243,21 @@ export function startGame() {
   addLog(`--- Round ${currentRound.value} ---`);
 
   // Post Small Blind (capped at player's money, playerBets are 0 at this stage)
-  const actualSmallBlind = Math.min(smallBlindAmount, playerMoney.value[sbIndex]);
-  playerMoney.value[sbIndex] -= actualSmallBlind;
-  playerBets.value[sbIndex] += actualSmallBlind;
-  pot.value += actualSmallBlind;
-  if (actualSmallBlind > 0) {
-    addLog(`${playerNames.value[sbIndex]} posts small blind: ${actualSmallBlind}$`);
+  const sbAmountToPost = Math.min(smallBlindAmount, playerMoney.value[sbIndex]);
+  if (sbAmountToPost > 0) {
+    playerMoney.value[sbIndex] -= sbAmountToPost;
+    playerBets.value[sbIndex] += sbAmountToPost; // playerBets are 0 at this point in startNewRound
+    pot.value += sbAmountToPost;
+    addLog(`${playerNames.value[sbIndex]} posts small blind: ${sbAmountToPost}$`);
   }
 
   // Post Big Blind (capped at player's money, playerBets are 0 at this stage)
-  const actualBigBlind = Math.min(bigBlindAmount, playerMoney.value[bbIndex]);
-  playerMoney.value[bbIndex] -= actualBigBlind;
-  playerBets.value[bbIndex] += actualBigBlind;
-  pot.value += actualBigBlind;
-  if (actualBigBlind > 0) {
-    addLog(`${playerNames.value[bbIndex]} posts big blind: ${actualBigBlind}$`);
+  const bbAmountToPost = Math.min(bigBlindAmount, playerMoney.value[bbIndex]);
+  if (bbAmountToPost > 0) {
+    playerMoney.value[bbIndex] -= bbAmountToPost;
+    playerBets.value[bbIndex] += bbAmountToPost; // playerBets are 0 at this point in startNewRound
+    pot.value += bbAmountToPost;
+    addLog(`${playerNames.value[bbIndex]} posts big blind: ${bbAmountToPost}$`);
   }
 
   currentMaxBet.value = playerBets.value[bbIndex]; // BB sets the current max bet
