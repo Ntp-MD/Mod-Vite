@@ -14,8 +14,9 @@ const currentMaxBet = ref(0);
 export const raiseInput = ref(0);
 const CostRound = 10;
 const numPlayers = ref(6);
-const startingMoney = ref(500);
+const startingMoney = ref(1000);
 const dealerPosition = ref(0);
+
 export const playerNames = ref([]);
 export const playerMoney = ref([]);
 export const playerBets = ref([]);
@@ -724,50 +725,29 @@ function getAIAction(index) {
         // Call is relatively small
         return Math.random() < 0.65 + aggressionFactor * 0.2 ? { action: "raise", amount: calculateRaiseAmount() } : { action: "call" };
       } else if (toCall <= money * (0.8 + aggressionFactor * 0.1)) {
-        // Moderate call
-        const rand = Math.random();
-        if (rand < 0.3 + aggressionFactor * 0.1) return { action: "raise", amount: calculateRaiseAmount() }; // Small chance to re-raise
-        else if (rand < 0.95 + aggressionFactor * 0.05) return { action: "call" }; // Very high chance to call
-        else return { action: "fold" }; // Very small chance to fold
+        // Medium to large call, depends on aggression
+        return Math.random() < 0.5 + aggressionFactor * 0.2 ? { action: "call" } : { action: "fold" };
       } else {
-        // Expensive call
-        return Math.random() < 0.5 + aggressionFactor * 0.2 ? { action: "call" } : { action: "fold" }; // Decent chance to call expensive bets
+        // Too expensive, likely fold
+        return Math.random() < 0.2 + aggressionFactor * 0.1 ? { action: "call" } : { action: "fold" };
       }
     }
   } else if (rank >= 2) {
-    // Medium Hand (Pair, Two Pair, Three of a Kind)
+    // Medium Hand (Top Pair, Two Pair, Trips)
     if (toCall === 0) {
-      return Math.random() < 0.45 + aggressionFactor * 0.2 ? { action: "raise", amount: calculateRaiseAmount() } : { action: "check" }; // Increased semi-bluff/value bet
+      return Math.random() < 0.5 + aggressionFactor * 0.3 ? { action: "raise", amount: calculateRaiseAmount() } : { action: "check" };
+    } else if (toCall <= money * 0.25) {
+      return Math.random() < 0.6 + aggressionFactor * 0.2 ? { action: "call" } : { action: "fold" };
     } else {
-      if (toCall <= money * (0.3 + aggressionFactor * 0.1)) {
-        // Cheap call
-        const rand = Math.random();
-        if (rand < 0.2 + aggressionFactor * 0.15) return { action: "raise", amount: calculateRaiseAmount() }; // Increased semi-bluff raises
-        if (rand < 0.9 + aggressionFactor * 0.1) return { action: "call" }; // Increased call likelihood
-        return { action: "fold" };
-      } else if (toCall <= money * (0.7 + aggressionFactor * 0.1)) {
-        // Moderate call
-        return Math.random() < 0.85 + aggressionFactor * 0.15 ? { action: "call" } : { action: "fold" }; // Significantly more likely to call
-      } else {
-        // Expensive call
-        return Math.random() < 0.4 + aggressionFactor * 0.15 ? { action: "call" } : { action: "fold" }; // Increased chance to call expensive bets
-      }
+      return Math.random() < 0.3 + aggressionFactor * 0.2 ? { action: "call" } : { action: "fold" };
     }
   } else {
-    // Weak Hand (High Card)
+    // Weak Hand (High Card, Low Pair)
     if (toCall === 0) {
-      // Option to check or bluff
-      return Math.random() < 0.2 + aggressionFactor * 0.5 ? { action: "raise", amount: calculateRaiseAmount() } : { action: "check" }; // Increased bluffing
+      return Math.random() < 0.3 + aggressionFactor * 0.2 ? { action: "raise", amount: calculateRaiseAmount() } : { action: "check" };
+    } else if (toCall <= money * 0.15) {
+      return Math.random() < 0.3 + aggressionFactor * 0.2 ? { action: "call" } : { action: "fold" };
     } else {
-      // Only call if very cheap (good pot odds) or occasionally bluff call
-      // More liberal calling with weak hands / bluff catching
-      if (toCall <= money * (0.25 + aggressionFactor * 0.1) && toCall < potSize * 0.35) {
-        // Looser definition of "cheap"
-        return Math.random() < 0.55 + aggressionFactor * 0.2 ? { action: "call" } : { action: "fold" };
-      } else if (toCall <= money * (0.4 + aggressionFactor * 0.15) && Math.random() < 0.1 + aggressionFactor * 0.15) {
-        // Small chance to call slightly more expensive bets as a bluff/float
-        return { action: "call" };
-      }
       return { action: "fold" };
     }
   }
