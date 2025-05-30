@@ -6,6 +6,9 @@
   height: 100vh;
   gap: var(--gap);
   padding-bottom: 20px;
+  min-height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
 }
 
 .TableLayout :is(button) {
@@ -202,5 +205,10 @@
 
   .TableLayout :is(button) {
     height: 35px;
+  }
+
+  .ChipButton {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
   }
 }

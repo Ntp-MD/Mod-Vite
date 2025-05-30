@@ -13,7 +13,7 @@ export const gamePhase = ref("idle");
 const currentMaxBet = ref(0);
 export const raiseInput = ref(0);
 const CostRound = 10;
-const numPlayers = ref(5);
+const numPlayers = ref(6);
 const startingMoney = ref(500);
 const dealerPosition = ref(0);
 export const playerNames = ref([]);
@@ -26,7 +26,7 @@ const playerOrder = ref([]);
 const hasActed = ref([]);
 
 /* ============ Constants ============ */
-export const raiseChips = [10, 20, 30, 50, 100];
+export const raiseChips = [10, 30, 50, 100];
 export const minRaiseAmount = 10;
 
 /* ============ Computed ============ */

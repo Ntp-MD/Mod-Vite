@@ -52,7 +52,7 @@
         <button @click="playerAction('call', callAmount)" :disabled="!canCall">{{ `Call $${callAmount}` }}</button>
         <button @click="playerAction('raise', raiseInput)" :disabled="!canRaise">Raise ${{ raiseInput }}</button>
         <button @click="playerAction('all-in')" :disabled="!canAll">All-In</button>
-        <button @click="playerAction('fold')">Fold</button>
+        <button @click="playerAction('fold')" :disabled="!canFold">Fold</button>
       </div>
     </div>
     <div class="ChipButton">
