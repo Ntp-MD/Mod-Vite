@@ -20,7 +20,12 @@
           <div>${{ playerMoney[i] }}</div>
         </div>
         <div class="PlayerHand">
-          <div v-for="(card, cIndex) in hands[i]" :key="cIndex" class="CardBody" :class="getSuitClass(card.suit)">
+          <div
+            v-for="(card, cIndex) in hands[i]"
+            :key="cIndex"
+            class="CardBody"
+            :class="[getSuitClass(card.suit), { 'hide-card-details': i !== 0 && gamePhase !== 'showdown' }]"
+          >
             <div class="RankCard">{{ card.rank }}</div>
             <div class="SuitCard">{{ card.suit }}</div>
           </div>
@@ -52,7 +57,7 @@
         <button @click="playerAction('call', callAmount)" :disabled="!canCall">{{ `Call $${callAmount}` }}</button>
         <button @click="playerAction('raise', raiseInput)" :disabled="!canRaise">Raise ${{ raiseInput }}</button>
         <button @click="playerAction('all-in')" :disabled="!canAll">All-In</button>
-        <button @click="playerAction('fold')" :disabled="!canFold">Fold</button>
+        <button @click="playerAction('fold')" :disabled="!canCall">Fold</button>
       </div>
     </div>
     <div class="ChipButton">

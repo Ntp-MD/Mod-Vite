@@ -12,6 +12,14 @@ export default defineConfig({
       deep: true, // Enable subdirectory scanning
     }),
   ],
+  test: {
+    globals: true, // To use describe, it, expect etc. without importing
+    environment: "jsdom", // Or 'happy-dom' for faster DOM emulation if needed
+    include: ["src/Test/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"], // Explicitly include test files
+    // You can also add:
+    // root: __dirname, // Or resolve(__dirname) if using import { resolve } from 'path';
+    // coverage: { provider: 'v8' } // Optional: if you want coverage reports
+  },
   build: {
     outDir: "dist", // Output to the dist directory
   },

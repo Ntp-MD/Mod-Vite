@@ -424,41 +424,79 @@ async function nextTurn() {
     // Outer try for the whole function
     // Inner loop to find the next player to act or to end the betting round
     while (true) {
-      // Only one player left (others folded)
+      const cp = currentPlayer.value;
+
+      // Condition A: Only one non-folded player left?
       if (playerFolded.value.filter((f) => !f).length <= 1) {
-        gamePhase.value = "showdown";
-        determineWinner();
-        return; // Exits nextTurn, finally will run
-      }
-
-      // Check if the current player needs to act
-      // Ensure currentPlayer.value is valid index before accessing arrays
-      if (
-        currentPlayer.value >= 0 &&
-        currentPlayer.value < numPlayers.value &&
-        !playerFolded.value[currentPlayer.value] &&
-        !hasActed.value[currentPlayer.value]
-      ) {
-        break; // Found an active player who hasn't acted yet in this betting round.
-      }
-
-      // Move to the next player
-      currentPlayer.value = (currentPlayer.value + 1) % numPlayers.value;
-
-      // Check if all active players have acted (i.e., betting round is complete)
-      if (hasActed.value.every((acted, i) => acted || playerFolded.value[i])) {
-        const ended = proceedToNextPhase(); // This resets hasActed for the new phase
-        if (!ended) {
-          // If the game didn't end (e.g., moved to flop, turn, river), schedule nextTurn for the new phase
-          setTimeout(nextTurn, 500);
+        if (gamePhase.value !== "showdown") {
+          // Avoid re-determining winner if already in showdown
+          gamePhase.value = "showdown";
+          determineWinner();
         }
-        return; // Exits nextTurn, finally will run
+        return;
       }
-    } // End of while(true) loop for finding current player / ending betting round
+
+      // Condition B: Is current player folded?
+      if (playerFolded.value[cp]) {
+        currentPlayer.value = (cp + 1) % numPlayers.value;
+        continue; // Move to next player, re-evaluate from top of while
+      }
+
+      // Condition C: Is current player all-in AND not yet marked as acted for this street?
+      if (playerMoney.value[cp] === 0 && !playerFolded.value[cp] && !hasActed.value[cp]) {
+        hasActed.value[cp] = true; // All-in player "acts" by default (effectively checks)
+        // Do not break. The loop will continue to check if the round is over or move to the next player.
+      }
+      // Condition D: Is current player NOT all-in, NOT folded, and NOT acted?
+      else if (playerMoney.value[cp] > 0 && !playerFolded.value[cp] && !hasActed.value[cp]) {
+        // This player (human or AI) needs to make a decision.
+        break; // Exit while loop, proceed to player/AI action section.
+      }
+      // If player has already acted, or was just marked acted because all-in, or is folded (handled by B),
+      // then we check if the betting round is over.
+
+      // Condition E: Is the betting round over?
+      // (All non-folded players have either acted or are all-in and thus considered acted for the street)
+      let roundOver = true;
+      for (let i = 0; i < numPlayers.value; i++) {
+        if (
+          !playerFolded.value[i] && // Player is in the hand
+          playerMoney.value[i] > 0 && // Player has chips to bet
+          !hasActed.value[i]
+        ) {
+          // Player has not yet acted this street
+          roundOver = false;
+          break;
+        }
+      }
+
+      if (roundOver) {
+        const gameActuallyEnded = proceedToNextPhase(); // This resets hasActed for new phase
+        if (!gameActuallyEnded) {
+          // Game continues to a new street (flop, turn, river)
+          // Check if we need to auto-run the rest of the board (all remaining active players are all-in or only one has chips)
+          const activePlayersInHand = playerMoney.value.map((_, i) => i).filter((i) => !playerFolded.value[i]);
+          const playersWhoCanBet = activePlayersInHand.filter((i) => playerMoney.value[i] > 0);
+
+          if (activePlayersInHand.length > 1 && playersWhoCanBet.length <= 1 && gamePhase.value !== "showdown") {
+            // More than one player in hand, but at most one can still bet (others all-in).
+            // -> Run out the board by quickly proceeding to the next phase.
+            setTimeout(nextTurn, 100); // Fast-forward.
+          } else {
+            setTimeout(nextTurn, 500); // Normal progression for new betting round.
+          }
+        }
+        return; // Exit nextTurn
+      }
+
+      // If round is not over, and we didn't break for current player to act, move to the next player.
+      currentPlayer.value = (cp + 1) % numPlayers.value;
+    } // End of while(true) loop
 
     // If it's the human player's turn, exit and wait for their action
-    if (currentPlayer.value === 0) {
-      return; // Exits nextTurn, finally will run. Human action will call nextTurn again.
+    // The while loop ensures that if player 0 is current, they have money and haven't acted.
+    if (currentPlayer.value === 0 && playerMoney.value[0] > 0 && !hasActed.value[0] && !playerFolded.value[0]) {
+      return; // Wait for human input
     }
 
     // AI's turn
@@ -480,13 +518,29 @@ async function nextTurn() {
 
     // AI's action is complete. Now check if the betting round is over or continue to the next player.
 
-    // Check if betting round is over (e.g., if AI's action completed the betting)
-    if (hasActed.value.every((acted, i) => acted || playerFolded.value[i])) {
-      const ended = proceedToNextPhase();
-      if (!ended) {
-        setTimeout(nextTurn, 500);
+    // After AI action, check if the round is over.
+    // This check is similar to Condition E in the while loop.
+    let roundOverAfterAI = true;
+    for (let i = 0; i < numPlayers.value; i++) {
+      if (!playerFolded.value[i] && playerMoney.value[i] > 0 && !hasActed.value[i]) {
+        roundOverAfterAI = false;
+        break;
       }
-      return; // Exits nextTurn, finally will run
+    }
+
+    if (roundOverAfterAI) {
+      const gameActuallyEnded = proceedToNextPhase();
+      if (!gameActuallyEnded) {
+        // Similar logic for auto-running board or normal progression
+        const activePlayersInHand = playerMoney.value.map((_, i) => i).filter((i) => !playerFolded.value[i]);
+        const playersWhoCanBet = activePlayersInHand.filter((i) => playerMoney.value[i] > 0);
+        if (activePlayersInHand.length > 1 && playersWhoCanBet.length <= 1 && gamePhase.value !== "showdown") {
+          setTimeout(nextTurn, 100);
+        } else {
+          setTimeout(nextTurn, 500);
+        }
+      }
+      return;
     }
 
     // Betting round is not over, move to the next player and schedule nextTurn
@@ -838,7 +892,9 @@ function determineWinner() {
   addLog(`--- End of Round ${currentRound.value} ---`);
 
   // Automatically start new round after delay
+  /*
   setTimeout(() => startNewRound(), 1500);
+  */
 }
 
 /* ============ Raise Control ============ */
