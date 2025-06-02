@@ -41,7 +41,7 @@
         </div>
       </div>
       <div class="PoolMoney">{{ pot }}$</div>
-      <div>Current Game Phase: {{ gamePhase }}</div>
+      <div class="CurrentPhase">Current Game Phase: {{ gamePhase }}</div>
     </div>
     <div class="TimelineLog" ref="timelineLogRef">
       <div v-for="(round, index) in roundLogs" :key="index" class="RoundLog">

@@ -167,6 +167,10 @@
     grid-template-columns: repeat(3, 1fr);
   }
 
+  .CurrentPhase {
+    display: none;
+  }
+
   .PlayerFrame,
   .PlayerName {
     display: flex;
@@ -174,10 +178,6 @@
     text-align: center;
     place-content: center;
     gap: 5px;
-  }
-
-  .PlayerPosition {
-    display: none;
   }
 
   .TableLayout :is(button) {

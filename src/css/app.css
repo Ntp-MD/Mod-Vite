@@ -296,6 +296,10 @@ table.TableViews {
     flex-direction: column;
   }
 
+  header {
+    display: none !important;
+  }
+
   aside {
     position: absolute;
     justify-content: start;
