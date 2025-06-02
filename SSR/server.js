@@ -70,6 +70,23 @@ app.post("/DemoDisplayPost", (req, res) => {
 });
 
 //********************************************************************************************//
+app.get("/OnlineTrackGetData", (req, res) => {
+  console.log("Received request /OnlineTrackGetData");
+  fs.readFile(OnlineTrackData, "utf8", (err, data) => {
+    if (err) {
+      console.error("Read error:", err);
+      return res.status(500).json({ error: "Failed to read data file" });
+    }
+    try {
+      const jsonData = JSON.parse(data);
+      console.log("data loaded:", jsonData);
+      res.json(jsonData);
+    } catch (parseErr) {
+      console.error("Parse error", parseErr);
+      res.status(500).json({ error: "Corrupted JSON data" });
+    }
+  });
+});
 
 // ✅ Start server
 app.listen(PORT, () => {
