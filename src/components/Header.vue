@@ -1,5 +1,5 @@
 <template>
-  <nav id="nav-header" :class="['nav-menu', { open: isMenuOpen }]" ref="NavMenu">
+  <div id="nav-header" :class="['nav-menu', { open: isMenuOpen }]" ref="NavMenu">
     <div id="nav-logo"><router-link to="/">Mod</router-link></div>
     <router-link class="nav-menu-link" to="/Dashboard" @click="closeMenu">Dashboard</router-link>
     <div id="nav-toggle" @click="toggleMenu" ref="navToggle">
@@ -7,7 +7,7 @@
       <div :class="{ animate: isMenuOpen }"></div>
       <div :class="{ animate: isMenuOpen }"></div>
     </div>
-  </nav>
+  </div>
 </template>
 
 <script>
@@ -32,7 +32,7 @@ export default {
 </script>
 
 <style scoped>
-nav {
+#nav-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -43,7 +43,7 @@ nav {
   padding: 10px 15px;
 }
 
-nav a {
+#nav-header a {
   color: #fff;
 }
 

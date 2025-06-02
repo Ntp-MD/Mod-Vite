@@ -66,8 +66,9 @@ export default {
   flex-direction: column;
   gap: 10px;
   padding: 15px;
-  border-radius: 12px;
+  border-radius: 10px;
   min-height: auto;
+  background: var(--ui-bg1);
 }
 
 .code-block {

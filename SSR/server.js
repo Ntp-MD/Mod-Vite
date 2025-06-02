@@ -16,13 +16,13 @@ const DemoDisplayData = path.join(__dirname, "data", "DemoDisplay.json");
 app.get("/OnlineDisplayGet", (req, res) => {
   fs.readFile(OnlineDisplayData, "utf8", (err, data) => {
     if (err) {
-      console.error("Read error:", err);
+      console.error("Read error", err);
       return res.status(500).json({ error: "Failed to read data file" });
     }
     try {
       res.json(JSON.parse(data));
     } catch (parseErr) {
-      console.error("Parse error:", parseErr);
+      console.error("Parse error", parseErr);
       res.status(500).json({ error: "Corrupted JSON data" });
     }
   });
@@ -39,20 +39,21 @@ app.post("/OnlineDisplayPost", (req, res) => {
   });
 });
 
+//********************************************************************************************//
 app.get("/DemoDisplayGet", (req, res) => {
   console.log("Received request /DemoDisplayGet");
   fs.readFile(DemoDisplayData, "utf8", (err, data) => {
     if (err) {
-      console.error("Read error (DemoDisplay):", err);
-      return res.status(500).json({ error: "Failed to read DemoDisplay data file" });
+      console.error("Read error:", err);
+      return res.status(500).json({ error: "Failed to read data file" });
     }
     try {
       const jsonData = JSON.parse(data);
-      console.log("DemoDisplay data loaded:", jsonData);
+      console.log("data loaded:", jsonData);
       res.json(jsonData);
     } catch (parseErr) {
-      console.error("Parse error (DemoDisplay):", parseErr);
-      res.status(500).json({ error: "Corrupted JSON data in DemoDisplay" });
+      console.error("Parse error", parseErr);
+      res.status(500).json({ error: "Corrupted JSON data" });
     }
   });
 });
@@ -61,12 +62,14 @@ app.post("/DemoDisplayPost", (req, res) => {
   const newData = req.body;
   fs.writeFile(DemoDisplayData, JSON.stringify(newData, null, 2), (err) => {
     if (err) {
-      console.error("Write error (DemoDisplay):", err);
-      return res.status(500).json({ error: "Failed to write DemoDisplay data file" });
+      console.error("Write error", err);
+      return res.status(500).json({ error: "Failed to write data file" });
     }
     res.json({ success: true });
   });
 });
+
+//********************************************************************************************//
 
 // ✅ Start server
 app.listen(PORT, () => {

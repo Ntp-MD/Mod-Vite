@@ -1,12 +1,9 @@
 .TableLayout {
-  --gap: 20px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  height: 100vh;
+  height: 100%;
   gap: var(--gap);
-  min-height: 100vh;
-  max-height: 100vh;
   overflow: hidden;
 }
 
@@ -165,37 +162,9 @@
 }
 
 @media screen and (max-width: 480px) {
-  .TableLayout {
-    --gap: 10px;
-    min-height: 100vh;
-    max-height: 100vh;
-    overflow: hidden;
-  }
-
-  .CardBody {
-    width: 18px;
-  }
-
-  .TimelineLog {
-    height: 100%;
-    min-height: 30vh;
-    max-height: 30vh;
-  }
-
   .PlayerLineup {
-    min-height: 20vh;
-  }
-
-  .TableFlob {
-    min-height: 10vh;
-  }
-
-  .PlayerAction {
-    min-height: 5vh;
-  }
-
-  .ChipButton {
-    min-height: 10vh;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
   }
 
   .PlayerFrame,
@@ -204,6 +173,11 @@
     flex-direction: column;
     text-align: center;
     place-content: center;
+    gap: 5px;
+  }
+
+  .PlayerPosition {
+    display: none;
   }
 
   .TableLayout :is(button) {

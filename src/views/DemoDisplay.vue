@@ -1,53 +1,52 @@
 <template>
-  <div class="DemoDisplay">
-    <div class="DemoDisplayTop">
-      <div class="search-box">
-        <input class="search-input" type="search" placeholder="Search demo" v-model="searchQuery" />
-        <img src="/src/assets/icon/search.png" alt="" />
-      </div>
-      <div class="filter-range" @click="filterRange(1, 199)">1–199</div>
-      <div class="filter-range" @click="filterRange(200, 399)">200–399</div>
-      <div class="filter-range" @click="filterRange(400, 599)">400–599</div>
-      <div class="filter-range" @click="filterRange(600, 800)">600–800</div>
-      <div class="filter-range" @click="clearFilter">All</div>
+  <div class="Tablefilter">
+    <div class="search-box">
+      <input class="search-input" type="search" placeholder="Search demo" v-model="searchQuery" />
+      <img src="/src/assets/icon/search.png" alt="" />
     </div>
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Note</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(site, idx) in filteredData" :key="idx">
-          <td>{{ site.name }}</td>
-
-          <!-- Note -->
-          <td :class="{ editing: editingIndex === idx && editingField === 'note' }">
-            <div v-if="editingIndex === idx && editingField === 'note'" class="edit-cell">
-              <input v-model="tempInput" @keyup.enter="saveEdit" @blur="saveEdit" @keyup.esc="cancelEdit" autofocus />
-            </div>
-            <div class="edit-box" v-else>
-              <div>{{ site.note }}</div>
-              <img @click="startEditing(idx, 'note')" src="/src/assets/icon/edit.png" />
-            </div>
-          </td>
-
-          <!-- Status -->
-          <td :class="{ editing: editingIndex === idx && editingField === 'status' }">
-            <div v-if="editingIndex === idx && editingField === 'status'" class="edit-cell">
-              <input v-model="tempInput" @keyup.enter="saveEdit" @blur="saveEdit" @keyup.esc="cancelEdit" autofocus />
-            </div>
-            <div class="edit-box" v-else>
-              <div>{{ site.status }}</div>
-              <img @click="startEditing(idx, 'status')" src="/src/assets/icon/edit.png" />
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="filter-range" @click="filterRange(1, 199)">1–199</div>
+    <div class="filter-range" @click="filterRange(200, 399)">200–399</div>
+    <div class="filter-range" @click="filterRange(400, 599)">400–599</div>
+    <div class="filter-range" @click="filterRange(600, 800)">600–800</div>
+    <div class="filter-range" @click="clearFilter">All</div>
   </div>
+  <table class="TableViews">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Note</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr v-for="(site, idx) in filteredData" :key="idx">
+        <td>{{ site.name }}</td>
+
+        <!-- Note -->
+        <td :class="{ editing: editingIndex === idx && editingField === 'note' }">
+          <div v-if="editingIndex === idx && editingField === 'note'" class="edit-cell">
+            <input v-model="tempInput" @keyup.enter="saveEdit" @blur="saveEdit" @keyup.esc="cancelEdit" autofocus />
+          </div>
+          <div class="edit-box" v-else>
+            <div>{{ site.note }}</div>
+            <img @click="startEditing(idx, 'note')" src="/src/assets/icon/edit.png" />
+          </div>
+        </td>
+
+        <!-- Status -->
+        <td :class="{ editing: editingIndex === idx && editingField === 'status' }">
+          <div v-if="editingIndex === idx && editingField === 'status'" class="edit-cell">
+            <input v-model="tempInput" @keyup.enter="saveEdit" @blur="saveEdit" @keyup.esc="cancelEdit" autofocus />
+          </div>
+          <div class="edit-box" v-else>
+            <div>{{ site.status }}</div>
+            <img @click="startEditing(idx, 'status')" src="/src/assets/icon/edit.png" />
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </template>
 
 <script setup>
@@ -116,59 +115,30 @@ const filteredData = computed(() => {
 </script>
 
 <style scoped>
-.DemoDisplay {
-  & table {
-    width: 100%;
-    border-collapse: collapse;
-    color: #fff;
-    table-layout: fixed;
-  }
-
-  th,
-  td {
-    border: 1px solid #444;
-    padding-left: 10px;
-    text-align: left;
-    height: 45px;
-  }
-  thead {
-    background: var(--ui-bg1);
-    color: #fff;
-  }
-
-  td.editing {
-    box-shadow: inset 0 0px 2px 1px #4abdff;
-  }
-
-  .search-box {
-    min-width: 250px;
-    width: fit-content;
-  }
-}
-
-.DemoDisplayTop {
-  position: sticky;
-  top: 0;
-  display: flex;
-  align-items: center;
-  gap: 10px;
+table.TableViews {
+  table-layout: fixed;
+  border-collapse: collapse;
   width: 100%;
   color: #fff;
-  background: var(--ui-bg1);
-  z-index: 1;
-  padding-bottom: 10px;
 }
 
-.filter-range {
-  display: grid;
-  place-items: center;
+.TableViews th,
+.TableViews td {
   border: 1px solid #444;
+  padding-left: 10px;
+  text-align: left;
   height: 45px;
-  min-width: 100px;
-  cursor: pointer;
+}
+thead {
+  background: var(--ui-bg1);
+  color: #fff;
 }
 
-.filter-range:hover {
-  border: 1px solid #4abdff;
+td.editing {
+  box-shadow: inset 0 0px 2px 1px #4abdff;
+}
+
+.Tablefilter {
+  display: flex;
 }
 </style>
