@@ -80,7 +80,7 @@ export default {
   overflow: hidden;
   font-size: 14px;
   font-family: monospace;
-  border: 1px solid #444;
+  border: 1px solid var(--border-color);
 }
 
 .code-content {
@@ -101,7 +101,6 @@ export default {
   height: 100%;
   background: var(--color3);
   cursor: pointer;
-  border: 1px solid #444;
 }
 
 .copy-button img {

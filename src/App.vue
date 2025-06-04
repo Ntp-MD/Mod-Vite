@@ -1,32 +1,46 @@
 <template>
-  <div id="AppClient">
-    <header v-if="route.meta.HideThis">
-      <NavHeader></NavHeader>
-    </header>
+  <div id="AppClient" :class="themeClass">
     <aside>
-      <router-link class="nav-menu-link" to="/FontDisplay">Font Family</router-link>
-      <router-link class="nav-menu-link" to="/OnlineTrackDisplay">Online Track</router-link>
-      <router-link class="nav-menu-link" to="/OnlineDisplay">Online Promotion</router-link>
-      <router-link class="nav-menu-link" to="/DemoDisplay">List Demo</router-link>
-      <router-link class="nav-menu-link" to="/QuickAccess">QuickAccess</router-link>
-      <router-link class="nav-menu-link" to="/">Table </router-link>
-      <router-link class="nav-menu-link" to="/blank">Setting</router-link>
+      <NavAside></NavAside>
     </aside>
     <main>
-      <router-view></router-view>
-    </main>
-    <!--
-    <footer v-if="route.meta.HideThis">
-      <NavFooter></NavFooter>
-    </footer>
+      <header v-if="route.meta.HideThis">
+        <Header></Header>
+        <div id="toggleTheme" @click="toggleTheme">
+          <div class="toggle-swap">
+            <img class="light" src="/src/assets/icon/sun.png" alt="" />
 
-    -->
+            <img class="dark" src="/src/assets/icon/moon.png" alt="" />
+          </div>
+        </div>
+      </header>
+      <section>
+        <router-view></router-view>
+      </section>
+      <footer v-if="route.meta.HideThis">
+        <Footer></Footer>
+      </footer>
+    </main>
   </div>
 </template>
 
 <script setup>
-import NavHeader from "/src/components/Header.vue";
-import NavFooter from "/src/components/Footer.vue";
+import { ref, computed } from "vue";
+import NavAside from "./components/NavAside.vue";
+import Header from "/src/components/Header.vue";
+import Footer from "/src/components/Footer.vue";
 import { useRoute } from "vue-router";
+
 const route = useRoute();
+
+const isDarkMode = ref(true);
+
+const themeClass = computed(() => {
+  return isDarkMode.value ? "dark-mode" : "light-mode";
+});
+
+// Function to toggle the theme
+const toggleTheme = () => {
+  isDarkMode.value = !isDarkMode.value;
+};
 </script>

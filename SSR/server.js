@@ -12,6 +12,7 @@ app.use(express.json());
 
 const OnlineDisplayData = path.join(__dirname, "data", "OnlineDisplay.json");
 const DemoDisplayData = path.join(__dirname, "data", "DemoDisplay.json");
+const OnlineTrackDataFile = path.join(__dirname, "data", "OnlineTrack.json"); // Define the path to your OnlineTrack data file
 
 app.get("/OnlineDisplayGet", (req, res) => {
   fs.readFile(OnlineDisplayData, "utf8", (err, data) => {
@@ -72,7 +73,8 @@ app.post("/DemoDisplayPost", (req, res) => {
 //********************************************************************************************//
 app.get("/OnlineTrackGetData", (req, res) => {
   console.log("Received request /OnlineTrackGetData");
-  fs.readFile(OnlineTrackData, "utf8", (err, data) => {
+  fs.readFile(OnlineTrackDataFile, "utf8", (err, data) => {
+    // Use the defined variable here
     if (err) {
       console.error("Read error:", err);
       return res.status(500).json({ error: "Failed to read data file" });

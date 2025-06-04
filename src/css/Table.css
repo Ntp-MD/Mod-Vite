@@ -2,14 +2,14 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  height: 100%;
+  height: inherit;
   gap: var(--gap);
   overflow: hidden;
 }
 
 .TableLayout :is(button) {
   border-radius: 3px;
-  border: 1px solid #444;
+  border: 1px solid var(--border-color);
   cursor: pointer;
   height: 40px;
   width: fit-content;
@@ -34,7 +34,7 @@
 .PlayerLineup {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  border: 1px solid #444;
+  border: 1px solid var(--border-color);
   height: 15%;
   min-height: 135px;
 }
@@ -48,7 +48,7 @@
   padding: var(--gap);
   white-space: nowrap;
   overflow: hidden;
-  border: 1px solid #444;
+  border: 1px solid var(--border-color);
 }
 
 .PlayerFrame :not(.Main) .PlayerName {
@@ -97,7 +97,7 @@
   flex-direction: column;
   place-content: center;
   place-items: center;
-  border: 1px solid #444;
+  border: 1px solid var(--border-color);
   padding: var(--gap);
   gap: 5px;
   height: 10%;
@@ -105,7 +105,7 @@
 }
 
 .TimelineLog {
-  border: 1px solid #444;
+  border: 1px solid var(--border-color);
   padding: var(--gap);
   overflow-y: scroll;
   height: -webkit-fill-available;
@@ -113,7 +113,7 @@
 }
 
 .TimelineRound {
-  border-bottom: 1px solid #444;
+  border-bottom: 1px solid var(--border-color);
   padding-bottom: var(--gap);
 }
 
@@ -124,7 +124,7 @@
 }
 
 .CardBody.hide-card-details > div {
-  font-size: 0; /* Rank and Suit will inherit this, making them invisible */
+  font-size: 0;
 }
 
 .CardBody {
@@ -134,7 +134,7 @@
   width: 30px;
   height: auto;
   aspect-ratio: 3/4;
-  border: 1px solid #444;
+  border: 1px solid var(--border-color);
   border-radius: 3px;
   line-height: 1;
 }
