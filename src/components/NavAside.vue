@@ -4,7 +4,7 @@
     <div class="mid">
       <router-link class="nav-menu-link" to="/FontDisplay">Font Family</router-link>
       <router-link class="nav-menu-link" to="/OnlineTrackDisplay">Online Track</router-link>
-      <router-link class="nav-menu-link" to="/OnlineDisplay">Online Promotion</router-link>
+      <router-link class="nav-menu-link" to="/PromotionTrack">Promotion Track</router-link>
       <router-link class="nav-menu-link" to="/DemoDisplay">List Demo</router-link>
       <router-link class="nav-menu-link" to="/QuickAccess">QuickAccess</router-link>
       <router-link class="nav-menu-link" to="/">Table </router-link>

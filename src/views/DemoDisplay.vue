@@ -2,7 +2,6 @@
   <div class="Tablefilter">
     <div class="search-box">
       <input class="search-input" type="search" placeholder="Search demo" v-model="searchQuery" />
-      <img src="/src/assets/icon/search.png" alt="" />
     </div>
     <div class="filter-range" @click="filterRange(1, 199)">1–199</div>
     <div class="filter-range" @click="filterRange(200, 399)">200–399</div>
@@ -18,31 +17,29 @@
         <th>Status</th>
       </tr>
     </thead>
-
     <tbody>
       <tr v-for="(site, idx) in filteredData" :key="idx">
         <td>{{ site.name }}</td>
-
         <!-- Note -->
         <td :class="{ editing: editingIndex === idx && editingField === 'note' }">
-          <div v-if="editingIndex === idx && editingField === 'note'" class="edit-cell">
-            <input v-model="tempInput" @keyup.enter="saveEdit" @blur="saveEdit" @keyup.esc="cancelEdit" autofocus />
-          </div>
-          <div class="edit-box" v-else>
-            <div>{{ site.note }}</div>
+          <template v-if="editingIndex === idx && editingField === 'note'">
+            <input v-model="tempInput" @keyup.enter="saveEdit" @blur="saveEdit" @keyup.esc="cancelEdit" autofocus class="edit-cell" />
+          </template>
+          <template v-else>
+            {{ site.note }}
             <img @click="startEditing(idx, 'note')" src="/src/assets/icon/edit.png" />
-          </div>
+          </template>
         </td>
 
         <!-- Status -->
         <td :class="{ editing: editingIndex === idx && editingField === 'status' }">
-          <div v-if="editingIndex === idx && editingField === 'status'" class="edit-cell">
-            <input v-model="tempInput" @keyup.enter="saveEdit" @blur="saveEdit" @keyup.esc="cancelEdit" autofocus />
-          </div>
-          <div class="edit-box" v-else>
-            <div>{{ site.status }}</div>
+          <template v-if="editingIndex === idx && editingField === 'status'">
+            <input v-model="tempInput" @keyup.enter="saveEdit" @blur="saveEdit" @keyup.esc="cancelEdit" autofocus class="edit-cell" />
+          </template>
+          <template v-else>
+            {{ site.status }}
             <img @click="startEditing(idx, 'status')" src="/src/assets/icon/edit.png" />
-          </div>
+          </template>
         </td>
       </tr>
     </tbody>
@@ -119,26 +116,64 @@ table.TableViews {
   table-layout: fixed;
   border-collapse: collapse;
   width: 100%;
-  color: #fff;
+  color: var(--ui-font);
 }
 
-.TableViews th,
-.TableViews td {
-  border: 1px solid #444;
-  padding-left: 10px;
-  text-align: left;
-  height: 45px;
-}
-thead {
-  background: var(--ui-bg1);
-  color: #fff;
+table.TableViews th,
+table.TableViews td,
+table.TableViews tr {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  position: relative;
 }
 
-td.editing {
-  box-shadow: inset 0 0px 2px 1px #4abdff;
+img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  cursor: pointer;
+  filter: invert(1);
+}
+
+table.TableViews td img {
+  position: absolute;
+  right: 10px;
 }
 
 .Tablefilter {
   display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.search-box,
+.edit-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  border: 1px solid var(--border-color);
+}
+
+.filter-range {
+  display: grid;
+  place-items: center;
+  min-width: 100px;
+  background: var(--ui-bg1);
+  border-radius: 5px;
+  height: inherit;
+  cursor: pointer;
+  transition: 0.3s;
+  border: 1px solid var(--border-color);
+  height: 40px;
+}
+
+.filter-range:hover {
+  background: var(--focus2);
+  color: #fff;
 }
 </style>

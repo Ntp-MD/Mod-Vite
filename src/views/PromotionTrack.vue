@@ -76,10 +76,10 @@
 </template>
 
 <script>
-import OnlinePromotionFunction from "../js/OnlinePromotion.js";
+import PromotionTrackFunction from "../js/OnlinePromotion.js";
 
 export default {
-  ...OnlinePromotionFunction,
+  ...PromotionTrackFunction,
 };
 </script>
 
@@ -220,5 +220,14 @@ export default {
   filter: invert(1);
   height: auto;
   object-fit: contain;
+}
+
+.PromoPanel input {
+  border: 1px solid var(--border-color);
+  height: fit-content;
+}
+
+.list-group input {
+  min-height: unset;
 }
 </style>

@@ -6,13 +6,7 @@
     <main>
       <header v-if="route.meta.HideThis">
         <Header></Header>
-        <div id="toggleTheme" @click="toggleTheme">
-          <div class="toggle-swap">
-            <img class="light" src="/src/assets/icon/sun.png" alt="" />
-
-            <img class="dark" src="/src/assets/icon/moon.png" alt="" />
-          </div>
-        </div>
+        <ThemeSwitch></ThemeSwitch>
       </header>
       <section>
         <router-view></router-view>
@@ -25,22 +19,13 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { useRoute } from "vue-router";
+import { getCurrentInstance } from "vue";
 import NavAside from "./components/NavAside.vue";
 import Header from "/src/components/Header.vue";
 import Footer from "/src/components/Footer.vue";
-import { useRoute } from "vue-router";
-
+import ThemeSwitch from "/src/components/ThemeSwitch.vue";
+const { appContext } = getCurrentInstance();
+const themeClass = appContext.config.globalProperties.$theme.themeClass;
 const route = useRoute();
-
-const isDarkMode = ref(true);
-
-const themeClass = computed(() => {
-  return isDarkMode.value ? "dark-mode" : "light-mode";
-});
-
-// Function to toggle the theme
-const toggleTheme = () => {
-  isDarkMode.value = !isDarkMode.value;
-};
 </script>

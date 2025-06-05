@@ -1,12 +1,30 @@
+// main.js
 import "/src/css/app.css";
-import { createApp } from "vue";
+import { createApp, ref, computed } from "vue";
 import App from "@/App.vue";
-import router from "@/router.js"; // Import the router
+import router from "@/router.js";
 
-// Initialize Vue App
 const app = createApp(App);
 
-// Dynamically import and register all components in the `/components` folder
+// ---- Theme state with localStorage persistence ----
+const storedTheme = localStorage.getItem("theme");
+const isDarkMode = ref(storedTheme === null ? true : storedTheme === "dark");
+
+const themeClass = computed(() => (isDarkMode.value ? "dark-mode" : "light-mode"));
+
+const toggleTheme = () => {
+  isDarkMode.value = !isDarkMode.value;
+  localStorage.setItem("theme", isDarkMode.value ? "dark" : "light");
+};
+
+// Expose theme state and function globally
+app.config.globalProperties.$theme = {
+  isDarkMode,
+  themeClass,
+  toggleTheme,
+};
+
+// ---- Auto register components ----
 const components = import.meta.glob("@/components/**/*.vue");
 (async () => {
   for (const path in components) {
@@ -14,7 +32,7 @@ const components = import.meta.glob("@/components/**/*.vue");
       const module = await components[path]();
       const component = module.default;
       if (component?.name) {
-        app.component(component.name, component); // Register by the `name` property
+        app.component(component.name, component);
       } else {
         console.warn(`Component in ${path} is missing a 'name' property.`);
       }
@@ -24,6 +42,5 @@ const components = import.meta.glob("@/components/**/*.vue");
   }
 })();
 
-// Use the router in the app
 app.use(router);
 app.mount("#App");
