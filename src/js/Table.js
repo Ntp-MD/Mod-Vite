@@ -26,7 +26,7 @@ export const playerPositions = ref([]);
 const hasActed = ref([]);
 
 /* ============ Constants ============ */
-export const raiseChips = [10, 30, 50, 100];
+export const raiseChips = [10, 20, 50, 100];
 export const minRaiseAmount = 10;
 
 /* ============ Computed ============ */

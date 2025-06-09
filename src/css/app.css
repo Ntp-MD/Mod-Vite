@@ -196,6 +196,7 @@ thead {
   padding: 0 10px;
   text-align: left;
   height: auto;
+  height: 40px;
 }
 
 .TableViews thead {
