@@ -1,9 +1,7 @@
 <script setup>
 import { getCurrentInstance } from "vue";
-
 const { appContext } = getCurrentInstance();
 const theme = appContext.config.globalProperties.$theme;
-
 const toggleTheme = theme.toggleTheme;
 const isDarkMode = theme.isDarkMode;
 </script>

@@ -1,7 +1,5 @@
-/* ================== Imports ================== */
 import { ref, computed } from "vue";
 
-/* ============ Reactive State / Refs ============ */
 export const roundLogs = ref([]);
 const currentRound = ref(1);
 const deck = ref([]);
@@ -16,7 +14,6 @@ const CostRound = 10;
 const numPlayers = ref(6);
 const startingMoney = ref(1000);
 const dealerPosition = ref(0);
-
 export const playerNames = ref([]);
 export const playerMoney = ref([]);
 export const playerBets = ref([]);
@@ -24,12 +21,8 @@ export const playerFolded = ref([]);
 const playerDialog = ref([]);
 export const playerPositions = ref([]);
 const hasActed = ref([]);
-
-/* ============ Constants ============ */
 export const raiseChips = [10, 20, 50, 100];
 export const minRaiseAmount = 10;
-
-/* ============ Computed ============ */
 export const callAmount = computed(() => Math.max(0, currentMaxBet.value - (playerBets.value[0] || 0)));
 
 export const maxRaiseAmount = computed(() => playerMoney.value[0] + (playerBets.value[0] || 0));
@@ -51,7 +44,7 @@ export const canFold = computed(() => {
   if (gamePhase.value === "idle") {
     return false;
   }
-  return true; // Folding is generally always allowed when game is active and it's your turn
+  return true;
 });
 
 export const canAll = computed(() => playerMoney.value[0] > 0 && gamePhase.value !== "idle" && gamePhase.value !== "showdown");
@@ -117,7 +110,7 @@ function evaluateHand(hand) {
     suits[card.suit] = (suits[card.suit] || 0) + 1;
   }
 
-  const isFlush = Object.values(suits).some((v) => v >= 5); // Check for 5 or more cards of the same suit
+  const isFlush = Object.values(suits).some((v) => v >= 5);
   let flushSuit = null;
   if (isFlush) {
     for (const suit in suits) {
@@ -128,11 +121,10 @@ function evaluateHand(hand) {
     }
   }
 
-  // Filter for flush cards if a flush exists, otherwise use all cards for straight check
   const cardsForStraightCheck = isFlush ? hand.filter((c) => c.suit === flushSuit) : hand;
   const straightValues = cardsForStraightCheck.map((c) => rankMap[c.rank]).sort((a, b) => a - b);
 
-  let uniqueStraightValues = [...new Set(straightValues)].sort((a, b) => a - b); // Remove duplicates for straight check
+  let uniqueStraightValues = [...new Set(straightValues)].sort((a, b) => a - b);
 
   let isStraight = false;
   let straightHighCard = 0;
@@ -145,7 +137,6 @@ function evaluateHand(hand) {
         break;
       }
     }
-    // Check for A-5 straight (wheel)
     if (
       !isStraight &&
       uniqueStraightValues.includes(14) &&
@@ -155,7 +146,7 @@ function evaluateHand(hand) {
       uniqueStraightValues.includes(5)
     ) {
       isStraight = true;
-      straightHighCard = 5; // Ace plays low
+      straightHighCard = 5;
     }
   }
 
@@ -165,7 +156,6 @@ function evaluateHand(hand) {
   let handName = "High Card";
 
   if (isFlush && isStraight && straightHighCard === 14) {
-    // Royal Flush (Ace high straight flush)
     handRank = 10;
     handName = "Royal Flush";
   } else if (isFlush && isStraight) {
@@ -175,7 +165,6 @@ function evaluateHand(hand) {
     handRank = 8;
     handName = "Four of a Kind";
   } else if (valueCounts[0] === 3 && valueCounts[1] >= 2) {
-    // Full House (can be 3 and 3, or 3 and 2)
     handRank = 7;
     handName = "Full House";
   } else if (isFlush) {
@@ -215,7 +204,6 @@ function shuffleArray(array) {
   return array;
 }
 
-/* ============ Game Setup & Reset ============ */
 export function startGame() {
   roundLogs.value = [];
   currentRound.value = 1;
@@ -242,25 +230,23 @@ export function startGame() {
   const bbIndex = (dealerPosition.value + 2) % numPlayers.value;
   addLog(`--- Round ${currentRound.value} ---`);
 
-  // Post Small Blind (capped at player's money, playerBets are 0 at this stage)
   const sbAmountToPost = Math.min(smallBlindAmount, playerMoney.value[sbIndex]);
   if (sbAmountToPost > 0) {
     playerMoney.value[sbIndex] -= sbAmountToPost;
-    playerBets.value[sbIndex] += sbAmountToPost; // playerBets are 0 at this point in startNewRound
+    playerBets.value[sbIndex] += sbAmountToPost;
     pot.value += sbAmountToPost;
     addLog(`${playerNames.value[sbIndex]} posts small blind: ${sbAmountToPost}$`);
   }
 
-  // Post Big Blind (capped at player's money, playerBets are 0 at this stage)
   const bbAmountToPost = Math.min(bigBlindAmount, playerMoney.value[bbIndex]);
   if (bbAmountToPost > 0) {
     playerMoney.value[bbIndex] -= bbAmountToPost;
-    playerBets.value[bbIndex] += bbAmountToPost; // playerBets are 0 at this point in startNewRound
+    playerBets.value[bbIndex] += bbAmountToPost;
     pot.value += bbAmountToPost;
     addLog(`${playerNames.value[bbIndex]} posts big blind: ${bbAmountToPost}$`);
   }
 
-  currentMaxBet.value = playerBets.value[bbIndex]; // BB sets the current max bet
+  currentMaxBet.value = playerBets.value[bbIndex];
   currentPlayer.value = (bbIndex + 1) % numPlayers.value;
 
   nextTurn();
@@ -307,23 +293,19 @@ export function startNewRound() {
   assignPositions();
   addLog(`--- Round ${currentRound.value} ---`);
 
-  const smallBlindAmount = CostRound; // Small Blind is CostRound
-  const bigBlindAmount = CostRound * 2; // Big Blind is 2 * CostRound
+  const smallBlindAmount = CostRound;
+  const bigBlindAmount = CostRound * 2;
 
-  // Determine SB and BB positions (dealer already updated)
-  // Heads-up: Dealer is SB, other is BB. SB acts first pre-flop.
-  // 3+ players: Player after dealer is SB, next is BB. Action after BB.
   let sbIndex, bbIndex;
 
   if (numPlayers.value === 2) {
-    sbIndex = dealerPosition.value; // Dealer is SB
-    bbIndex = (dealerPosition.value + 1) % numPlayers.value; // Other player is BB
+    sbIndex = dealerPosition.value;
+    bbIndex = (dealerPosition.value + 1) % numPlayers.value;
   } else {
     sbIndex = (dealerPosition.value + 1) % numPlayers.value;
     bbIndex = (dealerPosition.value + 2) % numPlayers.value;
   }
 
-  // Post Small Blind
   const actualSmallBlind = Math.min(smallBlindAmount, playerMoney.value[sbIndex] + (playerBets.value[sbIndex] || 0));
   playerMoney.value[sbIndex] -= actualSmallBlind;
   playerBets.value[sbIndex] = (playerBets.value[sbIndex] || 0) + actualSmallBlind;
@@ -332,7 +314,6 @@ export function startNewRound() {
     addLog(`${playerNames.value[sbIndex]} posts small blind: ${actualSmallBlind}$`);
   }
 
-  // Post Big Blind
   const actualBigBlind = Math.min(bigBlindAmount, playerMoney.value[bbIndex] + (playerBets.value[bbIndex] || 0));
   playerMoney.value[bbIndex] -= actualBigBlind;
   playerBets.value[bbIndex] = (playerBets.value[bbIndex] || 0) + actualBigBlind;
@@ -341,30 +322,27 @@ export function startNewRound() {
     addLog(`${playerNames.value[bbIndex]} posts big blind: ${actualBigBlind}$`);
   }
 
-  currentMaxBet.value = playerBets.value[bbIndex]; // BB sets the current max bet
-  currentPlayer.value = (bbIndex + 1) % numPlayers.value; // Action starts after BB (or with SB in heads-up)
+  currentMaxBet.value = playerBets.value[bbIndex];
+  currentPlayer.value = (bbIndex + 1) % numPlayers.value;
 
   nextTurn();
 }
 
 function proceedToNextPhase() {
-  // Reset for the new betting round
   playerBets.value = Array(numPlayers.value).fill(0);
   currentMaxBet.value = 0;
   lastRaiser.value = null;
-  // hasActed is reset by the deal/reveal functions below
 
   let logMessage = "";
   let roundEnded = false;
 
   if (gamePhase.value === "betting") {
-    dealInitialFlop(); // Sets gamePhase to "flop", resets hasActed
+    dealInitialFlop();
     logMessage = "--- Flop ---";
   } else if (gamePhase.value === "flop") {
-    revealTurnCard(); // Sets gamePhase to "turn", resets hasActed
-    logMessage = "--- Turn ---";
+    revealTurnCard();
   } else if (gamePhase.value === "turn") {
-    revealRiverCard(); // Sets gamePhase to "river", resets hasActed
+    revealRiverCard();
     logMessage = "--- River ---";
   } else if (gamePhase.value === "river") {
     gamePhase.value = "showdown";
@@ -372,7 +350,7 @@ function proceedToNextPhase() {
     roundEnded = true;
   } else {
     console.error("proceedToNextPhase called with unexpected gamePhase:", gamePhase.value);
-    roundEnded = true; // Halt progression
+    roundEnded = true;
   }
 
   if (logMessage) {
@@ -380,18 +358,15 @@ function proceedToNextPhase() {
   }
 
   if (roundEnded) {
-    return true; // Signal end of game (round) or error halt
+    return true;
   }
 
-  // Determine who acts first in the new betting round (post-flop, post-turn, post-river)
   let firstToAct = -1;
   let startIndex;
 
   if (numPlayers.value === 2) {
-    // Heads-up: Dealer (SB) acts first post-flop.
     startIndex = dealerPosition.value;
   } else {
-    // 3+ players: SB (or first active player to dealer's left) acts first post-flop.
     startIndex = (dealerPosition.value + 1) % numPlayers.value;
   }
 
@@ -406,64 +381,44 @@ function proceedToNextPhase() {
   if (firstToAct !== -1) {
     currentPlayer.value = firstToAct;
   } else {
-    // This should be caught by nextTurn's check for <=1 active players.
     console.error("CRITICAL: No active player found to start new betting round in proceedToNextPhase.");
   }
 
-  return false; // Game continues to the new betting round
+  return false;
 }
 
-let isRunning = false; // <-- Put this at the top of your module/script, outside the function
+let isRunning = false;
 
 async function nextTurn() {
   if (isRunning) return;
   isRunning = true;
 
   try {
-    // Outer try for the whole function
-    // Inner loop to find the next player to act or to end the betting round
     while (true) {
       const cp = currentPlayer.value;
 
-      // Condition A: Only one non-folded player left?
       if (playerFolded.value.filter((f) => !f).length <= 1) {
         if (gamePhase.value !== "showdown") {
-          // Avoid re-determining winner if already in showdown
           gamePhase.value = "showdown";
           determineWinner();
         }
         return;
       }
 
-      // Condition B: Is current player folded?
       if (playerFolded.value[cp]) {
         currentPlayer.value = (cp + 1) % numPlayers.value;
-        continue; // Move to next player, re-evaluate from top of while
+        continue;
       }
 
-      // Condition C: Is current player all-in AND not yet marked as acted for this street?
       if (playerMoney.value[cp] === 0 && !playerFolded.value[cp] && !hasActed.value[cp]) {
-        hasActed.value[cp] = true; // All-in player "acts" by default (effectively checks)
-        // Do not break. The loop will continue to check if the round is over or move to the next player.
+        hasActed.value[cp] = true;
+      } else if (playerMoney.value[cp] > 0 && !playerFolded.value[cp] && !hasActed.value[cp]) {
+        break;
       }
-      // Condition D: Is current player NOT all-in, NOT folded, and NOT acted?
-      else if (playerMoney.value[cp] > 0 && !playerFolded.value[cp] && !hasActed.value[cp]) {
-        // This player (human or AI) needs to make a decision.
-        break; // Exit while loop, proceed to player/AI action section.
-      }
-      // If player has already acted, or was just marked acted because all-in, or is folded (handled by B),
-      // then we check if the betting round is over.
 
-      // Condition E: Is the betting round over?
-      // (All non-folded players have either acted or are all-in and thus considered acted for the street)
       let roundOver = true;
       for (let i = 0; i < numPlayers.value; i++) {
-        if (
-          !playerFolded.value[i] && // Player is in the hand
-          playerMoney.value[i] > 0 && // Player has chips to bet
-          !hasActed.value[i]
-        ) {
-          // Player has not yet acted this street
+        if (!playerFolded.value[i] && playerMoney.value[i] > 0 && !hasActed.value[i]) {
           roundOver = false;
           break;
         }
@@ -488,37 +443,26 @@ async function nextTurn() {
         return; // Exit nextTurn
       }
 
-      // If round is not over, and we didn't break for current player to act, move to the next player.
       currentPlayer.value = (cp + 1) % numPlayers.value;
-    } // End of while(true) loop
-
-    // If it's the human player's turn, exit and wait for their action
-    // The while loop ensures that if player 0 is current, they have money and haven't acted.
-    if (currentPlayer.value === 0 && playerMoney.value[0] > 0 && !hasActed.value[0] && !playerFolded.value[0]) {
-      return; // Wait for human input
     }
 
-    // AI's turn
+    if (currentPlayer.value === 0 && playerMoney.value[0] > 0 && !hasActed.value[0] && !playerFolded.value[0]) {
+      return;
+    }
+
     try {
-      // Inner try for AI specific actions
       const aiDecision = getAIAction(currentPlayer.value);
-      await new Promise((resolve) => setTimeout(resolve, 500)); // Simulate AI thinking
-      handleAction(currentPlayer.value, aiDecision); // This also sets hasActed for the AI
+      await new Promise((resolve) => setTimeout(resolve, 500));
     } catch (error) {
       console.error(`Error during AI ${playerNames.value[currentPlayer.value]}'s turn:`, error);
       addLog(`Error for ${playerNames.value[currentPlayer.value]}. They are folded due to an error.`);
-      // Gracefully handle AI error: fold the AI and mark as acted
+
       if (currentPlayer.value >= 0 && currentPlayer.value < numPlayers.value) {
         playerFolded.value[currentPlayer.value] = true;
-        hasActed.value[currentPlayer.value] = true; // Mark as acted (by folding due to error)
+        hasActed.value[currentPlayer.value] = true;
       }
-      // The game will attempt to continue with this AI folded.
     }
 
-    // AI's action is complete. Now check if the betting round is over or continue to the next player.
-
-    // After AI action, check if the round is over.
-    // This check is similar to Condition E in the while loop.
     let roundOverAfterAI = true;
     for (let i = 0; i < numPlayers.value; i++) {
       if (!playerFolded.value[i] && playerMoney.value[i] > 0 && !hasActed.value[i]) {
@@ -542,22 +486,16 @@ async function nextTurn() {
       return;
     }
 
-    // Betting round is not over, move to the next player and schedule nextTurn
     currentPlayer.value = (currentPlayer.value + 1) % numPlayers.value;
-    setTimeout(nextTurn, 200); // Schedule the next turn processing
-    // Note: isRunning will be set to false in the finally block.
-    // The next call to nextTurn will start its logic with this new currentPlayer.
+    setTimeout(nextTurn, 200);
   } catch (e) {
-    // Catch any unexpected error from the main try block of nextTurn
     console.error("Critical error in nextTurn game logic:", e);
     addLog("A critical error occurred. Game progression might be halted.");
-    // isRunning will be set to false by the finally block.
-    // The game might be frozen here if the error corrupted state or broke the setTimeout chain.
   } finally {
-    isRunning = false; // Crucial: ensure isRunning is reset regardless of how the function exits.
+    isRunning = false;
   }
 }
-/* ============ Dealing Phases ============ */
+
 function dealInitialFlop() {
   flop.value = deck.value.splice(0, 3);
   gamePhase.value = "flop";
@@ -576,7 +514,6 @@ function revealRiverCard() {
   hasActed.value = Array(numPlayers.value).fill(false);
 }
 
-/* ======== Player Actions (block invalid moves) ======== */
 export function playerAction(action, amount = 0) {
   if (currentPlayer.value !== 0) return;
 
@@ -620,11 +557,11 @@ export function playerAction(action, amount = 0) {
     currentMaxBet.value = playerBets.value[0];
     lastRaiser.value = 0;
     msg = `You raised $${raise} (to $${playerBets.value[0]})`;
-    // Reset hasActed for other players as this is a raise
+
     hasActed.value = hasActed.value.map((_, idx) => {
-      if (idx === 0) return true; // The raiser (player 0) has acted
-      if (playerFolded.value[idx]) return true; // Folded players remain acted/folded
-      return false; // Other active players need to act again
+      if (idx === 0) return true;
+      if (playerFolded.value[idx]) return true;
+      return false;
     });
   } else if (action === "all-in") {
     if (!canAll.value) {
@@ -641,14 +578,9 @@ export function playerAction(action, amount = 0) {
     if (playerBets.value[0] > currentMaxBet.value) {
       currentMaxBet.value = playerBets.value[0];
       lastRaiser.value = 0;
-      // Reset hasActed for other players as this is effectively a raise
       hasActed.value = hasActed.value.map((_, idx) => (idx === 0 || playerFolded.value[idx] ? true : false));
       msg += ", raising the bet!";
     }
-    // The following two lines seem to be a copy-paste error from the 'raise' block and were causing issues.
-    // lastRaiser.value = 0; // Already set if it's a raise
-    // msg = `You raised $${raise} (to $${playerBets.value[0]})`; // Overwrites the all-in message
-    // The hasActed reset for 'raise' was also duplicated here.
   }
 
   addLog(msg);
@@ -657,81 +589,64 @@ export function playerAction(action, amount = 0) {
 
   setTimeout(() => nextTurn(), 500);
 }
-/* ============ AI Decision Logic ============ */
+
 function getAIAction(index) {
   const bet = playerBets.value[index];
   const toCall = currentMaxBet.value - bet;
   const money = playerMoney.value[index];
   const potSize = pot.value;
-  const aggressionFactor = Math.random() * 0.4 + 0.6; // AI personality: 0.35 (less aggressive) to 0.75 (more aggressive)
+  const aggressionFactor = Math.random() * 0.4 + 0.6;
 
   const aiFullHand = hands.value[index].concat(flop.value);
-  const handEval = evaluateHand(aiFullHand); // { handName, handRank, highCard, values }
+  const handEval = evaluateHand(aiFullHand);
   const rank = handEval.handRank;
 
   if (playerFolded.value[index]) return { action: "fold" };
 
-  // If AI cannot afford to call the current bet, it can only fold or go all-in (call).
   if (money < toCall && toCall > 0) {
-    // Decide whether to make an all-in call or fold
-    // More likely to call all-in with better hands or if the amount is very small part of pot
-    const callAllInChance = rank / 10 + (potSize / (potSize + money)) * 0.5; // rank/10 to scale 0-1, more willing to call all-in
+    const callAllInChance = rank / 10 + (potSize / (potSize + money)) * 0.5;
     if (money > 0 && Math.random() < callAllInChance) {
-      return { action: "call" }; // This will be an all-in call
+      return { action: "call" };
     }
     return { action: "fold" };
   }
 
   const calculateRaiseAmount = () => {
-    let baseRaiseRatio; // Ratio of pot to raise
+    let baseRaiseRatio;
     if (rank >= 8) {
       baseRaiseRatio = 0.7 + Math.random() * 0.6;
-    } // 70-130% of pot for monsters
-    else if (rank >= 5) {
+    } else if (rank >= 5) {
       baseRaiseRatio = 0.4 + Math.random() * 0.4;
-    } // 40-80% for strong hands
-    else if (rank >= 2) {
-      baseRaiseRatio = 0.3 + Math.random() * 0.25; // 30-55% for medium (value/semi-bluff)
-    } // 25-50% for medium (value/semi-bluff) - OLD
-    else {
-      baseRaiseRatio = 0.25 + Math.random() * 0.3; // 25-55% for bluffs
-    } // 20-40% for bluffs
+    } else if (rank >= 2) {
+      baseRaiseRatio = 0.3 + Math.random() * 0.25;
+    } else {
+      baseRaiseRatio = 0.25 + Math.random() * 0.3;
+    }
 
     let raiseAmount = potSize * baseRaiseRatio;
-    raiseAmount *= 1 + (aggressionFactor - 0.5) * 0.5; // Adjust by aggression (+/- 25%)
-
-    // Ensure raise is at least minRaiseAmount and rounded
+    raiseAmount *= 1 + (aggressionFactor - 0.5) * 0.5;
     return Math.max(minRaiseAmount, Math.round(raiseAmount / 5) * 5);
   };
 
-  // AI can afford to call, or toCall is 0
   if (rank >= 8) {
-    // Very Strong Hand (Four of a Kind+)
     if (toCall === 0) {
-      // Option to check or bet
       return Math.random() < 0.9 + aggressionFactor * 0.1 ? { action: "raise", amount: calculateRaiseAmount() } : { action: "check" }; // Very high chance to bet/raise
     } else {
-      // Facing a bet
       return Math.random() < 0.85 + aggressionFactor * 0.15 ? { action: "raise", amount: calculateRaiseAmount() } : { action: "call" }; // Very high chance to re-raise, otherwise call
     }
   } else if (rank >= 5) {
-    // Strong Hand (Straight, Flush, Full House)
     if (toCall === 0) {
       return Math.random() < 0.7 + aggressionFactor * 0.2 ? { action: "raise", amount: calculateRaiseAmount() } : { action: "check" };
     } else {
       if (toCall <= money * (0.6 + aggressionFactor * 0.15)) {
-        // Call is relatively small
         return Math.random() < 0.65 + aggressionFactor * 0.2 ? { action: "raise", amount: calculateRaiseAmount() } : { action: "call" };
       } else if (toCall <= money * (0.8 + aggressionFactor * 0.1)) {
-        // Medium to large call, depends on aggression
         return Math.random() < 0.5 + aggressionFactor * 0.2 ? { action: "call" } : { action: "fold" };
       } else {
-        // Too expensive, likely fold
         return Math.random() < 0.2 + aggressionFactor * 0.1 ? { action: "call" } : { action: "fold" };
       }
     }
   } else if (rank >= 2) {
-    // Medium Hand (Top Pair, Two Pair, Trips)
     if (toCall === 0) {
       return Math.random() < 0.5 + aggressionFactor * 0.3 ? { action: "raise", amount: calculateRaiseAmount() } : { action: "check" };
     } else if (toCall <= money * 0.25) {
@@ -740,7 +655,6 @@ function getAIAction(index) {
       return Math.random() < 0.3 + aggressionFactor * 0.2 ? { action: "call" } : { action: "fold" };
     }
   } else {
-    // Weak Hand (High Card, Low Pair)
     if (toCall === 0) {
       return Math.random() < 0.3 + aggressionFactor * 0.2 ? { action: "raise", amount: calculateRaiseAmount() } : { action: "check" };
     } else if (toCall <= money * 0.15) {
@@ -751,7 +665,6 @@ function getAIAction(index) {
   }
 }
 
-/* ======== Handle AI Actions with Validity Checks ======== */
 function handleAction(i, actionDecision) {
   const { action, amount: intendedAdditionalRaiseAmount } = actionDecision; // amount is the *additional* raise AI wants
 
@@ -763,25 +676,16 @@ function handleAction(i, actionDecision) {
     playerFolded.value[i] = true;
     addLog(`${playerNames.value[i]} folds.`);
   } else if (action === "raise") {
-    // Assumes getAIAction confirmed AI can at least call (playerChips >= costToCall if costToCall > 0)
-    // intendedAdditionalRaiseAmount is >= minRaiseAmount
-
-    const affordableAdditionalRaise = playerChips - costToCall; // Max AI can add on top of call
+    const affordableAdditionalRaise = playerChips - costToCall;
     let actualAdditionalRaise = Math.min(intendedAdditionalRaiseAmount, affordableAdditionalRaise);
 
-    // If not an all-in, ensure raise is at least minRaiseAmount.
-    // If it IS an all-in, actualAdditionalRaise can be less than minRaiseAmount.
     if (playerChips > costToCall + actualAdditionalRaise) {
-      // Not an all-in raise
       actualAdditionalRaise = Math.max(minRaiseAmount, actualAdditionalRaise);
     }
 
     if (actualAdditionalRaise <= 0 && costToCall === 0) {
-      // Trying to raise 0 or less when no bet to call (e.g. min-betting 0)
-      // This should be a check.
       addLog(`${playerNames.value[i]} checks.`);
     } else if (actualAdditionalRaise < 0) {
-      // Error case or cannot make a positive raise
       playerFolded.value[i] = true;
       addLog(`${playerNames.value[i]} folds (unable to complete raise).`);
     } else {
