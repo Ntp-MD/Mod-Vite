@@ -16,6 +16,7 @@ const CostRound = 10;
 const numPlayers = ref(6);
 const startingMoney = ref(1000);
 const dealerPosition = ref(0);
+const roundEnded = ref(true); // initially true to allow the first round
 
 export const playerNames = ref([]);
 export const playerMoney = ref([]);
@@ -161,10 +162,32 @@ function evaluateHand(hand) {
     handRank = 10;
     handName = "Royal Flush";
     finalValues = [14, 13, 12, 11, 10];
-  } else if (isFlush && isStraight) {
-    handRank = 9;
-    handName = "Straight Flush";
-    finalValues = [straightHighCard];
+  } else if (isFlush) {
+    const suitedCards = hand
+      .filter((c) => c.suit === flushSuit)
+      .map((c) => rankMap[c.rank])
+      .sort((a, b) => b - a);
+
+    const uniqueSuited = [...new Set(suitedCards)].sort((a, b) => a - b);
+
+    let sfHigh = 0;
+    for (let i = uniqueSuited.length - 1; i >= 4; i--) {
+      if (uniqueSuited[i] - uniqueSuited[i - 4] === 4) {
+        sfHigh = uniqueSuited[i];
+        break;
+      }
+    }
+
+    // Wheel check (A-2-3-4-5)
+    if (sfHigh === 0 && uniqueSuited.includes(14) && [2, 3, 4, 5].every((v) => uniqueSuited.includes(v))) {
+      sfHigh = 5;
+    }
+
+    if (sfHigh) {
+      handRank = sfHigh === 14 ? 10 : 9;
+      handName = sfHigh === 14 ? "Royal Flush" : "Straight Flush";
+      finalValues = [sfHigh, sfHigh - 1, sfHigh - 2, sfHigh - 3, sfHigh - 4];
+    }
   } else if (valueCounts[0] === 4) {
     handRank = 8;
     handName = "Four of a Kind";
@@ -216,6 +239,7 @@ function evaluateHand(hand) {
 
   return { handName, handRank, values: finalValues };
 }
+
 function assignPositions() {
   dealerPosition.value = Math.floor(Math.random() * numPlayers.value);
   const labels = ["Dealer", "SB", "BB", "UTG", "MP", "CO"];
@@ -316,11 +340,18 @@ export function resetGame() {
 }
 
 export function startNewRound() {
-  removeBrokePlayers(); // <-- Remove broke players first
+  if (!roundEnded.value) {
+    addLog("Cannot start a new round before the current one ends.");
+    return;
+  }
+
+  roundEnded.value = false; // mark new round as started
+  removeBrokePlayers();
 
   if (numPlayers.value < 2) {
     addLog("Not enough players to continue the game.");
-    return; // Stop round start
+    roundEnded.value = true;
+    return;
   }
 
   dealerPosition.value = (dealerPosition.value + 1) % numPlayers.value;
@@ -340,8 +371,6 @@ export function startNewRound() {
 
   assignPositions();
   addLog(`--- Round ${currentRound.value} ---`);
-
-  // ... rest of your blind posting and game start logic ...
 }
 
 function proceedToNextPhase() {
@@ -660,88 +689,80 @@ function getAIAction(index) {
   const toCall = currentMaxBet.value - bet;
   const money = playerMoney.value[index];
   const potSize = pot.value;
-  const aggressionFactor = Math.random() * 0.4 + 0.6; // AI personality: 0.35 (less aggressive) to 0.75 (more aggressive)
+  const gamePhaseName = gamePhase.value; // "pre-flop", "flop", "turn", "river"
+  const aggressionFactor = Math.random() * 0.4 + 0.6; // 0.6–1.0
 
   const aiFullHand = hands.value[index].concat(flop.value);
-  const handEval = evaluateHand(aiFullHand); // { handName, handRank, highCard, values }
+  const handEval = evaluateHand(aiFullHand);
   const rank = handEval.handRank;
 
   if (playerFolded.value[index]) return { action: "fold" };
 
-  // If AI cannot afford to call the current bet, it can only fold or go all-in (call).
+  // Phase multipliers
+  const phaseAggressionMultiplier =
+    {
+      "pre-flop": 0.6,
+      flop: 0.8,
+      turn: 1.0,
+      river: 1.1,
+    }[gamePhaseName] || 1.0;
+
+  const adjustedAggression = aggressionFactor * phaseAggressionMultiplier;
+
+  // All-in decision if short-stacked
   if (money < toCall && toCall > 0) {
-    // Decide whether to make an all-in call or fold
-    // More likely to call all-in with better hands or if the amount is very small part of pot
-    const callAllInChance = rank / 10 + (potSize / (potSize + money)) * 0.5; // rank/10 to scale 0-1, more willing to call all-in
-    if (money > 0 && Math.random() < callAllInChance) {
-      return { action: "call" }; // This will be an all-in call
+    const callAllInChance = rank / 10 + (potSize / (potSize + money)) * 0.5;
+    if (money > 0 && Math.random() < callAllInChance * adjustedAggression) {
+      return { action: "call" }; // all-in call
     }
     return { action: "fold" };
   }
 
   const calculateRaiseAmount = () => {
-    let baseRaiseRatio; // Ratio of pot to raise
-    if (rank >= 8) {
-      baseRaiseRatio = 0.7 + Math.random() * 0.6;
-    } // 70-130% of pot for monsters
-    else if (rank >= 5) {
-      baseRaiseRatio = 0.4 + Math.random() * 0.4;
-    } // 40-80% for strong hands
-    else if (rank >= 2) {
-      baseRaiseRatio = 0.3 + Math.random() * 0.25; // 30-55% for medium (value/semi-bluff)
-    } // 25-50% for medium (value/semi-bluff) - OLD
-    else {
-      baseRaiseRatio = 0.25 + Math.random() * 0.3; // 25-55% for bluffs
-    } // 20-40% for bluffs
+    let baseRaiseRatio;
+    if (rank >= 8) baseRaiseRatio = 0.7 + Math.random() * 0.6;
+    else if (rank >= 5) baseRaiseRatio = 0.4 + Math.random() * 0.4;
+    else if (rank >= 2) baseRaiseRatio = 0.3 + Math.random() * 0.25;
+    else baseRaiseRatio = 0.2 + Math.random() * 0.2;
 
-    let raiseAmount = potSize * baseRaiseRatio;
-    raiseAmount *= 1 + (aggressionFactor - 0.5) * 0.5; // Adjust by aggression (+/- 25%)
-
-    // Ensure raise is at least minRaiseAmount and rounded
+    let raiseAmount = potSize * baseRaiseRatio * adjustedAggression;
     return Math.max(minRaiseAmount, Math.round(raiseAmount / 5) * 5);
   };
 
-  // AI can afford to call, or toCall is 0
+  // === Decision Logic by Hand Strength ===
   if (rank >= 8) {
-    // Very Strong Hand (Four of a Kind+)
+    // Monster
     if (toCall === 0) {
-      // Option to check or bet
-      return Math.random() < 0.9 + aggressionFactor * 0.1 ? { action: "raise", amount: calculateRaiseAmount() } : { action: "check" }; // Very high chance to bet/raise
+      return Math.random() < 0.9 * adjustedAggression ? { action: "raise", amount: calculateRaiseAmount() } : { action: "check" };
     } else {
-      // Facing a bet
-      return Math.random() < 0.85 + aggressionFactor * 0.15 ? { action: "raise", amount: calculateRaiseAmount() } : { action: "call" }; // Very high chance to re-raise, otherwise call
+      return Math.random() < 0.85 * adjustedAggression ? { action: "raise", amount: calculateRaiseAmount() } : { action: "call" };
     }
   } else if (rank >= 5) {
-    // Strong Hand (Straight, Flush, Full House)
+    // Strong Hand
     if (toCall === 0) {
-      return Math.random() < 0.7 + aggressionFactor * 0.2 ? { action: "raise", amount: calculateRaiseAmount() } : { action: "check" };
+      return Math.random() < 0.7 * adjustedAggression ? { action: "raise", amount: calculateRaiseAmount() } : { action: "check" };
+    } else if (toCall <= money * (0.6 + adjustedAggression * 0.2)) {
+      return Math.random() < 0.65 * adjustedAggression ? { action: "raise", amount: calculateRaiseAmount() } : { action: "call" };
+    } else if (toCall <= money * (0.85 + adjustedAggression * 0.1)) {
+      return Math.random() < 0.5 * adjustedAggression ? { action: "call" } : { action: "fold" };
     } else {
-      if (toCall <= money * (0.6 + aggressionFactor * 0.15)) {
-        // Call is relatively small
-        return Math.random() < 0.65 + aggressionFactor * 0.2 ? { action: "raise", amount: calculateRaiseAmount() } : { action: "call" };
-      } else if (toCall <= money * (0.8 + aggressionFactor * 0.1)) {
-        // Medium to large call, depends on aggression
-        return Math.random() < 0.5 + aggressionFactor * 0.2 ? { action: "call" } : { action: "fold" };
-      } else {
-        // Too expensive, likely fold
-        return Math.random() < 0.2 + aggressionFactor * 0.1 ? { action: "call" } : { action: "fold" };
-      }
+      return Math.random() < 0.25 * adjustedAggression ? { action: "call" } : { action: "fold" };
     }
   } else if (rank >= 2) {
-    // Medium Hand (Top Pair, Two Pair, Trips)
+    // Medium Hand
     if (toCall === 0) {
-      return Math.random() < 0.5 + aggressionFactor * 0.3 ? { action: "raise", amount: calculateRaiseAmount() } : { action: "check" };
+      return Math.random() < 0.5 * adjustedAggression ? { action: "raise", amount: calculateRaiseAmount() } : { action: "check" };
     } else if (toCall <= money * 0.25) {
-      return Math.random() < 0.6 + aggressionFactor * 0.2 ? { action: "call" } : { action: "fold" };
+      return Math.random() < 0.6 * adjustedAggression ? { action: "call" } : { action: "fold" };
     } else {
-      return Math.random() < 0.3 + aggressionFactor * 0.2 ? { action: "call" } : { action: "fold" };
+      return Math.random() < 0.3 * adjustedAggression ? { action: "call" } : { action: "fold" };
     }
   } else {
-    // Weak Hand (High Card, Low Pair)
+    // Weak Hand
     if (toCall === 0) {
-      return Math.random() < 0.3 + aggressionFactor * 0.2 ? { action: "raise", amount: calculateRaiseAmount() } : { action: "check" };
+      return Math.random() < 0.25 * adjustedAggression ? { action: "raise", amount: calculateRaiseAmount() } : { action: "check" };
     } else if (toCall <= money * 0.15) {
-      return Math.random() < 0.3 + aggressionFactor * 0.2 ? { action: "call" } : { action: "fold" };
+      return Math.random() < 0.25 * adjustedAggression ? { action: "call" } : { action: "fold" };
     } else {
       return { action: "fold" };
     }
@@ -832,44 +853,26 @@ function determineWinner() {
       const fullHand = hands.value[i].concat(flop.value);
       activePlayers.push({
         index: i,
-        handEvaluation: evaluateHand(fullHand), // Contains { handName, handRank, ... }
+        handEvaluation: evaluateHand(fullHand),
       });
     }
   }
 
-  // Sort by rank (higher better)
-  activePlayers.sort((a, b) => b.handEvaluation.handRank - a.handEvaluation.handRank);
-
-  const bestRankValue = activePlayers.length > 0 ? activePlayers[0].handEvaluation.handRank : -1;
-  const winners = activePlayers.filter((p) => p.handEvaluation.handRank === bestRankValue);
-
-  // Divide pot
-  const potShare = winners.length > 0 ? Math.floor(pot.value / winners.length) : 0;
-  winners.forEach((w) => {
-    playerMoney.value[w.index] += potShare;
-    addLog(`${playerNames.value[w.index]} wins with ${w.handEvaluation.handName} and receives $${potShare}`);
-  });
-
-  // Remainder (if any) goes to the first winner
-  const remainder = winners.length > 0 ? pot.value % winners.length : pot.value;
-  if (remainder > 0 && winners.length > 0) {
-    // Ensure there's a winner to give remainder to
-    playerMoney.value[winners[0].index] += remainder;
-    addLog(`${playerNames.value[winners[0].index]} receives an extra $${remainder} from remainder`);
-  } else if (remainder > 0 && winners.length === 0 && activePlayers.length === 1) {
-    // Edge case: if pot was not 0, but no "winners" (e.g. everyone folded but one), that one active player gets the remainder.
-    playerMoney.value[activePlayers[0].index] += remainder;
-    addLog(`${playerNames.value[activePlayers[0].index]} receives $${remainder} as the only remaining player.`);
+  if (activePlayers.length === 0) {
+    addLog("No active players. Pot remains.");
+    return;
   }
 
+  // Sort by rank (higher is better)
+  activePlayers.sort((a, b) => b.handEvaluation.handRank - a.handEvaluation.handRank);
+
+  const winner = activePlayers[0];
+  playerMoney.value[winner.index] += pot.value;
+
+  addLog(`${playerNames.value[winner.index]} wins with ${winner.handEvaluation.handName} and receives $${pot.value}`);
   pot.value = 0;
 
   addLog(`--- End of Round ${currentRound.value} ---`);
-
-  // Automatically start new round after delay
-  /*
-  setTimeout(() => startNewRound(), 1500);
-  */
 }
 
 /* ============ Raise Control ============ */

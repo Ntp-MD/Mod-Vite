@@ -98,10 +98,10 @@
   place-content: center;
   place-items: center;
   border: 1px solid var(--border-color);
-  padding: var(--gap);
   gap: 5px;
-  height: 10%;
   min-height: 40px;
+  height: auto;
+  padding: 10px;
 }
 
 .TimelineLog {
@@ -139,6 +139,10 @@
   line-height: 1;
 }
 
+.hide-card-details {
+  border: 1px solid var(--border-color);
+}
+
 .TableFlob .CardBody.spades,
 .PlayerFrame:first-child .CardBody.spades {
   border: 1px solid #fff;
@@ -150,13 +154,13 @@
 }
 
 .TableFlob .CardBody.diamonds,
-.PlayerFrame:first-child.CardBody.diamonds {
-  border: 1px solid #59ff9e;
+.PlayerFrame:first-child .CardBody.diamonds {
+  border: 1px solid #3ae1ff;
 }
 
 .TableFlob .CardBody.clubs,
 .PlayerFrame:first-child .CardBody.clubs {
-  border: 1px solid #3ae1ff;
+  border: 1px solid #70ffc8;
 }
 
 .ActionButton {
