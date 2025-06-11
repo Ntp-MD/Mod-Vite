@@ -134,9 +134,29 @@
   width: 30px;
   height: auto;
   aspect-ratio: 3/4;
-  border: 1px solid var(--border-color);
+
   border-radius: 3px;
   line-height: 1;
+}
+
+.TableFlob .CardBody.spades,
+.PlayerFrame:first-child .CardBody.spades {
+  border: 1px solid #fff;
+}
+
+.TableFlob .CardBody.hearts,
+.PlayerFrame:first-child .CardBody.hearts {
+  border: 1px solid #ff5151;
+}
+
+.TableFlob .CardBody.diamonds,
+.PlayerFrame:first-child.CardBody.diamonds {
+  border: 1px solid #59ff9e;
+}
+
+.TableFlob .CardBody.clubs,
+.PlayerFrame:first-child .CardBody.clubs {
+  border: 1px solid #3ae1ff;
 }
 
 .ActionButton {
