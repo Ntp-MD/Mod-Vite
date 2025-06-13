@@ -63,7 +63,7 @@
   position: relative;
 }
 
-.activePlayers {
+.currentTurn {
   border: 1px solid var(--focus);
 }
 
@@ -109,7 +109,7 @@
   padding: var(--gap);
   overflow-y: scroll;
   height: -webkit-fill-available;
-  max-height: 40vh;
+  max-height: 30vh;
 }
 
 .TimelineRound {
@@ -123,7 +123,7 @@
   gap: var(--gap);
 }
 
-.CardBody.hide-card-details > div {
+.hideCard > div {
   font-size: 0;
 }
 
@@ -134,14 +134,16 @@
   width: 30px;
   height: auto;
   aspect-ratio: 3/4;
-
+  border: 1px solid var(--border-color);
   border-radius: 3px;
   line-height: 1;
 }
 
+/*
 .hide-card-details {
   border: 1px solid var(--border-color);
 }
+
 
 .TableFlob .CardBody.spades,
 .PlayerFrame:first-child .CardBody.spades {
@@ -162,6 +164,7 @@
 .PlayerFrame:first-child .CardBody.clubs {
   border: 1px solid #70ffc8;
 }
+*/
 
 .ActionButton {
   display: flex;
@@ -193,10 +196,6 @@
 }
 
 @media screen and (max-width: 480px) {
-  .CurrentPhase {
-    display: none;
-  }
-
   .CardBody {
     width: 20px;
   }

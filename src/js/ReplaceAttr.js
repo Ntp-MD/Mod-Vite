@@ -1,9 +1,6 @@
 //option 1
 $(document).ready(function () {
   $(".test").html("<span>-10%</span>");
-  window.onhashchange = function () {
-    $(".test").html("<span>-10%</span>");
-  };
 });
 
 //option 2

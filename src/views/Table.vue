@@ -6,9 +6,9 @@
         :key="i"
         class="PlayerFrame"
         :class="{
-          activePlayers: i === currentPlayer,
+          currentTurn: i === currentPlayer,
           foldedPlayers: playerFolded[i],
-          Main: i === 0 && i === currentPlayer,
+          mainPlayer: i === 0,
           Player: i !== 0 && i === currentPlayer,
         }"
       >
@@ -24,7 +24,7 @@
             v-for="(card, cIndex) in hands[i]"
             :key="cIndex"
             class="CardBody"
-            :class="[getSuitClass(card.suit), { 'hide-card-details': i !== 0 && gamePhase !== 'showdown' }]"
+            :class="[getSuitClass(card.suit), { hideCard: i !== 0 && gamePhase !== 'showdown' }]"
           >
             <div class="RankCard">{{ card.rank }}</div>
             <div class="SuitCard">{{ card.suit }}</div>
@@ -57,7 +57,7 @@
         <button @click="playerAction('call', callAmount)" :disabled="!canCall">{{ `Call $${callAmount}` }}</button>
         <button @click="playerAction('raise', raiseInput)" :disabled="!canRaise">Raise ${{ raiseInput }}</button>
         <button @click="playerAction('all-in')" :disabled="!canAll">All-In</button>
-        <button @click="playerAction('fold')" :disabled="!canCall">Fold</button>
+        <button @click="playerAction('fold')" :disabled="gamePhase === 'idle' || currentPlayer !== 0">Fold</button>
       </div>
     </div>
     <div class="ChipButton">
@@ -69,7 +69,7 @@
     </div>
     <div class="TableSetting">
       <button @click="startGame" :disabled="gamePhase !== 'idle'">Start Game</button>
-      <button @click="startNewRound" :disabled="gamePhase === 'idle'">Next</button>
+      <button @click="startNewRound" :disabled="gamePhase !== 'showdown'">Next</button>
       <button @click="resetGame">Reset</button>
     </div>
   </div>
