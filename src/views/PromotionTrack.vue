@@ -1,5 +1,5 @@
 <template>
-  <div class="PromoPanel">
+  <div class="websiteTrack">
     <div class="CurrentCard">
       <div class="list-title">
         Current Card
@@ -17,14 +17,14 @@
       <form class="add-box">
         <input v-model="newCurrentSite" placeholder="Enter new site" />
         <div class="group-btn">
-          <div class="action-button add-btn" @click="addNewCurrentSite">Add</div>
-          <div class="action-button clear-btn" @click="clearSelectedFromAll">Clear Select</div>
+          <button class="add-btn" @click="addNewCurrentSite">Add</button>
+          <button class="clear-btn" @click="clearSelectedFromAll">Clear Select</button>
         </div>
       </form>
     </div>
-    <div class="SwapCard">
-      <div class="PrevSwap" @click="moveSelectedFromCurrentToWaiting"><img src="/src/assets/icon/swap.png" alt="" /></div>
-      <div class="NextSwap" @click="moveSelectedFromWaitingToCurrent"><img src="/src/assets/icon/swap.png" alt="" /></div>
+    <div class="switchControl">
+      <button class="PrevSwap" @click="moveSelectedFromCurrentToWaiting">Forward</button>
+      <button class="NextSwap" @click="moveSelectedFromWaitingToCurrent">Back</button>
     </div>
     <div class="WaitingCard">
       <div class="list-title">
@@ -45,13 +45,9 @@
         <img src="/src/assets/icon/search.png" alt="" width="100%" height="100%" />
       </form>
     </div>
-    <div class="SwapCard">
-      <div class="PrevSwap" @click="moveSelectedFromWaitingToComplete">
-        <img src="/src/assets/icon/swap.png" alt="" />
-      </div>
-      <div class="NextSwap" @click="moveSelectedFromCompleteToWaiting">
-        <img src="/src/assets/icon/swap.png" alt="" />
-      </div>
+    <div class="switchControl">
+      <button class="PrevSwap" @click="moveSelectedFromWaitingToComplete">Forward</button>
+      <button class="NextSwap" @click="moveSelectedFromCompleteToWaiting">Back</button>
     </div>
     <div class="CompleteCard">
       <div class="list-title">
@@ -68,8 +64,8 @@
         </div>
       </div>
       <div class="group-btn">
-        <div class="action-button add-btn" @click="addNewCurrentSite">Add</div>
-        <div class="action-button clear-btn" @click="clearSelectedFromAll">Clear Select</div>
+        <button class="add-btn" @click="addNewCurrentSite">Add</button>
+        <button class="clear-btn" @click="clearSelectedFromAll">Clear Select</button>
       </div>
     </div>
   </div>
@@ -84,11 +80,16 @@ export default {
 </script>
 
 <style scoped>
-.PromoPanel {
+.websiteTrack {
   display: flex;
   height: 100%;
   width: 100%;
   margin: auto;
+  gap: var(--gap);
+}
+
+.websiteTrack button {
+  background: var(--btn);
 }
 
 .list-title {
@@ -129,16 +130,13 @@ export default {
   grid-template-columns: 15px auto;
   align-items: center;
   gap: 10px;
-  padding: 8px 10px;
-  border-top: 1px solid transparent;
-  border-right: 1px solid transparent;
-  border-left: 1px solid transparent;
+  padding: 8px 15px;
   border-bottom: 1px solid var(--border-color);
 }
 
 .highlighted {
   color: #4abdff;
-  border: 1px solid #4abdff;
+  border: 1px solid var(--btn);
 }
 
 .CurrentCard,
@@ -147,31 +145,22 @@ export default {
   display: flex;
   flex-direction: column;
   gap: var(--gap);
-  flex: 2;
+  flex: 1;
   border-radius: var(--border-radius);
   background: var(--ui-bg1);
   padding: var(--gap);
   box-shadow: 0 0 3px var(--border-color);
 }
 
-.SwapCard {
+.switchControl {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   position: relative;
   height: 100%;
-  display: grid;
-  place-content: center;
-  place-items: center;
   gap: 20px;
-  flex: 0.5;
-}
-
-.SwapCard div {
-  padding: 5px 20px;
-  cursor: pointer;
-  border-radius: 4px;
-  text-align: center;
-  user-select: none;
-  height: fit-content;
-  max-width: 70px;
+  flex: 0.2;
 }
 
 .selectAll {
@@ -188,41 +177,7 @@ export default {
   justify-content: space-between;
 }
 
-.action-button {
-  cursor: pointer;
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
-  text-align: center;
-  user-select: none;
-  padding: 10px 20px;
-  width: fit-content;
-}
-
-.action-button:hover {
-  border: 1px solid #4abdff;
-}
-
-.PrevSwap {
-  background: #56d524;
-}
-
-.NextSwap {
-  background: red;
-}
-
-.PrevSwap img {
-  filter: invert(1);
-  height: auto;
-  object-fit: contain;
-}
-
-.NextSwap img {
-  filter: invert(1);
-  height: auto;
-  object-fit: contain;
-}
-
-.PromoPanel input {
+.websiteTrack input {
   border: 1px solid var(--border-color);
   height: fit-content;
 }

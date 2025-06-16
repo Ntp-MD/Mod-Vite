@@ -1,25 +1,8 @@
 .TableLayout {
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-  height: inherit;
+  height: 100vh;
   gap: var(--gap);
-  overflow: hidden;
-}
-
-.TableLayout :is(button) {
-  border-radius: 3px;
-  border: 1px solid var(--border-color);
-  cursor: pointer;
-  height: 40px;
-  width: fit-content;
-  min-width: auto;
-  white-space: nowrap;
-  padding: 0 !important;
-}
-
-.TableLayout :is(button):hover {
-  border: 1px solid var(--focus);
 }
 
 .TableLayout :is(button):disabled {
@@ -35,8 +18,7 @@
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   border: 1px solid var(--border-color);
-  height: 15%;
-  min-height: 135px;
+  min-height: 120px;
 }
 
 .PlayerFrame {
@@ -99,17 +81,14 @@
   place-items: center;
   border: 1px solid var(--border-color);
   gap: 5px;
-  min-height: 40px;
-  height: auto;
   padding: 10px;
+  min-height: 85px;
 }
 
 .TimelineLog {
   border: 1px solid var(--border-color);
   padding: var(--gap);
   overflow-y: scroll;
-  height: -webkit-fill-available;
-  max-height: 30vh;
 }
 
 .TimelineRound {
@@ -185,17 +164,28 @@
 
 .ChipBtn {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 40px auto 40px;
   align-items: center;
   justify-content: center;
   width: 100%;
+  gap: 10px;
 }
 
-.ChipBtn button {
-  width: 100% !important;
+.ChipBtn button:first-child,
+.ChipBtn button:last-child {
+  width: 40px;
+  min-width: 0;
 }
 
 @media screen and (max-width: 480px) {
+  .TableLayout {
+    height: fit-content;
+  }
+
+  .TimelineLog {
+    height: 180px;
+  }
+
   .CardBody {
     width: 20px;
   }
@@ -209,12 +199,16 @@
     gap: 5px;
   }
 
-  .TableLayout :is(button) {
-    height: 35px;
-  }
-
   .ChipButton {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .ActionButton button {
+    min-width: 0;
+  }
+
+  .ChipBtn button {
+    min-width: 70px;
   }
 }

@@ -1,5 +1,13 @@
 <template>
   <div class="TableLayout">
+    <div class="TimelineLog" ref="timelineLogRef">
+      <div v-for="(round, index) in roundLogs" :key="index" class="RoundLog">
+        <div>Round {{ index + 1 }}</div>
+        <div>
+          <div v-for="(entry, i) in round" :key="i">{{ entry }}</div>
+        </div>
+      </div>
+    </div>
     <div class="PlayerLineup">
       <div
         v-for="(playerNames, i) in playerNames"
@@ -33,6 +41,7 @@
         <div class="PlayerBet">Bet: ${{ playerBets[i] }}</div>
       </div>
     </div>
+
     <div class="TableFlob">
       <div class="TableFlobCard" v-if="flop && flop.length">
         <div v-for="(card, index) in flop" :key="index" class="CardBody" :class="getSuitClass(card.suit)">
@@ -41,16 +50,23 @@
         </div>
       </div>
       <div class="PoolMoney">{{ pot }}$</div>
-      <div class="CurrentPhase">Current Game Phase: {{ gamePhase }}</div>
+      <div class="CurrentPhase">Current Phase: {{ gamePhase }}</div>
     </div>
-    <div class="TimelineLog" ref="timelineLogRef">
-      <div v-for="(round, index) in roundLogs" :key="index" class="RoundLog">
-        <div>Round {{ index + 1 }}</div>
-        <div>
-          <div v-for="(entry, i) in round" :key="i">{{ entry }}</div>
-        </div>
+
+    <div class="TableSetting">
+      <button @click="startGame" :disabled="gamePhase !== 'idle'">Start Game</button>
+      <button @click="startNewRound" :disabled="gamePhase !== 'showdown'">Next</button>
+      <button @click="resetGame">Reset</button>
+    </div>
+
+    <div class="ChipButton">
+      <div v-for="chip in raiseChips" :key="chip" class="ChipBtn">
+        <button @click="decreaseRaise(chip)">-</button>
+        <button @click="increaseRaise(chip)">${{ chip }}</button>
+        <button @click="increaseRaise(chip)">+</button>
       </div>
     </div>
+
     <div class="PlayerAction">
       <div class="ActionButton">
         <button @click="playerAction('check')" :disabled="!canCheck">Check</button>
@@ -59,18 +75,6 @@
         <button @click="playerAction('all-in')" :disabled="!canAll">All-In</button>
         <button @click="playerAction('fold')" :disabled="gamePhase === 'idle' || currentPlayer !== 0">Fold</button>
       </div>
-    </div>
-    <div class="ChipButton">
-      <div v-for="chip in raiseChips" :key="chip" class="ChipBtn">
-        <button @click="decreaseRaise(chip)">-</button>
-        <button @click="increaseRaise(chip)">${{ chip }}</button>
-        <button @click="increaseRaise(chip)">+</button>
-      </div>
-    </div>
-    <div class="TableSetting">
-      <button @click="startGame" :disabled="gamePhase !== 'idle'">Start Game</button>
-      <button @click="startNewRound" :disabled="gamePhase !== 'showdown'">Next</button>
-      <button @click="resetGame">Reset</button>
     </div>
   </div>
 </template>

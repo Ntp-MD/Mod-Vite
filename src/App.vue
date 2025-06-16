@@ -1,20 +1,20 @@
 <template>
   <div id="AppClient" :class="themeClass">
-    <aside>
-      <NavAside></NavAside>
-    </aside>
+    <header v-if="route.meta.HideThis">
+      <Header></Header>
+      <ThemeSwitch></ThemeSwitch>
+    </header>
     <main>
-      <header v-if="route.meta.HideThis">
-        <Header></Header>
-        <ThemeSwitch></ThemeSwitch>
-      </header>
+      <aside>
+        <NavAside></NavAside>
+      </aside>
       <section>
         <router-view></router-view>
       </section>
-      <footer v-if="route.meta.HideThis">
-        <Footer></Footer>
-      </footer>
     </main>
+    <footer v-if="route.meta.HideThis">
+      <Footer></Footer>
+    </footer>
   </div>
 </template>
 

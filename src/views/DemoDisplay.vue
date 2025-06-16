@@ -173,7 +173,7 @@ table.TableViews td img {
 }
 
 .filter-range:hover {
-  background: var(--focus2);
+  background: var(--btn);
   color: #fff;
 }
 </style>

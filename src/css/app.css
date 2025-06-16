@@ -3,14 +3,14 @@
   --ui-bg2: #1a1a1a;
   --ui-bg3: #fff;
   --ui-bg4: #3a3e4a;
+  --btn: #1cbd7f;
   --ui-font: #fff;
   --focus: #4abdff;
   --status0: #ff0000;
   --status1: #308eec;
   --status2: #56d524;
-  --focus2: #00be75;
   --border-radius: 5px;
-  --border-color: #3d3d3d;
+  --border-color: #353535;
   --gap: 20px;
 }
 
@@ -18,53 +18,60 @@ body {
   margin: 0;
   padding: 0;
   font-size: 14px;
+  overflow: hidden;
 }
 
 #AppClient {
   position: relative;
-  display: grid;
-  grid-template-columns: 15vw auto;
-  width: 100vw;
-  height: 100vh;
+  display: flex;
+  flex-direction: column;
   font-family: "Inter", sans-serif;
-  overflow: hidden;
   background: var(--ui-bg1);
   color: var(--ui-font);
 }
 
 header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
   display: flex;
   align-items: center;
   background: var(--ui-bg1);
-  box-shadow: 0 0 3px var(--border-color);
+  border-bottom: 1px solid var(--border-color);
   padding-right: 15px;
+  height: 50px;
 }
 
 footer {
+  display: none;
+  align-items: center;
   background: var(--ui-bg1);
-  min-height: 50px;
+  height: 50px;
+  text-align: center;
+  border-top: 1px solid var(--border-color);
+}
+
+main {
+  display: grid;
+  grid-template-columns: 15vw auto;
+  background: var(--ui-bg2);
+  height: -webkit-fill-available;
+  overflow: hidden;
 }
 
 aside {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   border-right: 1px solid var(--border-color);
-  height: inherit;
-}
-
-main {
-  display: flex;
-  flex-direction: column;
+  height: -webkit-fill-available;
   background: var(--ui-bg2);
-  height: inherit;
 }
 
 section {
-  height: inherit;
-  padding: var(--gap);
+  padding: calc(var(--gap) * 2);
+  height: 100vh;
+  overflow: hidden;
   overflow-y: scroll;
-  overflow-x: hidden;
 }
 
 ::-webkit-scrollbar {
@@ -73,7 +80,7 @@ section {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--focus2);
+  background: var(--btn);
   border-radius: var(--border-radius);
   min-height: 5%;
 }
@@ -159,20 +166,6 @@ sup {
   font-weight: 600;
 }
 
-button {
-  display: grid;
-  place-items: center;
-  width: fit-content;
-  min-width: 160px;
-  border-radius: 30px;
-  padding: 15px;
-  margin: 0;
-  border: none;
-  background: var(--bg-color2);
-  color: var(--font-color2);
-  transition: 0.5s;
-}
-
 *::placeholder {
   color: var(--ui-font);
 }
@@ -208,10 +201,6 @@ thead {
   box-shadow: inset 0 0px 2px 1px #4abdff;
 }
 
-form *:not(button) {
-  font-size: 16px;
-}
-
 form {
   display: grid;
   gap: var(--gap);
@@ -245,19 +234,43 @@ fieldset {
 input,
 textarea {
   width: 100%;
-  border: none;
+  border: 1px solid transparent;
   background: transparent;
   outline: none;
-  padding: 0 10px;
+  padding: 0 15px;
   margin: 0;
   color: var(--ui-font);
-  min-height: 40px;
+}
+
+input:before,
+input:focus {
+  border: 1px solid var(--btn);
 }
 
 textarea {
   height: 8vw;
   min-height: 100px;
   background: transparent;
+}
+
+input,
+button {
+  min-height: 40px;
+  border-radius: var(--border-radius);
+}
+
+button {
+  display: grid;
+  place-items: center;
+  width: fit-content;
+  min-width: 90px;
+  background: var(--btn);
+  color: var(--font-color2);
+  margin: 0;
+  border-radius: var(--border-radius);
+  border: none;
+  transition: 0.3s;
+  cursor: pointer;
 }
 
 .search-box::after {
@@ -280,6 +293,7 @@ textarea {
     flex-direction: column;
   }
 
+  header,
   footer {
     display: none;
   }
@@ -291,5 +305,16 @@ textarea {
     height: 100vh;
     background: var(--ui-bg2);
     transform: translateX(-100%);
+  }
+
+  main {
+    display: flex;
+    flex-direction: column;
+  }
+
+  section {
+    padding: 15px;
+    overflow-y: unset;
+    min-height: 100vh;
   }
 }
