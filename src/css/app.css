@@ -22,6 +22,9 @@ body {
   margin: 0;
   padding: 0;
   font-size: 14px;
+  min-height: 100vh;
+  background: var(--ui-bg1);
+  color: var(--ui-font);
   overflow: hidden;
 }
 
@@ -30,8 +33,9 @@ body {
   display: flex;
   flex-direction: column;
   font-family: "Inter", sans-serif;
-  background: var(--ui-bg1);
-  color: var(--ui-font);
+  height: inherit;
+  background: #fff;
+  height: 100vh;
 }
 
 header {
@@ -59,22 +63,20 @@ main {
   display: grid;
   grid-template-columns: 15vw auto;
   background: var(--ui-bg2);
-  height: -webkit-fill-available;
-  overflow: hidden;
+  height: 100%;
 }
 
 aside {
   display: flex;
   flex-direction: column;
   border-right: 1px solid var(--border-color);
-  height: -webkit-fill-available;
   background: var(--ui-bg2);
+  height: calc(100vh - 50px);
 }
 
 section {
   padding: calc(var(--gap) * 2);
   height: calc(100vh - 50px);
-  overflow: hidden;
   overflow-y: scroll;
 }
 
@@ -264,11 +266,12 @@ button {
   right: 10px;
 }
 
+@media (min-width: 1201px) {
+}
+
 @media (max-width: 1200px) {
-  #AppClient {
+  :root {
     --gap: 10px;
-    display: flex;
-    flex-direction: column;
   }
 
   header {
@@ -290,11 +293,5 @@ button {
   main {
     display: flex;
     flex-direction: column;
-  }
-
-  section {
-    padding: 15px;
-    overflow-y: unset;
-    min-height: 100vh;
   }
 }

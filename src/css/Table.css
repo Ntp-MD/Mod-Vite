@@ -194,4 +194,8 @@
   .PlayerHand {
     gap: 5px;
   }
+
+  .TimelineLog {
+    max-height: 240px;
+  }
 }
