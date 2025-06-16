@@ -119,11 +119,9 @@
   line-height: 1;
 }
 
-/*
 .hide-card-details {
   border: 1px solid var(--border-color);
 }
-
 
 .TableFlob .CardBody.spades,
 .PlayerFrame:first-child .CardBody.spades {
@@ -144,7 +142,6 @@
 .PlayerFrame:first-child .CardBody.clubs {
   border: 1px solid #70ffc8;
 }
-*/
 
 .ActionButton {
   display: flex;
@@ -179,7 +176,7 @@
 
 @media screen and (max-width: 480px) {
   .CardBody {
-    width: 20px;
+    width: 18px;
   }
 
   .PlayerFrame,
