@@ -28,4 +28,12 @@ import ThemeSwitch from "/src/components/ThemeSwitch.vue";
 const { appContext } = getCurrentInstance();
 const themeClass = appContext.config.globalProperties.$theme.themeClass;
 const route = useRoute();
+
+$(window).scroll(function () {
+  if ($(this).scrollTop() > 0) {
+    $("#AppClient").addClass("slideDown");
+  } else {
+    $("#AppClient").removeClass("slideDown");
+  }
+});
 </script>

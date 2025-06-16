@@ -3,11 +3,11 @@
     <div class="search-box">
       <input class="search-input" type="search" placeholder="Search demo" v-model="searchQuery" />
     </div>
-    <div class="filter-range" @click="filterRange(1, 199)">1–199</div>
-    <div class="filter-range" @click="filterRange(200, 399)">200–399</div>
-    <div class="filter-range" @click="filterRange(400, 599)">400–599</div>
-    <div class="filter-range" @click="filterRange(600, 800)">600–800</div>
-    <div class="filter-range" @click="clearFilter">All</div>
+    <button class="filter-range" @click="filterRange(1, 199)">1–199</button>
+    <button class="filter-range" @click="filterRange(200, 399)">200–399</button>
+    <button class="filter-range" @click="filterRange(400, 599)">400–599</button>
+    <button class="filter-range" @click="filterRange(600, 800)">600–800</button>
+    <button class="filter-range" @click="clearFilter">All</button>
   </div>
   <table class="TableViews">
     <thead>
@@ -163,13 +163,10 @@ table.TableViews td img {
   display: grid;
   place-items: center;
   min-width: 100px;
-  background: var(--ui-bg1);
-  border-radius: 5px;
   height: inherit;
   cursor: pointer;
   transition: 0.3s;
   border: 1px solid var(--border-color);
-  height: 40px;
 }
 
 .filter-range:hover {

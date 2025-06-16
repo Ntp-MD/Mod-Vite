@@ -1,38 +1,57 @@
 <template>
-  <div id="navHeader" :class="['nav-menu', { 'nav-menu--open': isMenuOpen }]" ref="NavMenu">
-    <router-link class="nav-menu-link" to="/Dashboard" @click="closeMenu">Dashboard</router-link>
-    <div id="navToggle" @click="toggleMenu" ref="navToggle">
-      <div :class="{ 'is-active': isMenuOpen }"></div>
-      <div :class="{ 'is-active': isMenuOpen }"></div>
-      <div :class="{ 'is-active': isMenuOpen }"></div>
+  <div class="navHeader">
+    <router-link class="navLink" to="/" @click="closeMenu">Dashboard</router-link>
+    <div class="navToggle" ref="navToggleRef" @click="toggleMenu">x</div>
+    <div class="navMobile" ref="navMobileRef" :class="{ open: isOpen }">
+      <router-link class="navLink" to="/FontDisplay" @click="closeMenu">Font Family</router-link>
+      <router-link class="navLink" to="/OnlineTrackDisplay" @click="closeMenu">Online Track</router-link>
+      <router-link class="navLink" to="/PromotionTrack" @click="closeMenu">Promotion Track</router-link>
+      <router-link class="navLink" to="/DemoDisplay" @click="closeMenu">List Demo</router-link>
+      <router-link class="navLink" to="/QuickAccess" @click="closeMenu">QuickAccess</router-link>
+      <router-link class="navLink" to="/" @click="closeMenu">Table </router-link>
+      <router-link class="navLink" to="/SlidePause" @click="closeMenu">Setting</router-link>
     </div>
   </div>
 </template>
 
-<script>
-export default {
-  name: "AppHeader",
-  data: () => ({ isMenuOpen: false }),
-  methods: {
-    toggleMenu() {
-      this.isMenuOpen = !this.isMenuOpen;
-    },
-    closeMenu() {
-      this.isMenuOpen = false;
-    },
-  },
-  mounted() {
-    document.addEventListener("click", (e) => {
-      if (!this.$refs.NavMenu.contains(e.target) && !this.$refs.navToggle.contains(e.target)) {
-        this.isMenuOpen = false;
-      }
-    });
-  },
-};
+<script setup>
+import { ref, onMounted, onBeforeUnmount } from "vue";
+
+const isOpen = ref(false);
+const navMobileRef = ref(null);
+const navToggleRef = ref(null);
+
+function toggleMenu() {
+  isOpen.value = !isOpen.value;
+}
+
+function closeMenu() {
+  isOpen.value = false;
+}
+
+function handleClickOutside(event) {
+  if (
+    isOpen.value &&
+    navMobileRef.value &&
+    !navMobileRef.value.contains(event.target) &&
+    navToggleRef.value &&
+    !navToggleRef.value.contains(event.target)
+  ) {
+    closeMenu();
+  }
+}
+
+onMounted(() => {
+  document.addEventListener("mousedown", handleClickOutside);
+});
+
+onBeforeUnmount(() => {
+  document.removeEventListener("mousedown", handleClickOutside);
+});
 </script>
 
 <style scoped>
-#navHeader {
+.navHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -40,23 +59,25 @@ export default {
   width: 100%;
   min-height: 50px;
   padding: 0 15px;
+  position: relative;
 }
 
-#navHeader a {
-  color: var(--ui-font);
+.navMobile {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--ui-bg1);
+  width: 80%;
+  height: 100vh;
+  padding: 15px;
+  gap: 10px;
+  transform: translateX(-100%);
+  transition: 0.5s;
 }
 
-#navLogo {
-  flex: 1;
-}
-
-#navLogo a {
-  font-size: 20px;
-  font-weight: 700;
-  text-align: left;
-}
-
-#navToggle {
-  display: none;
+.navMobile.open {
+  transform: translateX(0%);
 }
 </style>
