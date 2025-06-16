@@ -1,7 +1,11 @@
 <template>
   <div class="navHeader">
-    <router-link class="navLink" to="/" @click="closeMenu">Dashboard</router-link>
-    <div class="navToggle" ref="navToggleRef" @click="toggleMenu">x</div>
+    <router-link class="navHome" to="/" @click="closeMenu">Dashboard</router-link>
+    <div class="navToggle" ref="navToggleRef" @click="toggleMenu">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
     <div class="navMobile" ref="navMobileRef" :class="{ open: isOpen }">
       <router-link class="navLink" to="/FontDisplay" @click="closeMenu">Font Family</router-link>
       <router-link class="navLink" to="/OnlineTrackDisplay" @click="closeMenu">Online Track</router-link>
@@ -79,5 +83,23 @@ onBeforeUnmount(() => {
 
 .navMobile.open {
   transform: translateX(0%);
+}
+
+.navToggle {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.navToggle > div {
+  width: 27px;
+  height: 3px;
+  background: #fff;
+}
+
+@media screen and (max-width: 1200px) {
+  .navHome {
+    display: none;
+  }
 }
 </style>
