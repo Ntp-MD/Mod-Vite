@@ -12,6 +12,14 @@ const currentMaxBet = ref(0);
 export const raiseInput = ref(0);
 const CostRound = 10;
 const numPlayers = ref(6);
+export const playerColors = [
+  "#ffd700", // You (gold)
+  "#1e90ff", // AI 1 (blue)
+  "#ff5151", // AI 2 (red)
+  "#3ae1ff", // AI 3 (cyan)
+  "#70ffc8", // AI 4 (green)
+  "#ff8c00", // AI 5 (orange)
+];
 const startingMoney = ref(500);
 const dealerPosition = ref(0);
 const roundEnded = ref(true);
@@ -55,11 +63,19 @@ export const opponentStats = [
   { aggression: 0.5, tightness: 0.5 },
 ];
 
-function addLog(message) {
+function colorizePlayerNames(message) {
+  playerNames.value.forEach((name, idx) => {
+    const regex = new RegExp(`\\b${name}\\b`, "g");
+    message = message.replace(regex, `<span class="player-log-color" style="color: ${playerColors[idx]}">${name}</span>`);
+  });
+  return message;
+}
+
+export function addLog(message) {
   if (!roundLogs.value[currentRound.value - 1]) {
     roundLogs.value[currentRound.value - 1] = [];
   }
-  roundLogs.value[currentRound.value - 1].push(message);
+  roundLogs.value[currentRound.value - 1].push(colorizePlayerNames(message));
 }
 
 export function getSuitClass(suit) {
@@ -322,7 +338,7 @@ export function startNewRound() {
 
   dealerPosition.value = (dealerPosition.value + 1) % numPlayers.value;
   currentRound.value++;
-  roundLogs.value.push([]);
+  roundLogs.value = [];
   deck.value = createShuffledDeck();
   flop.value = [];
   pot.value = 0;
@@ -387,7 +403,7 @@ function proceedToNextPhase() {
   playerBets.value = Array(numPlayers.value).fill(0);
   currentMaxBet.value = 0;
   lastRaiser.value = null;
-
+  raiseInput.value = 0;
   let logMessage = "";
   let roundEnded = false;
 
@@ -702,11 +718,13 @@ function determineWinner() {
   if (currentTurn.length === 0) {
     addLog("No active players. Pot remains.");
     roundEnded.value = true;
+    return;
   }
   currentTurn.sort((a, b) => b.handEvaluation.handRank - a.handEvaluation.handRank);
   const winner = currentTurn[0];
-  playerMoney.value[winner.index] += pot.value;
-  addLog(`${playerNames.value[winner.index]} wins with ${winner.handEvaluation.handName} and receives $${pot.value}`);
+  const potWon = pot.value; // Store pot before giving to winner
+  playerMoney.value[winner.index] += potWon;
+  addLog(`${playerNames.value[winner.index]} wins with ${winner.handEvaluation.handName} and receives $${potWon}`);
   pot.value = 0;
   addLog(`--- End of Round ${currentRound.value} ---`);
   roundEnded.value = true;

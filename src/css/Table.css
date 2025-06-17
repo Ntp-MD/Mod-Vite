@@ -5,6 +5,10 @@
   gap: var(--gap);
 }
 
+.TableLayout * {
+  font-size: clamp(12px, 1vw, 14px);
+}
+
 .TableLayout :is(button):disabled {
   opacity: 0.5;
   cursor: not-allowed;
@@ -18,13 +22,8 @@
   border: 1px solid var(--border-color);
 }
 
-.TableLayout * {
-  font-size: clamp(10px, 1vw, 14px);
-}
-
 .PlayerLineup {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  display: flex;
   border: 1px solid var(--border-color);
   min-height: 120px;
 }
@@ -113,7 +112,7 @@
   place-items: center;
   width: 30px;
   height: auto;
-  aspect-ratio: 3/4;
+  aspect-ratio: 2.8/4;
   border: 1px solid var(--border-color);
   border-radius: 3px;
   line-height: 1;
@@ -176,7 +175,7 @@
 
 @media screen and (max-width: 480px) {
   .CardBody {
-    width: 18px;
+    width: 20px;
   }
 
   .PlayerFrame,

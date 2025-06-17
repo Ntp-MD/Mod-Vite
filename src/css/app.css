@@ -271,14 +271,11 @@ button {
 
 @media (max-width: 1200px) {
   :root {
-    --gap: 10px;
-  }
-
-  body {
-    overflow-y: scroll;
+    --gap: 5px;
   }
 
   header {
+    display: none;
   }
 
   footer {

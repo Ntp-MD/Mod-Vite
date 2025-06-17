@@ -47,9 +47,8 @@
 
     <div class="TimelineLog" ref="timelineLogRef">
       <div v-for="(round, index) in roundLogs" :key="index" class="RoundLog">
-        <div>Round {{ index + 1 }}</div>
         <div>
-          <div v-for="(entry, i) in round" :key="i">{{ entry }}</div>
+          <div v-for="(entry, i) in round" :key="i" v-html="entry"></div>
         </div>
       </div>
     </div>
