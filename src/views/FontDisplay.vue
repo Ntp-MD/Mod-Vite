@@ -1,7 +1,7 @@
 <template>
-  <div class="fontDisplay">
-    <div class="fontGroup">
-      <div class="fontBlock" v-for="font in fonts" :key="font.font_name">
+  <div class="font-display">
+    <div class="font-group">
+      <div class="font-block" v-for="font in fonts" :key="font.font_name">
         <div class="font-name">{{ font.font_name }}</div>
         <div class="code-block">
           <div class="code-content">
@@ -49,11 +49,12 @@ export default {
 </script>
 
 <style scoped>
-.fontGroup {
+.font-group {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(clamp(150px, 30%, 20vw), 1fr));
   gap: var(--gap);
   margin: 0;
+  color: var(--ui-font);
 }
 
 .font-name {
@@ -61,7 +62,7 @@ export default {
   font-weight: 600;
 }
 
-.fontBlock {
+.font-block {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -109,7 +110,7 @@ export default {
 }
 
 @media screen and (max-width: 480px) {
-  .fontGroup {
+  .font-group {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
   }

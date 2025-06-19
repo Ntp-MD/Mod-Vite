@@ -69,6 +69,9 @@ function updateBangkokTime() {
     hour: "2-digit",
     minute: "2-digit",
     second: "2-digit",
+    year: "numeric",
+    day: "numeric",
+    month: "long",
   };
   const now = new Date();
   bangkokTime.value = now.toLocaleTimeString("en-US", options);

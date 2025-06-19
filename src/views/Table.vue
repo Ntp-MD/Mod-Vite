@@ -70,7 +70,7 @@
 
     <div class="TableSetting">
       <button @click="startGame" :disabled="gamePhase !== 'idle'">Start Game</button>
-      <button @click="startNewRound" :disabled="gamePhase !== 'showdown'">Next</button>
+      <button @click="startNewRound" :disabled="gamePhase !== 'showdown' || isPlayerBusted">Next</button>
       <button @click="resetGame">Reset</button>
     </div>
   </div>
@@ -105,6 +105,7 @@ import {
   playerNames, // Moved from the combined import
   currentPlayer, // Moved from the combined import
   playerFolded, // Moved from the combined import
+  isPlayerBusted,
   maxRaiseAmount, // Exported because increaseRaise uses it
   minRaiseAmount, // Exported because decreaseRaise, playerAction, resetGame use it
 } from "../js/Table.js";

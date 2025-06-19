@@ -3,7 +3,7 @@
   --ui-bg2: #1a1a1a;
   --ui-bg3: #fff;
   --ui-bg4: #3a3e4a;
-  --btn: #1cbd7f;
+  --btn: #0ea66b;
   --ui-font: #fff;
   --focus: #4abdff;
   --status0: #ff0000;
@@ -11,7 +11,7 @@
   --status2: #56d524;
   --border-radius: 5px;
   --border-color: #353535;
-  --gap: 20px;
+  --gap: 15px;
 }
 
 * {

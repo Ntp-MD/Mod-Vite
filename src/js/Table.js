@@ -12,14 +12,7 @@ const currentMaxBet = ref(0);
 export const raiseInput = ref(0);
 const CostRound = 10;
 const numPlayers = ref(6);
-export const playerColors = [
-  "#ffd700", // You (gold)
-  "#1e90ff", // AI 1 (blue)
-  "#ff5151", // AI 2 (red)
-  "#3ae1ff", // AI 3 (cyan)
-  "#70ffc8", // AI 4 (green)
-  "#ff8c00", // AI 5 (orange)
-];
+export const playerColors = ["#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff"];
 const startingMoney = ref(500);
 const dealerPosition = ref(0);
 const roundEnded = ref(true);
@@ -30,6 +23,7 @@ export const playerBets = ref([]);
 export const playerFolded = ref([]);
 const playerDialog = ref([]);
 export const playerPositions = ref([]);
+export const isPlayerBusted = computed(() => playerMoney.value[0] === 0);
 const hasActed = ref([]);
 
 export const raiseChips = [10, 20, 50, 100];

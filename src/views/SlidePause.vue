@@ -60,6 +60,11 @@
   box-shadow: 0 4px 18px rgb(0, 0, 0, 0.1);
   overflow: hidden;
 }
+
+.modquee-items img {
+  border: 1px solid #fff;
+  opacity: 0;
+}
 </style>
 
 <script>
@@ -68,9 +73,9 @@ const observer = new MutationObserver(() => {
   const box = document.querySelector("#modquee-contain");
   if (!container || !box) return;
 
-  const itemsToSlide = 5;
+  const itemsToSlide = 4;
   const pauseDuration = 3000;
-  const slideDuration = 1000;
+  const slideDuration = 1;
 
   const imgs = box.querySelectorAll("img");
   let loaded = 0;
@@ -103,7 +108,7 @@ const observer = new MutationObserver(() => {
 
     let offset = 0;
     box.style.position = "absolute";
-    box.style.transition = `transform ${slideDuration}ms ease`;
+    box.style.transition = `transform ${slideDuration}s ease-in-out`;
     container.style.overflow = "hidden";
 
     const slide = () => {
@@ -114,7 +119,7 @@ const observer = new MutationObserver(() => {
         box.style.transform = `translateX(0)`;
         requestAnimationFrame(() => {
           void box.offsetWidth;
-          box.style.transition = `transform ${slideDuration}ms ease`;
+          box.style.transition = `transform ${slideDuration}s ease-in-out`;
           requestAnimationFrame(() => {
             offset += step;
             box.style.transform = `translateX(-${offset}px)`;

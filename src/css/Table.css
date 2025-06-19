@@ -1,4 +1,8 @@
 .TableLayout {
+  --spades: #000;
+  --hearts: #ff0000;
+  --diamonds: #009eb9;
+  --clubs: #00c57a;
   display: flex;
   flex-wrap: wrap;
   height: fit-content;
@@ -6,7 +10,7 @@
 }
 
 .TableLayout * {
-  font-size: clamp(12px, 1vw, 14px);
+  font-size: clamp(13px, 1vw, 14px);
 }
 
 .TableLayout :is(button):disabled {
@@ -50,7 +54,6 @@
 }
 
 .foldedPlayers {
-  display: none;
   opacity: 0.2;
 }
 
@@ -114,32 +117,40 @@
   height: auto;
   aspect-ratio: 2.8/4;
   border: 1px solid var(--border-color);
+  background: #fff;
   border-radius: 3px;
   line-height: 1;
+}
+.CardBody > div {
+  line-height: 0.8;
 }
 
 .hide-card-details {
   border: 1px solid var(--border-color);
 }
 
-.TableFlob .CardBody.spades,
-.PlayerFrame:first-child .CardBody.spades {
-  border: 1px solid #fff;
+.CardBody.hideCard {
+  border: 1px solid var(--border-color) !important;
 }
 
-.TableFlob .CardBody.hearts,
-.PlayerFrame:first-child .CardBody.hearts {
-  border: 1px solid #ff5151;
+.CardBody.spades {
+  border: 1px solid var(--spades);
+  color: var(--spades);
 }
 
-.TableFlob .CardBody.diamonds,
-.PlayerFrame:first-child .CardBody.diamonds {
-  border: 1px solid #3ae1ff;
+.CardBody.hearts {
+  border: 1px solid var(--hearts);
+  color: var(--hearts);
 }
 
-.TableFlob .CardBody.clubs,
-.PlayerFrame:first-child .CardBody.clubs {
-  border: 1px solid #70ffc8;
+.CardBody.diamonds {
+  border: 1px solid var(--diamonds);
+  color: var(--diamonds);
+}
+
+.CardBody.clubs {
+  border: 1px solid var(--clubs);
+  color: var(--clubs);
 }
 
 .ActionButton {

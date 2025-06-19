@@ -1,118 +1,42 @@
 <template>
-  <div>
-    <div class="itp-work" v-if="displayedFiles.length > 0">
-      <div
-        v-for="file in displayedFiles"
-        :key="file.path"
-        :class="[
-          'file-entry',
-          {
-            'js-file': file.path.endsWith('.js'),
-            'css-file': file.path.endsWith('.css'),
-            'html-file': file.path.endsWith('.html'),
-          },
-        ]"
-      >
-        <div class="file-header">
-          <div class="file-name">{{ getFilenameWithoutExtension(file.path) }}</div>
-        </div>
-        <pre class="file-content">{{ file.content }}</pre>
-      </div>
-    </div>
-    <div v-else>
-      <p>No files found in the /ITP/ directory.</p>
-    </div>
+  <div class="body">
+    <div class="item1"></div>
+    <div class="item2"></div>
+    <div class="item3"></div>
+    <div class="item4"></div>
+    <div class="item5"></div>
+    <div class="item6"></div>
+    <div class="item7"></div>
   </div>
 </template>
 
-<script setup>
-import { ref, watchEffect } from "vue";
-
-const allFilesRaw = import.meta.glob("/ITP/**", { eager: true, as: "raw" });
-
-const fileList = ref(Object.entries(allFilesRaw).map(([path, content]) => ({ path, content })));
-
-const savedOrder = (() => {
-  try {
-    const stored = localStorage.getItem("itpViewerFileOrder");
-    const parsed = JSON.parse(stored);
-    return Array.isArray(parsed) ? parsed : [];
-  } catch {
-    return [];
-  }
-})();
-
-const getFilenameWithoutExtension = (filePath) => {
-  const filename = filePath.split("/").pop() || "";
-  const dotIndex = filename.lastIndexOf(".");
-  return dotIndex > 0 ? filename.slice(0, dotIndex) : filename;
-};
-
-const displayedFiles = ref([]);
-
-const sortFiles = (files, order) => {
-  const orderMap = new Map(order.map((p, i) => [p, i]));
-  return [...files].sort((a, b) => {
-    const iA = orderMap.get(a.path),
-      iB = orderMap.get(b.path);
-    if (iA !== undefined && iB !== undefined) return iA - iB;
-    if (iA !== undefined) return -1;
-    if (iB !== undefined) return 1;
-    return a.path.localeCompare(b.path);
-  });
-};
-
-watchEffect(() => {
-  displayedFiles.value = sortFiles(fileList.value, savedOrder);
-});
-</script>
-
 <style scoped>
-.itp-work {
-  column-count: 3;
+.body {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
-.file-entry {
-  display: inline-block;
-  width: 100%;
-  font-size: 12px;
-  break-inside: avoid;
-  page-break-inside: avoid;
-  -webkit-column-break-inside: avoid;
-  border-radius: 5px;
-  overflow: hidden;
-  border: 1px solid transparent;
-}
-
-.file-header {
-  display: grid;
-  grid-template-columns: auto 15%;
-  align-items: center;
-  padding: 15px;
-}
-
-.file-name {
-  font-size: 16px;
-  font-weight: 600;
-}
-
-.js-file .file-header {
-}
-
-.css-file .file-header {
-}
-
-.html-file .file-header {
-}
-
-.file-content {
-  white-space: pre-wrap;
-  word-wrap: break-word;
+.body div {
+  display: block;
   background: var(--ui-bg1);
-  padding: 15px;
-  margin: 0;
-  overflow-y: auto;
-  color: var(--ui-font);
-  border: 1px solid #ddd;
+  width: auto;
+  height: auto;
+  min-width: 100px;
+  min-height: 100px;
+}
+
+.item1 {
+  flex: 2;
+  aspect-ratio: 5/10;
+}
+
+.item2 {
+  flex: 1;
+  aspect-ratio: 16/10;
+}
+
+.item2 {
+  flex: 0.5;
 }
 </style>
