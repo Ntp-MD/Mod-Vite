@@ -86,6 +86,7 @@ export default {
   width: 100%;
   margin: auto;
   gap: var(--gap);
+  color: var(--ui-font);
 }
 
 .websiteTrack button {

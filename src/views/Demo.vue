@@ -143,13 +143,6 @@ table.TableViews td img {
   right: 10px;
 }
 
-.Tablefilter {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
 .search-box,
 .edit-box {
   display: flex;

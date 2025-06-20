@@ -2,11 +2,11 @@
   <div id="NavAside">
     <div class="top">Administrator</div>
     <div class="mid">
+      <router-link class="nav-menu-link" to="/Promotion">Promotion</router-link>
+      <router-link class="nav-menu-link" to="/Online">Online</router-link>
+      <router-link class="nav-menu-link" to="/Demo">Demo</router-link>
       <router-link class="nav-menu-link" to="/FontDisplay">Font Family</router-link>
-      <router-link class="nav-menu-link" to="/OnlineTrackDisplay">Online Track</router-link>
-      <router-link class="nav-menu-link" to="/PromotionTrack">Promotion Track</router-link>
-      <router-link class="nav-menu-link" to="/DemoDisplay">List Demo</router-link>
-      <router-link class="nav-menu-link" to="/QuickAccess">QuickAccess</router-link>
+      <router-link class="nav-menu-link" to="/QuickAccess">TestSpace</router-link>
       <router-link class="nav-menu-link" to="/">Table </router-link>
       <router-link class="nav-menu-link" to="/SlidePause">Setting</router-link>
     </div>
@@ -47,7 +47,7 @@
   flex-direction: column;
   justify-content: center;
   height: -webkit-fill-available;
-  padding: var(--gap);
+  padding: calc(var(--gap) * 0.5);
 }
 
 .bottom {

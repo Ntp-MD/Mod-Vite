@@ -9,6 +9,7 @@
   --status0: #ff0000;
   --status1: #308eec;
   --status2: #56d524;
+  --status3: #ffe600;
   --border-radius: 5px;
   --border-color: #353535;
   --gap: 15px;
@@ -61,7 +62,7 @@ footer {
 
 main {
   display: grid;
-  grid-template-columns: 15vw auto;
+  grid-template-columns: 12vw auto;
   background: var(--ui-bg2);
   height: 100%;
 }
@@ -295,4 +296,15 @@ button {
     display: flex;
     flex-direction: column;
   }
+}
+
+.Tablefilter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.Tablefilter button.active {
+  opacity: 0.5;
 }
