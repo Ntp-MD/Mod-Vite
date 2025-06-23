@@ -6,9 +6,8 @@ import axios from "axios";
 const loading = ref(true);
 const sheetRows = ref([]);
 const selectedMonth = ref("All");
-
+const searchQuery = ref(""); // <-- Add this
 const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-
 const GOOGLE_SHEET_CSV_URL =
   "https://corsproxy.io/?" +
   encodeURIComponent(
@@ -22,7 +21,16 @@ onMounted(async () => {
     Papa.parse(res.data, {
       header: true,
       complete: (results) => {
-        sheetRows.value = results.data.filter((row) => row["Name"]);
+        sheetRows.value = results.data
+          .filter((row) => row.Name)
+          .map((row, idx) => ({
+            id: idx + 1,
+            name: row.Name || "",
+            searchConsole: row["Search Console"] || "",
+            smartWidget: row["Smart Widget"] || "",
+            onlineDate: row["Online Date"] || "",
+            month: String(row["Month"] || "").trim(),
+          }));
       },
     });
   } catch (e) {
@@ -33,8 +41,23 @@ onMounted(async () => {
 });
 
 const filteredRows = computed(() => {
-  if (selectedMonth.value === "All") return sheetRows.value;
-  return sheetRows.value.filter((row) => String(row["Month"]).trim() === selectedMonth.value);
+  let rows = sheetRows.value;
+  // Filter by month
+  if (selectedMonth.value !== "All") {
+    rows = rows.filter((row) => row.month === selectedMonth.value);
+  }
+  // Filter by search query
+  const query = searchQuery.value.toLowerCase();
+  if (query) {
+    rows = rows.filter(
+      (row) =>
+        row.name.toLowerCase().includes(query) ||
+        row.searchConsole.toLowerCase().includes(query) ||
+        row.smartWidget.toLowerCase().includes(query) ||
+        row.onlineDate.toLowerCase().includes(query)
+    );
+  }
+  return rows;
 });
 
 function statusDetect(value) {
@@ -50,6 +73,9 @@ function statusDetect(value) {
 <template>
   <div v-if="!loading">
     <div class="Tablefilter">
+      <form id="search-form">
+        <input class="search-input" type="search" placeholder="Search..." v-model="searchQuery" />
+      </form>
       <button :class="{ active: selectedMonth === 'All' }" @click="selectedMonth = 'All'">All</button>
       <button
         v-for="(name, idx) in monthNames"
@@ -72,35 +98,18 @@ function statusDetect(value) {
       <tbody>
         <tr v-for="(row, idx) in filteredRows" :key="idx">
           <td>
-            <a :href="'http://' + row['Name']" target="_blank">{{ row["Name"] }}</a>
+            <a :href="'http://' + row.name" target="_blank">{{ row.name }}</a>
           </td>
-          <td class="Status" :class="statusDetect(row['Search Console'])">
-            {{ row["Search Console"] }}
+          <td class="Status" :class="statusDetect(row.searchConsole)">
+            {{ row.searchConsole }}
           </td>
-          <td class="Status" :class="statusDetect(row['Smart Widget'])">
-            {{ row["Smart Widget"] }}
+          <td class="Status" :class="statusDetect(row.smartWidget)">
+            {{ row.smartWidget }}
           </td>
-          <td>{{ row["Online Date"] }}</td>
+          <td>{{ row.onlineDate }}</td>
         </tr>
       </tbody>
     </table>
   </div>
-  <div v-else>Loading...</div>
+  <Loading v-else></Loading>
 </template>
-
-<style>
-.Status {
-}
-
-.Status.Ads {
-}
-
-.Status.Installed {
-}
-
-.Status.Wait {
-}
-
-.Status.None {
-}
-</style>

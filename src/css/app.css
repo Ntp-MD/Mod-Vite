@@ -62,7 +62,7 @@ footer {
 
 main {
   display: grid;
-  grid-template-columns: 12vw auto;
+  grid-template-columns: 13vw auto;
   background: var(--ui-bg2);
   height: 100%;
 }
@@ -159,6 +159,10 @@ table.TableViews {
   background: var(--ui-bg1);
 }
 
+table input {
+  border: 1px solid var(--border-color);
+}
+
 thead {
   background: var(--ui-bg1);
   color: var(--ui-font);
@@ -195,6 +199,7 @@ form#search-form {
   display: grid;
   align-items: center;
   position: relative;
+  border: 1px solid var(--border-color);
 }
 
 form#search-form img {
@@ -254,7 +259,7 @@ button {
   cursor: pointer;
 }
 
-.search-box::after {
+#search-form::after {
   display: block;
   content: "";
   background-image: url(/src//assets/icon/search.png);

@@ -1,4 +1,5 @@
 <template>
+  <Loading></Loading>
   <div class="empty-space4">
     <a
       class="items"

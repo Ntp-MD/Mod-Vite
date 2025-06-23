@@ -735,6 +735,22 @@ export function getAIAction(index) {
   const activePlayers = playerFolded.value.filter((f) => !f).length;
   const myPosition = playerPositions.value[index] || index;
   const totalPlayers = numPlayers.value;
+
+  // --- Top pair, top kicker logic ---
+  if (community.length > 0 && handEval.handName === "One Pair") {
+    const boardRanks = community.map((c) => getRankValue(c.rank));
+    const topBoardRank = Math.max(...boardRanks, 0);
+    const myRanks = myHand.map((c) => getRankValue(c.rank));
+    const hasTopPair = myRanks.includes(topBoardRank);
+    const hasTopKicker = myRanks.includes(14); // Ace
+    if (hasTopPair && hasTopKicker) {
+      if (toCall === 0) return { action: "raise", amount: Math.max(minRaiseAmount, Math.floor(potSize * 0.5)) };
+      if (toCall <= myMoney * 0.4) return { action: "call" };
+      return { action: "fold" };
+    }
+  }
+
+  // --- Preflop logic ---
   if (community.length === 0) {
     const ranks = myHand.map((c) => getRankValue(c.rank));
     const isPair = ranks[0] === ranks[1];
@@ -762,6 +778,8 @@ export function getAIAction(index) {
       return { action: "fold" };
     }
   }
+
+  // --- Table stats ---
   let tableAggression = 0,
     tableTightness = 0,
     oppCount = 0;
@@ -775,7 +793,8 @@ export function getAIAction(index) {
   tableAggression = oppCount ? tableAggression / oppCount : 0.5;
   tableTightness = oppCount ? tableTightness / oppCount : 0.5;
   const isLatePosition = myPosition >= totalPlayers - 2;
-  const isEarlyPosition = myPosition <= 1;
+
+  // --- Board danger ---
   let boardDanger = 0;
   if (community.length >= 3) {
     const suits = {},
@@ -797,6 +816,8 @@ export function getAIAction(index) {
       if (straightCount >= 3) boardDanger += 1;
     }
   }
+
+  // --- Draw odds ---
   let drawOdds = 0.0;
   if (handEval.handRank < 4 && community.length >= 3) {
     const suits = {};
@@ -816,11 +837,15 @@ export function getAIAction(index) {
       }
     }
   }
+
+  // --- Pot odds ---
   const potOdds = toCall / (potSize + toCall);
   let impliedOdds = potOdds;
   if (drawOdds > 0 && myMoney > potSize * 1.5) {
     impliedOdds = toCall / (potSize + toCall + potSize * 0.5);
   }
+
+  // --- Block nuts ---
   let blockNuts = false;
   if (community.length >= 3) {
     const suitsInBoard = community.map((c) => c.suit);
@@ -832,21 +857,26 @@ export function getAIAction(index) {
       }
     }
   }
+
+  // --- Aggression & bluff ---
   let bluff = false;
-  let bluffChance = 0.05 + 0.1 * (6 - activePlayers);
-  if (isLatePosition) bluffChance += 0.05;
-  if (tableTightness > 0.7) bluffChance += 0.1;
-  if (drawOdds > 0) bluffChance += 0.1;
-  if (blockNuts) bluffChance += 0.08;
+  let bluffChance = 0.18 + 0.18 * (6 - activePlayers);
+  if (isLatePosition) bluffChance += 0.1;
+  if (tableTightness > 0.7) bluffChance += 0.15;
+  if (drawOdds > 0) bluffChance += 0.15;
+  if (blockNuts) bluffChance += 0.12;
   if (Math.random() < bluffChance && boardDanger === 0) bluff = true;
-  let aggression = 1.0;
-  if (myMoney < potSize * 0.5) aggression *= 1.2;
-  if (myMoney > potSize * 2) aggression *= 0.9;
-  if (activePlayers >= 4) aggression *= 0.7;
-  else if (activePlayers === 3) aggression *= 0.85;
-  else if (activePlayers === 2) aggression *= 1.1;
+
+  let aggression = 1.7;
+  if (myMoney < potSize * 0.5) aggression *= 1.3;
+  if (myMoney > potSize * 2) aggression *= 1.1;
+  if (activePlayers >= 4) aggression *= 1.0;
+  else if (activePlayers === 3) aggression *= 1.2;
+  else if (activePlayers === 2) aggression *= 1.3;
+
+  // --- Raise amount ---
   let raiseAmount = minRaiseAmount;
-  if (handEval.handRank >= 6) {
+  if (handEval.handRank >= 6 && Math.random() < 0.95 * aggression) {
     raiseAmount = Math.min(myMoney, Math.max(minRaiseAmount, Math.floor(potSize * 0.75)));
   } else if (handEval.handRank >= 4) {
     raiseAmount = Math.min(myMoney, Math.max(minRaiseAmount, Math.floor(potSize * 0.5)));
@@ -857,6 +887,8 @@ export function getAIAction(index) {
   }
   raiseAmount = Math.floor(raiseAmount / 10) * 10;
   if (raiseAmount < minRaiseAmount) raiseAmount = minRaiseAmount;
+
+  // --- Decision logic ---
   const hasShowdownValue = handEval.handRank >= 4 && handEval.handRank < 6;
   const likelyBluff = tableAggression > 0.7 && boardDanger > 0 && toCall > 0;
   if (hasShowdownValue && likelyBluff && toCall <= myMoney * 0.2) {
@@ -880,12 +912,12 @@ export function getAIAction(index) {
     return { action: "fold" };
   }
   if (hasShowdownValue) {
-    if (toCall === 0 && Math.random() < 0.2 * aggression && !boardDanger) return { action: "raise", amount: raiseAmount };
+    if (toCall === 0 && Math.random() < 0.5 * aggression && !boardDanger) return { action: "raise", amount: raiseAmount };
     if (toCall <= raiseAmount) return { action: "call" };
     return { action: "fold" };
   }
   if (toCall === 0) return { action: "check" };
-  if (toCall <= minRaiseAmount && Math.random() < 0.3 * aggression) return { action: "call" };
+  if (toCall <= minRaiseAmount && Math.random() < 0.6 * aggression) return { action: "call" };
   if (bluff && toCall <= raiseAmount) return { action: "call" };
   return { action: "fold" };
 }
