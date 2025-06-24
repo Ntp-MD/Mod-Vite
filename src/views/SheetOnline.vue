@@ -6,7 +6,7 @@ import axios from "axios";
 const loading = ref(true);
 const sheetRows = ref([]);
 const selectedMonth = ref("All");
-const searchQuery = ref(""); // <-- Add this
+const searchQuery = ref("");
 const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 const GOOGLE_SHEET_CSV_URL =
   "https://corsproxy.io/?" +
@@ -25,10 +25,10 @@ onMounted(async () => {
           .filter((row) => row.Name)
           .map((row, idx) => ({
             id: idx + 1,
-            name: row.Name || "",
-            searchConsole: row["Search Console"] || "",
-            smartWidget: row["Smart Widget"] || "",
-            onlineDate: row["Online Date"] || "",
+            column1: row.Name || "",
+            column2: row["Search Console"] || "",
+            column3: row["Smart Widget"] || "",
+            column4: row["Online Date"] || "",
             month: String(row["Month"] || "").trim(),
           }));
       },
@@ -62,10 +62,10 @@ const filteredRows = computed(() => {
 
 function statusDetect(value) {
   if (!value) return "";
-  if (value.includes("Google Ads")) return "Ads";
-  if (value.includes("ติดตั้งเรียบร้อย")) return "Installed";
-  if (value.includes("รอดำเนินการ")) return "Wait";
-  if (value.includes("ไม่มีบริการ")) return "None";
+  if (value.includes("Google Ads")) return "status1";
+  if (value.includes("ติดตั้งเรียบร้อย")) return "status2";
+  if (value.includes("รอดำเนินการ")) return "status3";
+  if (value.includes("ไม่มีบริการ")) return "status4";
   return "";
 }
 </script>
@@ -98,15 +98,15 @@ function statusDetect(value) {
       <tbody>
         <tr v-for="(row, idx) in filteredRows" :key="idx">
           <td>
-            <a :href="'http://' + row.name" target="_blank">{{ row.name }}</a>
+            <a :href="'http://' + row.name" target="_blank">{{ row.column1 }}</a>
           </td>
-          <td class="Status" :class="statusDetect(row.searchConsole)">
-            {{ row.searchConsole }}
+          <td :class="statusDetect(row.column2)">
+            {{ row.column2 }}
           </td>
-          <td class="Status" :class="statusDetect(row.smartWidget)">
-            {{ row.smartWidget }}
+          <td :class="statusDetect(row.column3)">
+            {{ row.column3 }}
           </td>
-          <td>{{ row.onlineDate }}</td>
+          <td>{{ row.column4 }}</td>
         </tr>
       </tbody>
     </table>

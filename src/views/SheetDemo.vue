@@ -24,9 +24,9 @@ onMounted(async () => {
           .filter((row) => row.Name)
           .map((row, idx) => ({
             id: idx + 1,
-            name: row.Name || "",
-            note: row.Note || "",
-            status: row.Status || "",
+            column1: row.Name || "",
+            column2: row.Note || "",
+            column3: row.Status || "",
           }));
       },
     });
@@ -50,7 +50,7 @@ const filteredData = computed(() => {
     .filter((item) => {
       const query = searchQuery.value.toLowerCase();
       const matchesSearch =
-        item.name.toLowerCase().includes(query) || item.note.toLowerCase().includes(query) || item.status.toLowerCase().includes(query);
+        item.column1.toLowerCase().includes(query) || item.column2.toLowerCase().includes(query) || item.status.toLowerCase().includes(query);
 
       const idNum = Number(item.id);
       const inRange = (filterMin.value === null && filterMax.value === null) || (idNum >= filterMin.value && idNum <= filterMax.value);
@@ -60,12 +60,11 @@ const filteredData = computed(() => {
     .sort((a, b) => a.id - b.id);
 });
 
-// Status color class
-function statusClass(status) {
-  if (!status) return "";
-  if (status.includes("Reserve")) return "status-reserve";
-  if (status.includes("Abort")) return "status-abort";
-  if (status.includes("Available")) return "status-available";
+function statusDetect(value) {
+  if (!value) return "";
+  if (value.includes("Reserve")) return "status1";
+  if (value.includes("Abort")) return "status2";
+  if (value.includes("Available")) return "status3";
   return "";
 }
 </script>
@@ -91,11 +90,11 @@ function statusClass(status) {
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(site, idx) in filteredData" :key="idx">
-          <td>{{ site.name }}</td>
-          <td>{{ site.note }}</td>
-          <td :class="statusClass(site.status)">
-            {{ site.status }}
+        <tr v-for="(row, idx) in filteredData" :key="idx">
+          <td>{{ row.column1 }}</td>
+          <td>{{ row.column2 }}</td>
+          <td :class="statusDetect(row.column3)">
+            {{ row.column3 }}
           </td>
         </tr>
       </tbody>
@@ -103,5 +102,3 @@ function statusClass(status) {
   </div>
   <Loading v-else></Loading>
 </template>
-
-<style></style>

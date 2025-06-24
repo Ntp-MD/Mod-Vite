@@ -152,10 +152,10 @@ sup {
 }
 
 table.TableViews {
-  width: 100%;
-  border-collapse: collapse;
-  color: var(--ui-font);
   table-layout: fixed;
+  border-collapse: collapse;
+  width: 100%;
+  color: var(--ui-font);
   background: var(--ui-bg1);
 }
 
@@ -173,8 +173,8 @@ thead {
   border: 1px solid var(--border-color);
   padding: 0 10px;
   text-align: left;
-  height: auto;
   height: 40px;
+  overflow: hidden;
 }
 
 .TableViews thead {

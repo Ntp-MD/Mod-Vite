@@ -4,9 +4,9 @@
     <div class="mid">
       <router-link class="nav-menu-link" to="/FontDisplay">Font Family</router-link>
       <router-link class="nav-menu-link" to="/Promotion">Promotion</router-link>
-      <router-link class="nav-menu-link" to="/Online">Online</router-link>
-      <router-link class="nav-menu-link" to="/Demo">Demo</router-link>
-      <router-link class="nav-menu-link" to="/Test">TestSpace</router-link>
+      <router-link class="nav-menu-link" to="/SheetOnline">Online</router-link>
+      <router-link class="nav-menu-link" to="/SheetDemo">Demo</router-link>
+      <router-link class="nav-menu-link" to="/SheetPromotion">SheetPromotion</router-link>
       <router-link class="nav-menu-link" to="/">Table </router-link>
     </div>
     <div class="bottom">
