@@ -698,47 +698,6 @@ function handleAction(i, actionDecision) {
   hasActed.value[i] = true;
 }
 
-// --- AI decision logic (inside getAIAction) ---
-if (bluff && toCall === 0 && myMoney > raiseAmount && raiseAmount >= minRaiseAmount) {
-  return { action: "raise", amount: raiseAmount };
-}
-if (handEval.handRank >= 6 && Math.random() < 0.8 * aggression) {
-  if (toCall === 0 && myMoney > raiseAmount && raiseAmount >= minRaiseAmount) return { action: "raise", amount: raiseAmount };
-  if (toCall <= raiseAmount) return { action: "call" };
-  return { action: "fold" };
-}
-if (hasShowdownValue) {
-  if (toCall === 0 && Math.random() < 0.5 * aggression && !boardDanger && myMoney > raiseAmount && raiseAmount >= minRaiseAmount)
-    return { action: "raise", amount: raiseAmount };
-  if (toCall <= raiseAmount) return { action: "call" };
-  return { action: "fold" };
-}
-function determineWinner() {
-  const currentTurn = [];
-  for (let i = 0; i < numPlayers.value; i++) {
-    if (!playerFolded.value[i]) {
-      const fullHand = hands.value[i].concat(flop.value);
-      currentTurn.push({
-        index: i,
-        handEvaluation: evaluateHand(fullHand),
-      });
-    }
-  }
-  if (currentTurn.length === 0) {
-    addLog("No active players. Pot remains.");
-    roundEnded.value = true;
-    return;
-  }
-  currentTurn.sort((a, b) => b.handEvaluation.handRank - a.handEvaluation.handRank);
-  const winner = currentTurn[0];
-  const potWon = pot.value; // Store pot before giving to winner
-  playerMoney.value[winner.index] += potWon;
-  addLog(`${playerNames.value[winner.index]} wins with ${winner.handEvaluation.handName} and receives $${potWon}`);
-  pot.value = 0;
-  addLog(`--- End of Round ${currentRound.value} ---`);
-  roundEnded.value = true;
-}
-
 export function getAIAction(index) {
   const myHand = hands.value[index];
   const community = flop.value;
