@@ -13,7 +13,7 @@ export const raiseInput = ref(0);
 const CostRound = 10;
 const numPlayers = ref(6);
 export const playerColors = ["#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff"];
-const startingMoney = ref(500);
+const startingMoney = ref([500, 40, 200, 60, 500, 500]);
 const dealerPosition = ref(0);
 const roundEnded = ref(true);
 
@@ -256,7 +256,9 @@ export function startGame() {
   currentMaxBet.value = 0;
   playerNames.value = Array.from({ length: numPlayers.value }, (_, i) => (i === 0 ? "You" : `AI ${i}`));
   hands.value = dealHands(numPlayers.value, 2);
-  playerMoney.value = Array(numPlayers.value).fill(startingMoney.value);
+  playerMoney.value = Array(numPlayers.value)
+    .fill(0)
+    .map((_, i) => startingMoney.value[i] ?? 500);
   playerBets.value = Array(numPlayers.value).fill(0);
   playerFolded.value = Array(numPlayers.value).fill(false);
   playerDialog.value = Array(numPlayers.value).fill("");
@@ -566,13 +568,11 @@ export function playerAction(action, amount = 0) {
     msg = "You folded.";
   } else if (action === "check") {
     if (!canCheck.value) {
-      addLog("You cannot check, there is a bet to call or action is not on you.");
       return;
     }
     msg = "You checked.";
   } else if (action === "call") {
     if (!canCall.value) {
-      addLog("You cannot call (not enough money, no bet to call, or action is not on you).");
       return;
     }
     const call = callAmount.value;
@@ -582,21 +582,18 @@ export function playerAction(action, amount = 0) {
     msg = `You called $${call}`;
   } else if (action === "raise") {
     if (!canRaise.value) {
-      addLog("You cannot raise (e.g. not enough funds above the call amount, or action is not on you).");
       return;
     }
     const call = callAmount.value;
     let raise = Math.max(minRaiseAmount, amount);
 
     if (raise % 10 !== 0) {
-      addLog("Raise amount must be divisible to 10.");
       return;
     }
 
     const total = call + raise;
 
     if (playerMoney.value[0] < total) {
-      addLog("Not enough money for this specific raise amount.");
       return;
     }
 
@@ -655,11 +652,14 @@ function handleAction(i, actionDecision) {
     if (playerChips > costToCall + actualAdditionalRaise) {
       actualAdditionalRaise = Math.max(minRaiseAmount, actualAdditionalRaise);
     }
-    if (actualAdditionalRaise <= 0 && costToCall === 0) {
-      addLog(`${playerNames.value[i]} checks.`);
-    } else if (actualAdditionalRaise < 0) {
-      playerFolded.value[i] = true;
-      addLog(`${playerNames.value[i]} folds (unable to complete raise).`);
+    // Prevent $0 or negative raises
+    if (actualAdditionalRaise < minRaiseAmount) {
+      if (costToCall === 0) {
+        addLog(`${playerNames.value[i]} checks.`);
+      } else {
+        playerFolded.value[i] = true;
+        addLog(`${playerNames.value[i]} folds (unable to complete raise).`);
+      }
     } else {
       const totalBetThisAction = costToCall + actualAdditionalRaise;
       playerMoney.value[i] -= totalBetThisAction;
@@ -698,6 +698,21 @@ function handleAction(i, actionDecision) {
   hasActed.value[i] = true;
 }
 
+// --- AI decision logic (inside getAIAction) ---
+if (bluff && toCall === 0 && myMoney > raiseAmount && raiseAmount >= minRaiseAmount) {
+  return { action: "raise", amount: raiseAmount };
+}
+if (handEval.handRank >= 6 && Math.random() < 0.8 * aggression) {
+  if (toCall === 0 && myMoney > raiseAmount && raiseAmount >= minRaiseAmount) return { action: "raise", amount: raiseAmount };
+  if (toCall <= raiseAmount) return { action: "call" };
+  return { action: "fold" };
+}
+if (hasShowdownValue) {
+  if (toCall === 0 && Math.random() < 0.5 * aggression && !boardDanger && myMoney > raiseAmount && raiseAmount >= minRaiseAmount)
+    return { action: "raise", amount: raiseAmount };
+  if (toCall <= raiseAmount) return { action: "call" };
+  return { action: "fold" };
+}
 function determineWinner() {
   const currentTurn = [];
   for (let i = 0; i < numPlayers.value; i++) {
@@ -891,28 +906,51 @@ export function getAIAction(index) {
   // --- Decision logic ---
   const hasShowdownValue = handEval.handRank >= 4 && handEval.handRank < 6;
   const likelyBluff = tableAggression > 0.7 && boardDanger > 0 && toCall > 0;
+  const bigBlind = CostRound * 2;
+  const lowStack = myMoney <= 5 * bigBlind;
+
+  if (lowStack) {
+    if (toCall >= myMoney) {
+      // Can't cover the bet: only fold or all-in
+      if (handEval.handRank >= 2 || bluff) return { action: "allin" };
+      return { action: "fold" };
+    }
+    // If not facing a bet, or can call cheaply, prefer all-in with any reasonable hand
+    if (toCall === 0 && (handEval.handRank >= 2 || bluff)) {
+      return { action: "allin" };
+    }
+    if (toCall <= myMoney * 0.5 && (handEval.handRank >= 2 || bluff)) {
+      return { action: "allin" };
+    }
+    // Otherwise, fold if can't go all-in
+    return { action: "fold" };
+  }
+
+  // If can't cover the bet, only fold or all-in
+  if (myMoney <= toCall) {
+    if (handEval.handRank >= 5 || bluff) return { action: "allin" };
+    return { action: "fold" };
+  }
+
   if (hasShowdownValue && likelyBluff && toCall <= myMoney * 0.2) {
     return { action: "call" };
   }
   if (Math.random() < 0.03) return { action: "fold" };
   if (playerFolded.value[index]) return { action: "fold" };
-  if (myMoney <= toCall) {
-    if (handEval.handRank >= 5 || bluff) return { action: "allin" };
-    return { action: "fold" };
-  }
   if (drawOdds > 0 && impliedOdds < drawOdds && toCall <= myMoney * 0.3) {
     return { action: "call" };
   }
-  if (bluff && toCall === 0 && myMoney > raiseAmount) {
+  if (bluff && toCall === 0 && myMoney > raiseAmount && raiseAmount >= minRaiseAmount) {
     return { action: "raise", amount: raiseAmount };
   }
   if (handEval.handRank >= 6 && Math.random() < 0.8 * aggression) {
-    if (toCall === 0) return { action: "raise", amount: raiseAmount };
+    if (toCall === 0 && myMoney > raiseAmount && raiseAmount >= minRaiseAmount) return { action: "raise", amount: raiseAmount };
     if (toCall <= raiseAmount) return { action: "call" };
     return { action: "fold" };
   }
   if (hasShowdownValue) {
-    if (toCall === 0 && Math.random() < 0.5 * aggression && !boardDanger) return { action: "raise", amount: raiseAmount };
+    if (toCall === 0 && Math.random() < 0.5 * aggression && !boardDanger && myMoney > raiseAmount && raiseAmount >= minRaiseAmount)
+      return { action: "raise", amount: raiseAmount };
     if (toCall <= raiseAmount) return { action: "call" };
     return { action: "fold" };
   }
