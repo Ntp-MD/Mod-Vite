@@ -28,7 +28,7 @@ onMounted(async () => {
             column1: row.Name || "",
             column2: row["Search Console"] || "",
             column3: row["Smart Widget"] || "",
-            column4: row["Online Date"] || "",
+            column7: row["Online Date"] || "",
             month: String(row["Month"] || "").trim(),
           }));
       },
@@ -51,10 +51,10 @@ const filteredRows = computed(() => {
   if (query) {
     rows = rows.filter(
       (row) =>
-        row.name.toLowerCase().includes(query) ||
-        row.searchConsole.toLowerCase().includes(query) ||
-        row.smartWidget.toLowerCase().includes(query) ||
-        row.onlineDate.toLowerCase().includes(query)
+        row.column1.toLowerCase().includes(query) ||
+        row.column2.toLowerCase().includes(query) ||
+        row.column3.toLowerCase().includes(query) ||
+        row.column7.toLowerCase().includes(query)
     );
   }
   return rows;
@@ -106,7 +106,7 @@ function statusDetect(value) {
           <td :class="statusDetect(row.column3)">
             {{ row.column3 }}
           </td>
-          <td>{{ row.column4 }}</td>
+          <td>{{ row.column7 }}</td>
         </tr>
       </tbody>
     </table>

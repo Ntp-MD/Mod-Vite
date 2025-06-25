@@ -13,7 +13,7 @@ export const raiseInput = ref(0);
 const CostRound = 10;
 const numPlayers = ref(6);
 export const playerColors = ["#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff"];
-const startingMoney = ref([500, 40, 200, 60, 500, 500]);
+const startingMoney = ref([500, 500, 500, 500, 500, 500]);
 const dealerPosition = ref(0);
 const roundEnded = ref(true);
 
@@ -26,8 +26,8 @@ export const playerPositions = ref([]);
 export const isPlayerBusted = computed(() => playerMoney.value[0] === 0);
 const hasActed = ref([]);
 
-export const raiseChips = [10, 20, 50, 100];
-export const minRaiseAmount = 10;
+export const raiseChips = [5, 10, 30, 50];
+export const minRaiseAmount = 5;
 
 export const callAmount = computed(() => Math.max(0, currentMaxBet.value - (playerBets.value[0] || 0)));
 export const maxRaiseAmount = computed(() => playerMoney.value[0] + (playerBets.value[0] || 0));

@@ -72,7 +72,7 @@
 </template>
 
 <script>
-import PromotionTrackFunction from "../js/OnlinePromotion.js";
+import PromotionTrackFunction from "../js/Track5GB.js";
 
 export default {
   ...PromotionTrackFunction,
