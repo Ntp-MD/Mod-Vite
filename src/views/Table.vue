@@ -97,7 +97,6 @@ import {
   canAll,
   raiseChips,
   decreaseRaise,
-  setRaise,
   increaseRaise,
   startGame,
   startNewRound,
@@ -106,8 +105,6 @@ import {
   currentPlayer, // Moved from the combined import
   playerFolded, // Moved from the combined import
   isPlayerBusted,
-  maxRaiseAmount, // Exported because increaseRaise uses it
-  minRaiseAmount, // Exported because decreaseRaise, playerAction, resetGame use it
 } from "../js/Table.js";
 
 const timelineLogRef = ref(null);

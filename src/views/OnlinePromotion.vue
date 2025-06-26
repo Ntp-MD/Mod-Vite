@@ -26,9 +26,12 @@ onMounted(async () => {
           .map((row, idx) => ({
             id: idx + 1,
             column1: row.Name || "",
-            column2: row["Free Space"] || "",
-            column3: row["Free Smart Widget"] || "",
-            column4: row["Free Search Console"] || "",
+            column2: row["WIC-5GB"] || "",
+            column3: row["WIC-GoogleSearchConsole"] || "",
+            column4: row["WIC-SmartWidget"] || "",
+            CheckSearchConsole: row["Online-GoogleSearchConsole"] || "",
+            CheckSmartWidget: row["Online-SmartWidget"] || "",
+            Check5GB: row["WIC-Up5GB"] || "",
             month: String(row["Month"] || "").trim(),
           }));
       },
@@ -59,15 +62,6 @@ const filteredRows = computed(() => {
   }
   return rows;
 });
-
-function statusDetect(value) {
-  if (!value) return "";
-  if (value.includes("Google Ads")) return "status1";
-  if (value.includes("ติดตั้งเรียบร้อย")) return "status2";
-  if (value.includes("รอดำเนินการ")) return "status3";
-  if (value.includes("ไม่มีบริการ")) return "status4";
-  return "";
-}
 </script>
 
 <template>
@@ -90,22 +84,42 @@ function statusDetect(value) {
       <thead>
         <tr>
           <th>Name</th>
-          <th>Free 5GB</th>
-          <th>Free Smart Widget</th>
-          <th>Free Search Console</th>
+          <th>Upgrade 5GB</th>
+          <th>WIC Search Console</th>
+          <th>WIC Smart Widget</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="(row, idx) in filteredRows" :key="idx">
           <td>
-            <a :href="'http://' + row.column1" target="_blank">{{ row.column1 }}</a>
+            {{ row.column1 }}
           </td>
-          <td>{{ row.column2 }}</td>
-          <td>{{ row.column3 }}</td>
-          <td>{{ row.column4 }}</td>
+          <td :class="{ Installed: row.Check5GB === 'Up Space' }">
+            {{ row.column2 }}
+          </td>
+          <td :class="{ Installed: row.CheckSearchConsole }">
+            {{ row.CheckSearchConsole ? "Installed" : "Wait" }}
+          </td>
+          <td
+            :class="{
+              Installed:
+                row.CheckSmartWidget === 'Installed' ||
+                row.CheckSmartWidget === 'Google Ads' ||
+                row.CheckSmartWidget === 'ไม่มีบริการ' ||
+                row.column4 === 'Smart Widget',
+            }"
+          >
+            {{ row.CheckSmartWidget ? row.CheckSmartWidget : row.column4 }}
+          </td>
         </tr>
       </tbody>
     </table>
   </div>
   <Loading v-else></Loading>
 </template>
+
+<style>
+td.Installed {
+  color: var(--btn);
+}
+</style>

@@ -26,8 +26,8 @@ onMounted(async () => {
           .map((row, idx) => ({
             id: idx + 1,
             column1: row.Name || "",
-            column2: row["Search Console"] || "",
-            column3: row["Smart Widget"] || "",
+            column2: row["Online-GoogleSearchConsole"] || "",
+            column3: row["Online-SmartWidget"] || "",
             column7: row["Online Date"] || "",
             month: String(row["Month"] || "").trim(),
           }));
@@ -90,8 +90,8 @@ function statusDetect(value) {
       <thead>
         <tr>
           <th>Name</th>
-          <th>Search Console</th>
-          <th>Smart Widget</th>
+          <th>SearchConsole</th>
+          <th>SmartWidget</th>
           <th>Online Date</th>
         </tr>
       </thead>

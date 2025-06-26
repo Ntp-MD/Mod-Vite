@@ -1,5 +1,5 @@
 import { ref, computed } from "vue";
-
+export const autoPlay = false;
 export const roundLogs = ref([]);
 const currentRound = ref(1);
 const deck = ref([]);
@@ -11,9 +11,12 @@ export const gamePhase = ref("idle");
 const currentMaxBet = ref(0);
 export const raiseInput = ref(0);
 const CostRound = 10;
+const smallBlind = CostRound * 1;
+const bigBlind = CostRound * 2;
 const numPlayers = ref(6);
 export const playerColors = ["#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff"];
-const startingMoney = ref([500, 500, 500, 500, 500, 500]);
+const startingMoney = ref(500);
+export const customStartingMoney = ref([500, 500, 500, 500, 500, 500]);
 const dealerPosition = ref(0);
 const roundEnded = ref(true);
 
@@ -26,8 +29,8 @@ export const playerPositions = ref([]);
 export const isPlayerBusted = computed(() => playerMoney.value[0] === 0);
 const hasActed = ref([]);
 
-export const raiseChips = [5, 10, 30, 50];
-export const minRaiseAmount = 5;
+export const raiseChips = [10, 20, 50, 100];
+export const minRaiseAmount = 10;
 
 export const callAmount = computed(() => Math.max(0, currentMaxBet.value - (playerBets.value[0] || 0)));
 export const maxRaiseAmount = computed(() => playerMoney.value[0] + (playerBets.value[0] || 0));
@@ -40,7 +43,11 @@ export const canCheck = computed(() => {
 export const canCall = computed(
   () => currentMaxBet.value > (playerBets.value[0] || 0) && playerMoney.value[0] >= currentMaxBet.value - (playerBets.value[0] || 0)
 );
-export const canRaise = computed(() => playerMoney.value[0] > currentMaxBet.value - (playerBets.value[0] || 0));
+export const canRaise = computed(() => {
+  return (
+    playerMoney.value[0] > currentMaxBet.value - (playerBets.value[0] || 0) && raiseInput.value >= minRaiseAmount // Require a valid raise amount
+  );
+});
 export const canFold = computed(() => {
   return true;
 });
@@ -170,7 +177,9 @@ function removeBrokePlayers() {
 
 function evaluateHand(hand) {
   const ranks = hand.map((c) => getRankValue(c.rank));
+  /*
   const suits = hand.map((c) => c.suit);
+  */
   const rankCounts = {};
   for (let r of ranks) rankCounts[r] = (rankCounts[r] || 0) + 1;
   const flushSuit = getFlushSuit(hand);
@@ -256,9 +265,11 @@ export function startGame() {
   currentMaxBet.value = 0;
   playerNames.value = Array.from({ length: numPlayers.value }, (_, i) => (i === 0 ? "You" : `AI ${i}`));
   hands.value = dealHands(numPlayers.value, 2);
-  playerMoney.value = Array(numPlayers.value)
-    .fill(0)
-    .map((_, i) => startingMoney.value[i] ?? 500);
+  /*
+  playerMoney.value = Array(numPlayers.value).fill(startingMoney.value);
+  */
+  playerMoney.value = customStartingMoney.value.slice(0, numPlayers.value);
+
   playerBets.value = Array(numPlayers.value).fill(0);
   playerFolded.value = Array(numPlayers.value).fill(false);
   playerDialog.value = Array(numPlayers.value).fill("");
@@ -266,14 +277,11 @@ export function startGame() {
 
   assignPositions();
 
-  const smallBlindAmount = CostRound * 1;
-  const bigBlindAmount = CostRound * 2;
-
   const sbIndex = (dealerPosition.value + 1) % numPlayers.value;
   const bbIndex = (dealerPosition.value + 2) % numPlayers.value;
   addLog(`--- Round ${currentRound.value} ---`);
 
-  const sbAmountToPost = Math.min(smallBlindAmount, playerMoney.value[sbIndex]);
+  const sbAmountToPost = Math.min(smallBlind, playerMoney.value[sbIndex]);
   if (sbAmountToPost > 0) {
     playerMoney.value[sbIndex] -= sbAmountToPost;
     playerBets.value[sbIndex] += sbAmountToPost;
@@ -281,7 +289,7 @@ export function startGame() {
     addLog(`${playerNames.value[sbIndex]} posts small blind: ${sbAmountToPost}$`);
   }
 
-  const bbAmountToPost = Math.min(bigBlindAmount, playerMoney.value[bbIndex]);
+  const bbAmountToPost = Math.min(bigBlind, playerMoney.value[bbIndex]);
   if (bbAmountToPost > 0) {
     playerMoney.value[bbIndex] -= bbAmountToPost;
     playerBets.value[bbIndex] += bbAmountToPost;
@@ -349,13 +357,10 @@ export function startNewRound() {
   assignPositions();
   addLog(`--- Round ${currentRound.value} ---`);
 
-  const smallBlindAmount = CostRound * 1;
-  const bigBlindAmount = CostRound * 2;
-
   const sbIndex = (dealerPosition.value + 1) % numPlayers.value;
   const bbIndex = (dealerPosition.value + 2) % numPlayers.value;
 
-  const sbAmountToPost = Math.min(smallBlindAmount, playerMoney.value[sbIndex]);
+  const sbAmountToPost = Math.min(smallBlind, playerMoney.value[sbIndex]);
   if (sbAmountToPost > 0) {
     playerMoney.value[sbIndex] -= sbAmountToPost;
     playerBets.value[sbIndex] += sbAmountToPost;
@@ -363,7 +368,7 @@ export function startNewRound() {
     addLog(`${playerNames.value[sbIndex]} posts small blind: ${sbAmountToPost}$`);
   }
 
-  const bbAmountToPost = Math.min(bigBlindAmount, playerMoney.value[bbIndex]);
+  const bbAmountToPost = Math.min(bigBlind, playerMoney.value[bbIndex]);
   if (bbAmountToPost > 0) {
     playerMoney.value[bbIndex] -= bbAmountToPost;
     playerBets.value[bbIndex] += bbAmountToPost;
@@ -458,6 +463,14 @@ function proceedToNextPhase() {
 let isRunning = false;
 
 async function nextTurn() {
+  if (currentPlayer.value === 0 && playerMoney.value[0] > 0 && !hasActed.value[0] && !playerFolded.value[0]) {
+    if (autoPlay.value) {
+      playerAction(); // This will trigger AI action for the human
+      return;
+    }
+    return;
+  }
+
   if (isRunning) return;
   isRunning = true;
 
@@ -560,6 +573,14 @@ async function nextTurn() {
 }
 
 export function playerAction(action, amount = 0) {
+  if (autoPlay.value) {
+    // Let AI decide for the human player
+    const aiDecision = getAIAction(0);
+    handleAction(0, aiDecision);
+    setTimeout(() => nextTurn(), 200);
+    return;
+  }
+
   if (currentPlayer.value !== 0) return;
 
   let msg = "";
@@ -652,14 +673,11 @@ function handleAction(i, actionDecision) {
     if (playerChips > costToCall + actualAdditionalRaise) {
       actualAdditionalRaise = Math.max(minRaiseAmount, actualAdditionalRaise);
     }
-    // Prevent $0 or negative raises
-    if (actualAdditionalRaise < minRaiseAmount) {
-      if (costToCall === 0) {
-        addLog(`${playerNames.value[i]} checks.`);
-      } else {
-        playerFolded.value[i] = true;
-        addLog(`${playerNames.value[i]} folds (unable to complete raise).`);
-      }
+    if (actualAdditionalRaise <= 0 && costToCall === 0) {
+      addLog(`${playerNames.value[i]} checks.`);
+    } else if (actualAdditionalRaise < 0) {
+      playerFolded.value[i] = true;
+      addLog(`${playerNames.value[i]} folds (unable to complete raise).`);
     } else {
       const totalBetThisAction = costToCall + actualAdditionalRaise;
       playerMoney.value[i] -= totalBetThisAction;
@@ -698,33 +716,59 @@ function handleAction(i, actionDecision) {
   hasActed.value[i] = true;
 }
 
+function determineWinner() {
+  const currentTurn = [];
+  for (let i = 0; i < numPlayers.value; i++) {
+    if (!playerFolded.value[i]) {
+      const fullHand = hands.value[i].concat(flop.value);
+      currentTurn.push({
+        index: i,
+        handEvaluation: evaluateHand(fullHand),
+      });
+    }
+  }
+  if (currentTurn.length === 0) {
+    addLog("No active players. Pot remains.");
+    roundEnded.value = true;
+    return;
+  }
+  currentTurn.sort((a, b) => b.handEvaluation.handRank - a.handEvaluation.handRank);
+  const winner = currentTurn[0];
+  const potWon = pot.value; // Store pot before giving to winner
+  const winnerContribution = playerBets.value[winner.index] || 0; // Store before pot is awarded
+  playerMoney.value[winner.index] += potWon;
+  addLog(
+    `${playerNames.value[winner.index]} wins with ${winner.handEvaluation.handName} and receives $${potWon} (net +$${potWon - winnerContribution})`
+  );
+  pot.value = 0;
+  addLog(`--- End of Round ${currentRound.value} ---`);
+  roundEnded.value = true;
+}
+
 export function getAIAction(index) {
   const myHand = hands.value[index];
   const community = flop.value;
   const fullHand = myHand.concat(community);
   const handEval = evaluateHand(fullHand);
-  const myMoney = playerMoney.value[index];
+  const currentMoney = playerMoney.value[index];
   const toCall = currentMaxBet.value - (playerBets.value[index] || 0);
   const potSize = pot.value;
   const activePlayers = playerFolded.value.filter((f) => !f).length;
   const myPosition = playerPositions.value[index] || index;
   const totalPlayers = numPlayers.value;
-
-  // --- Top pair, top kicker logic ---
-  if (community.length > 0 && handEval.handName === "One Pair") {
-    const boardRanks = community.map((c) => getRankValue(c.rank));
-    const topBoardRank = Math.max(...boardRanks, 0);
-    const myRanks = myHand.map((c) => getRankValue(c.rank));
-    const hasTopPair = myRanks.includes(topBoardRank);
-    const hasTopKicker = myRanks.includes(14); // Ace
-    if (hasTopPair && hasTopKicker) {
-      if (toCall === 0) return { action: "raise", amount: Math.max(minRaiseAmount, Math.floor(potSize * 0.5)) };
-      if (toCall <= myMoney * 0.4) return { action: "call" };
+  const bigBlind = CostRound * 2;
+  if (currentMoney > 0 && currentMoney < bigBlind * 5) {
+    if (Math.random() < 0.6 || handEval.handRank >= 4) {
+      return { action: "allin" };
+    }
+    if (currentMoney <= toCall) {
       return { action: "fold" };
+    }
+    if (toCall <= currentMoney) {
+      return { action: "call" };
     }
   }
 
-  // --- Preflop logic ---
   if (community.length === 0) {
     const ranks = myHand.map((c) => getRankValue(c.rank));
     const isPair = ranks[0] === ranks[1];
@@ -743,17 +787,15 @@ export function getAIAction(index) {
     const highKicker = Math.max(...ranks) >= 11;
     if (isPair && ["A", "K", "Q", "J", "10", "9", "8", "7"].includes(myHand[0].rank)) {
       if (toCall === 0) return { action: "raise", amount: Math.max(minRaiseAmount, 30) };
-      if (toCall <= myMoney * 0.2) return { action: "call" };
+      if (toCall <= currentMoney * 0.2) return { action: "call" };
       return { action: "fold" };
     }
     if (isPremium || (!isPair && highKicker && Math.min(...ranks) >= 10)) {
       if (toCall === 0) return { action: "raise", amount: Math.max(minRaiseAmount, 30) };
-      if (toCall <= myMoney * 0.2) return { action: "call" };
+      if (toCall <= currentMoney * 0.2) return { action: "call" };
       return { action: "fold" };
     }
   }
-
-  // --- Table stats ---
   let tableAggression = 0,
     tableTightness = 0,
     oppCount = 0;
@@ -767,8 +809,6 @@ export function getAIAction(index) {
   tableAggression = oppCount ? tableAggression / oppCount : 0.5;
   tableTightness = oppCount ? tableTightness / oppCount : 0.5;
   const isLatePosition = myPosition >= totalPlayers - 2;
-
-  // --- Board danger ---
   let boardDanger = 0;
   if (community.length >= 3) {
     const suits = {},
@@ -790,8 +830,6 @@ export function getAIAction(index) {
       if (straightCount >= 3) boardDanger += 1;
     }
   }
-
-  // --- Draw odds ---
   let drawOdds = 0.0;
   if (handEval.handRank < 4 && community.length >= 3) {
     const suits = {};
@@ -811,15 +849,11 @@ export function getAIAction(index) {
       }
     }
   }
-
-  // --- Pot odds ---
   const potOdds = toCall / (potSize + toCall);
   let impliedOdds = potOdds;
-  if (drawOdds > 0 && myMoney > potSize * 1.5) {
+  if (drawOdds > 0 && currentMoney > potSize * 1.5) {
     impliedOdds = toCall / (potSize + toCall + potSize * 0.5);
   }
-
-  // --- Block nuts ---
   let blockNuts = false;
   if (community.length >= 3) {
     const suitsInBoard = community.map((c) => c.suit);
@@ -831,90 +865,60 @@ export function getAIAction(index) {
       }
     }
   }
-
-  // --- Aggression & bluff ---
   let bluff = false;
-  let bluffChance = 0.18 + 0.18 * (6 - activePlayers);
-  if (isLatePosition) bluffChance += 0.1;
-  if (tableTightness > 0.7) bluffChance += 0.15;
-  if (drawOdds > 0) bluffChance += 0.15;
-  if (blockNuts) bluffChance += 0.12;
+  let bluffChance = 0.05 + 0.1 * (6 - activePlayers);
+  if (isLatePosition) bluffChance += 0.05;
+  if (tableTightness > 0.7) bluffChance += 0.1;
+  if (drawOdds > 0) bluffChance += 0.1;
+  if (blockNuts) bluffChance += 0.08;
   if (Math.random() < bluffChance && boardDanger === 0) bluff = true;
-
-  let aggression = 1.7;
-  if (myMoney < potSize * 0.5) aggression *= 1.3;
-  if (myMoney > potSize * 2) aggression *= 1.1;
-  if (activePlayers >= 4) aggression *= 1.0;
-  else if (activePlayers === 3) aggression *= 1.2;
-  else if (activePlayers === 2) aggression *= 1.3;
-
-  // --- Raise amount ---
+  let aggression = 1.0;
+  if (currentMoney < potSize * 0.5) aggression *= 1.2;
+  if (currentMoney > potSize * 2) aggression *= 0.9;
+  if (activePlayers >= 4) aggression *= 0.7;
+  else if (activePlayers === 3) aggression *= 0.85;
+  else if (activePlayers === 2) aggression *= 1.1;
   let raiseAmount = minRaiseAmount;
-  if (handEval.handRank >= 6 && Math.random() < 0.95 * aggression) {
-    raiseAmount = Math.min(myMoney, Math.max(minRaiseAmount, Math.floor(potSize * 0.75)));
+  if (handEval.handRank >= 6) {
+    raiseAmount = Math.min(currentMoney, Math.max(minRaiseAmount, Math.floor(potSize * 0.75)));
   } else if (handEval.handRank >= 4) {
-    raiseAmount = Math.min(myMoney, Math.max(minRaiseAmount, Math.floor(potSize * 0.5)));
+    raiseAmount = Math.min(currentMoney, Math.max(minRaiseAmount, Math.floor(potSize * 0.5)));
   } else if (bluff) {
-    raiseAmount = Math.min(myMoney, Math.max(minRaiseAmount, Math.floor(potSize * 0.4)));
+    raiseAmount = Math.min(currentMoney, Math.max(minRaiseAmount, Math.floor(potSize * 0.4)));
   } else {
-    raiseAmount = Math.min(myMoney, minRaiseAmount);
+    raiseAmount = Math.min(currentMoney, minRaiseAmount);
   }
   raiseAmount = Math.floor(raiseAmount / 10) * 10;
   if (raiseAmount < minRaiseAmount) raiseAmount = minRaiseAmount;
-
-  // --- Decision logic ---
   const hasShowdownValue = handEval.handRank >= 4 && handEval.handRank < 6;
   const likelyBluff = tableAggression > 0.7 && boardDanger > 0 && toCall > 0;
-  const bigBlind = CostRound * 2;
-  const lowStack = myMoney <= 5 * bigBlind;
-
-  if (lowStack) {
-    if (toCall >= myMoney) {
-      // Can't cover the bet: only fold or all-in
-      if (handEval.handRank >= 2 || bluff) return { action: "allin" };
-      return { action: "fold" };
-    }
-    // If not facing a bet, or can call cheaply, prefer all-in with any reasonable hand
-    if (toCall === 0 && (handEval.handRank >= 2 || bluff)) {
-      return { action: "allin" };
-    }
-    if (toCall <= myMoney * 0.5 && (handEval.handRank >= 2 || bluff)) {
-      return { action: "allin" };
-    }
-    // Otherwise, fold if can't go all-in
-    return { action: "fold" };
-  }
-
-  // If can't cover the bet, only fold or all-in
-  if (myMoney <= toCall) {
-    if (handEval.handRank >= 5 || bluff) return { action: "allin" };
-    return { action: "fold" };
-  }
-
-  if (hasShowdownValue && likelyBluff && toCall <= myMoney * 0.2) {
+  if (hasShowdownValue && likelyBluff && toCall <= currentMoney * 0.2) {
     return { action: "call" };
   }
   if (Math.random() < 0.03) return { action: "fold" };
   if (playerFolded.value[index]) return { action: "fold" };
-  if (drawOdds > 0 && impliedOdds < drawOdds && toCall <= myMoney * 0.3) {
+  if (currentMoney <= toCall) {
+    if (handEval.handRank >= 5 || bluff) return { action: "allin" };
+    return { action: "fold" };
+  }
+  if (drawOdds > 0 && impliedOdds < drawOdds && toCall <= currentMoney * 0.3) {
     return { action: "call" };
   }
-  if (bluff && toCall === 0 && myMoney > raiseAmount && raiseAmount >= minRaiseAmount) {
+  if (bluff && toCall === 0 && currentMoney > raiseAmount) {
     return { action: "raise", amount: raiseAmount };
   }
   if (handEval.handRank >= 6 && Math.random() < 0.8 * aggression) {
-    if (toCall === 0 && myMoney > raiseAmount && raiseAmount >= minRaiseAmount) return { action: "raise", amount: raiseAmount };
+    if (toCall === 0) return { action: "raise", amount: raiseAmount };
     if (toCall <= raiseAmount) return { action: "call" };
     return { action: "fold" };
   }
   if (hasShowdownValue) {
-    if (toCall === 0 && Math.random() < 0.5 * aggression && !boardDanger && myMoney > raiseAmount && raiseAmount >= minRaiseAmount)
-      return { action: "raise", amount: raiseAmount };
+    if (toCall === 0 && Math.random() < 0.2 * aggression && !boardDanger) return { action: "raise", amount: raiseAmount };
     if (toCall <= raiseAmount) return { action: "call" };
     return { action: "fold" };
   }
   if (toCall === 0) return { action: "check" };
-  if (toCall <= minRaiseAmount && Math.random() < 0.6 * aggression) return { action: "call" };
+  if (toCall <= minRaiseAmount && Math.random() < 0.3 * aggression) return { action: "call" };
   if (bluff && toCall <= raiseAmount) return { action: "call" };
   return { action: "fold" };
 }
