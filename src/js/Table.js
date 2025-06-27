@@ -1,5 +1,7 @@
 import { ref, computed } from "vue";
-export const autoPlay = false;
+
+export const autoPlay = ref(false);
+
 export const roundLogs = ref([]);
 const currentRound = ref(1);
 const deck = ref([]);
@@ -866,18 +868,18 @@ export function getAIAction(index) {
     }
   }
   let bluff = false;
-  let bluffChance = 0.05 + 0.1 * (6 - activePlayers);
+  let bluffChance = 0.2 + 0.2 * (6 - activePlayers);
   if (isLatePosition) bluffChance += 0.05;
   if (tableTightness > 0.7) bluffChance += 0.1;
   if (drawOdds > 0) bluffChance += 0.1;
   if (blockNuts) bluffChance += 0.08;
   if (Math.random() < bluffChance && boardDanger === 0) bluff = true;
-  let aggression = 1.0;
-  if (currentMoney < potSize * 0.5) aggression *= 1.2;
-  if (currentMoney > potSize * 2) aggression *= 0.9;
-  if (activePlayers >= 4) aggression *= 0.7;
-  else if (activePlayers === 3) aggression *= 0.85;
-  else if (activePlayers === 2) aggression *= 1.1;
+  let aggression = 2.0;
+  if (currentMoney < potSize * 0.5) aggression *= 1.3;
+  if (currentMoney > potSize * 2) aggression *= 1.0;
+  if (activePlayers >= 4) aggression *= 1.0;
+  else if (activePlayers === 3) aggression *= 1.1;
+  else if (activePlayers === 2) aggression *= 1.3;
   let raiseAmount = minRaiseAmount;
   if (handEval.handRank >= 6) {
     raiseAmount = Math.min(currentMoney, Math.max(minRaiseAmount, Math.floor(potSize * 0.75)));
@@ -907,7 +909,7 @@ export function getAIAction(index) {
   if (bluff && toCall === 0 && currentMoney > raiseAmount) {
     return { action: "raise", amount: raiseAmount };
   }
-  if (handEval.handRank >= 6 && Math.random() < 0.8 * aggression) {
+  if (handEval.handRank >= 4 && Math.random() < 0.5 * aggression) {
     if (toCall === 0) return { action: "raise", amount: raiseAmount };
     if (toCall <= raiseAmount) return { action: "call" };
     return { action: "fold" };

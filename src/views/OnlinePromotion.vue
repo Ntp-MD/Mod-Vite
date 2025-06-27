@@ -113,6 +113,14 @@ const filteredRows = computed(() => {
           </td>
         </tr>
       </tbody>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Upgrade 5GB</th>
+          <th>WIC Search Console</th>
+          <th>WIC Smart Widget</th>
+        </tr>
+      </thead>
     </table>
   </div>
   <Loading v-else></Loading>

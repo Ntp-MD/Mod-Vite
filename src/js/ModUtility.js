@@ -126,10 +126,17 @@ $(document).ready(function () {
   $(".test").html("<span>-10%</span>");
 });
 
+$(document).ready(function () {
+  setTimeout(function () {
+    $(".form-subscribe button span").text("Subscribe");
+    $(".form-subscribe input").attr("placeholder", "Subscribe");
+  }, 200); // 500ms delay, adjust as needed
+});
+
 //option 2
 window.onhashchange = function () {
   setTimeout(function () {
-    $("#test").placeholder("Please enter your telephone number");
+    $(".form-subscribe input").placeholder("Subscribe");
   }, 200);
 };
 

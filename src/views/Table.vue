@@ -72,6 +72,11 @@
       <button @click="startGame" :disabled="gamePhase !== 'idle'">Start Game</button>
       <button @click="startNewRound" :disabled="gamePhase !== 'showdown' || isPlayerBusted">Next</button>
       <button @click="resetGame">Reset</button>
+      <button @click="toggleAutoPlay">
+        <span :style="{ color: autoPlay.value ? 'green' : 'red', fontWeight: 'bold' }">
+          {{ autoPlay.value ? "ON" : "OFF" }}
+        </span>
+      </button>
     </div>
   </div>
 </template>
@@ -79,6 +84,7 @@
 <script setup>
 import { ref, watch, nextTick } from "vue";
 import {
+  autoPlay,
   playerPositions,
   playerMoney,
   hands,
@@ -108,6 +114,10 @@ import {
 } from "../js/Table.js";
 
 const timelineLogRef = ref(null);
+
+function toggleAutoPlay() {
+  autoPlay.value = !autoPlay.value;
+}
 
 watch(
   roundLogs,
