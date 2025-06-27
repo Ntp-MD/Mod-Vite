@@ -18,7 +18,7 @@ const bigBlind = CostRound * 2;
 const numPlayers = ref(6);
 export const playerColors = ["#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff"];
 const startingMoney = ref(500);
-export const customStartingMoney = ref([500, 500, 500, 500, 500, 500]);
+export const customStartingMoney = ref([1000, 1000, 1000, 1000, 500, 1000]);
 const dealerPosition = ref(0);
 const roundEnded = ref(true);
 

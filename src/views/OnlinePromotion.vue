@@ -98,7 +98,7 @@ const filteredRows = computed(() => {
             {{ row.column2 }}
           </td>
           <td :class="{ Installed: row.CheckSearchConsole }">
-            {{ row.CheckSearchConsole ? "Installed" : "Wait" }}
+            {{ row.CheckSearchConsole ? "Search Console Installed" : "Wait" }}
           </td>
           <td
             :class="{
@@ -109,7 +109,7 @@ const filteredRows = computed(() => {
                 row.column4 === 'Smart Widget',
             }"
           >
-            {{ row.CheckSmartWidget ? row.CheckSmartWidget : row.column4 }}
+            {{ row.CheckSmartWidget ? "Smart Widget Installed" : row.column4 }}
           </td>
         </tr>
       </tbody>
