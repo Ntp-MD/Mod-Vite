@@ -287,21 +287,21 @@ export function startGame() {
       playerBets.value[i] += sbAmount;
       pot.value += sbAmount;
       playerContribution.value[i] += sbAmount; // Track contribution
-      addLog(`${playerNames.value[i]} posts small blind: $${sbAmount}`);
+      addLog(`${playerNames.value[i]} posts small blind : $${sbAmount}`);
     } else if (i === bbIndex) {
       const bbAmount = Math.min(bigBlind, playerMoney.value[i]);
       playerMoney.value[i] -= bbAmount;
       playerBets.value[i] += bbAmount;
       pot.value += bbAmount;
       playerContribution.value[i] += bbAmount; // Track contribution
-      addLog(`${playerNames.value[i]} posts big blind: $${bbAmount}`);
+      addLog(`${playerNames.value[i]} posts big blind : $${bbAmount}`);
     } else {
       const ante = Math.min(costRound, playerMoney.value[i]);
       playerMoney.value[i] -= ante;
       playerBets.value[i] += ante;
       pot.value += ante;
       playerContribution.value[i] += ante; // Track contribution
-      addLog(`${playerNames.value[i]} pays ante: $${ante}`);
+      addLog(`${playerNames.value[i]} posts : $${ante}`);
     }
   }
   addLog(`--- Round ${currentRound.value} ---`);
@@ -354,21 +354,21 @@ export function startNewRound() {
       playerBets.value[i] += sbAmount;
       pot.value += sbAmount;
       playerContribution.value[i] += sbAmount; // Track contribution
-      addLog(`${playerNames.value[i]} posts small blind: $${sbAmount}`);
+      addLog(`${playerNames.value[i]} posts small blind : $${sbAmount}`);
     } else if (i === bbIndex) {
       const bbAmount = Math.min(bigBlind, playerMoney.value[i]);
       playerMoney.value[i] -= bbAmount;
       playerBets.value[i] += bbAmount;
       pot.value += bbAmount;
       playerContribution.value[i] += bbAmount; // Track contribution
-      addLog(`${playerNames.value[i]} posts big blind: $${bbAmount}`);
+      addLog(`${playerNames.value[i]} posts big blind : $${bbAmount}`);
     } else {
       const ante = Math.min(costRound, playerMoney.value[i]);
       playerMoney.value[i] -= ante;
       playerBets.value[i] += ante;
       pot.value += ante;
       playerContribution.value[i] += ante; // Track contribution
-      addLog(`${playerNames.value[i]} pays ante: $${ante}`);
+      addLog(`${playerNames.value[i]} post : $${ante}`);
     }
   }
   addLog(`--- Round ${currentRound.value} ---`);
@@ -765,7 +765,7 @@ function determineWinner() {
   const winnerContribution = playerContribution.value[winner.index] || 0; // Use tracked contribution
   playerMoney.value[winner.index] += potWon;
   addLog(
-    `${playerNames.value[winner.index]} wins with ${winner.handEvaluation.handName} and receives $${potWon} (net +$${potWon - winnerContribution})`
+    `${playerNames.value[winner.index]} wins with ${winner.handEvaluation.handName} and pot size $${potWon} (earn +$${potWon - winnerContribution})`
   );
   pot.value = 0;
   addLog(`--- End of Round ${currentRound.value} ---`);
@@ -783,6 +783,8 @@ export function getAIAction(index) {
   const activePlayers = playerFolded.value.filter((f) => !f).length;
   const myPosition = playerPositions.value[index] || index;
   const totalPlayers = numPlayers.value;
+
+  // Early all-in logic for short stack
   if (currentMoney > 0 && currentMoney < bigBlind * 5) {
     if (Math.random() < 0.6 || handEval.handRank >= 4) {
       return { action: "all-in" };
@@ -795,6 +797,7 @@ export function getAIAction(index) {
     }
   }
 
+  // Pre-flop logic
   if (community.length === 0) {
     const ranks = myHand.map((c) => getRankValue(c.rank));
     const isPair = ranks[0] === ranks[1];
@@ -811,17 +814,25 @@ export function getAIAction(index) {
     const handCombo = [myHand[0].rank, myHand[1].rank].sort();
     const isPremium = premiumCombos.some((combo) => combo.sort().toString() === handCombo.toString());
     const highKicker = Math.max(...ranks) >= 11;
+    // Position-aware pre-flop: looser in late, tighter in early
+    const isLatePosition = (typeof myPosition === "number" ? myPosition : index) >= totalPlayers - 2;
     if (isPair && ["A", "K", "Q", "J", "10", "9", "8", "7"].includes(myHand[0].rank)) {
-      if (toCall === 0) return { action: "raise", amount: Math.max(minRaiseAmount, 30) };
-      if (toCall <= currentMoney * 0.2) return { action: "call" };
+      if (toCall === 0) return { action: "raise", amount: Math.max(minRaiseAmount, isLatePosition ? 40 : 30) };
+      if (toCall <= currentMoney * (isLatePosition ? 0.3 : 0.2)) return { action: "call" };
       return { action: "fold" };
     }
     if (isPremium || (!isPair && highKicker && Math.min(...ranks) >= 10)) {
-      if (toCall === 0) return { action: "raise", amount: Math.max(minRaiseAmount, 30) };
-      if (toCall <= currentMoney * 0.2) return { action: "call" };
+      if (toCall === 0) return { action: "raise", amount: Math.max(minRaiseAmount, isLatePosition ? 40 : 30) };
+      if (toCall <= currentMoney * (isLatePosition ? 0.25 : 0.18)) return { action: "call" };
       return { action: "fold" };
     }
+    // Steal more in late position if folded to
+    if (isLatePosition && toCall === 0 && Math.random() < 0.25) {
+      return { action: "raise", amount: minRaiseAmount };
+    }
   }
+
+  // Table stats
   let tableAggression = 0,
     tableTightness = 0,
     oppCount = 0;
@@ -834,7 +845,15 @@ export function getAIAction(index) {
   }
   tableAggression = oppCount ? tableAggression / oppCount : 0.5;
   tableTightness = oppCount ? tableTightness / oppCount : 0.5;
-  const isLatePosition = myPosition >= totalPlayers - 2;
+
+  // Position factor
+  const isLatePosition = (typeof myPosition === "number" ? myPosition : index) >= totalPlayers - 2;
+  const isEarlyPosition = (typeof myPosition === "number" ? myPosition : index) <= 1;
+  let positionFactor = 1.0;
+  if (isLatePosition) positionFactor = 1.2;
+  else if (isEarlyPosition) positionFactor = 0.85;
+
+  // Board danger
   let boardDanger = 0;
   if (community.length >= 3) {
     const suits = {},
@@ -856,6 +875,8 @@ export function getAIAction(index) {
       if (straightCount >= 3) boardDanger += 1;
     }
   }
+
+  // Draw odds
   let drawOdds = 0.0;
   if (handEval.handRank < 4 && community.length >= 3) {
     const suits = {};
@@ -880,6 +901,8 @@ export function getAIAction(index) {
   if (drawOdds > 0 && currentMoney > potSize * 1.5) {
     impliedOdds = toCall / (potSize + toCall + potSize * 0.5);
   }
+
+  // Block nuts
   let blockNuts = false;
   if (community.length >= 3) {
     const suitsInBoard = community.map((c) => c.suit);
@@ -891,31 +914,68 @@ export function getAIAction(index) {
       }
     }
   }
+
+  // --- Adaptive logic ---
   let bluff = false;
-  let bluffChance = 0.2 + 0.2 * (6 - activePlayers);
+  let bluffChance = 0.3 + 0.2 * (6 - activePlayers);
+
+  // Table aggression adaptation
+  let aggression = 2.0;
+  if (tableAggression > 0.7) {
+    aggression *= 0.8; // Tighten up vs aggressive table
+    bluffChance *= 0.8;
+  } else if (tableAggression < 0.4) {
+    aggression *= 1.2; // Loosen up vs passive table
+    bluffChance *= 1.2;
+  }
+
+  // Table tightness adaptation
+  if (tableTightness > 0.7) {
+    bluffChance += 0.15 * positionFactor; // Steal more vs tight table
+    aggression *= 1.1;
+  } else if (tableTightness < 0.4) {
+    bluffChance -= 0.1;
+    aggression *= 0.95;
+  }
+
+  // Position adaptation
+  bluffChance *= positionFactor;
+  aggression *= positionFactor;
+
+  // Short-handed adaptation
+  if (activePlayers <= 3) {
+    aggression *= 1.15;
+    bluffChance += 0.08;
+  }
+
+  // Pot size adaptation
+  if (potSize > currentMoney * 1.2 && !isLatePosition) {
+    aggression *= 0.8; // Be more careful in big pots out of position
+    bluffChance *= 0.8;
+  }
+
+  // Other factors
   if (isLatePosition) bluffChance += 0.05;
-  if (tableTightness > 0.7) bluffChance += 0.1;
   if (drawOdds > 0) bluffChance += 0.1;
   if (blockNuts) bluffChance += 0.08;
+
+  // Final bluff calculation
   if (Math.random() < bluffChance && boardDanger === 0) bluff = true;
-  let aggression = 2.0;
-  if (currentMoney < potSize * 0.5) aggression *= 1.3;
-  if (currentMoney > potSize * 2) aggression *= 1.0;
-  if (activePlayers >= 4) aggression *= 1.0;
-  else if (activePlayers === 3) aggression *= 1.1;
-  else if (activePlayers === 2) aggression *= 1.3;
+
+  // Raise amount adapts to position and aggression
   let raiseAmount = minRaiseAmount;
   if (handEval.handRank >= 6) {
-    raiseAmount = Math.min(currentMoney, Math.max(minRaiseAmount, Math.floor(potSize * 0.75)));
+    raiseAmount = Math.min(currentMoney, Math.max(minRaiseAmount, Math.floor(potSize * 0.75 * aggression)));
   } else if (handEval.handRank >= 4) {
-    raiseAmount = Math.min(currentMoney, Math.max(minRaiseAmount, Math.floor(potSize * 0.5)));
+    raiseAmount = Math.min(currentMoney, Math.max(minRaiseAmount, Math.floor(potSize * 0.5 * aggression)));
   } else if (bluff) {
-    raiseAmount = Math.min(currentMoney, Math.max(minRaiseAmount, Math.floor(potSize * 0.4)));
+    raiseAmount = Math.min(currentMoney, Math.max(minRaiseAmount, Math.floor(potSize * 0.4 * aggression)));
   } else {
     raiseAmount = Math.min(currentMoney, minRaiseAmount);
   }
   raiseAmount = Math.floor(raiseAmount / 10) * 10;
   if (raiseAmount < minRaiseAmount) raiseAmount = minRaiseAmount;
+
   const hasShowdownValue = handEval.handRank >= 4 && handEval.handRank < 6;
   const likelyBluff = tableAggression > 0.7 && boardDanger > 0 && toCall > 0;
   if (hasShowdownValue && likelyBluff && toCall <= currentMoney * 0.2) {
@@ -933,7 +993,7 @@ export function getAIAction(index) {
   if (bluff && toCall === 0 && currentMoney > raiseAmount) {
     return { action: "raise", amount: raiseAmount };
   }
-  if (handEval.handRank >= 4 && Math.random() < 0.5 * aggression) {
+  if (handEval.handRank >= 4 && Math.random() < 0.6 * aggression) {
     if (toCall === 0) return { action: "raise", amount: raiseAmount };
     if (toCall <= raiseAmount) return { action: "call" };
     return { action: "fold" };
@@ -944,7 +1004,7 @@ export function getAIAction(index) {
     return { action: "fold" };
   }
   if (toCall === 0) return { action: "check" };
-  if (toCall <= minRaiseAmount && Math.random() < 0.3 * aggression) return { action: "call" };
+  if (toCall <= minRaiseAmount && Math.random() < 0.6 * aggression) return { action: "call" };
   if (bluff && toCall <= raiseAmount) return { action: "call" };
   return { action: "fold" };
 }

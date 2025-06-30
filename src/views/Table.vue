@@ -54,11 +54,11 @@
     </div>
 
     <div class="ActionButton">
-      <button @click="playerAction('check')" :disabled="!canCheck">Check</button>
-      <button @click="playerAction('call', callAmount)" :disabled="!canCall">{{ `Call $${callAmount}` }}</button>
-      <button @click="playerAction('raise', raiseInput)" :disabled="!canRaise">Raise ${{ raiseInput }}</button>
-      <button @click="playerAction('all-in')" :disabled="!canAll">All-In</button>
-      <button @click="playerAction('fold')" :disabled="gamePhase === 'idle' || currentPlayer !== 0">Fold</button>
+      <button @click="playerAction('check')" :disabled="!canCheck || disableActions">Check</button>
+      <button @click="playerAction('call', callAmount)" :disabled="!canCall || disableActions">{{ `Call $${callAmount}` }}</button>
+      <button @click="playerAction('raise', raiseInput)" :disabled="!canRaise || disableActions">Raise ${{ raiseInput }}</button>
+      <button @click="playerAction('all-in')" :disabled="!canAll || disableActions">All-In</button>
+      <button @click="playerAction('fold')" :disabled="gamePhase === 'idle' || currentPlayer !== 0 || disableActions">Fold</button>
     </div>
 
     <div class="ChipButton">
@@ -77,7 +77,7 @@
 </template>
 
 <script setup>
-import { ref, watch, nextTick } from "vue";
+import { ref, watch, nextTick, computed } from "vue";
 import {
   playerPositions,
   playerMoney,
@@ -108,6 +108,7 @@ import {
 } from "../js/Table.js";
 
 const timelineLogRef = ref(null);
+const disableActions = computed(() => gamePhase.value === "showdown" || isPlayerBusted.value || roundEnded?.value);
 
 watch(
   roundLogs,
