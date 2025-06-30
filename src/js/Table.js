@@ -1,6 +1,6 @@
 import { ref, computed } from "vue";
 
-export const autoPlay = ref(false);
+export const autoPlay = ref(true);
 
 export const roundLogs = ref([]);
 const currentRound = ref(1);
@@ -12,18 +12,20 @@ export const currentPlayer = ref(0);
 export const gamePhase = ref("idle");
 const currentMaxBet = ref(0);
 export const raiseInput = ref(0);
-const CostRound = 10;
-const smallBlind = CostRound * 1;
-const bigBlind = CostRound * 2;
+const costRound = 10;
+const smallBlind = costRound * 2;
+const bigBlind = costRound * 4;
+export const minRaiseAmount = costRound;
 const numPlayers = ref(6);
 export const playerColors = ["#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff"];
 const startingMoney = ref(500);
-export const customStartingMoney = ref([1000, 1000, 1000, 1000, 500, 1000]);
+export const customStartingMoney = ref([1000, 1000, 1000, 1000, 1000, 1000]);
 const dealerPosition = ref(0);
 const roundEnded = ref(true);
 
 export const playerNames = ref([]);
 export const playerMoney = ref([]);
+export const playerContribution = ref([]);
 export const playerBets = ref([]);
 export const playerFolded = ref([]);
 const playerDialog = ref([]);
@@ -32,7 +34,6 @@ export const isPlayerBusted = computed(() => playerMoney.value[0] === 0);
 const hasActed = ref([]);
 
 export const raiseChips = [10, 20, 50, 100];
-export const minRaiseAmount = 10;
 
 export const callAmount = computed(() => Math.max(0, currentMaxBet.value - (playerBets.value[0] || 0)));
 export const maxRaiseAmount = computed(() => playerMoney.value[0] + (playerBets.value[0] || 0));
@@ -267,11 +268,8 @@ export function startGame() {
   currentMaxBet.value = 0;
   playerNames.value = Array.from({ length: numPlayers.value }, (_, i) => (i === 0 ? "You" : `AI ${i}`));
   hands.value = dealHands(numPlayers.value, 2);
-  /*
-  playerMoney.value = Array(numPlayers.value).fill(startingMoney.value);
-  */
+  playerContribution.value = Array(numPlayers.value).fill(0);
   playerMoney.value = customStartingMoney.value.slice(0, numPlayers.value);
-
   playerBets.value = Array(numPlayers.value).fill(0);
   playerFolded.value = Array(numPlayers.value).fill(false);
   playerDialog.value = Array(numPlayers.value).fill("");
@@ -281,23 +279,99 @@ export function startGame() {
 
   const sbIndex = (dealerPosition.value + 1) % numPlayers.value;
   const bbIndex = (dealerPosition.value + 2) % numPlayers.value;
+
+  for (let i = 0; i < numPlayers.value; i++) {
+    if (i === sbIndex) {
+      const sbAmount = Math.min(smallBlind, playerMoney.value[i]);
+      playerMoney.value[i] -= sbAmount;
+      playerBets.value[i] += sbAmount;
+      pot.value += sbAmount;
+      playerContribution.value[i] += sbAmount; // Track contribution
+      addLog(`${playerNames.value[i]} posts small blind: $${sbAmount}`);
+    } else if (i === bbIndex) {
+      const bbAmount = Math.min(bigBlind, playerMoney.value[i]);
+      playerMoney.value[i] -= bbAmount;
+      playerBets.value[i] += bbAmount;
+      pot.value += bbAmount;
+      playerContribution.value[i] += bbAmount; // Track contribution
+      addLog(`${playerNames.value[i]} posts big blind: $${bbAmount}`);
+    } else {
+      const ante = Math.min(costRound, playerMoney.value[i]);
+      playerMoney.value[i] -= ante;
+      playerBets.value[i] += ante;
+      pot.value += ante;
+      playerContribution.value[i] += ante; // Track contribution
+      addLog(`${playerNames.value[i]} pays ante: $${ante}`);
+    }
+  }
   addLog(`--- Round ${currentRound.value} ---`);
 
-  const sbAmountToPost = Math.min(smallBlind, playerMoney.value[sbIndex]);
-  if (sbAmountToPost > 0) {
-    playerMoney.value[sbIndex] -= sbAmountToPost;
-    playerBets.value[sbIndex] += sbAmountToPost;
-    pot.value += sbAmountToPost;
-    addLog(`${playerNames.value[sbIndex]} posts small blind: ${sbAmountToPost}$`);
+  currentMaxBet.value = playerBets.value[bbIndex];
+  currentPlayer.value = (bbIndex + 1) % numPlayers.value;
+
+  nextTurn();
+}
+
+export function startNewRound() {
+  if (!roundEnded.value) {
+    addLog("Cannot start a new round before the current one ends.");
+    return;
   }
 
-  const bbAmountToPost = Math.min(bigBlind, playerMoney.value[bbIndex]);
-  if (bbAmountToPost > 0) {
-    playerMoney.value[bbIndex] -= bbAmountToPost;
-    playerBets.value[bbIndex] += bbAmountToPost;
-    pot.value += bbAmountToPost;
-    addLog(`${playerNames.value[bbIndex]} posts big blind: ${bbAmountToPost}$`);
+  roundEnded.value = false;
+  removeBrokePlayers();
+
+  if (numPlayers.value < 2) {
+    addLog("Not enough players to continue the game.");
+    roundEnded.value = true;
+    return;
   }
+
+  dealerPosition.value = (dealerPosition.value + 1) % numPlayers.value;
+  currentRound.value++;
+  roundLogs.value = [];
+  deck.value = createShuffledDeck();
+  flop.value = [];
+  pot.value = 0;
+  gamePhase.value = "betting";
+  currentMaxBet.value = 0;
+  playerContribution.value = Array(numPlayers.value).fill(0);
+  hands.value = dealHands(numPlayers.value, 2);
+  playerBets.value = Array(numPlayers.value).fill(0);
+  playerFolded.value = Array(numPlayers.value).fill(false);
+  playerDialog.value = Array(numPlayers.value).fill("");
+  hasActed.value = Array(numPlayers.value).fill(false);
+
+  assignPositions();
+
+  const sbIndex = (dealerPosition.value + 1) % numPlayers.value;
+  const bbIndex = (dealerPosition.value + 2) % numPlayers.value;
+
+  for (let i = 0; i < numPlayers.value; i++) {
+    if (i === sbIndex) {
+      const sbAmount = Math.min(smallBlind, playerMoney.value[i]);
+      playerMoney.value[i] -= sbAmount;
+      playerBets.value[i] += sbAmount;
+      pot.value += sbAmount;
+      playerContribution.value[i] += sbAmount; // Track contribution
+      addLog(`${playerNames.value[i]} posts small blind: $${sbAmount}`);
+    } else if (i === bbIndex) {
+      const bbAmount = Math.min(bigBlind, playerMoney.value[i]);
+      playerMoney.value[i] -= bbAmount;
+      playerBets.value[i] += bbAmount;
+      pot.value += bbAmount;
+      playerContribution.value[i] += bbAmount; // Track contribution
+      addLog(`${playerNames.value[i]} posts big blind: $${bbAmount}`);
+    } else {
+      const ante = Math.min(costRound, playerMoney.value[i]);
+      playerMoney.value[i] -= ante;
+      playerBets.value[i] += ante;
+      pot.value += ante;
+      playerContribution.value[i] += ante; // Track contribution
+      addLog(`${playerNames.value[i]} pays ante: $${ante}`);
+    }
+  }
+  addLog(`--- Round ${currentRound.value} ---`);
 
   currentMaxBet.value = playerBets.value[bbIndex];
   currentPlayer.value = (bbIndex + 1) % numPlayers.value;
@@ -325,63 +399,6 @@ export function resetGame() {
   raiseInput.value = minRaiseAmount;
 
   addLog("Game reset. Configure settings and click 'Start Game' to begin.");
-}
-
-export function startNewRound() {
-  if (!roundEnded.value) {
-    addLog("Cannot start a new round before the current one ends.");
-    return;
-  }
-
-  roundEnded.value = false;
-  removeBrokePlayers();
-
-  if (numPlayers.value < 2) {
-    addLog("Not enough players to continue the game.");
-    roundEnded.value = true;
-    return;
-  }
-
-  dealerPosition.value = (dealerPosition.value + 1) % numPlayers.value;
-  currentRound.value++;
-  roundLogs.value = [];
-  deck.value = createShuffledDeck();
-  flop.value = [];
-  pot.value = 0;
-  gamePhase.value = "betting";
-  currentMaxBet.value = 0;
-  hands.value = dealHands(numPlayers.value, 2);
-  playerBets.value = Array(numPlayers.value).fill(0);
-  playerFolded.value = Array(numPlayers.value).fill(false);
-  playerDialog.value = Array(numPlayers.value).fill("");
-  hasActed.value = Array(numPlayers.value).fill(false);
-
-  assignPositions();
-  addLog(`--- Round ${currentRound.value} ---`);
-
-  const sbIndex = (dealerPosition.value + 1) % numPlayers.value;
-  const bbIndex = (dealerPosition.value + 2) % numPlayers.value;
-
-  const sbAmountToPost = Math.min(smallBlind, playerMoney.value[sbIndex]);
-  if (sbAmountToPost > 0) {
-    playerMoney.value[sbIndex] -= sbAmountToPost;
-    playerBets.value[sbIndex] += sbAmountToPost;
-    pot.value += sbAmountToPost;
-    addLog(`${playerNames.value[sbIndex]} posts small blind: ${sbAmountToPost}$`);
-  }
-
-  const bbAmountToPost = Math.min(bigBlind, playerMoney.value[bbIndex]);
-  if (bbAmountToPost > 0) {
-    playerMoney.value[bbIndex] -= bbAmountToPost;
-    playerBets.value[bbIndex] += bbAmountToPost;
-    pot.value += bbAmountToPost;
-    addLog(`${playerNames.value[bbIndex]} posts big blind: ${bbAmountToPost}$`);
-  }
-
-  currentMaxBet.value = playerBets.value[bbIndex];
-  currentPlayer.value = (bbIndex + 1) % numPlayers.value;
-
-  nextTurn();
 }
 
 function dealInitialFlop() {
@@ -589,12 +606,6 @@ export function playerAction(action, amount = 0) {
   if (action === "fold") {
     playerFolded.value[0] = true;
     msg = "You folded.";
-    // Immediately end round if only one player remains
-    if (playerFolded.value.filter((f) => !f).length === 1) {
-      gamePhase.value = "showdown";
-      determineWinner();
-      return;
-    }
   } else if (action === "check") {
     if (!canCheck.value) {
       return;
@@ -608,6 +619,7 @@ export function playerAction(action, amount = 0) {
     playerMoney.value[0] -= call;
     playerBets.value[0] += call;
     pot.value += call;
+    playerContribution.value[0] += call; // Track contribution
     msg = `You called $${call}`;
   } else if (action === "raise") {
     if (!canRaise.value) {
@@ -629,6 +641,7 @@ export function playerAction(action, amount = 0) {
     playerMoney.value[0] -= total;
     playerBets.value[0] += total;
     pot.value += total;
+    playerContribution.value[0] += total; // Track contribution
     currentMaxBet.value = playerBets.value[0];
     lastRaiser.value = 0;
     msg = `You raised $${raise} (to $${playerBets.value[0]})`;
@@ -646,6 +659,7 @@ export function playerAction(action, amount = 0) {
     playerMoney.value[0] = 0;
     playerBets.value[0] += allInAmountFromStack;
     pot.value += allInAmountFromStack;
+    playerContribution.value[0] += allInAmountFromStack; // Track contribution
 
     msg = `You go ALL-IN with $${allInAmountFromStack} (total bet $${playerBets.value[0]})`;
 
@@ -663,7 +677,6 @@ export function playerAction(action, amount = 0) {
 
   setTimeout(() => nextTurn(), 200);
 }
-
 function handleAction(i, actionDecision) {
   let { action, amount: intendedAdditionalRaiseAmount } = actionDecision;
   const playerChips = playerMoney.value[i];
@@ -675,12 +688,6 @@ function handleAction(i, actionDecision) {
   if (action === "fold") {
     playerFolded.value[i] = true;
     addLog(`${playerNames.value[i]} folds.`);
-    // Immediately end round if only one player remains
-    if (playerFolded.value.filter((f) => !f).length === 1) {
-      gamePhase.value = "showdown";
-      determineWinner();
-      return;
-    }
   } else if (action === "raise") {
     const affordableAdditionalRaise = playerChips - costToCall;
     let actualAdditionalRaise = Math.min(intendedAdditionalRaiseAmount, affordableAdditionalRaise);
@@ -692,17 +699,12 @@ function handleAction(i, actionDecision) {
     } else if (actualAdditionalRaise < 0) {
       playerFolded.value[i] = true;
       addLog(`${playerNames.value[i]} folds (unable to complete raise).`);
-      // Immediately end round if only one player remains
-      if (playerFolded.value.filter((f) => !f).length === 1) {
-        gamePhase.value = "showdown";
-        determineWinner();
-        return;
-      }
     } else {
       const totalBetThisAction = costToCall + actualAdditionalRaise;
       playerMoney.value[i] -= totalBetThisAction;
       playerBets.value[i] += totalBetThisAction;
       pot.value += totalBetThisAction;
+      playerContribution.value[i] += totalBetThisAction; // Track contribution
       currentMaxBet.value = playerBets.value[i];
       lastRaiser.value = i;
       if (playerMoney.value[i] === 0 && totalBetThisAction > 0) {
@@ -717,11 +719,13 @@ function handleAction(i, actionDecision) {
       playerMoney.value[i] -= costToCall;
       playerBets.value[i] += costToCall;
       pot.value += costToCall;
+      playerContribution.value[i] += costToCall; // Track contribution
       addLog(`${playerNames.value[i]} calls $${costToCall}`);
     } else {
       const allInAmount = playerChips;
       pot.value += allInAmount;
       playerBets.value[i] += allInAmount;
+      playerContribution.value[i] += allInAmount; // Track contribution
       playerMoney.value[i] = 0;
       addLog(`${playerNames.value[i]} calls ALL-IN with $${allInAmount}`);
     }
@@ -729,17 +733,14 @@ function handleAction(i, actionDecision) {
     if (costToCall > 0) {
       playerFolded.value[i] = true;
       addLog(`${playerNames.value[i]} (AI) attempts to check facing a bet of $${costToCall}, and folds.`);
-      // Immediately end round if only one player remains
-      if (playerFolded.value.filter((f) => !f).length === 1) {
-        gamePhase.value = "showdown";
-        determineWinner();
-        return;
-      }
     } else {
       addLog(`${playerNames.value[i]} checks.`);
     }
   }
   hasActed.value[i] = true;
+
+  // Always trigger the next turn after any action
+  setTimeout(nextTurn, 200);
 }
 
 function determineWinner() {
@@ -760,8 +761,8 @@ function determineWinner() {
   }
   currentTurn.sort((a, b) => b.handEvaluation.handRank - a.handEvaluation.handRank);
   const winner = currentTurn[0];
-  const potWon = pot.value; // Store pot before giving to winner
-  const winnerContribution = playerBets.value[winner.index] || 0; // Store before pot is awarded
+  const potWon = pot.value;
+  const winnerContribution = playerContribution.value[winner.index] || 0; // Use tracked contribution
   playerMoney.value[winner.index] += potWon;
   addLog(
     `${playerNames.value[winner.index]} wins with ${winner.handEvaluation.handName} and receives $${potWon} (net +$${potWon - winnerContribution})`
@@ -782,10 +783,9 @@ export function getAIAction(index) {
   const activePlayers = playerFolded.value.filter((f) => !f).length;
   const myPosition = playerPositions.value[index] || index;
   const totalPlayers = numPlayers.value;
-  const bigBlind = CostRound * 2;
   if (currentMoney > 0 && currentMoney < bigBlind * 5) {
     if (Math.random() < 0.6 || handEval.handRank >= 4) {
-      return { action: "allin" };
+      return { action: "all-in" };
     }
     if (currentMoney <= toCall) {
       return { action: "fold" };
@@ -924,7 +924,7 @@ export function getAIAction(index) {
   if (Math.random() < 0.03) return { action: "fold" };
   if (playerFolded.value[index]) return { action: "fold" };
   if (currentMoney <= toCall) {
-    if (handEval.handRank >= 5 || bluff) return { action: "allin" };
+    if (handEval.handRank >= 5 || bluff) return { action: "all-in" };
     return { action: "fold" };
   }
   if (drawOdds > 0 && impliedOdds < drawOdds && toCall <= currentMoney * 0.3) {

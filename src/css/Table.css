@@ -26,6 +26,10 @@
   border: 1px solid var(--border-color);
 }
 
+.TableLayout button:hover {
+  background: var(--btn);
+}
+
 .PlayerLineup {
   display: flex;
   border: 1px solid var(--border-color);
@@ -55,6 +59,7 @@
 
 .foldedPlayers {
   opacity: 0.2;
+  display: none !important;
 }
 
 .PlayerPosition {
