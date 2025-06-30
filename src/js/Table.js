@@ -589,6 +589,101 @@ export function playerAction(action, amount = 0) {
   if (action === "fold") {
     playerFolded.value[0] = true;
     msg = "You folded.";
+    // Immediately end round if only one player remains
+    if (playerFolded.value.filter((f) => !f).length === 1) {
+      gamePhase.value = "showdown";
+      determineWinner();
+      return;
+    }
+  } else if (action === "check") {
+    if (!canCheck.value) {
+      return;
+    }
+    msg = "You checked.";
+  } else if (action === "call") {
+    if (!canCall.value) {
+      return;
+    }
+    const call = callAmount.value;
+    playerMoney.value[0] -= call;
+    playerBets.value[0] += call;
+    pot.value += call;
+    msg = `You called $${call}`;
+  } else if (action === "raise") {
+    if (!canRaise.value) {
+      return;
+    }
+    const call = callAmount.value;
+    let raise = Math.max(minRaiseAmount, amount);
+
+    if (raise % 10 !== 0) {
+      return;
+    }
+
+    const total = call + raise;
+
+    if (playerMoney.value[0] < total) {
+      return;
+    }
+
+    playerMoney.value[0] -= total;
+    playerBets.value[0] += total;
+    pot.value += total;
+    currentMaxBet.value = playerBets.value[0];
+    lastRaiser.value = 0;
+    msg = `You raised $${raise} (to $${playerBets.value[0]})`;
+    hasActed.value = hasActed.value.map((_, idx) => {
+      if (idx === 0) return true;
+      if (playerFolded.value[idx]) return true;
+      return false;
+    });
+  } else if (action === "all-in") {
+    if (!canAll.value) {
+      addLog("You cannot go all-in at this time (e.g. game not active, or action not on you).");
+      return;
+    }
+    const allInAmountFromStack = playerMoney.value[0];
+    playerMoney.value[0] = 0;
+    playerBets.value[0] += allInAmountFromStack;
+    pot.value += allInAmountFromStack;
+
+    msg = `You go ALL-IN with $${allInAmountFromStack} (total bet $${playerBets.value[0]})`;
+
+    if (playerBets.value[0] > currentMaxBet.value) {
+      currentMaxBet.value = playerBets.value[0];
+      lastRaiser.value = 0;
+      hasActed.value = hasActed.value.map((_, idx) => (idx === 0 || playerFolded.value[idx] ? true : false));
+      msg += ", raising the bet!";
+    }
+  }
+
+  addLog(msg);
+  hasActed.value[0] = true;
+  currentPlayer.value = (currentPlayer.value + 1) % numPlayers.value;
+
+  setTimeout(() => nextTurn(), 200);
+}
+export function playerAction(action, amount = 0) {
+  if (autoPlay.value) {
+    // Let AI decide for the human player
+    const aiDecision = getAIAction(0);
+    handleAction(0, aiDecision);
+    setTimeout(() => nextTurn(), 200);
+    return;
+  }
+
+  if (currentPlayer.value !== 0) return;
+
+  let msg = "";
+  if (action === "fold") {
+    playerFolded.value[0] = true;
+    msg = "You folded.";
+    // Immediately end round if only one player remains
+    if (playerFolded.value.filter((f) => !f).length === 1) {
+      gamePhase.value = "showdown";
+      determineWinner();
+      return;
+    }
   } else if (action === "check") {
     if (!canCheck.value) {
       return;
@@ -669,6 +764,12 @@ function handleAction(i, actionDecision) {
   if (action === "fold") {
     playerFolded.value[i] = true;
     addLog(`${playerNames.value[i]} folds.`);
+    // Immediately end round if only one player remains
+    if (playerFolded.value.filter((f) => !f).length === 1) {
+      gamePhase.value = "showdown";
+      determineWinner();
+      return;
+    }
   } else if (action === "raise") {
     const affordableAdditionalRaise = playerChips - costToCall;
     let actualAdditionalRaise = Math.min(intendedAdditionalRaiseAmount, affordableAdditionalRaise);
@@ -680,6 +781,12 @@ function handleAction(i, actionDecision) {
     } else if (actualAdditionalRaise < 0) {
       playerFolded.value[i] = true;
       addLog(`${playerNames.value[i]} folds (unable to complete raise).`);
+      // Immediately end round if only one player remains
+      if (playerFolded.value.filter((f) => !f).length === 1) {
+        gamePhase.value = "showdown";
+        determineWinner();
+        return;
+      }
     } else {
       const totalBetThisAction = costToCall + actualAdditionalRaise;
       playerMoney.value[i] -= totalBetThisAction;
@@ -711,6 +818,12 @@ function handleAction(i, actionDecision) {
     if (costToCall > 0) {
       playerFolded.value[i] = true;
       addLog(`${playerNames.value[i]} (AI) attempts to check facing a bet of $${costToCall}, and folds.`);
+      // Immediately end round if only one player remains
+      if (playerFolded.value.filter((f) => !f).length === 1) {
+        gamePhase.value = "showdown";
+        determineWinner();
+        return;
+      }
     } else {
       addLog(`${playerNames.value[i]} checks.`);
     }
