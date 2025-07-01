@@ -59,7 +59,6 @@
 
 .foldedPlayers {
   opacity: 0.2;
-  display: none !important;
 }
 
 .PlayerPosition {
@@ -97,6 +96,8 @@
   border: 1px solid var(--border-color);
   padding: var(--gap);
   overflow-y: scroll;
+  height: 35vw;
+  max-height: 380px;
 }
 
 .TimelineRound {
@@ -209,9 +210,5 @@
 
   .PlayerHand {
     gap: 5px;
-  }
-
-  .TimelineLog {
-    max-height: 240px;
   }
 }

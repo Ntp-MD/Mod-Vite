@@ -677,24 +677,44 @@ export function playerAction(action, amount = 0) {
 
   setTimeout(() => nextTurn(), 200);
 }
+
 function handleAction(i, actionDecision) {
   let { action, amount: intendedAdditionalRaiseAmount } = actionDecision;
   const playerChips = playerMoney.value[i];
   const currentBetOnTable = playerBets.value[i] || 0;
   const costToCall = currentMaxBet.value - currentBetOnTable;
+
+  // Convert "call" to "check" if nothing to call
   if (action === "call" && costToCall === 0) {
     action = "check";
   }
+
   if (action === "fold") {
     playerFolded.value[i] = true;
     addLog(`${playerNames.value[i]} folds.`);
   } else if (action === "raise") {
     const affordableAdditionalRaise = playerChips - costToCall;
     let actualAdditionalRaise = Math.min(intendedAdditionalRaiseAmount, affordableAdditionalRaise);
-    if (playerChips > costToCall + actualAdditionalRaise) {
-      actualAdditionalRaise = Math.max(minRaiseAmount, actualAdditionalRaise);
-    }
-    if (actualAdditionalRaise <= 0 && costToCall === 0) {
+
+    // If can't raise but can call/all-in, do that instead of folding
+    if (actualAdditionalRaise <= 0 && costToCall > 0 && playerChips > 0) {
+      // Not enough to raise, but can call/all-in
+      if (playerChips >= costToCall) {
+        playerMoney.value[i] -= costToCall;
+        playerBets.value[i] += costToCall;
+        pot.value += costToCall;
+        playerContribution.value[i] += costToCall;
+        addLog(`${playerNames.value[i]} calls $${costToCall}`);
+      } else {
+        // Not enough to call, go all-in
+        const allInAmount = playerChips;
+        pot.value += allInAmount;
+        playerBets.value[i] += allInAmount;
+        playerContribution.value[i] += allInAmount;
+        playerMoney.value[i] = 0;
+        addLog(`${playerNames.value[i]} calls ALL-IN with $${allInAmount}`);
+      }
+    } else if (actualAdditionalRaise <= 0 && costToCall === 0) {
       addLog(`${playerNames.value[i]} checks.`);
     } else if (actualAdditionalRaise < 0) {
       playerFolded.value[i] = true;
@@ -704,7 +724,7 @@ function handleAction(i, actionDecision) {
       playerMoney.value[i] -= totalBetThisAction;
       playerBets.value[i] += totalBetThisAction;
       pot.value += totalBetThisAction;
-      playerContribution.value[i] += totalBetThisAction; // Track contribution
+      playerContribution.value[i] += totalBetThisAction;
       currentMaxBet.value = playerBets.value[i];
       lastRaiser.value = i;
       if (playerMoney.value[i] === 0 && totalBetThisAction > 0) {
@@ -719,15 +739,36 @@ function handleAction(i, actionDecision) {
       playerMoney.value[i] -= costToCall;
       playerBets.value[i] += costToCall;
       pot.value += costToCall;
-      playerContribution.value[i] += costToCall; // Track contribution
+      playerContribution.value[i] += costToCall;
       addLog(`${playerNames.value[i]} calls $${costToCall}`);
-    } else {
+    } else if (playerChips > 0) {
+      // Not enough to call, go all-in with remaining chips
       const allInAmount = playerChips;
       pot.value += allInAmount;
       playerBets.value[i] += allInAmount;
-      playerContribution.value[i] += allInAmount; // Track contribution
+      playerContribution.value[i] += allInAmount;
       playerMoney.value[i] = 0;
       addLog(`${playerNames.value[i]} calls ALL-IN with $${allInAmount}`);
+    } else {
+      // No chips left, must fold
+      playerFolded.value[i] = true;
+      addLog(`${playerNames.value[i]} folds (no chips left).`);
+    }
+  } else if (action === "all-in") {
+    if (playerChips > 0) {
+      pot.value += playerChips;
+      playerBets.value[i] += playerChips;
+      playerContribution.value[i] += playerChips;
+      playerMoney.value[i] = 0;
+      addLog(`${playerNames.value[i]} goes ALL-IN with $${playerBets.value[i]}`);
+      if (playerBets.value[i] > currentMaxBet.value) {
+        currentMaxBet.value = playerBets.value[i];
+        lastRaiser.value = i;
+        hasActed.value = hasActed.value.map((_, idx) => playerFolded.value[idx] || idx === i);
+      }
+    } else {
+      playerFolded.value[i] = true;
+      addLog(`${playerNames.value[i]} folds (no chips left for all-in).`);
     }
   } else if (action === "check") {
     if (costToCall > 0) {
@@ -739,11 +780,19 @@ function handleAction(i, actionDecision) {
   }
   hasActed.value[i] = true;
 
-  // Always trigger the next turn after any action
+  //จบเกมทันทีถ้าเหลือผู้เล่นคนเดียว
+  if (playerFolded.value.filter((f) => !f).length === 1 && gamePhase.value !== "showdown") {
+    gamePhase.value = "showdown";
+    determineWinner();
+    return;
+  }
+
   setTimeout(nextTurn, 200);
 }
 
 function determineWinner() {
+  const suitOrder = { "♣": 1, "♦": 2, "♥": 3, "♠": 4 };
+
   const currentTurn = [];
   for (let i = 0; i < numPlayers.value; i++) {
     if (!playerFolded.value[i]) {
@@ -751,6 +800,7 @@ function determineWinner() {
       currentTurn.push({
         index: i,
         handEvaluation: evaluateHand(fullHand),
+        hand: fullHand,
       });
     }
   }
@@ -759,17 +809,63 @@ function determineWinner() {
     roundEnded.value = true;
     return;
   }
-  currentTurn.sort((a, b) => b.handEvaluation.handRank - a.handEvaluation.handRank);
-  const winner = currentTurn[0];
-  const potWon = pot.value;
-  const winnerContribution = playerContribution.value[winner.index] || 0; // Use tracked contribution
-  playerMoney.value[winner.index] += potWon;
-  addLog(
-    `${playerNames.value[winner.index]} wins with ${winner.handEvaluation.handName} and pot size $${potWon} (earn +$${potWon - winnerContribution})`
-  );
+
+  // หา handRank ที่ดีที่สุด
+  const bestRank = Math.max(...currentTurn.map((p) => p.handEvaluation.handRank));
+  let bestPlayers = currentTurn.filter((p) => p.handEvaluation.handRank === bestRank);
+
+  // เปรียบเทียบค่า kicker (values) เพื่อหาผู้ชนะ
+  let winner = bestPlayers[0];
+  for (let i = 1; i < bestPlayers.length; i++) {
+    const aVals = winner.handEvaluation.values;
+    const bVals = bestPlayers[i].handEvaluation.values;
+    let isBigger = false;
+    for (let j = 0; j < Math.max(aVals.length, bVals.length); j++) {
+      if ((bVals[j] || 0) > (aVals[j] || 0)) {
+        isBigger = true;
+        break;
+      } else if ((bVals[j] || 0) < (aVals[j] || 0)) {
+        break;
+      }
+    }
+    if (isBigger) {
+      winner = bestPlayers[i];
+    } else if (JSON.stringify(aVals) === JSON.stringify(bVals)) {
+      // ถ้า kicker เท่ากัน ให้ดูดอกไพ่ใหญ่สุดใน 5 ใบที่ดีที่สุด
+      const aBest = getBestHandWithSuits(winner.hand, winner.handEvaluation.values);
+      const bBest = getBestHandWithSuits(bestPlayers[i].hand, bVals);
+      const aMaxSuit = Math.max(...aBest.map((card) => suitOrder[card.suit]));
+      const bMaxSuit = Math.max(...bBest.map((card) => suitOrder[card.suit]));
+      if (bMaxSuit > aMaxSuit) {
+        winner = bestPlayers[i];
+      }
+    }
+  }
+
+  // ให้ผู้ชนะคนเดียว
+  playerMoney.value[winner.index] += pot.value;
+  addLog(`${playerNames.value[winner.index]} ชนะเงิน $${pot.value} จากกองกลาง`);
   pot.value = 0;
   addLog(`--- End of Round ${currentRound.value} ---`);
   roundEnded.value = true;
+
+  // ฟังก์ชันช่วย: หาไพ่ 5 ใบที่ดีที่สุดตาม values
+  function getBestHandWithSuits(fullHand, values) {
+    // คืนไพ่ 5 ใบที่ตรงกับ values (ใช้สำหรับเทียบดอก)
+    const result = [];
+    const used = {};
+    for (let v of values) {
+      for (let card of fullHand) {
+        if (getRankValue(card.rank) === v && !used[card.rank + card.suit]) {
+          result.push(card);
+          used[card.rank + card.suit] = true;
+          break;
+        }
+      }
+      if (result.length === 5) break;
+    }
+    return result;
+  }
 }
 
 export function getAIAction(index) {
