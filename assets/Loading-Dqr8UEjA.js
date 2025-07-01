@@ -1,1 +1,0 @@
-import{_ as n,c as o,e as s,o as t}from"./index-BC0LgHAT.js";const c={},a={class:"loading-screen"};function _(d,e){return t(),o("div",a,e[0]||(e[0]=[s("div",{id:"loading-content"},"Loading....",-1)]))}const i=n(c,[["render",_],["__scopeId","data-v-2f7b5591"]]);export{i as default};
