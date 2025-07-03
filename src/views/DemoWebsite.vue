@@ -62,9 +62,9 @@ const filteredData = computed(() => {
 
 function statusDetect(value) {
   if (!value) return "";
-  if (value.includes("Reserve")) return "status1";
-  if (value.includes("Abort")) return "status2";
-  if (value.includes("Available")) return "status3";
+  if (value.includes("Reserve")) return "Service";
+  if (value.includes("Abort")) return "No";
+  if (value.includes("Available")) return "Complete";
   return "";
 }
 </script>

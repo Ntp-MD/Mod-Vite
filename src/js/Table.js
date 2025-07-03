@@ -19,7 +19,7 @@ export const minRaiseAmount = costRound;
 const numPlayers = ref(6);
 export const playerColors = ["#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff"];
 const startingMoney = ref(500);
-export const customStartingMoney = ref([1000, 1000, 1000, 1000, 1000, 1000]);
+export const customStartingMoney = ref([0, 1000, 1000, 1000, 1000, 1000]);
 const dealerPosition = ref(0);
 const roundEnded = ref(true);
 
@@ -844,7 +844,7 @@ function determineWinner() {
 
   // ให้ผู้ชนะคนเดียว
   playerMoney.value[winner.index] += pot.value;
-  addLog(`${playerNames.value[winner.index]} ชนะเงิน $${pot.value} จากกองกลาง`);
+  addLog(` ${playerNames.value[winner.index]} with ${winner.handEvaluation.handName} wins $${pot.value} from pot`);
   pot.value = 0;
   addLog(`--- End of Round ${currentRound.value} ---`);
   roundEnded.value = true;

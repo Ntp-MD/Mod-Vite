@@ -6,13 +6,35 @@
   --btn: #0ea66b;
   --ui-font: #fff;
   --focus: #4abdff;
-  --status0: #ff0000;
-  --status1: #308eec;
-  --status2: #56d524;
-  --status3: #ffe600;
+  --No: #ff3737;
+  --Service: #b371ff;
+  --Warning: #ffe600;
+  --Process: #0087ff;
+  --Complete: #09ff00;
+
   --border-radius: 5px;
   --border-color: #353535;
   --gap: 15px;
+}
+
+.No {
+  color: var(--No);
+}
+
+.Service {
+  color: var(--Service);
+}
+
+.Warning {
+  color: var(--Warning);
+}
+
+.Process {
+  color: var(--Process);
+}
+
+.Complete {
+  color: var(--Complete);
 }
 
 * {

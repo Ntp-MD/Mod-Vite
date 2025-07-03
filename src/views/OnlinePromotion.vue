@@ -7,7 +7,7 @@ const loading = ref(true);
 const sheetRows = ref([]);
 const selectedMonth = ref("All");
 const searchQuery = ref("");
-const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const onlineMonthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 const GOOGLE_SHEET_CSV_URL =
   "https://corsproxy.io/?" +
   encodeURIComponent(
@@ -25,14 +25,14 @@ onMounted(async () => {
           .filter((row) => row.Name)
           .map((row, idx) => ({
             id: idx + 1,
-            column1: row.Name || "",
-            column2: row["WIC-5GB"] || "",
-            column3: row["WIC-GoogleSearchConsole"] || "",
-            column4: row["WIC-SmartWidget"] || "",
-            CheckSearchConsole: row["Online-GoogleSearchConsole"] || "",
-            CheckSmartWidget: row["Online-SmartWidget"] || "",
-            Check5GB: row["WIC-Up5GB"] || "",
-            month: String(row["Month"] || "").trim(),
+            onlineName: row.Name || "",
+            free5GB: row["Free5GB"] || "",
+            freeSearchConsole: row["FreeSearchConsole"] || "",
+            freeSmartWidget: row["FreeSmartWidget"] || "",
+            onlineSearchConsole: row["OnlineSearchConsole"] || "",
+            onlineSmartWidget: row["OnlineSmartWidget"] || "",
+            Check5GB: row["Check5GB"] || "",
+            onlineMonth: String(row["Month"] || "").trim(),
           }));
       },
     });
@@ -45,19 +45,19 @@ onMounted(async () => {
 
 const filteredRows = computed(() => {
   let rows = sheetRows.value;
-  // Filter by month
+  // Filter by onlineMonth
   if (selectedMonth.value !== "All") {
-    rows = rows.filter((row) => row.month === selectedMonth.value);
+    rows = rows.filter((row) => row.onlineMonth === selectedMonth.value);
   }
   // Filter by search query
   const query = searchQuery.value.toLowerCase();
   if (query) {
     rows = rows.filter(
       (row) =>
-        row.column1.toLowerCase().includes(query) ||
-        row.column2.toLowerCase().includes(query) ||
-        row.column3.toLowerCase().includes(query) ||
-        row.column4.toLowerCase().includes(query)
+        row.onlineName.toLowerCase().includes(query) ||
+        row.free5GB.toLowerCase().includes(query) ||
+        row.freeSearchConsole.toLowerCase().includes(query) ||
+        row.freeSmartWidget.toLowerCase().includes(query)
     );
   }
   return rows;
@@ -72,7 +72,7 @@ const filteredRows = computed(() => {
       </form>
       <button :class="{ active: selectedMonth === 'All' }" @click="selectedMonth = 'All'">All</button>
       <button
-        v-for="(name, idx) in monthNames"
+        v-for="(name, idx) in onlineMonthNames"
         :key="idx"
         :class="{ active: selectedMonth === String(idx + 1) }"
         @click="selectedMonth = String(idx + 1)"
@@ -92,24 +92,44 @@ const filteredRows = computed(() => {
       <tbody>
         <tr v-for="(row, idx) in filteredRows" :key="idx">
           <td>
-            {{ row.column1 }}
+            {{ row.onlineName }}
           </td>
           <td :class="{ Installed: row.Check5GB === 'Up Space' }">
-            {{ row.column2 }}
-          </td>
-          <td :class="{ Installed: row.CheckSearchConsole }">
-            {{ row.CheckSearchConsole ? "Search Console Installed" : "Wait" }}
+            {{ row.free5GB }}
           </td>
           <td
             :class="{
-              Installed:
-                row.CheckSmartWidget === 'Installed' ||
-                row.CheckSmartWidget === 'Google Ads' ||
-                row.CheckSmartWidget === 'ไม่มีบริการ' ||
-                row.column4 === 'Smart Widget',
+              Installed: row.onlineSearchConsole === 'Installed',
+              Wait: row.onlineSearchConsole === 'Wait' || row.onlineSearchConsole === '' || row.onlineSearchConsole == null,
             }"
           >
-            {{ row.CheckSmartWidget ? "Smart Widget Installed" : row.column4 }}
+            {{
+              row.onlineSearchConsole === "Wait" || row.onlineSearchConsole === "" || row.onlineSearchConsole == null
+                ? "Wait"
+                : row.onlineSearchConsole === "Installed"
+                ? "Search Console Installed"
+                : row.freeSearchConsole
+            }}
+          </td>
+          <td
+            :class="{
+              Installed: row.onlineSmartWidget === 'Installed' || row.freeSmartWidget === 'Smart Widget',
+              Ads: row.onlineSmartWidget === 'Google Ads',
+              NoService: row.onlineSmartWidget === 'ไม่มีบริการ',
+              Wait: row.onlineSmartWidget === 'Wait',
+            }"
+          >
+            {{
+              row.onlineSmartWidget === "ไม่มีบริการ"
+                ? "ไม่มีบริการ"
+                : row.onlineSmartWidget === "Google Ads"
+                ? "Google Ads"
+                : row.onlineSmartWidget === "Wait" && (row.freeSmartWidget === "Smart Widget" || row.freeSmartWidget === "")
+                ? "Wait"
+                : row.onlineSmartWidget === "Installed"
+                ? "Smart Widget Installed"
+                : row.freeSmartWidget
+            }}
           </td>
         </tr>
       </tbody>
@@ -119,7 +139,19 @@ const filteredRows = computed(() => {
 </template>
 
 <style>
-td.Installed {
-  color: var(--btn);
+.Installed {
+  background: linear-gradient(to right, var(--Complete) 0, var(--Complete) 5px, transparent 5px, transparent 100%);
+}
+
+.Wait {
+  background: linear-gradient(to right, var(--Warning) 0, var(--Warning) 5px, transparent 5px, transparent 100%);
+}
+
+.Ads {
+  background: linear-gradient(to right, var(--focus) 0, var(--focus) 5px, transparent 5px, transparent 100%);
+}
+
+.NoService {
+  background: linear-gradient(to right, var(--No) 0, var(--No) 5px, transparent 5px, transparent 100%);
 }
 </style>
