@@ -17,24 +17,20 @@
   --gap: 15px;
 }
 
-.No {
-  color: var(--No);
+.Installed {
+  background: linear-gradient(to right, var(--Complete) 0, var(--Complete) 5px, transparent 5px, transparent 100%);
 }
 
-.Service {
-  color: var(--Service);
+.Wait {
+  background: linear-gradient(to right, var(--Warning) 0, var(--Warning) 5px, transparent 5px, transparent 100%);
 }
 
-.Warning {
-  color: var(--Warning);
+.Ads {
+  background: linear-gradient(to right, var(--focus) 0, var(--focus) 5px, transparent 5px, transparent 100%);
 }
 
-.Process {
-  color: var(--Process);
-}
-
-.Complete {
-  color: var(--Complete);
+.NoService {
+  background: linear-gradient(to right, var(--No) 0, var(--No) 5px, transparent 5px, transparent 100%);
 }
 
 * {

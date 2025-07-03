@@ -26,8 +26,8 @@ onMounted(async () => {
           .map((row, idx) => ({
             id: idx + 1,
             column1: row.Name || "",
-            column2: row["Online-GoogleSearchConsole"] || "",
-            column3: row["Online-SmartWidget"] || "",
+            column2: row["OnlineSearchConsole"] || "",
+            column3: row["OnlineSmartWidget"] || "",
             column7: row["Online Date"] || "",
             month: String(row["Month"] || "").trim(),
           }));

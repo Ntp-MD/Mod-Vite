@@ -19,7 +19,7 @@ export const minRaiseAmount = costRound;
 const numPlayers = ref(6);
 export const playerColors = ["#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff"];
 const startingMoney = ref(500);
-export const customStartingMoney = ref([0, 1000, 1000, 1000, 1000, 1000]);
+export const customStartingMoney = ref([1000, 1000, 1000, 1000, 1000, 1000]);
 const dealerPosition = ref(0);
 const roundEnded = ref(true);
 
@@ -791,9 +791,8 @@ function handleAction(i, actionDecision) {
 }
 
 function determineWinner() {
-  const suitOrder = { "♣": 1, "♦": 2, "♥": 3, "♠": 4 };
-
   const currentTurn = [];
+
   for (let i = 0; i < numPlayers.value; i++) {
     if (!playerFolded.value[i]) {
       const fullHand = hands.value[i].concat(flop.value);
@@ -804,6 +803,7 @@ function determineWinner() {
       });
     }
   }
+
   if (currentTurn.length === 0) {
     addLog("No active players. Pot remains.");
     roundEnded.value = true;
@@ -814,57 +814,44 @@ function determineWinner() {
   const bestRank = Math.max(...currentTurn.map((p) => p.handEvaluation.handRank));
   let bestPlayers = currentTurn.filter((p) => p.handEvaluation.handRank === bestRank);
 
-  // เปรียบเทียบค่า kicker (values) เพื่อหาผู้ชนะ
-  let winner = bestPlayers[0];
+  // เปรียบเทียบ kicker เพื่อหากลุ่มที่ดีที่สุด (อาจมีมากกว่า 1 คน)
+  let tiedWinners = [bestPlayers[0]];
+
   for (let i = 1; i < bestPlayers.length; i++) {
-    const aVals = winner.handEvaluation.values;
+    const aVals = tiedWinners[0].handEvaluation.values;
     const bVals = bestPlayers[i].handEvaluation.values;
-    let isBigger = false;
-    for (let j = 0; j < Math.max(aVals.length, bVals.length); j++) {
-      if ((bVals[j] || 0) > (aVals[j] || 0)) {
-        isBigger = true;
-        break;
-      } else if ((bVals[j] || 0) < (aVals[j] || 0)) {
-        break;
-      }
+    const cmp = compareValues(aVals, bVals);
+
+    if (cmp < 0) {
+      // bVals ดีกว่า → reset winners
+      tiedWinners = [bestPlayers[i]];
+    } else if (cmp === 0) {
+      // เสมอกัน → เพิ่มเข้ากลุ่ม
+      tiedWinners.push(bestPlayers[i]);
     }
-    if (isBigger) {
-      winner = bestPlayers[i];
-    } else if (JSON.stringify(aVals) === JSON.stringify(bVals)) {
-      // ถ้า kicker เท่ากัน ให้ดูดอกไพ่ใหญ่สุดใน 5 ใบที่ดีที่สุด
-      const aBest = getBestHandWithSuits(winner.hand, winner.handEvaluation.values);
-      const bBest = getBestHandWithSuits(bestPlayers[i].hand, bVals);
-      const aMaxSuit = Math.max(...aBest.map((card) => suitOrder[card.suit]));
-      const bMaxSuit = Math.max(...bBest.map((card) => suitOrder[card.suit]));
-      if (bMaxSuit > aMaxSuit) {
-        winner = bestPlayers[i];
-      }
-    }
+    // ถ้า cmp > 0 → aVals ดีกว่า → ไม่ต้องทำอะไร
   }
 
-  // ให้ผู้ชนะคนเดียว
-  playerMoney.value[winner.index] += pot.value;
-  addLog(` ${playerNames.value[winner.index]} with ${winner.handEvaluation.handName} wins $${pot.value} from pot`);
+  // แบ่ง pot ให้ผู้ชนะทุกคน (tie)
+  const share = Math.floor(pot.value / tiedWinners.length);
+  for (const winner of tiedWinners) {
+    playerMoney.value[winner.index] += share;
+    addLog(`${playerNames.value[winner.index]} wins $${share} with ${winner.handEvaluation.handName}`);
+  }
+
   pot.value = 0;
   addLog(`--- End of Round ${currentRound.value} ---`);
   roundEnded.value = true;
 
-  // ฟังก์ชันช่วย: หาไพ่ 5 ใบที่ดีที่สุดตาม values
-  function getBestHandWithSuits(fullHand, values) {
-    // คืนไพ่ 5 ใบที่ตรงกับ values (ใช้สำหรับเทียบดอก)
-    const result = [];
-    const used = {};
-    for (let v of values) {
-      for (let card of fullHand) {
-        if (getRankValue(card.rank) === v && !used[card.rank + card.suit]) {
-          result.push(card);
-          used[card.rank + card.suit] = true;
-          break;
-        }
-      }
-      if (result.length === 5) break;
+  // เปรียบเทียบ values array แบบเรียงลำดับ
+  function compareValues(a, b) {
+    for (let i = 0; i < Math.max(a.length, b.length); i++) {
+      const aVal = a[i] || 0;
+      const bVal = b[i] || 0;
+      if (aVal > bVal) return 1;
+      if (aVal < bVal) return -1;
     }
-    return result;
+    return 0; // เท่ากันทั้งหมด
   }
 }
 

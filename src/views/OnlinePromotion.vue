@@ -25,10 +25,10 @@ onMounted(async () => {
           .filter((row) => row.Name)
           .map((row, idx) => ({
             id: idx + 1,
-            onlineName: row.Name || "",
-            free5GB: row["Free5GB"] || "",
-            freeSearchConsole: row["FreeSearchConsole"] || "",
-            freeSmartWidget: row["FreeSmartWidget"] || "",
+            selectName: row.Name || "",
+            selectfree5GB: row["Free5GB"] || "",
+            selectfreeSearchConsole: row["FreeSearchConsole"] || "",
+            selectfreeSmartWidget: row["FreeSmartWidget"] || "",
             onlineSearchConsole: row["OnlineSearchConsole"] || "",
             onlineSmartWidget: row["OnlineSmartWidget"] || "",
             Check5GB: row["Check5GB"] || "",
@@ -54,10 +54,10 @@ const filteredRows = computed(() => {
   if (query) {
     rows = rows.filter(
       (row) =>
-        row.onlineName.toLowerCase().includes(query) ||
-        row.free5GB.toLowerCase().includes(query) ||
-        row.freeSearchConsole.toLowerCase().includes(query) ||
-        row.freeSmartWidget.toLowerCase().includes(query)
+        row.selectName.toLowerCase().includes(query) ||
+        row.selectfree5GB.toLowerCase().includes(query) ||
+        row.selectfreeSearchConsole.toLowerCase().includes(query) ||
+        row.selectfreeSmartWidget.toLowerCase().includes(query)
     );
   }
   return rows;
@@ -92,11 +92,18 @@ const filteredRows = computed(() => {
       <tbody>
         <tr v-for="(row, idx) in filteredRows" :key="idx">
           <td>
-            {{ row.onlineName }}
+            {{ row.selectName }}
           </td>
-          <td :class="{ Installed: row.Check5GB === 'Up Space' }">
-            {{ row.free5GB }}
+          <td
+            :class="{
+              Installed: row.selectfree5GB === 'เพิ่มพื้นที่ (5 GB)' && row.Check5GB === 'Up Space',
+              Wait: row.selectfree5GB === 'เพิ่มพื้นที่ (5 GB)' && row.Check5GB === '',
+              NoService: row.selectfree5GB === '' && row.Check5GB === '',
+            }"
+          >
+            {{ !row.selectfree5GB?.trim() && !row.Check5GB?.trim() ? "ไม่มีบริการ" : row.selectfree5GB }}
           </td>
+
           <td
             :class="{
               Installed: row.onlineSearchConsole === 'Installed',
@@ -105,15 +112,15 @@ const filteredRows = computed(() => {
           >
             {{
               row.onlineSearchConsole === "Wait" || row.onlineSearchConsole === "" || row.onlineSearchConsole == null
-                ? "Wait"
+                ? "Search Console"
                 : row.onlineSearchConsole === "Installed"
                 ? "Search Console Installed"
-                : row.freeSearchConsole
+                : row.selectfreeSearchConsole
             }}
           </td>
           <td
             :class="{
-              Installed: row.onlineSmartWidget === 'Installed' || row.freeSmartWidget === 'Smart Widget',
+              Installed: row.onlineSmartWidget === 'Installed' || row.selectfreeSmartWidget === 'Smart Widget',
               Ads: row.onlineSmartWidget === 'Google Ads',
               NoService: row.onlineSmartWidget === 'ไม่มีบริการ',
               Wait: row.onlineSmartWidget === 'Wait',
@@ -124,11 +131,11 @@ const filteredRows = computed(() => {
                 ? "ไม่มีบริการ"
                 : row.onlineSmartWidget === "Google Ads"
                 ? "Google Ads"
-                : row.onlineSmartWidget === "Wait" && (row.freeSmartWidget === "Smart Widget" || row.freeSmartWidget === "")
-                ? "Wait"
+                : row.onlineSmartWidget === "Wait" && (row.selectfreeSmartWidget === "Smart Widget" || row.selectfreeSmartWidget === "")
+                ? "Smart Widget"
                 : row.onlineSmartWidget === "Installed"
                 ? "Smart Widget Installed"
-                : row.freeSmartWidget
+                : row.selectfreeSmartWidget
             }}
           </td>
         </tr>
@@ -138,20 +145,4 @@ const filteredRows = computed(() => {
   <Loading v-else></Loading>
 </template>
 
-<style>
-.Installed {
-  background: linear-gradient(to right, var(--Complete) 0, var(--Complete) 5px, transparent 5px, transparent 100%);
-}
-
-.Wait {
-  background: linear-gradient(to right, var(--Warning) 0, var(--Warning) 5px, transparent 5px, transparent 100%);
-}
-
-.Ads {
-  background: linear-gradient(to right, var(--focus) 0, var(--focus) 5px, transparent 5px, transparent 100%);
-}
-
-.NoService {
-  background: linear-gradient(to right, var(--No) 0, var(--No) 5px, transparent 5px, transparent 100%);
-}
-</style>
+<style></style>
