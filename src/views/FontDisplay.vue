@@ -69,7 +69,7 @@ export default {
   padding: 15px;
   border-radius: 10px;
   min-height: auto;
-  background: var(--ui-bg1);
+  background: var(--main-color);
   border: 1px solid var(--border-color);
 }
 
@@ -77,7 +77,7 @@ export default {
   display: grid;
   grid-template-columns: auto 35px;
   align-items: center;
-  background: var(--ui-bg1);
+  background: var(--main-color);
   border-radius: 5px;
   overflow: hidden;
   border: 1px solid var(--border-color);

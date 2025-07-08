@@ -1,36 +1,35 @@
 :root {
-  --ui-bg1: #212121;
-  --ui-bg2: #1a1a1a;
-  --ui-bg3: #fff;
+  --main-color: #000;
+  --sub-color: #181818;
+  --ui-bg3: #ededed;
   --ui-bg4: #3a3e4a;
   --btn: #0ea66b;
-  --ui-font: #fff;
+  --ui-font: #ededed;
   --focus: #4abdff;
   --No: #ff3737;
   --Service: #b371ff;
   --Warning: #ffe600;
   --Process: #0087ff;
   --Complete: #09ff00;
-
   --border-radius: 5px;
   --border-color: #353535;
   --gap: 15px;
 }
 
-.Installed {
-  background: linear-gradient(to right, var(--Complete) 0, var(--Complete) 5px, transparent 5px, transparent 100%);
+.Installed:after {
+  background: var(--Complete);
 }
 
-.Wait {
-  background: linear-gradient(to right, var(--Warning) 0, var(--Warning) 5px, transparent 5px, transparent 100%);
+.Wait:after {
+  background: var(--Warning);
 }
 
-.Ads {
-  background: linear-gradient(to right, var(--focus) 0, var(--focus) 5px, transparent 5px, transparent 100%);
+.Ads:after {
+  background: var(--focus);
 }
 
-.NoService {
-  background: linear-gradient(to right, var(--No) 0, var(--No) 5px, transparent 5px, transparent 100%);
+.NoService:after {
+  background: var(--No);
 }
 
 * {
@@ -42,7 +41,7 @@ body {
   padding: 0;
   font-size: 14px;
   min-height: 100vh;
-  background: var(--ui-bg1);
+  background: var(--main-color);
   color: var(--ui-font);
   overflow: hidden;
 }
@@ -53,7 +52,7 @@ body {
   flex-direction: column;
   font-family: "Inter", sans-serif;
   height: inherit;
-  background: #fff;
+  background: #ededed;
   height: 100vh;
 }
 
@@ -63,16 +62,15 @@ header {
   z-index: 1;
   display: flex;
   align-items: center;
-  background: var(--ui-bg1);
+  background: var(--main-color);
   border-bottom: 1px solid var(--border-color);
-  padding-right: 15px;
   height: 50px;
 }
 
 footer {
   display: none;
   align-items: center;
-  background: var(--ui-bg1);
+  background: var(--main-color);
   height: 50px;
   text-align: center;
   border-top: 1px solid var(--border-color);
@@ -81,7 +79,6 @@ footer {
 main {
   display: grid;
   grid-template-columns: 13vw auto;
-  background: var(--ui-bg2);
   height: 100%;
 }
 
@@ -89,12 +86,13 @@ aside {
   display: flex;
   flex-direction: column;
   border-right: 1px solid var(--border-color);
-  background: var(--ui-bg2);
+
   height: calc(100vh - 50px);
 }
 
 section {
-  padding: calc(var(--gap) * 2);
+  background: var(--main-color);
+  padding: var(--gap);
   height: calc(100vh - 50px);
   overflow-y: scroll;
 }
@@ -112,9 +110,6 @@ section {
 
 a {
   color: var(--ui-font);
-}
-
-a {
   text-decoration: none;
   font-size: 1em;
   font-weight: 400;
@@ -127,54 +122,13 @@ img {
   object-fit: contain;
 }
 
-h1 {
-  font-size: 3em;
-  font-weight: 600;
-  letter-spacing: 1px;
-  margin-block-start: 0;
-}
-
-h2 {
-  font-size: 1.5em;
-}
-
-h3 {
-  font-size: 1.2em;
-}
-
-caption {
-  text-align: left;
-}
-
-caption :is(h1) {
-  margin-bottom: 1em;
-}
-
-p {
-  margin: 0 0 10px;
-}
-
-span {
-  color: #777;
-  font-weight: 800;
-  letter-spacing: 1px;
-}
-
-sup {
-  color: var(--bg-color3);
-  font-weight: 600;
-}
-
-*::placeholder {
-  color: var(--ui-font);
-}
-
+/*table*/
 table.TableViews {
   table-layout: fixed;
   border-collapse: collapse;
   width: 100%;
   color: var(--ui-font);
-  background: var(--ui-bg1);
+  background: var(--main-color);
 }
 
 table input {
@@ -182,31 +136,66 @@ table input {
 }
 
 thead {
-  background: var(--ui-bg1);
+  background: var(--main-color);
   color: var(--ui-font);
+}
+
+tbody > tr > td:first-child {
+  padding: 0 var(--gap);
 }
 
 .TableViews th,
 .TableViews td {
   border: 1px solid var(--border-color);
-  padding: 0 10px;
+  padding: 0 var(--gap);
   text-align: left;
   height: 40px;
   overflow: hidden;
 }
 
+.TableViews td {
+  position: relative;
+  padding-left: clamp(20px, 1.5vw, 30px);
+  white-space: nowrap;
+}
+
+.TableViews td:after {
+  display: block;
+  content: "";
+  border-radius: 50%;
+  width: clamp(7px, 1vw, 10px);
+  height: clamp(7px, 1vw, 10px);
+  position: absolute;
+  top: 0;
+  left: clamp(8px, 1.5vw, 10px);
+  bottom: 0;
+  margin: auto;
+}
+
 .TableViews thead {
-  background: var(--ui-bg1);
+  background: var(--main-color);
   color: var(--ui-font);
 }
 
-.TableViews td.editing {
-  box-shadow: inset 0 0px 2px 1px #4abdff;
+.Tablefilter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  overflow-x: scroll;
 }
+
+.Tablefilter button.active {
+  opacity: 0.5;
+}
+/*table*/
 
 form {
   display: grid;
   gap: var(--gap);
+}
+
+*::placeholder {
+  color: var(--ui-font);
 }
 
 form > input {
@@ -269,7 +258,7 @@ button {
   width: fit-content;
   min-width: 90px;
   background: var(--btn);
-  color: #fff;
+  color: #ededed;
   margin: 0;
   border-radius: var(--border-radius);
   border: none;
@@ -294,40 +283,26 @@ button {
 }
 
 @media (max-width: 1200px) {
-  :root {
-    --gap: 5px;
-  }
-
-  header {
-    display: none;
-  }
-
   footer {
     display: none;
   }
 
   aside {
-    position: absolute;
-    justify-content: start;
-    width: 100vw;
-    height: 100vh;
-    background: var(--ui-bg2);
-    transform: translateX(-100%);
+    display: none;
   }
 
   main {
     display: flex;
     flex-direction: column;
   }
+
+  table.TableViews {
+    font-size: 12px;
+  }
 }
 
-.Tablefilter {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.Tablefilter button.active {
-  opacity: 0.5;
+@media (max-width: 676px) {
+  :root {
+    --gap: 5px;
+  }
 }

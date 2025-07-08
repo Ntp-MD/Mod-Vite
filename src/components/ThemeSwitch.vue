@@ -17,8 +17,8 @@ const isDarkMode = theme.isDarkMode;
 
 <style>
 #AppClient.light-mode {
-  --ui-bg1: #fff;
-  --ui-bg2: #fff;
+  --main-color: #fff;
+  --sub-color: #fff;
   --ui-bg3: #fff;
   --ui-bg4: #fff;
   --ui-font: #222;
@@ -35,7 +35,7 @@ const isDarkMode = theme.isDarkMode;
   height: 33px;
   width: auto;
   overflow: hidden;
-  background: var(--ui-bg2);
+  background: var(--sub-color);
 }
 
 .toggle-swap {

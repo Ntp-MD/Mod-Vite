@@ -18,7 +18,9 @@
   position: relative;
   place-items: center;
   width: 20vw;
+  min-width: 250px;
   height: 20vw;
+  min-height: 250px;
 }
 
 #loading-content:before {

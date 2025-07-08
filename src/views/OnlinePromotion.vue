@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, computed } from "vue";
+import { ref, watch, onMounted, computed, nextTick } from "vue";
 import Papa from "papaparse";
 import axios from "axios";
 
@@ -62,6 +62,22 @@ const filteredRows = computed(() => {
   }
   return rows;
 });
+
+const bottom = ref(null);
+
+onMounted(() => {
+  scrollToBottom();
+});
+
+watch(filteredRows, () => {
+  nextTick(() => scrollToBottom());
+});
+
+const scrollToBottom = () => {
+  if (bottom.value) {
+    bottom.value.scrollIntoView({ behavior: "smooth" });
+  }
+};
 </script>
 
 <template>
@@ -96,7 +112,7 @@ const filteredRows = computed(() => {
           </td>
           <td
             :class="{
-              Installed: row.selectfree5GB === 'เพิ่มพื้นที่ (5 GB)' && row.Check5GB === 'Up Space',
+              Installed: row.selectfree5GB === 'เพิ่มพื้นที่ (5 GB)' && row.Check5GB === 'Completed',
               Wait: row.selectfree5GB === 'เพิ่มพื้นที่ (5 GB)' && row.Check5GB === '',
               NoService: row.selectfree5GB === '' && row.Check5GB === '',
             }"
@@ -141,7 +157,9 @@ const filteredRows = computed(() => {
         </tr>
       </tbody>
     </table>
+    <div ref="bottom"></div>
   </div>
+
   <Loading v-else></Loading>
 </template>
 

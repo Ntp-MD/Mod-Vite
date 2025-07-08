@@ -2,7 +2,6 @@
   <div id="AppClient" :class="themeClass">
     <header v-if="route.meta.HideThis">
       <Header></Header>
-      <ThemeSwitch></ThemeSwitch>
     </header>
     <main>
       <aside>

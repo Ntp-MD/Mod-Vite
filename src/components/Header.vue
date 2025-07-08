@@ -1,19 +1,11 @@
 <template>
   <div class="navHeader">
-    <router-link class="navHome" to="/" @click="closeMenu">Dashboard</router-link>
+    <navAside ref="navMobileRef" :class="{ open: isOpen }"> </navAside>
+    <ThemeSwitch></ThemeSwitch>
     <div class="navToggle" ref="navToggleRef" @click="toggleMenu">
       <div></div>
       <div></div>
       <div></div>
-    </div>
-    <div class="navMobile" ref="navMobileRef" :class="{ open: isOpen }">
-      <router-link class="navLink" to="/FontDisplay" @click="closeMenu">Font Family</router-link>
-      <router-link class="navLink" to="/OnlineTrackDisplay" @click="closeMenu">Online Track</router-link>
-      <router-link class="navLink" to="/PromotionTrack" @click="closeMenu">Promotion Track</router-link>
-      <router-link class="navLink" to="/DemoDisplay" @click="closeMenu">List Demo</router-link>
-      <router-link class="navLink" to="/QuickAccess" @click="closeMenu">QuickAccess</router-link>
-      <router-link class="navLink" to="/" @click="closeMenu">Table </router-link>
-      <router-link class="navLink" to="/SlidePause" @click="closeMenu">Setting</router-link>
     </div>
   </div>
 </template>
@@ -62,44 +54,43 @@ onBeforeUnmount(() => {
   gap: 20px;
   width: 100%;
   min-height: 50px;
-  padding: 0 15px;
   position: relative;
 }
 
-.navMobile {
-  position: absolute;
-  top: 50px;
-  left: 0;
-  display: flex;
-  flex-direction: column;
-  background: var(--ui-bg1);
-  width: 80%;
-  height: 100vh;
-  padding: 15px;
-  gap: 10px;
-  transform: translateX(-100%);
-  transition: 0.5s;
-}
-
-.navMobile.open {
-  transform: translateX(0%);
-}
-
 .navToggle {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 6px;
+  right: 15px;
 }
 
 .navToggle > div {
   width: 27px;
   height: 3px;
-  background: #fff;
+  background: var(--ui-font);
+}
+
+@media screen and (min-width: 1201px) {
+  .navHeader > div {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 1200px) {
-  .navHome {
-    display: none;
+  .navAside {
+    position: fixed;
+    top: 50px;
+    height: calc(100% - 50px);
+    width: 100%;
+    padding-right: 30%;
+    transform: translateX(-100%);
+    transition: 0.5s;
+    background: linear-gradient(to right, var(--main-color) 0, var(--main-color) 70%, rgba(0, 0, 0, 0.7) 70%, rgba(0, 0, 0, 0.7) 100%);
+  }
+
+  .navAside.open {
+    transform: translateX(0%);
   }
 }
 </style>

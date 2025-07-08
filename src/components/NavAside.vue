@@ -1,14 +1,13 @@
 <template>
-  <div id="NavAside">
+  <div class="navAside">
     <div class="top">Administrator</div>
-    <div class="mid">
+    <nav class="mid">
+      <router-link class="nav-menu-link" to="/Dashboard">Dashboard</router-link>
       <router-link class="nav-menu-link" to="/FontDisplay">Font Family</router-link>
-      <router-link class="nav-menu-link" to="/Upgrade5GB">Upgrade 5GB</router-link>
-      <router-link class="nav-menu-link" to="/OnlineWebsite">Online Website</router-link>
-      <router-link class="nav-menu-link" to="/OnlinePromotion">Online Promotion</router-link>
+      <router-link class="nav-menu-link" to="/">Online Promotion</router-link>
       <router-link class="nav-menu-link" to="/DemoWebsite">Demo Website</router-link>
-      <router-link class="nav-menu-link" to="/">Table </router-link>
-    </div>
+      <router-link class="nav-menu-link" to="/Table">Table </router-link>
+    </nav>
     <div class="bottom">
       <div id="bangkok-time">{{ bangkokTime }}</div>
     </div>
@@ -16,19 +15,21 @@
 </template>
 
 <style scoped>
-#NavAside {
+.navAside {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: inherit;
+  background: var(--main-color);
+  width: 100%;
 }
 
-#NavAside a {
+.navAside a {
   padding: 10px 15px;
   border-radius: var(--border-radius);
 }
 
-#NavAside a:hover {
+.navAside a:hover {
   background: var(--btn);
   color: #fff;
 }
@@ -46,7 +47,6 @@
   flex-direction: column;
   justify-content: center;
   height: -webkit-fill-available;
-  padding: calc(var(--gap) * 0.5);
 }
 
 .bottom {
