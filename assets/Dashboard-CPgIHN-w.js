@@ -1,0 +1,1 @@
+import{_ as c,c as e,a as s,o as l}from"./index-BfzCvjJ9.js";const n={},o={class:"mainLayout"};function t(r,a){return l(),e("div",o,a[0]||(a[0]=[s("div",{class:"a"},null,-1),s("div",{class:"b"},null,-1),s("div",{class:"c"},null,-1),s("div",{class:"d"},null,-1)]))}const i=c(n,[["render",t]]);export{i as default};

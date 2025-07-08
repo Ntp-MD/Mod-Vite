@@ -1,0 +1,1 @@
+import{_ as n,c as o,a as s,o as t}from"./index-BfzCvjJ9.js";const a={},c={class:"loading-screen"};function d(_,e){return t(),o("div",c,e[0]||(e[0]=[s("div",{id:"loading-content"},"Loading....",-1)]))}const i=n(a,[["render",d],["__scopeId","data-v-fadd6632"]]);export{i as default};
