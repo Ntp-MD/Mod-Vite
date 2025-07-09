@@ -1,6 +1,6 @@
 import { ref, computed } from "vue";
 
-export const autoPlay = ref(true);
+export const autoPlay = ref(false);
 
 export const roundLogs = ref([]);
 const currentRound = ref(1);
