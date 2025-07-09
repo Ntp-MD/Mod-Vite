@@ -1,1 +1,0 @@
-.mainLayout>div{border-radius:var(--border-radius);display:block;width:100%;min-height:30vh;background:var(--sub-color)}.mainLayout{display:flex;flex-wrap:wrap;width:100%;gap:var(--gap)}.a,.b{flex:1 0}.c,.d{flex:1.5 0}
