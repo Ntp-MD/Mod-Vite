@@ -54,7 +54,6 @@ export default {
   grid-template-columns: repeat(auto-fit, minmax(clamp(150px, 30%, 20vw), 1fr));
   gap: var(--gap);
   margin: 0;
-  color: var(--ui-font);
 }
 
 .font-name {
@@ -69,7 +68,7 @@ export default {
   padding: 15px;
   border-radius: 10px;
   min-height: auto;
-  background: var(--main-color);
+  background: var(--sub-color);
   border: 1px solid var(--border-color);
 }
 
@@ -77,7 +76,7 @@ export default {
   display: grid;
   grid-template-columns: auto 35px;
   align-items: center;
-  background: var(--main-color);
+  background: var(--sub-color2);
   border-radius: 5px;
   overflow: hidden;
   border: 1px solid var(--border-color);
@@ -99,7 +98,6 @@ export default {
   place-items: center;
   width: 100%;
   height: 100%;
-  background: var(--color3);
   cursor: pointer;
 }
 

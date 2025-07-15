@@ -1,10 +1,9 @@
 :root {
-  --main-color: #000;
-  --sub-color: #181818;
-  --ui-bg3: #ededed;
-  --ui-bg4: #3a3e4a;
-  --btn: #0ea66b;
-  --ui-font: #ededed;
+  --main-color: #151515;
+  --sub-color: #1e1e1e;
+  --sub-color2: #222;
+  --btn-color: #0ea66b;
+  --font-color: #ededed;
   --focus: #4abdff;
   --No: #ff3737;
   --Service: #b371ff;
@@ -13,7 +12,7 @@
   --Complete: #09ff00;
   --border-radius: 5px;
   --border-color: #353535;
-  --gap: 15px;
+  --gap: 20px;
 }
 
 .Installed:after {
@@ -36,24 +35,35 @@
   box-sizing: border-box;
 }
 
-body {
-  margin: 0;
-  padding: 0;
-  font-size: 14px;
-  min-height: 100vh;
-  background: var(--main-color);
-  color: var(--ui-font);
-  overflow: hidden;
+::-webkit-scrollbar {
+  background: transparent;
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--btn-color);
+  border-radius: var(--border-radius);
+  min-height: 5%;
 }
 
 #AppClient {
   position: relative;
   display: flex;
   flex-direction: column;
-  font-family: "Inter", sans-serif;
   height: inherit;
   background: #ededed;
   height: 100vh;
+  font-family: monospace;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  min-height: 100vh;
+  background: var(--main-color);
+  color: var(--font-color);
+  overflow: hidden;
 }
 
 header {
@@ -86,8 +96,8 @@ aside {
   display: flex;
   flex-direction: column;
   border-right: 1px solid var(--border-color);
-
   height: calc(100vh - 50px);
+  user-select: none;
 }
 
 section {
@@ -97,19 +107,8 @@ section {
   overflow-y: scroll;
 }
 
-::-webkit-scrollbar {
-  background: transparent;
-  width: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--btn);
-  border-radius: var(--border-radius);
-  min-height: 5%;
-}
-
 a {
-  color: var(--ui-font);
+  color: var(--font-color);
   text-decoration: none;
   font-size: 1em;
   font-weight: 400;
@@ -122,44 +121,38 @@ img {
   object-fit: contain;
 }
 
-/*table*/
-table.TableViews {
+label {
+  user-select: none;
+}
+
+table {
   table-layout: fixed;
   border-collapse: collapse;
   width: 100%;
-  color: var(--ui-font);
-  background: var(--main-color);
-}
-
-table input {
-  border: 1px solid var(--border-color);
-}
-
-thead {
-  background: var(--main-color);
-  color: var(--ui-font);
+  color: var(--font-color);
 }
 
 tbody > tr > td:first-child {
   padding: 0 var(--gap);
 }
 
-.TableViews th,
-.TableViews td {
+th,
+td {
   border: 1px solid var(--border-color);
   padding: 0 var(--gap);
   text-align: left;
   height: 40px;
   overflow: hidden;
+  background: var(--sub-color);
 }
 
-.TableViews td {
+td {
   position: relative;
   padding-left: clamp(20px, 1.5vw, 30px);
   white-space: nowrap;
 }
 
-.TableViews td:after {
+td:after {
   display: block;
   content: "";
   border-radius: 50%;
@@ -172,48 +165,17 @@ tbody > tr > td:first-child {
   margin: auto;
 }
 
-.TableViews thead {
-  background: var(--main-color);
-  color: var(--ui-font);
-}
-
-.Tablefilter {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  overflow-x: scroll;
-}
-
-.Tablefilter button.active {
-  opacity: 0.5;
-}
-/*table*/
-
 form {
   display: grid;
   gap: var(--gap);
 }
 
 *::placeholder {
-  color: var(--ui-font);
+  color: var(--font-color);
 }
 
 form > input {
   min-height: 45px;
-}
-
-form#search-form {
-  display: grid;
-  align-items: center;
-  position: relative;
-  border: 1px solid var(--border-color);
-}
-
-form#search-form img {
-  position: absolute;
-  right: 10px;
-  width: 18px;
-  height: 18px;
 }
 
 fieldset {
@@ -232,12 +194,13 @@ textarea {
   outline: none;
   padding: 0 15px;
   margin: 0;
-  color: var(--ui-font);
+  color: var(--font-color);
+  border: 1px solid var(--border-color);
 }
 
 input:before,
 input:focus {
-  border: 1px solid var(--btn);
+  border: 1px solid var(--btn-color);
 }
 
 textarea {
@@ -256,8 +219,8 @@ button {
   display: grid;
   place-items: center;
   width: fit-content;
-  min-width: 90px;
-  background: var(--btn);
+  min-width: 110px;
+  background: var(--btn-color);
   color: #ededed;
   margin: 0;
   border-radius: var(--border-radius);
@@ -266,17 +229,16 @@ button {
   cursor: pointer;
 }
 
-#search-form::after {
-  display: block;
-  content: "";
-  background-image: url(/src//assets/icon/search.png);
-  background-size: 100%;
-  background-repeat: no-repeat;
-  filter: invert(1);
-  height: 15px;
-  width: 15px;
-  position: absolute;
-  right: 10px;
+.Tablefilter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  overflow-x: scroll;
+}
+
+.Tablefilter button.active {
+  opacity: 0.5;
 }
 
 @media (min-width: 1201px) {
@@ -296,13 +258,7 @@ button {
     flex-direction: column;
   }
 
-  table.TableViews {
+  table {
     font-size: 12px;
-  }
-}
-
-@media (max-width: 676px) {
-  :root {
-    --gap: 5px;
   }
 }

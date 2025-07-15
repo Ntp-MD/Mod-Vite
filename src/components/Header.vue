@@ -68,7 +68,7 @@ onBeforeUnmount(() => {
 .navToggle > div {
   width: 27px;
   height: 3px;
-  background: var(--ui-font);
+  background: var(--font-color);
 }
 
 @media screen and (min-width: 1201px) {

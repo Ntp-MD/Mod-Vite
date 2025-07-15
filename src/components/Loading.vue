@@ -26,14 +26,14 @@
 #loading-content:before {
   content: "";
   position: absolute;
-  border: 10px solid var(--btn);
+  border: 10px solid var(--btn-color);
   inset: 0;
 }
 
 #loading-content:before {
   border: 10px solid transparent;
-  border-top-color: var(--btn);
-  border-bottom-color: var(--ui-bg4);
+  border-top-color: var(--btn-color);
+  border-bottom-color: #fff;
   border-radius: 50%;
   animation: loader 3s linear infinite;
 }
@@ -41,14 +41,14 @@
 #loading-content:after {
   content: "";
   position: absolute;
-  border: 10px solid var(--btn);
+  border: 10px solid var(--btn-color);
   inset: 25px;
 }
 
 #loading-content:after {
   border: 8px solid transparent;
-  border-top-color: var(--ui-bg4);
-  border-bottom-color: var(--btn);
+  border-top-color: #fff;
+  border-bottom-color: var(--btn-color);
   border-radius: 50%;
   animation: loader 1.5s linear infinite;
 }

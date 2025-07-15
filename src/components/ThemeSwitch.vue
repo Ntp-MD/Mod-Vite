@@ -21,7 +21,7 @@ const isDarkMode = theme.isDarkMode;
   --sub-color: #fff;
   --ui-bg3: #fff;
   --ui-bg4: #fff;
-  --ui-font: #222;
+  --font-color: #222;
   --border-color: #bbbbbb;
   & img {
     filter: unset;

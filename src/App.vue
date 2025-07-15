@@ -20,7 +20,6 @@
 <script setup>
 import { useRoute } from "vue-router";
 import { getCurrentInstance } from "vue";
-import ThemeSwitch from "/src/components/ThemeSwitch.vue";
 const { appContext } = getCurrentInstance();
 const themeClass = appContext.config.globalProperties.$theme.themeClass;
 const route = useRoute();
