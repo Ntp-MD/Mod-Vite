@@ -1,0 +1,1 @@
+import{_ as n,b as o,d as s,g as t}from"./index-9hdiwW40.js";const a={},c={class:"loading-screen"};function d(_,e){return t(),o("div",c,e[0]||(e[0]=[s("div",{id:"loading-content"},"Loading....",-1)]))}const i=n(a,[["render",d],["__scopeId","data-v-a2d4ac89"]]);export{i as default};
