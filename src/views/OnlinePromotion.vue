@@ -83,7 +83,7 @@ const scrollToBottom = () => {
 <template>
   <div v-if="!loading">
     <div class="Tablefilter">
-      <form id="search-form">
+      <form id="SearchBox">
         <input class="search-input" type="search" placeholder="Search..." v-model="searchQuery" />
       </form>
       <button :class="{ active: selectedMonth === 'All' }" @click="selectedMonth = 'All'">All</button>

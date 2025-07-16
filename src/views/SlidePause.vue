@@ -59,11 +59,13 @@
   border-radius: 25px;
   box-shadow: 0 4px 18px rgb(0, 0, 0, 0.1);
   overflow: hidden;
+  background: var(--sub-color);
 }
 
 .modquee-items img {
   border: 1px solid #fff;
-  opacity: 0;
+  opacity: 1;
+  display: none;
 }
 </style>
 
@@ -113,7 +115,7 @@ const observer = new MutationObserver(() => {
 
     const slide = () => {
       offset += step;
-      if (offset >= box.scrollWidth / 2) {
+      if (offset >= box.scrollWidth / 4) {
         offset = 0;
         box.style.transition = "none";
         box.style.transform = `translateX(0)`;

@@ -127,7 +127,7 @@ watch(
 
 <style scoped>
 .TableLayout {
-  --spades: #000;
+  --spades: #fff;
   --hearts: #ff0000;
   --diamonds: #009eb9;
   --clubs: #00c57a;
@@ -252,11 +252,7 @@ watch(
   height: auto;
   aspect-ratio: 2.8/4;
   border: 1px solid var(--border-color);
-  /*
-  background: #fff;
-  */
-  border-radius: 3px;
-  line-height: 1;
+  border-radius: 5px;
 }
 .CardBody > div {
   line-height: 0.8;

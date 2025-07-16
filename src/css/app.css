@@ -3,32 +3,43 @@
   --sub-color: #1e1e1e;
   --sub-color2: #222;
   --btn-color: #0ea66b;
-  --font-color: #ededed;
-  --focus: #4abdff;
-  --No: #ff3737;
-  --Service: #b371ff;
-  --Warning: #ffe600;
-  --Process: #0087ff;
-  --Complete: #09ff00;
-  --border-radius: 5px;
+  --font-color: #ebebeb;
+  --font-color2: #bbbbbb;
+  --none: #ff3737;
+  --wait: #0087ff;
+  --warning: #ffe600;
+  --process: #b371ff;
+  --complete: #09ff00;
+  --border-radius: 8px;
   --border-color: #353535;
   --gap: 20px;
 }
 
+.light-mode {
+  --main-color: #fff;
+  --sub-color: #fff;
+  --sub-color2: #fff;
+  --font-color: #222;
+  --border-color: #bbbbbb;
+  & img {
+    filter: unset;
+  }
+}
+
 .Installed:after {
-  background: var(--Complete);
+  background: var(--complete);
 }
 
 .Wait:after {
-  background: var(--Warning);
+  background: var(--wait);
 }
 
 .Ads:after {
-  background: var(--focus);
+  background: var(--process);
 }
 
 .NoService:after {
-  background: var(--No);
+  background: var(--none);
 }
 
 * {
@@ -54,6 +65,7 @@
   background: #ededed;
   height: 100vh;
   font-family: monospace;
+  color: var(--font-color);
 }
 
 body {
@@ -62,7 +74,6 @@ body {
   font-size: 14px;
   min-height: 100vh;
   background: var(--main-color);
-  color: var(--font-color);
   overflow: hidden;
 }
 
@@ -123,8 +134,10 @@ img {
 
 label {
   user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-
 table {
   table-layout: fixed;
   border-collapse: collapse;
@@ -239,6 +252,22 @@ button {
 
 .Tablefilter button.active {
   opacity: 0.5;
+}
+
+.labelName {
+  display: grid;
+  font-size: clamp(20px, 2vw, 24px);
+  width: fit-content;
+}
+
+.labelName:after {
+  display: block;
+  content: "";
+  background: var(--btn-color);
+  border-radius: 30px;
+  width: 80%;
+  height: 7px;
+  margin: 10px 0 var(--gap);
 }
 
 @media (min-width: 1201px) {

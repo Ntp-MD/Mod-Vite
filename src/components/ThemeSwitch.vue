@@ -15,19 +15,7 @@ const isDarkMode = theme.isDarkMode;
   </div>
 </template>
 
-<style>
-#AppClient.light-mode {
-  --main-color: #fff;
-  --sub-color: #fff;
-  --ui-bg3: #fff;
-  --ui-bg4: #fff;
-  --font-color: #222;
-  --border-color: #bbbbbb;
-  & img {
-    filter: unset;
-  }
-}
-
+<style scoped>
 #toggleTheme {
   display: flex;
   border: 1px solid var(--border-color);
