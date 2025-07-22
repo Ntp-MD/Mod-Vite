@@ -21,7 +21,7 @@
 }
 
 .Item {
-  flex: 1 20%;
+  flex: 1 100%;
   display: grid;
   background: var(--sub-color);
   border-radius: var(--border-radius);

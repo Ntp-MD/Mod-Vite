@@ -1,0 +1,59 @@
+<script>
+  $(document).ready(function () {
+    $(document).on("click", function (e) {
+      var $target = $(e.target);
+      var $customSearch = $(".ui.action.input");
+      if ($target.closest(".ui.button").length) {
+        $customSearch.addClass("open").find("input").focus();
+      } else if (!$target.closest(".ui.action.input").length && $customSearch.hasClass("open")) {
+        $customSearch.removeClass("open");
+      }
+    });
+  });
+</script>
+
+<style>
+  .ui.action.input {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    position: relative;
+    width: 100%;
+  }
+
+  .ui.button {
+    display: grid !important;
+    height: 35px;
+    width: 35px;
+    border: 1px solid #ccc;
+    background: #fff;
+    padding: 0 !important;
+    box-shadow: none !important;
+    font-size: 16px;
+    color: #ccc;
+    cursor: pointer;
+  }
+
+  .ui.action.input input {
+    box-shadow: none;
+    outline: unset;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    height: 35px;
+    width: 0;
+    padding: 0;
+    transition: 0.3s ease-in-out;
+    border-radius: 0;
+  }
+
+  .ui.action.input.open input {
+    width: 30vw;
+    padding: 10px;
+    border-bottom: 1px solid red;
+  }
+
+  .ui.action.input.open .ui.button {
+    border: 1px solid transparent;
+    border-bottom: 1px solid red;
+  }
+</style>

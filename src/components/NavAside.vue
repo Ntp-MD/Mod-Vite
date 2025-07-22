@@ -3,11 +3,12 @@
     <div class="top">Administrator</div>
     <nav class="mid">
       <router-link class="nav-menu-link" to="/">Dashboard</router-link>
+      <router-link class="nav-menu-link" to="/OnlinePromotion">Online Promotion</router-link>
       <router-link class="nav-menu-link" to="/SmartWidget">Smart Widget</router-link>
-      <router-link class="nav-menu-link" to="/FontDisplay">Font Family</router-link>
-      <router-link class="nav-menu-link" to="/Online Promotion">Online Promotion</router-link>
       <router-link class="nav-menu-link" to="/DemoWebsite">Demo Website</router-link>
+      <router-link class="nav-menu-link" to="/FontDisplay">Font Family</router-link>
       <router-link class="nav-menu-link" to="/SlidePause">Slide Pause</router-link>
+      <router-link class="nav-menu-link" to="/Map">World Map</router-link>
       <router-link class="nav-menu-link" to="/Table">Table </router-link>
     </nav>
     <div class="bottom">
@@ -29,6 +30,8 @@
 .navAside a {
   padding: 10px 15px;
   border-radius: var(--border-radius);
+  width: 90%;
+  margin: auto;
 }
 
 .navAside a:hover {

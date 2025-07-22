@@ -1,0 +1,157 @@
+<style>
+  .itopplus-nav-bar li:not(:last-of-type):not(.itopplus-sidebar-menu-parent):not(.dropdown-submenu):after {
+    content: "|";
+    display: grid;
+    place-content: center;
+    color: #444;
+  }
+
+  #itopplus-nav-bar > li {
+    display: -webkit-inline-box;
+  }
+
+  .navbar-header {
+    height: 80px;
+  }
+  .itopplus-sidebar-background,
+  .itopplus-sidebar-main {
+    top: 80px;
+  }
+
+  #controlMenu :is(a:not(.dropdown-menu a)),
+  .itopplus-search {
+    color: #fff;
+  }
+
+  #controlMenu :is(a:hover, a:focus, a:active, .open > a) {
+    border-color: transparent;
+  }
+
+  .itopplus-sticky #controlMenu :is(a),
+  .itopplus-search {
+    color: #444 !important;
+  }
+
+  .itopplus-sticky #controlMenu :is(a:hover, a:focus, a:active, .open > a) {
+    border-color: transparent !important;
+  }
+
+  /**/
+  .itopplus-layout {
+    display: grid;
+    grid-template-columns: 25% 75%;
+    gap: 20px;
+    overflow: hidden;
+  }
+
+  /*แก้อะไรสักอย่างมองภาพไม่ออก*/
+  .itopplus-logo {
+    position: relative;
+    height: clamp(90px, 6vw, 100px);
+    transition: 0.3s;
+  }
+
+  #controlBanner {
+    object-fit: contain;
+    padding: 15px;
+    width: clamp(160px, 60%, 20vw);
+    margin: 0 auto;
+    transition: 0.3s;
+  }
+
+  .itopplus-sticky .itopplus-logo {
+    height: 120px;
+  }
+
+  .itopplus-sticky #controlBanner {
+    width: 120px;
+  }
+</style>
+
+<style>
+  /*split with flex2*/
+  .itopplus-banner > .container {
+    display: grid;
+    align-items: center;
+  }
+
+  #itopplus-nav-bar {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding: 4% 0;
+  }
+
+  #itopplus-nav-bar::before,
+  #itopplus-nav-bar::after {
+    display: none;
+  }
+
+  #itopplus-nav-bar a {
+    width: fit-content;
+  }
+
+  #itopplus-nav-bar > li:nth-child(3) {
+    flex: 2;
+  }
+
+  #itopplus-nav-bar > li:nth-child(4) {
+    flex: 2;
+    display: grid;
+    justify-content: end;
+  }
+
+  #itopplus-nav-bar > li:nth-child(4) .dropdown-menu {
+    left: auto;
+    right: -4vw;
+  }
+
+  #controlBanner {
+    position: absolute;
+    object-fit: contain;
+    padding: 0;
+    width: clamp(120px, 11vw, 170px);
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    place-content: center;
+  }
+</style>
+
+<style>
+  .navbar-header,
+  .navbar-header .pull-right {
+    height: 70px;
+  }
+
+  #ItopplusMainSidebar,
+  #ItopplusBackgroundSidebar {
+    top: 70px;
+  }
+
+  .layoutUI .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: auto;
+    right: 100%;
+  }
+</style>
+
+<style>
+  @media screen and (max-width: 480px) {
+    .itopplus-slide > div,
+    .itopplus-slide .contentInlineMobile div {
+      padding: 0 !important;
+      display: grid;
+      min-height: 0 !important;
+    }
+
+    .Override > div,
+    .boderedlayoutClient > div {
+      padding: 0 !important;
+    }
+  }
+</style>

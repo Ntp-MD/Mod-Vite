@@ -1,0 +1,51 @@
+<body>
+  <div class="parent">
+    <div class="child">1</div>
+    <div class="child">2</div>
+    <div class="child">3</div>
+    <div class="child">4</div>
+    <div class="child">5</div>
+    <div class="child">6</div>
+    <div class="child">7</div>
+    <div class="child">8</div>
+    <div class="child">9</div>
+    <div class="child">10</div>
+    <div class="child">11</div>
+    <div class="child">12</div>
+  </div>
+  <style>
+    /*lasted 29/8/2024 */
+    .parent {
+      padding-top: 10%;
+      display: grid;
+      place-items: center;
+      place-content: center;
+      width: 600px;
+      aspect-ratio: 1;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .child {
+      --item-count: 12;
+      --item-angle: calc(360deg / var(--item-count));
+      --circle-radius: 450px;
+      width: 50px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      position: absolute;
+      display: grid;
+      place-items: center;
+      place-content: center;
+      transform-origin: center;
+      transform: rotate(calc(var(--item-angle) * (var(--item-index) - 1))) translateY(calc(-1 * var(--circle-radius)))
+        rotate(calc(-1 * var(--item-angle) * (var(--item-index) - 1)));
+    }
+  </style>
+
+  <script>
+    document.querySelectorAll(".parent .child").forEach((child, index) => {
+      child.style.setProperty("--item-index", index + 1); // 0.5 for pair
+    });
+  </script>
+</body>

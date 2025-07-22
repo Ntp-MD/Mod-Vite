@@ -1,0 +1,97 @@
+<section>
+  <canvas id="animation-box" style="width: 100%; height: 100%; overflow: hidden; border: 1px solid #ccc"></canvas>
+  <script>
+    $(document).ready(function () {
+      const canvas = document.getElementById("animation-box");
+      const preset = canvas.getContext("2d");
+
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      window.addEventListener("resize", resizeCanvas);
+      resizeCanvas();
+
+      const sizeValue = 40;
+      const speedValue = 3;
+      const rotationSpeed = 1;
+      let items = [];
+      const imageUrls = [
+        "https://itp1.itopfile.com/ImageServer/z_itp_030320242d8j/0/0/leafz-z826141168678.png",
+        "https://itp1.itopfile.com/ImageServer/z_itp_030320242d8j/0/0/bay-laurelz-z1395206471633.png",
+        "https://itp1.itopfile.com/ImageServer/z_itp_030320242d8j/0/0/dillz-z826701824404.png",
+        "https://itp1.itopfile.com/ImageServer/z_itp_030320242d8j/0/0/tarragonz-z601052623161.png",
+        "https://itp1.itopfile.com/ImageServer/z_itp_030320242d8j/0/0/mintz-z1136075388244.png",
+      ];
+      let images = [];
+
+      function loadImages() {
+        let loadedImagesCount = 0;
+        imageUrls.forEach((url, index) => {
+          const img = new Image();
+          img.src = url;
+          img.onload = () => {
+            loadedImagesCount++;
+            if (loadedImagesCount === imageUrls.length) {
+              draftItems();
+              animate();
+            }
+          };
+          images[index] = img;
+        });
+      }
+
+      function draftItems() {
+        items = [];
+        for (let i = 0; i < 50; i++) {
+          const randomImage = images[Math.floor(Math.random() * images.length)];
+          const scale = sizeValue / randomImage.width;
+          items.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            image: randomImage,
+            width: randomImage.width * scale,
+            height: randomImage.height * scale,
+            speed: Math.random() * speedValue + 1,
+            rotation: Math.random() * 360 + -360,
+            rotationSpeed: (Math.random() * 2 - 1) * rotationSpeed,
+          });
+        }
+      }
+
+      function moveIndex() {
+        preset.clearRect(0, 0, canvas.width, canvas.height);
+        items.forEach((item) => {
+          preset.save();
+          preset.translate(item.x, item.y);
+          preset.rotate((item.rotation * Math.PI) / 45); // Rotate the image
+          preset.drawImage(item.image, -item.width / 2, -item.height / 2, item.width, item.height);
+          preset.restore();
+        });
+        moveSet();
+      }
+
+      function moveSet() {
+        for (let i = 0; i < items.length; i++) {
+          const item = items[i];
+          item.y += item.speed;
+          item.rotation += item.rotationSpeed;
+          const moveDirection = 1 ? -0.5 : 1;
+          item.x += moveDirection * item.speed;
+          if (item.y > canvas.height) {
+            item.y = 0;
+            item.x = Math.random() * canvas.width;
+            item.rotation = Math.random() * 360;
+            item.rotationSpeed = (Math.random() * 2 - 1) * rotationSpeed; // New random rotation speed
+          }
+        }
+      }
+
+      function animate() {
+        moveIndex();
+        requestAnimationFrame(animate);
+      }
+      loadImages();
+    });
+  </script>
+</section>

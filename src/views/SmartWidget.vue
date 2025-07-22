@@ -1,6 +1,8 @@
 <template>
   <div class="labelName">Smart Widget Information</div>
+
   <div class="SmartWidgetForm">
+    <button class="clearButton" @click="clearStorage">Clear Storage</button>
     <div class="InputGroup">
       <div class="SmartWidgetInput">
         <label for="websiteName">Website Name</label>
@@ -42,24 +44,24 @@
 
     <div class="InputGroup">
       <div class="SmartWidgetInput">
-        <label for="">Information <button class="copyButton" @click="copyText(getInformationText())">Copy Info</button></label>
+        <label for="">Information </label>
         <div class="textBlock">
           <div>{{ form.websiteName }}</div>
           <div>{{ form.websiteEmail }}</div>
           <div>{{ form.websitePassword }}</div>
         </div>
+        <button class="copyButton" @click="copyText(getInformationText())">Copy Info</button>
       </div>
       <div class="SmartWidgetInput">
-        <label for="">Snippet Css <button class="copyButton" @click="copyText(cssSnippet)">Copy Css</button></label>
+        <label for="">Snippet Css </label>
         <div class="textBlock">
           <code>
             .unknown { position: fixed; bottom: 8% !important; } .unknown_prf .btn-main, .unknown_prf:hover .btn-main { margin-bottom: 0 !important; }
           </code>
         </div>
+        <button class="copyButton" @click="copyText(cssSnippet)">Copy Css</button>
       </div>
     </div>
-
-    <button class="clearButton" @click="clearStorage">Clear Storage</button>
   </div>
 </template>
 
@@ -165,7 +167,7 @@ function clearStorage() {
 }
 
 .clearButton {
-  margin: auto;
+  float: right;
 }
 
 @media screen and (max-width: 480px) {

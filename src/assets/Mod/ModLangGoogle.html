@@ -1,0 +1,222 @@
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<!--lasted 15/7/2025  -->
+<script>
+  if (AppName === "AppClient") {
+    document.querySelector(".itopplus-footer").insertAdjacentHTML(
+      "beforeend",
+      `
+<div id="langWidget" translate="no">
+  <div id="google_translate_element" style="display: none"></div>
+  <div class="langDefault">
+    <div class="langSelected">
+      <img class="langSelectedImg" src="http://itp1.itopfile.com/ImageServer/z_itp_24092023yxze/0/0/enz-z1250651373089.png" alt="English" />
+      <div class="langSelectedLabel">English</div>
+    </div>
+    <div class="langOption"></div>
+  </div>
+</div>
+
+`
+    );
+    const flags = {
+      th: {
+        img: "http://itp1.itopfile.com/ImageServer/z_itp_24092023yxze/0/0/thz-z1012711943253.png",
+        label: "Thai",
+      },
+      en: {
+        img: "http://itp1.itopfile.com/ImageServer/z_itp_24092023yxze/0/0/enz-z1250651373089.png",
+        label: "English",
+      },
+      "zh-CN": {
+        img: "http://itp1.itopfile.com/ImageServer/z_itp_24092023yxze/0/0/cnz-z1316616080120.png",
+        label: "Chinese",
+      },
+      ja: {
+        img: "http://itp1.itopfile.com/ImageServer/z_itp_24092023yxze/0/0/jaz-z637115789814.png",
+        label: "Japanese",
+      },
+      ko: {
+        img: "http://itp1.itopfile.com/ImageServer/z_itp_24092023yxze/0/0/koz-z565226216364.png",
+        label: "Korean",
+      },
+      hi: {
+        img: "http://itp1.itopfile.com/ImageServer/z_itp_24092023yxze/0/0/hiz-z288731134181.png",
+        label: "Hindi",
+      },
+      ar: {
+        img: "http://itp1.itopfile.com/ImageServer/z_itp_24092023yxze/0/0/arz-z283142310286.png",
+        label: "Arabic",
+      },
+      de: {
+        img: "http://itp1.itopfile.com/ImageServer/z_itp_24092023yxze/0/0/dez-z1031264779901.png",
+        label: "German",
+      },
+      it: {
+        img: "http://itp1.itopfile.com/ImageServer/z_itp_24092023yxze/0/0/itz-z1132891346760.png",
+        label: "Italian",
+      },
+      es: {
+        img: "https://itp1.itopfile.com/ImageServer/z_itp_24092023yxze/0/0/esz-z1302903314530.png",
+        label: "Spanish",
+      },
+      pt: {
+        img: "http://itp1.itopfile.com/ImageServer/z_itp_24092023yxze/0/0/ptz-z608490669754.png",
+        label: "Portuguese",
+      },
+      fr: {
+        img: "http://itp1.itopfile.com/ImageServer/z_itp_24092023yxze/0/0/frz-z1421022553509.png",
+        label: "French",
+      },
+      ru: {
+        img: "http://itp1.itopfile.com/ImageServer/z_itp_24092023yxze/0/0/ruz-z1715273191302.png",
+        label: "Russian",
+      },
+    };
+
+    const resetIcon = "https://itp1.itopfile.com/ImageServer/z_itp_24092023yxze/0/0/refreshz-z936732409505.png";
+
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({ pageLanguage: "en" }, "google_translate_element");
+    }
+
+    function updatelangSelected(lang) {
+      const langSelectedImg = document.querySelector(".langSelectedImg");
+      const langSelectedLabel = document.querySelector(".langSelectedLabel");
+      if (flags[lang]) {
+        langSelectedImg.src = flags[lang].img;
+        langSelectedImg.alt = flags[lang].label;
+        langSelectedLabel.textContent = flags[lang].label;
+      } else {
+        langSelectedImg.src = flags["en"].img;
+        langSelectedImg.alt = flags["en"].label;
+        langSelectedLabel.textContent = flags["en"].label;
+      }
+    }
+
+    const changeLanguage = (lang) => {
+      const dropdown = document.querySelector(".goog-te-combo");
+      if (!dropdown) return;
+      dropdown.value = lang;
+      dropdown.dispatchEvent(new Event("change"));
+
+      setTimeout(() => {
+        updatelangSelected(lang);
+      }, 0);
+    };
+
+    const resetLanguage = () => changeLanguage("en");
+
+    $(document).ready(() => {
+      $(document).on("click", (e) =>
+        $(e.target).closest("#langWidget").length ? $(".langDefault").toggleClass("open") : $(".langDefault").removeClass("open")
+      );
+
+      const dropdown = document.querySelector(".langOption");
+      if (!dropdown) return;
+
+      const langOptionsWrapper = document.createElement("div");
+      langOptionsWrapper.className = "langOptionsWrapper";
+
+      Object.entries(flags).forEach(([lang, { img, label }]) => {
+        const wrapper = document.createElement("div");
+        wrapper.className = "langFlag";
+        wrapper.dataset.lang = lang;
+
+        const image = document.createElement("img");
+        image.src = img;
+        image.alt = label;
+
+        const text = document.createElement("div");
+        text.textContent = label;
+
+        wrapper.appendChild(image);
+        wrapper.appendChild(text);
+
+        wrapper.addEventListener("click", () => changeLanguage(lang));
+        langOptionsWrapper.appendChild(wrapper);
+      });
+
+      const resetDiv = document.createElement("div");
+      resetDiv.className = "langFlag reset";
+      const resetImage = document.createElement("img");
+      resetImage.src = resetIcon;
+      resetImage.alt = "Reset Language";
+      const resetText = document.createElement("div");
+      resetText.textContent = "Reset";
+
+      resetDiv.appendChild(resetImage);
+      resetDiv.appendChild(resetText);
+      resetDiv.addEventListener("click", resetLanguage);
+
+      langOptionsWrapper.appendChild(resetDiv);
+      dropdown.appendChild(langOptionsWrapper);
+
+      // Initialize selected language display
+      updatelangSelected("en");
+    });
+  }
+</script>
+
+<style>
+  #language_member_bar {
+    display: none;
+  }
+
+  .skiptranslate iframe {
+    display: none !important;
+  }
+
+  .skiptranslate {
+    margin-top: -40px;
+  }
+
+  .no-js #langWidget {
+    position: fixed;
+    top: 5px;
+    right: 10px;
+    width: fit-content;
+    height: auto;
+    z-index: 10000;
+    color: #444;
+  }
+
+  #langWidget img {
+    width: 100%;
+    max-width: 25px;
+    aspect-ratio: 4 / 3;
+    object-fit: contain;
+  }
+
+  .langSelected {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .langOption {
+    position: relative;
+    top: 5px;
+    border-radius: 5px;
+    box-shadow: 0 0 3px 0 #ccc;
+    height: 0;
+    overflow: hidden;
+    background: #fff;
+  }
+
+  #langWidget:hover .langOption {
+    height: auto;
+  }
+
+  .langFlag {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    padding: 8px 15px;
+  }
+
+  .langFlag:hover {
+    background: #eee;
+  }
+</style>
