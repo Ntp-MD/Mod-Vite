@@ -140,9 +140,26 @@ window.onhashchange = function () {
   }, 200);
 };
 
-//remove text place in master page
 $(".itopplus-search-shopcart-name").each(function () {
   let text = $(this).text();
   let newText = text.replace("ชื่อสินค้า ", "");
   $(this).text(newText);
 });
+
+//remove text place in master page
+if (window.matchMedia("(min-width: 768px)").matches) {
+  ScrollReveal().reveal(".right1", {
+    duration: "3000",
+    distance: "500px",
+    origin: "right",
+  });
+  ScrollReveal().reveal(".left1", {
+    duration: "3000",
+    distance: "500px",
+    origin: "left",
+  });
+  ScrollReveal().reveal(".top1", {
+    duration: "3000",
+    distance: "500px",
+  });
+}

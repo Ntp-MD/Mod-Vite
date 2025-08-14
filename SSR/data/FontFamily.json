@@ -149,5 +149,15 @@
     "font_name": "Orbitron",
     "font_family": "font-family: 'Orbitron', sans-serif;",
     "font_url": "<link href=\"https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap\" rel=\"stylesheet\">"
+  },
+  {
+    "font_name": "Lato",
+    "font_family": "font-family: 'Lato', sans-serif;",
+    "font_url": "<link href=\"https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap\" rel=\"stylesheet\">"
+  },
+  {
+    "font_name": "Sriracha",
+    "font_family": "font-family: 'Sriracha', cursive;",
+    "font_url": "<link href=\"css2?family=Sriracha&display=swap\" rel=\"stylesheet\">"
   }
 ]

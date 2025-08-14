@@ -10,6 +10,7 @@
       <router-link class="nav-menu-link" to="/SlidePause">Slide Pause</router-link>
       <router-link class="nav-menu-link" to="/Map">World Map</router-link>
       <router-link class="nav-menu-link" to="/Table">Table </router-link>
+      <router-link class="nav-menu-link" to="/TestLang">Test Lang </router-link>
     </nav>
     <div class="bottom">
       <div id="bangkok-time">{{ bangkokTime }}</div>

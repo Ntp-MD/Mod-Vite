@@ -1,48 +1,86 @@
 <template>
-  <div id="modquee">
-    <div id="modquee-contain">
-      <div class="modquee-items">
-        <div>1</div>
+  <div class="modquee-parent">
+    <div class="modquee-prev nav-btn"><</div>
+    <div class="modquee-next nav-btn">></div>
+    <div class="modquee-border">
+      <div class="modquee-container">
+        <div class="_items">
+          <div class="_items-child">1</div>
+        </div>
+        <div class="_items">
+          <div class="_items-child">2</div>
+        </div>
+        <div class="_items">
+          <div class="_items-child">3</div>
+        </div>
+        <div class="_items">
+          <div class="_items-child">4</div>
+        </div>
+        <div class="_items">
+          <div class="_items-child">5</div>
+        </div>
+        <div class="_items">
+          <div class="_items-child">6</div>
+        </div>
+        <div class="_items">
+          <div class="_items-child">7</div>
+        </div>
+        <div class="_items">
+          <div class="_items-child">8</div>
+        </div>
+        <div class="_items">
+          <div class="_items-child">9</div>
+        </div>
+        <div class="_items">
+          <div class="_items-child">10</div>
+        </div>
       </div>
-      <div class="modquee-items">
-        <div>2</div>
-      </div>
-      <div class="modquee-items">
-        <div>3</div>
-      </div>
-      <div class="modquee-items">
-        <div>4</div>
-      </div>
-      <div class="modquee-items">
-        <div>5</div>
-      </div>
-      <div class="modquee-items">
-        <div>6</div>
-      </div>
-      <div class="modquee-items">
-        <div>7</div>
-      </div>
-      <div class="modquee-items">
-        <div>8</div>
-      </div>
-      <div class="modquee-items">
-        <div>9</div>
-      </div>
+      <div class="modquee-dots-contain"></div>
     </div>
   </div>
 </template>
 
 <style>
-#modquee {
+.modquee-parent {
+  display: grid;
+  place-items: center;
+  position: relative;
+  height: 500px;
+  width: 100%;
+}
+
+.modquee-border {
   overflow: hidden;
   position: relative;
   display: flex;
-  height: 500px;
-  width: 100%;
+  height: 100%;
+  width: 95%;
   margin: 0 auto;
 }
 
-#modquee-contain {
+.modquee-parent .nav-btn {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+  height: fit-content;
+  width: fit-content;
+  margin: auto;
+  background: #0ea66b;
+  padding: 15px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.modquee-prev {
+  left: 0;
+}
+
+.modquee-next {
+  right: 0;
+}
+
+.modquee-container {
   display: flex;
   position: absolute;
   inset: 0;
@@ -50,13 +88,12 @@
   user-select: none;
 }
 
-.modquee-items {
+._items {
   padding: 20px;
-
   margin: auto;
 }
 
-.modquee-items > div {
+._items > div {
   display: grid;
   place-items: center;
   height: 100%;
@@ -66,20 +103,44 @@
   background: #222;
   box-shadow: 0 4px 18px rgb(0, 0, 0, 0.1);
 }
+
+.modquee-dots-contain {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 10%;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  z-index: 2;
+}
+
+.modquee-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #fff;
+  cursor: pointer;
+}
+
+.modquee-dot.active {
+  background: #0ea66b;
+}
 </style>
 
 <script>
 // last update 21/7/2025 — merged TrickStepMode and LinearMode
 const observer = new MutationObserver(() => {
-  const container = document.querySelector("#modquee");
-  const box = document.querySelector("#modquee-contain");
-  if (!container || !box) return;
+  const container = document.querySelector(".modquee-border");
+  const box = document.querySelector(".modquee-container");
+  const dotsContainer = document.querySelector(".modquee-dots-contain");
+  if (!container || !box || !dotsContainer) return;
 
   const slideMode = "TrickStepMode"; // "TrickStepMode" or "LinearMode"
   const itemsToShow = 5;
   const itemsToSlide = 2;
   const waitDuration = 3000;
-  const slideDuration = 1; // seconds
+  const slideDuration = 0.8; // seconds
   const slideSpeed = 100; // px/sec for LinearMode
 
   const imgs = box.querySelectorAll("img");
@@ -107,7 +168,13 @@ const observer = new MutationObserver(() => {
 
   function trickStep() {
     const items = [...box.children];
-    items.forEach((el) => (el.style.flex = `0 0 calc(100% / ${itemsToShow})`));
+    // Calculate item width based on wrapper width and itemsToShow
+    const wrapperWidth = container.clientWidth;
+    const itemWidth = wrapperWidth / itemsToShow + "px";
+    items.forEach((el) => {
+      el.style.flex = `0 0 ${itemWidth}`;
+      el.style.maxWidth = itemWidth;
+    });
 
     let step = 0;
     if (items.length > itemsToSlide) {
@@ -117,28 +184,75 @@ const observer = new MutationObserver(() => {
     }
 
     let offset = 0;
+    let currentIndex = 0;
+    let timer = null;
+    const maxIndex = items.length / 2 - itemsToShow;
+
+    // --- Dot indicator setup ---
+    const dotCount = Math.ceil((items.length / 2 - itemsToShow) / itemsToSlide) + 1;
+    dotsContainer.innerHTML = "";
+    for (let i = 0; i < dotCount; i++) {
+      const dot = document.createElement("div");
+      dot.className = "modquee-dot";
+      dot.setAttribute("data-dot", i);
+      dot.onclick = () => {
+        goTo(i * itemsToSlide);
+        resetTimer();
+      };
+      dotsContainer.appendChild(dot);
+    }
+    function updateDots() {
+      const dots = dotsContainer.querySelectorAll(".modquee-dot");
+      dots.forEach((dot) => dot.classList.remove("active"));
+      const activeIdx = Math.round(currentIndex / itemsToSlide);
+      if (dots[activeIdx]) dots[activeIdx].classList.add("active");
+    }
+    // --- End dot indicator setup ---
+
     Object.assign(box.style, {
       position: "absolute",
       transition: `transform ${slideDuration}s ease-in-out`,
     });
     container.style.overflow = "hidden";
 
-    setInterval(() => {
-      offset += step;
-      if (offset >= box.scrollWidth / 4) {
-        offset = 0;
-        box.style.transition = "none";
-        box.style.transform = `translateX(0)`;
-        requestAnimationFrame(() => {
-          void box.offsetWidth;
-          box.style.transition = `transform ${slideDuration}s ease-in-out`;
-          box.style.transform = `translateX(-${step}px)`;
-          offset = step;
-        });
+    function goTo(index) {
+      currentIndex = index;
+      offset = step * currentIndex;
+      box.style.transition = `transform ${slideDuration}s ease-in-out`;
+      box.style.transform = `translateX(-${offset}px)`;
+      updateDots();
+    }
+
+    function next() {
+      if (currentIndex < maxIndex) {
+        goTo(currentIndex + itemsToSlide);
       } else {
-        box.style.transform = `translateX(-${offset}px)`;
+        goTo(0);
       }
-    }, waitDuration + slideDuration * 1000);
+      resetTimer();
+    }
+
+    function prev() {
+      if (currentIndex > 0) {
+        goTo(currentIndex - itemsToSlide);
+      } else {
+        goTo(maxIndex);
+      }
+      resetTimer();
+    }
+
+    function resetTimer() {
+      if (timer) clearInterval(timer);
+      timer = setInterval(() => {
+        next();
+      }, waitDuration + slideDuration * 1000);
+    }
+
+    document.querySelector(".modquee-next").onclick = next;
+    document.querySelector(".modquee-prev").onclick = prev;
+
+    goTo(0);
+    resetTimer();
   }
 
   function linearScroll(boxWidth) {
@@ -149,11 +263,11 @@ const observer = new MutationObserver(() => {
     const style = document.createElement("style");
     style.dataset.marquee = "true";
     style.textContent = `
-      @keyframes slideLeft {
+      @keyborders slideLeft {
         0% { transform: translateX(0); }
         100% { transform: translateX(-${boxWidth}px); }
       }
-      @keyframes slideLeftClone {
+      @keyborders slideLeftClone {
         0% { transform: translateX(${boxWidth}px); }
         100% { transform: translateX(0); }
       }`;
