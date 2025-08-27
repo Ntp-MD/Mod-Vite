@@ -6,11 +6,11 @@
       <router-link class="nav-menu-link" to="/OnlinePromotion">Online Promotion</router-link>
       <router-link class="nav-menu-link" to="/SmartWidget">Smart Widget</router-link>
       <router-link class="nav-menu-link" to="/DemoWebsite">Demo Website</router-link>
-      <router-link class="nav-menu-link" to="/FontDisplay">Font Family</router-link>
+      <router-link class="nav-menu-link" to="/">Font Family</router-link>
       <router-link class="nav-menu-link" to="/SlidePause">Slide Pause</router-link>
       <router-link class="nav-menu-link" to="/Map">World Map</router-link>
       <router-link class="nav-menu-link" to="/Table">Table </router-link>
-      <router-link class="nav-menu-link" to="/TestLang">Test Lang </router-link>
+      <router-link class="nav-menu-link" to="/Countdown">Countdown </router-link>
     </nav>
     <div class="bottom">
       <div id="bangkok-time">{{ bangkokTime }}</div>

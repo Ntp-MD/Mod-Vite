@@ -162,5 +162,3 @@ const scrollToBottom = () => {
 
   <Loading v-else></Loading>
 </template>
-
-<style></style>

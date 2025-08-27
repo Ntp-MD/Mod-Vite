@@ -123,12 +123,12 @@ $(document).ready(function () {
 /*************************************************************************/
 //option 1
 $(document).ready(function () {
-  $(".test").html("<span>-10%</span>");
+  $("##formdisplay68a6a60765082400135613a6 button").text("ส่งข้อมูล");
 });
 
 $(document).ready(function () {
   setTimeout(function () {
-    $(".form-subscribe button span").text("Subscribe");
+    $("##formdisplay68a6a60765082400135613a6 button").text("ส่งข้อมูล");
     $(".form-subscribe input").attr("placeholder", "Subscribe");
   }, 200); // 500ms delay, adjust as needed
 });
@@ -140,13 +140,13 @@ window.onhashchange = function () {
   }, 200);
 };
 
+//remove text place in master page
 $(".itopplus-search-shopcart-name").each(function () {
   let text = $(this).text();
   let newText = text.replace("ชื่อสินค้า ", "");
   $(this).text(newText);
 });
 
-//remove text place in master page
 if (window.matchMedia("(min-width: 768px)").matches) {
   ScrollReveal().reveal(".right1", {
     duration: "3000",
