@@ -71,15 +71,15 @@ function statusDetect(value) {
 
 <template>
   <div v-if="!loading">
-    <div class="Tablefilter">
-      <form id="SearchBox">
-        <input class="search-input" type="search" placeholder="Search demo" v-model="searchQuery" />
+    <div class="filter_box">
+      <form id="search_box">
+        <input class="search_input" type="search" placeholder="Search demo" v-model="searchQuery" />
       </form>
-      <button class="FilterRange" @click="filterRange(1, 199)">1–199</button>
-      <button class="FilterRange" @click="filterRange(200, 399)">200–399</button>
-      <button class="FilterRange" @click="filterRange(400, 599)">400–599</button>
-      <button class="FilterRange" @click="filterRange(600, 800)">600–800</button>
-      <button class="FilterRange" @click="clearFilter">All</button>
+      <button class="filter_range" @click="filterRange(1, 199)">1–199</button>
+      <button class="filter_range" @click="filterRange(200, 399)">200–399</button>
+      <button class="filter_range" @click="filterRange(400, 599)">400–599</button>
+      <button class="filter_range" @click="filterRange(600, 800)">600–800</button>
+      <button class="filter_range" @click="clearFilter">All</button>
     </div>
     <table class="TableViews">
       <thead>

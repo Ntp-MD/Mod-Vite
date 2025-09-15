@@ -158,6 +158,6 @@
   {
     "font_name": "Sriracha",
     "font_family": "font-family: 'Sriracha', cursive;",
-    "font_url": "<link href=\"css2?family=Sriracha&display=swap\" rel=\"stylesheet\">"
+    "font_url": "<link href=\"https://fonts.googleapis.com/css2?family=Sriracha&display=swap\" rel=\"stylesheet\">"
   }
 ]

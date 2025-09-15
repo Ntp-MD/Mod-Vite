@@ -1,11 +1,14 @@
 <template>
-  <div class="navHeader">
+  <div class="nav_header" ref="navheaderRef">
     <navAside ref="navMobileRef" :class="{ open: isOpen }"> </navAside>
     <ThemeSwitch></ThemeSwitch>
-    <div class="navToggle" ref="navToggleRef" @click="toggleMenu">
-      <div></div>
-      <div></div>
-      <div></div>
+    <div class="nav_backdrop" ref="navMobileRef" :class="{ open: isOpen }" @click="toggleMenu"></div>
+    <div class="nav_button" ref="nav_buttonRef" @click="toggleMenu">
+      <div class="nav_icon">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
     </div>
   </div>
 </template>
@@ -15,82 +18,82 @@ import { ref, onMounted, onBeforeUnmount } from "vue";
 
 const isOpen = ref(false);
 const navMobileRef = ref(null);
-const navToggleRef = ref(null);
+const nav_buttonRef = ref(null);
+const navheaderRef = ref(null);
 
 function toggleMenu() {
   isOpen.value = !isOpen.value;
 }
 
-function closeMenu() {
-  isOpen.value = false;
-}
-
 function handleClickOutside(event) {
-  if (
-    isOpen.value &&
-    navMobileRef.value &&
-    !navMobileRef.value.contains(event.target) &&
-    navToggleRef.value &&
-    !navToggleRef.value.contains(event.target)
-  ) {
-    closeMenu();
+  const navAsideEl = navMobileRef.value?.$el || navMobileRef.value;
+  const nav_headerEl = navheaderRef.value;
+  if (isOpen.value && navAsideEl && nav_headerEl && !navAsideEl.contains(event.target) && !nav_headerEl.contains(event.target)) {
+    isOpen.value = false;
   }
 }
 
 onMounted(() => {
-  document.addEventListener("mousedown", handleClickOutside);
+  document.addEventListener("click", handleClickOutside);
 });
 
 onBeforeUnmount(() => {
-  document.removeEventListener("mousedown", handleClickOutside);
+  document.removeEventListener("click", handleClickOutside);
 });
 </script>
 
 <style scoped>
-.navHeader {
+.nav_header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 20px;
   width: 100%;
-  min-height: 50px;
   position: relative;
+  background: var(--sub-color2);
+  border-bottom: 1px solid var(--border-color);
+  height: 50px;
 }
 
-.navToggle {
+.nav_backdrop {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background: #000;
+  display: none;
+  width: 100%;
+  height: 100vh;
+  z-index: -1;
+  opacity: 0.6;
+}
+
+.nav_backdrop.open {
+  display: block;
+}
+
+.nav_button {
   position: relative;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  place-items: center;
+  width: 50px;
+  height: 50px;
+}
+
+.nav_icon {
+  display: grid;
+  place-content: center;
   gap: 6px;
-  right: 15px;
 }
 
-.navToggle > div {
+.nav_icon div {
   width: 27px;
   height: 3px;
   background: var(--font-color);
 }
 
 @media screen and (min-width: 1201px) {
-  .navHeader > div {
+  .nav_header > div {
     display: none;
-  }
-}
-
-@media screen and (max-width: 1200px) {
-  .navAside {
-    position: fixed;
-    top: 50px;
-    height: calc(100% - 50px);
-    width: 100%;
-    padding-right: 30%;
-    transform: translateX(-100%);
-    transition: 0.5s;
-    background: linear-gradient(to right, var(--main-color) 0, var(--main-color) 70%, rgba(0, 0, 0, 0.7) 70%, rgba(0, 0, 0, 0.7) 100%);
-  }
-
-  .navAside.open {
-    transform: translateX(0%);
   }
 }
 </style>

@@ -3,13 +3,14 @@ import { createRouter, createWebHistory } from "vue-router";
 // Dynamically import all `.vue` files from the `views` folder
 const viewFiles = import.meta.glob("@/**/*.vue");
 
+const pageTarget = ["free", "namepage1", "namepage1"];
 // Dynamically create routes for each file
 const routes = Object.keys(viewFiles).map((path) => {
   const name = path.split("/").pop().replace(".vue", "");
-  const isToggleHide = path.includes("/smo-app/"); // Check if it's an smo-app route
+  const isToggleHide = pageTarget.includes(name.toLowerCase());
 
   return {
-    path: name.toLowerCase() === "fontdisplay" ? "/" : `/${name.toLowerCase()}` /*lowercase because sensitive url issue*/,
+    path: name.toLowerCase() === "dashboard" ? "/" : `/${name.toLowerCase()}` /*lowercase because sensitive url issue*/,
     name: name.toLowerCase(),
     component: viewFiles[path],
     meta: {

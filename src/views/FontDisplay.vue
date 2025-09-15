@@ -1,21 +1,21 @@
 <template>
   <div class="labelName">Font Family</div>
-  <div class="FontGroup">
-    <div class="FontFamily" v-for="font in fonts" :key="font.font_name">
-      <div class="FontName">{{ font.font_name }}</div>
-      <div class="FontInfo">
-        <div class="FontUrl">
+  <div class="font_bookmark grid_431">
+    <div class="font_family" v-for="font in fonts" :key="font.font_name">
+      <div class="font_name">{{ font.font_name }}</div>
+      <div class="font_info">
+        <div class="font_url">
           {{ font.font_url }}
         </div>
-        <div class="FontCopyButton" @click="copyToClipboard(font.font_url)">
+        <div class="font_copy" @click="copyToClipboard(font.font_url)">
           <img src="/src/assets/icon/link.png" alt="" />
         </div>
       </div>
-      <div class="FontInfo">
-        <div class="FontUrl">
+      <div class="font_info">
+        <div class="font_url">
           {{ font.font_family }}
         </div>
-        <div class="FontCopyButton" @click="copyToClipboard(font.font_family)">
+        <div class="font_copy" @click="copyToClipboard(font.font_family)">
           <img src="/src/assets/icon/copy.png" alt="" />
         </div>
       </div>
@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import fontData from "/SSR/data/FontFamily.json";
+import fontData from "/SSR/data/fontfamily.json";
 
 export default {
   methods: {
@@ -48,19 +48,15 @@ export default {
 </script>
 
 <style scoped>
-.FontGroup {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(clamp(150px, 30%, 20vw), 1fr));
-  gap: var(--gap);
-  margin: 0;
+.font_bookmark {
 }
 
-.FontName {
+.font_name {
   font-size: 100%;
   font-weight: 600;
 }
 
-.FontFamily {
+.font_family {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -71,7 +67,7 @@ export default {
   border: 1px solid var(--border-color);
 }
 
-.FontInfo {
+.font_info {
   display: grid;
   grid-template-columns: auto 35px;
   align-items: center;
@@ -81,7 +77,7 @@ export default {
   border: 1px solid var(--border-color);
 }
 
-.FontUrl {
+.font_url {
   display: grid;
   align-items: center;
   overflow: hidden;
@@ -92,7 +88,7 @@ export default {
   height: 35px;
 }
 
-.FontCopyButton {
+.font_copy {
   display: grid;
   place-items: center;
   width: 100%;
@@ -100,16 +96,9 @@ export default {
   cursor: pointer;
 }
 
-.FontCopyButton img {
+.font_copy img {
   object-fit: contain;
   width: 40%;
   filter: invert(1);
-}
-
-@media screen and (max-width: 480px) {
-  .FontGroup {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-  }
 }
 </style>

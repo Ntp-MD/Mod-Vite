@@ -4,7 +4,7 @@
       <Header></Header>
     </header>
     <main>
-      <aside>
+      <aside v-if="route.meta.HideThis">
         <NavAside></NavAside>
       </aside>
       <section>
