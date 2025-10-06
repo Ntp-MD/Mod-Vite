@@ -123,12 +123,12 @@ $(document).ready(function () {
 /*************************************************************************/
 //option 1
 $(document).ready(function () {
-  $("##formdisplay68a6a60765082400135613a6 button").text("ส่งข้อมูล");
+  $("#formdisplay68a6a60765082400135613a6 button").text("ส่งข้อมูล");
 });
 
 $(document).ready(function () {
   setTimeout(function () {
-    $("##formdisplay68a6a60765082400135613a6 button").text("ส่งข้อมูล");
+    $("#formdisplay68a6a60765082400135613a6 button").text("ส่งข้อมูล");
     $(".form-subscribe input").attr("placeholder", "Subscribe");
   }, 200); // 500ms delay, adjust as needed
 });

@@ -235,6 +235,7 @@ textarea {
 
 input,
 button {
+  height: fit-content;
   min-height: 40px;
   border-radius: var(--border-radius);
 }
@@ -244,6 +245,7 @@ button {
   place-items: center;
   width: fit-content;
   min-width: 110px;
+
   background: var(--btn-color);
   color: #ededed;
   margin: 0;
