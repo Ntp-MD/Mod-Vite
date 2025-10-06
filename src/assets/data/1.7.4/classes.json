@@ -1,0 +1,1732 @@
+{
+    "class_list": ["WARRIOR", "ROGUE", "MAGE", "WILDER", "CELESTIAL", "DEFILER", "AFFLICTED", "CHRONOMANCER", "PSIONIC", "ADVENTURER", "TINKER", "DEMENTED"],
+    "classes": {
+        "ADVENTURER": {
+            "desc": "<p>Adventurers can learn to do a bit of everything, getting training in whatever they happen to find.</p><p><span style=\"font-weight: bold\"><span class=\"tstr-font-bold\"><span style=\"color: #ffd700\"><span class=\"tstr-color-GOLD\">This is a bonus class for winning the game.  It is by no means balanced.</span></span><span style=\"color: #ffffff\"><span class=\"tstr-color-WHITE\"></span></span></span></span></p>",
+            "display_name": "Adventurer",
+            "name": "Adventurer",
+            "short_name": "ADVENTURER",
+            "subclass_list": ["ADVENTURER", "WANDERER"]
+        },
+        "AFFLICTED": {
+            "desc": "<p>Afflicted classes have been twisted by their association with evil forces.</p><p>They can use these forces to their advantage, but at a cost...</p>",
+            "display_name": "Afflicted",
+            "name": "Afflicted",
+            "short_name": "AFFLICTED",
+            "subclass_list": ["CURSED", "DOOMED"]
+        },
+        "CELESTIAL": {
+            "desc": "<p>Celestial classes are arcane users focused on the heavenly bodies.</p><p>Most draw their powers from the Sun and the Moons.</p>",
+            "display_name": "Celestial",
+            "name": "Celestial",
+            "short_name": "CELESTIAL",
+            "subclass_list": ["SUN_PALADIN", "ANORITHIL"]
+        },
+        "CHRONOMANCER": {
+            "desc": "<p>Exploiting a hole in the fabric of spacetime, Chronomancers learn to pull threads from other timelines into their own.</p><p>Pulling these threads creates tension and the harder they pull the more tension is produced.</p><p>Constantly they manage this tension, which they call Paradox, to avoid or control the anomalies they inevitably unleash on the world around them.</p>",
+            "display_name": "Chronomancer",
+            "name": "Chronomancer",
+            "short_name": "CHRONOMANCER",
+            "subclass_list": ["PARADOX_MAGE", "TEMPORAL_WARDEN"]
+        },
+        "DEFILER": {
+            "desc": "<p>Defilers are touched by the mark of evil. They are a blight on the world. Working to promote the cause of evil, they serve their masters, or themselves become masters.</p>",
+            "display_name": "Defiler",
+            "name": "Defiler",
+            "short_name": "DEFILER",
+            "subclass_list": ["REAVER", "CORRUPTOR", "DOOMBRINGER", "DEMONOLOGIST"]
+        },
+        "DEMENTED": {
+            "desc": "<p>The thirst for knowledge is seen by most arcane users as as good thing.</p><p>But some take it too far, some delve into lost knowledge. They may gain huge power from it, but at what cost?</p>",
+            "display_name": "Demented",
+            "name": "Demented",
+            "short_name": "DEMENTED",
+            "subclass_list": ["WRITHING_ONE", "CULTIST_OF_ENTROPY"]
+        },
+        "MAGE": {
+            "desc": "<p>Mages are the wielders of arcane powers, able to cast powerful spells of destruction or to heal their wounds with nothing but a thought.</p>",
+            "display_name": "Mage",
+            "name": "Mage",
+            "short_name": "MAGE",
+            "subclass_list": ["ALCHEMIST", "ARCHMAGE", "NECROMANCER"]
+        },
+        "PSIONIC": {
+            "desc": "<p>Psionics find their power within themselves. Their highly trained minds can harness energy from many different sources and manipulate it to produce physical effects.</p>",
+            "display_name": "Psionic",
+            "name": "Psionic",
+            "short_name": "PSIONIC",
+            "subclass_list": ["MINDSLAYER", "SOLIPSIST", "POSSESSOR"]
+        },
+        "ROGUE": {
+            "desc": "<p>Rogues are masters of tricks; they can strike from the shadows, and lure monsters into deadly traps.</p>",
+            "display_name": "Rogue",
+            "name": "Rogue",
+            "short_name": "ROGUE",
+            "subclass_list": ["ROGUE", "SHADOWBLADE", "MARAUDER", "SKIRMISHER"]
+        },
+        "TINKER": {
+            "desc": "<p>Tinkers use steamtech to power their attacks, defenses, ...</p>",
+            "display_name": "Tinker",
+            "locked_desc": "Build, experiment, discover. The path of inventions is never over!",
+            "name": "Tinker",
+            "short_name": "TINKER",
+            "subclass_list": ["SAWBUTCHER", "GUNSLINGER", "PSYSHOT", "ANNIHILATOR"]
+        },
+        "WARRIOR": {
+            "desc": "<p>Warriors train in all aspects of physical combat. They can be juggernauts of destruction wielding two-handed greatswords, or massive iron-clad protectors with gleaming shields.</p>",
+            "display_name": "Warrior",
+            "name": "Warrior",
+            "short_name": "WARRIOR",
+            "subclass_list": ["BERSERKER", "BULWARK", "ARCHER", "ARCANE_BLADE", "BRAWLER"]
+        },
+        "WILDER": {
+            "desc": "<p>Wilders are one with nature, in one manner or another. There are as many different Wilders as there are aspects of nature.</p><p>They can take on the aspects of creatures, summon creatures to them, feel the druidic call, ...</p>",
+            "display_name": "Wilder",
+            "name": "Wilder",
+            "short_name": "WILDER",
+            "subclass_list": ["SUMMONER", "WYRMIC", "OOZEMANCER", "STONE_WARDEN"]
+        }
+    },
+    "subclasses": {
+        "ADVENTURER": {
+            "copy_add": {
+                "unused_generics": 2,
+                "unused_talents": 3,
+                "unused_talents_types": 7
+            },
+            "desc": "<p>Adventurers can learn to do a bit of everything, getting training in whatever they happen to find.</p><p><span style=\"font-weight: bold\"><span class=\"tstr-font-bold\"><span style=\"color: #ffd700\"><span class=\"tstr-color-GOLD\">This is a bonus class for winning the game.  It is by no means balanced.</span></span><span style=\"color: #ffffff\"><span class=\"tstr-color-WHITE\"></span></span></span></span></p><p>Their most important stats depend on what they wish to do.</p>",
+            "display_name": "Adventurer",
+            "evolutions": [],
+            "images": [{
+                "file": "npc/hostile_humanoid_adventurers_party.png"
+            }],
+            "name": "Adventurer",
+            "short_name": "ADVENTURER",
+            "stats": {
+                "con": 2,
+                "cun": 2,
+                "dex": 2,
+                "mag": 2,
+                "str": 2,
+                "wil": 2
+            },
+            "talents_types_class": [],
+            "talents_types_generic": []
+        },
+        "ALCHEMIST": {
+            "copy_add": {
+                "life_rating": -1
+            },
+            "desc": "<p>An Alchemist is a manipulator of materials using magic.</p><p>They do not use the forbidden arcane arts practised by the mages of old - such perverters of nature have been shunned or actively hunted down since the Spellblaze.</p><p>Alchemists can transmute gems to bring forth elemental effects, turning them into balls of fire, torrents of acid, and other effects.  They can also reinforce armour with magical effects using gems, and channel arcane staffs to produce bolts of energy.</p><p>Though normally physically weak, most alchemists are accompanied by magical golems which they construct and use as bodyguards.  These golems are enslaved to their master's will, and can grow in power as their master advances through the arts.</p><p>Their most important stats are: Magic and Constitution</p>",
+            "display_name": "Alchemist",
+            "evolutions": [],
+            "images": [{
+                "file": "npc/humanoid_human_master_alchemist.png"
+            }, {
+                "file": "npc/alchemist_golem.png"
+            }],
+            "name": "Alchemist",
+            "short_name": "ALCHEMIST",
+            "stats": {
+                "con": 3,
+                "mag": 5,
+                "wil": 1
+            },
+            "talents": {
+                "T_CHANNEL_STAFF": 1,
+                "T_CREATE_ALCHEMIST_GEMS": 1,
+                "T_FIRE_INFUSION": 1,
+                "T_REFIT_GOLEM": 1,
+                "T_THROW_BOMB": 1
+            },
+            "talents_types_class": {
+                "spell/acid-alchemy": [true, 1.3, "spell / acid alchemy", false],
+                "spell/advanced-golemancy": [false, 1.3, "spell / advanced-golemancy", false],
+                "spell/energy-alchemy": [false, 1.3, "spell / energy alchemy", false],
+                "spell/explosives": [true, 1.3, "spell / explosive admixtures", false],
+                "spell/fire-alchemy": [true, 1.3, "spell / fire alchemy", false],
+                "spell/frost-alchemy": [true, 1.3, "spell / frost alchemy", false],
+                "spell/golemancy": [true, 1.3, "spell / golemancy", false]
+            },
+            "talents_types_generic": {
+                "cunning/survival": [false, 1, "cunning / survival", false],
+                "spell/staff-combat": [true, 1.3, "spell / staff combat", false],
+                "spell/stone-alchemy": [true, 1.3, "spell / stone alchemy", false]
+            }
+        },
+        "ANNIHILATOR": {
+            "copy_add": {
+                "life_rating": -1
+            },
+            "desc": "<p>The Annihilator is a master of destruction, wielding the most devastating steamtech inventions to lay waste to their foes.</p><p>While normally wielding a steamgun loaded with experimental ammunition and an electrically charged shield, they can equip heavy weapons such as flamethrowers.</p><p>More adept at technology than most other tinkers, they supplement their weapons with automated turrets, mechanical minions and other such devices.</p><p>Their most important stats are: Cunning and Dexterity</p>",
+            "display_name": "Annihilator",
+            "evolutions": [],
+            "images": [],
+            "locked_desc": "Research. Tinker. Annihilate.",
+            "name": "Annihilator",
+            "short_name": "ANNIHILATOR",
+            "stats": {
+                "con": 0,
+                "cun": 5,
+                "dex": 4
+            },
+            "talents": {
+                "T_ARMOUR_TRAINING": 2,
+                "T_AUTOLOADER": 1,
+                "T_DEPLOY_TURRET": 1,
+                "T_HEAVY_WEAPONS": 1,
+                "T_SHOOT": 1,
+                "T_SMITH": 1,
+                "T_THERAPEUTICS": 1
+            },
+            "talents_types_class": {
+                "steamtech/artillery": [false, 1.3, "steamtech / artillery", false],
+                "steamtech/chemical-warfare": [false, 1.3, "steamtech / chemical warfare", false],
+                "steamtech/demolition": [true, 1.3, "steamtech / demolition", false],
+                "steamtech/gadgets": [true, 1.3, "steamtech / gadgets", false],
+                "steamtech/heavy-weapons": [true, 1.3, "steamtech / heavy weapons", false],
+                "steamtech/magnetism": [true, 1.3, "steamtech / magnetism", false],
+                "steamtech/mecharachnid": [false, 1.3, "steamtech / mecharachnid", false],
+                "steamtech/turrets": [true, 1.3, "steamtech / turrets", false]
+            },
+            "talents_types_generic": {
+                "cunning/survival": [false, 0.9, "cunning / survival", false],
+                "steamtech/blacksmith": [false, 1.1, "steamtech / blacksmith", false],
+                "steamtech/chemistry": [true, 1.2, "steamtech / chemistry", false],
+                "steamtech/engineering": [true, 1.2, "steamtech / engineering", false],
+                "steamtech/physics": [true, 1.2, "steamtech / physics", false],
+                "technique/combat-training": [true, 1.3, "technique / combat training", false]
+            }
+        },
+        "ANORITHIL": {
+            "desc": "<p>Anorithils hail from the Gates of Morning, the last bastion of the free people in the Far East.</p><p>Their way of life is well represented by their motto 'We stand betwixt the Sun and Moon, where light and darkness meet. In the grey twilight we seek our destiny.'</p><p>They can channel the power of the Sun and the Moons to burn and tear apart all who seek to destroy the Sunwall.</p><p>Masters of Sun and Moon magic, they usually burn their foes with Sun rays before calling the fury of the stars.</p><p>Their most important stats are: Magic and Cunning</p>",
+            "display_name": "Anorithil",
+            "evolutions": [],
+            "images": [{
+                "file": "npc/patrol_sunwall_anorithil_patrol.png"
+            }],
+            "name": "Anorithil",
+            "short_name": "ANORITHIL",
+            "stats": {
+                "cun": 3,
+                "mag": 6
+            },
+            "talents": {
+                "T_HYMN_ACOLYTE": 1,
+                "T_MOONLIGHT_RAY": 1,
+                "T_SEARING_LIGHT": 1,
+                "T_TWILIGHT": 1
+            },
+            "talents_types_class": {
+                "celestial/circles": [false, 1.3, "celestial / circles", false],
+                "celestial/eclipse": [true, 1.3, "celestial / eclipse", false],
+                "celestial/glyphs": [false, 1.3, "celestial / glyphs", false],
+                "celestial/star-fury": [true, 1.3, "celestial / star fury", false],
+                "celestial/sunlight": [true, 1.3, "celestial / sunlight", false],
+                "celestial/twilight": [true, 1.3, "celestial / twilight", false]
+            },
+            "talents_types_generic": {
+                "celestial/chants": [true, 1.3, "celestial / chants", false],
+                "celestial/hymns": [true, 1.3, "celestial / hymns", false],
+                "celestial/light": [true, 1.3, "celestial / light", false],
+                "cunning/survival": [false, 1, "cunning / survival", false]
+            }
+        },
+        "ARCANE_BLADE": {
+            "copy_add": {
+                "life_rating": 2
+            },
+            "desc": "<p>The Arcane Blade is a warrior who has been touched by the gift of magic.</p><p>Their use of magic is innate and not really studied; as such they do not naturally regenerate mana and must use external means of recharging.</p><p>They can cast spells from a limited selection but have the unique capacity to 'channel' their attack spells through their melee attacks.</p><p>They are adept with two-handed weapons, for the sheer destruction they can bring.</p><p>Their most important stats are: Strength, Cunning and Magic</p>",
+            "display_name": "Arcane Blade",
+            "evolutions": [],
+            "images": [{
+                "file": "npc/humanoid_human_arcane_blade.png"
+            }],
+            "name": "Arcane Blade",
+            "short_name": "ARCANE_BLADE",
+            "stats": {
+                "cun": 3,
+                "mag": 3,
+                "str": 3
+            },
+            "talents": {
+                "T_ARCANE_COMBAT": 1,
+                "T_DIRTY_FIGHTING": 1,
+                "T_FLAME": 1,
+                "T_WEAPONS_MASTERY": 1,
+                "T_WEAPON_COMBAT": 1
+            },
+            "talents_types_class": {
+                "cunning/dirty": [true, 1.3, "cunning / dirty fighting", false],
+                "spell/air": [true, 1.3, "spell / air", false],
+                "spell/earth": [true, 1.3, "spell / earth", false],
+                "spell/enhancement": [true, 1.3, "spell / enhancement", false],
+                "spell/fire": [true, 1.3, "spell / fire", false],
+                "spell/stone": [false, 1.3, "spell / stone", false],
+                "technique/2hweapon-assault": [false, 1, "technique / two-handed assault", false],
+                "technique/combat-techniques-active": [true, 1, "technique / combat techniques", false],
+                "technique/combat-techniques-passive": [false, 1, "technique / combat veteran", false],
+                "technique/dualweapon-attack": [false, 1, "technique / dual techniques", false],
+                "technique/magical-combat": [true, 1.3, "technique / magical combat", false],
+                "technique/shield-offense": [false, 1, "technique / shield offense", false],
+                "technique/superiority": [false, 1.3, "technique / superiority", false]
+            },
+            "talents_types_generic": {
+                "cunning/survival": [true, 1, "cunning / survival", false],
+                "spell/aegis": [true, 1, "spell / aegis", false],
+                "spell/conveyance": [true, 1, "spell / conveyance", false],
+                "technique/combat-training": [true, 1, "technique / combat training", false]
+            }
+        },
+        "ARCHER": {
+            "desc": "<p>Archers are dexterous ranged fighters, able to pin their foes to the ground and rain down a carpet of arrows on them.</p><p>Skilled archers can fire special shots that pierce, cripple or pin their foes.</p><p>Archers can become good with either longbows or slings.</p><p>Their most important stats are: Dexterity and Strength (when using bows) or Cunning (when using slings)</p>",
+            "display_name": "Archer",
+            "evolutions": [],
+            "images": [{
+                "file": "npc/humanoid_thalore_thalore_hunter.png"
+            }, {
+                "file": "npc/humanoid_halfling_halfling_slinger.png"
+            }],
+            "name": "Archer",
+            "short_name": "ARCHER",
+            "stats": {
+                "cun": 2,
+                "dex": 5,
+                "str": 2
+            },
+            "talents": {
+                "T_DISENGAGE": 1,
+                "T_HEADSHOT": 1,
+                "T_MASTER_MARKSMAN": 1,
+                "T_STEADY_SHOT": 1,
+                "T_WEAPON_COMBAT": 1
+            },
+            "talents_types_class": {
+                "cunning/poisons": [false, 1, "cunning / poisons", true],
+                "cunning/trapping": [false, 1.3, "cunning / trapping", false],
+                "technique/agility": [false, 1.3, "technique / agility", false],
+                "technique/archery-training": [true, 1.3, "technique / archery training", false],
+                "technique/archery-utility": [true, 1.3, "technique / archery prowess", false],
+                "technique/combat-techniques-active": [true, 1, "technique / combat techniques", false],
+                "technique/combat-techniques-passive": [true, 1, "technique / combat veteran", false],
+                "technique/marksmanship": [true, 1.3, "technique / marksmanship", false],
+                "technique/reflexes": [true, 1.3, "technique / reflexes", false],
+                "technique/sniper": [false, 1.3, "technique / sniper", false]
+            },
+            "talents_types_generic": {
+                "cunning/survival": [true, 1, "cunning / survival", false],
+                "technique/combat-training": [true, 1.3, "technique / combat training", false],
+                "technique/conditioning": [false, 1, "technique / conditioning", false],
+                "technique/mobility": [true, 1, "technique / mobility", false]
+            }
+        },
+        "ARCHMAGE": {
+            "copy_add": {
+                "life_rating": -4
+            },
+            "desc": "<p>An Archmage devotes his whole life to the study of magic above anything else.</p><p>Most Archmagi lack basic skills that others take for granted (like general fighting sense), but they make up for it by their raw magical power.</p><p>Archmagi start with knowledge of many schools of magic. However, they usually refuse to have anything to do with Necromancy.</p><p>Most Archmagi have been trained in the secret town of Angolwen and possess a unique spell to teleport to it directly.</p><p>Their most important stats are: Magic and Willpower</p>",
+            "display_name": "Archmage",
+            "evolutions": [{
+                "class_talents": {
+                    "spell/galvanic-technomancy": [false, 1.3, "spell / galvanic technomancy", false],
+                    "spell/occult-technomancy": [false, 1.3, "spell / occult technomancy", false],
+                    "spell/terrene-technomancy": [false, 1.3, "spell / terrene technomancy", false]
+                },
+                "desc": "<p>Technomancers are Archmages that dabble in steam technology to enhance their already formidable arsenal of spells.</p><p>Once this class evolution is taken, you gain the following:</p><p>- Arcane Dynamo tinker schematic</p><p>- Steamtech/Physics category (unlocked)</p><p>- Steamtech/Chemistry category (locked)</p><p>- An Automated Portable Extractor (A.P.E.)</p><p>- One point in the Physics talent Smith and two in Mechanical and Electricity</p><p>- Spell/Galvanic Technomancy category (locked) - deals with fire and lightning</p><p>- Spell/Terrene Technomancy category (locked) - deals with earth and water</p><p>- Spell/Occult Technomancy category (locked) - deals with time and arcane</p><p>- The ability to unlock one of the three Technomancy categories for free</p><p></p><p>Once put in a robe, the Arcane Dynamo will regenerate Steam each time mana is spent and increase Spellpower based on current steam level.</p><p></p><p><span style=\"font-weight: bold\"><span class=\"tstr-font-bold\">As soon as this evolution is used you will need to craft the Arcane Dynamo to place in a robe to benefit from all the powers of the Technomancer.</span></span></p>",
+                "generic_talents": {
+                    "steamtech/chemistry": [false, 1, "steamtech / chemistry", false],
+                    "steamtech/physics": [true, 1, "steamtech / physics", false]
+                },
+                "name": "<p><span style=\"color: #b0c4de\"><span class=\"tstr-color-LIGHT_STEEL_BLUE\">Technomancer (Class Evolution)</span></span></p>",
+                "removes": []
+            }, {
+                "class_talents": {
+                    "spell/thaumaturgy": [true, 1.3, "spell / thaumaturgy", false]
+                },
+                "desc": "<p>Thaumaturgists have unlocked a deeper understanding of their spells, allowing them to combine the elements into new ways and to empower them.</p><p>The spells Flame, Manathrust, Lightning, Pulverizing Auger and Ice Shards are permanently turned into 3-wide beams spells.</p><p>In addition they have access to the unique Thaumaturgy class tree:</p><p>- Orb of Thaumaturgy: a temporary orb that duplicates any beam spells that you cast</p><p>- Multicaster: When casting a beam spell adds a chance to also cast an other archmage spell</p><p>- Slipstream: Allows movement when casting beams</p><p>- Elemental Array Burst: a powerful, multi-elemental beam spell that can inflict all elemental ailments and can not be resisted</p><p><span style=\"color: #dc143c\"><span class=\"tstr-color-CRIMSON\">The fine spellcasting required for wide beams and all thaumaturgy spells can only happen while wearing cloth. Anything heavier will hinder the casting too much.</span></span></p>",
+                "generic_talents": [],
+                "name": "<p><span style=\"color: #b0c4de\"><span class=\"tstr-color-LIGHT_STEEL_BLUE\">High Thaumaturgist (Class Evolution)</span></span></p>",
+                "removes": []
+            }],
+            "images": [{
+                "file": "npc/humanoid_shalore_elven_tempest-resized.png",
+                "height": 80,
+                "width": 64
+            }, {
+                "file": "npc/humanoid_human_pyromancer-cropped.png",
+                "height": 80,
+                "width": 64
+            }],
+            "name": "Archmage",
+            "short_name": "ARCHMAGE",
+            "stats": {
+                "cun": 1,
+                "mag": 5,
+                "wil": 3
+            },
+            "talents": {
+                "T_FLAME": 1,
+                "T_LIGHTNING": 1,
+                "T_MANATHRUST": 1,
+                "T_PHASE_DOOR": 1
+            },
+            "talents_types_class": {
+                "spell/aether": [false, 1.3, "spell / aether", false],
+                "spell/air": [true, 1.3, "spell / air", false],
+                "spell/arcane": [true, 1.3, "spell / arcane", false],
+                "spell/earth": [true, 1.3, "spell / earth", false],
+                "spell/fire": [true, 1.3, "spell / fire", false],
+                "spell/ice": [false, 1.3, "spell / ice", false],
+                "spell/meta": [false, 1.3, "spell / meta", false],
+                "spell/phantasm": [true, 1.3, "spell / phantasm", false],
+                "spell/stone": [false, 1.3, "spell / stone", false],
+                "spell/storm": [false, 1.3, "spell / storm", false],
+                "spell/temporal": [true, 1.3, "spell / temporal", false],
+                "spell/water": [true, 1.3, "spell / water", false],
+                "spell/wildfire": [false, 1.3, "spell / wildfire", false]
+            },
+            "talents_types_generic": {
+                "cunning/survival": [false, 1, "cunning / survival", false],
+                "spell/aegis": [true, 1.3, "spell / aegis", false],
+                "spell/conveyance": [true, 1.3, "spell / conveyance", false],
+                "spell/divination": [true, 1.3, "spell / divination", false]
+            }
+        },
+        "BERSERKER": {
+            "copy_add": {
+                "life_rating": 3
+            },
+            "desc": "<p>A Berserker wields huge two-handed weapons of destruction, bringing pain and death to his foes as he cleaves them in two.</p><p>A Berserker usually forfeits all ideas of self-defense to concentrate on what he does best: killing things.</p><p>Their most important stats are: Strength and Constitution</p>",
+            "display_name": "Berserker",
+            "evolutions": [],
+            "images": [{
+                "file": "npc/humanoid_dwarf_norgan.png"
+            }],
+            "name": "Berserker",
+            "short_name": "BERSERKER",
+            "stats": {
+                "con": 3,
+                "dex": 1,
+                "str": 5
+            },
+            "talents": {
+                "T_ARMOUR_TRAINING": 1,
+                "T_STUNNING_BLOW_ASSAULT": 1,
+                "T_WARSHOUT_BERSERKER": 1,
+                "T_WEAPONS_MASTERY": 1,
+                "T_WEAPON_COMBAT": 1
+            },
+            "talents_types_class": {
+                "cunning/dirty": [false, 1, "cunning / dirty fighting", false],
+                "technique/2hweapon-assault": [true, 1.3, "technique / two-handed assault", false],
+                "technique/bloodthirst": [false, 1.3, "technique / bloodthirst", false],
+                "technique/combat-techniques-active": [true, 1.3, "technique / combat techniques", false],
+                "technique/combat-techniques-passive": [true, 1.3, "technique / combat veteran", false],
+                "technique/strength-of-the-berserker": [true, 1.3, "technique / berserker's strength", false],
+                "technique/superiority": [false, 1.3, "technique / superiority", false],
+                "technique/warcries": [false, 1.3, "technique / warcries", false]
+            },
+            "talents_types_generic": {
+                "cunning/survival": [true, 1, "cunning / survival", false],
+                "technique/combat-training": [true, 1.3, "technique / combat training", false],
+                "technique/conditioning": [true, 1.3, "technique / conditioning", false]
+            }
+        },
+        "BRAWLER": {
+            "copy_add": {
+                "life_rating": 2
+            },
+            "desc": "<p>The ravages of the Spellblaze stretched armies thin and left many unprotected. Not everyone could afford the luxury of a weapon.</p><p>Without steel or iron, poor communities of all races turned to the strength of their own bodies for defense against the darkness.</p><p>Whether a pit-fighter, a boxer, or just an amateur practitioner, the Brawler's skills are still handy today.</p><p>Many of the Brawler's abilities will earn combo points which they can use on finishing moves that will have added effect.</p><p>The unarmed fighting styles the Brawler uses rely on maneuverability and having both hands available. As such, they cannot make use of their training wearing massive armour or while a weapon or shield is equipped.</p><p>Their most important stats are: Strength, Dexterity, and Cunning</p>",
+            "display_name": "Brawler",
+            "evolutions": [],
+            "images": [{
+                "file": "npc/humanoid_human_slave_combatant.png"
+            }],
+            "locked_desc": "Though you may fight alone against many, destined to fight till you die, still you do not relent. In a ring of blood you learn that a pair of fists can face the world.",
+            "name": "Brawler",
+            "short_name": "BRAWLER",
+            "stats": {
+                "cun": 3,
+                "dex": 3,
+                "str": 3
+            },
+            "talents": {
+                "T_ARMOUR_TRAINING": 1,
+                "T_DOUBLE_STRIKE": 1,
+                "T_UNARMED_MASTERY": 1,
+                "T_UPPERCUT": 1,
+                "T_WEAPON_COMBAT": 1
+            },
+            "talents_types_class": {
+                "cunning/dirty": [false, 1, "cunning / dirty fighting", false],
+                "cunning/tactical": [true, 1.3, "cunning / tactical", false],
+                "technique/combat-techniques-active": [true, 1.3, "technique / combat techniques", false],
+                "technique/combat-techniques-passive": [true, 1, "technique / combat veteran", false],
+                "technique/finishing-moves": [true, 1.3, "technique / finishing moves", false],
+                "technique/grappling": [false, 1.3, "technique / grappling", false],
+                "technique/pugilism": [true, 1.3, "technique / pugilism", false],
+                "technique/unarmed-discipline": [false, 1.3, "technique / unarmed discipline", false]
+            },
+            "talents_types_generic": {
+                "cunning/survival": [true, 1, "cunning / survival", false],
+                "technique/combat-training": [true, 1, "technique / combat training", false],
+                "technique/conditioning": [true, 1.3, "technique / conditioning", false],
+                "technique/mobility": [true, 1.3, "technique / mobility", false],
+                "technique/unarmed-training": [true, 1.3, "technique / unarmed training", false]
+            }
+        },
+        "BULWARK": {
+            "copy_add": {
+                "life_rating": 6
+            },
+            "desc": "<p>A Bulwark specializes in weapon and shield combat, rarely leaving the cover of her many protective techniques.</p><p>A good Bulwark is able to withstand terrible attacks from all sides, protected by her shield, and when the time comes lash out at her foes with incredible strength.</p><p>Their most important stats are: Strength and Dexterity</p>",
+            "display_name": "Bulwark",
+            "evolutions": [],
+            "images": [{
+                "file": "npc/humanoid_human_last_hope_guard.png"
+            }],
+            "name": "Bulwark",
+            "short_name": "BULWARK",
+            "stats": {
+                "con": 2,
+                "dex": 2,
+                "str": 5
+            },
+            "talents": {
+                "T_ARMOUR_TRAINING": 2,
+                "T_SHIELD_PUMMEL": 1,
+                "T_SHIELD_WALL": 1,
+                "T_WEAPONS_MASTERY": 1,
+                "T_WEAPON_COMBAT": 1
+            },
+            "talents_types_class": {
+                "cunning/dirty": [false, 1, "cunning / dirty fighting", false],
+                "technique/battle-tactics": [false, 1.3, "technique / battle tactics", false],
+                "technique/combat-techniques-active": [true, 1.3, "technique / combat techniques", false],
+                "technique/combat-techniques-passive": [true, 1.3, "technique / combat veteran", false],
+                "technique/shield-defense": [true, 1.3, "technique / shield defense", false],
+                "technique/shield-offense": [true, 1.3, "technique / shield offense", false],
+                "technique/superiority": [false, 1.3, "technique / superiority", false],
+                "technique/warcries": [false, 1.3, "technique / warcries", false]
+            },
+            "talents_types_generic": {
+                "cunning/survival": [true, 1, "cunning / survival", false],
+                "technique/combat-training": [true, 1.3, "technique / combat training", false],
+                "technique/conditioning": [true, 1.3, "technique / conditioning", false]
+            }
+        },
+        "CORRUPTOR": {
+            "desc": "<p>A corruptor is a terrible foe, wielding dark magics that can sap the very soul of her target.</p><p>They can harness the blight of evil, crushing souls, stealing life force to replenish themselves.</p><p>The most powerful corruptors can even take on some demonic aspects for themselves.</p><p>Their most important stats are: Magic and Willpower</p>",
+            "display_name": "Corruptor",
+            "evolutions": [],
+            "images": [{
+                "file": "npc/humanoid_shalore_elven_corruptor.png"
+            }, {
+                "file": "npc/humanoid_shalore_elven_blood_mage.png"
+            }],
+            "name": "Corruptor",
+            "short_name": "CORRUPTOR",
+            "stats": {
+                "con": 2,
+                "mag": 4,
+                "wil": 3
+            },
+            "talents": {
+                "T_BLOOD_SPRAY": 1,
+                "T_DRAIN": 1,
+                "T_PACIFICATION_HEX": 1,
+                "T_SOUL_ROT": 1
+            },
+            "talents_types_class": {
+                "corruption/blight": [true, 1.3, "corruption / blight", false],
+                "corruption/blood": [true, 1.3, "corruption / blood", false],
+                "corruption/bone": [false, 1.3, "corruption / bone", false],
+                "corruption/plague": [true, 1.3, "corruption / plague", false],
+                "corruption/sanguisuge": [true, 1.3, "corruption / sanguisuge", false],
+                "corruption/shadowflame": [false, 1.3, "corruption / Shadowflame", false],
+                "corruption/vim": [true, 1.3, "corruption / vim", false]
+            },
+            "talents_types_generic": {
+                "corruption/curses": [true, 1.3, "corruption / curses", false],
+                "corruption/hexes": [true, 1.3, "corruption / hexes", false],
+                "corruption/torment": [true, 1.3, "corruption / torment", false],
+                "cunning/survival": [false, 1, "cunning / survival", false]
+            }
+        },
+        "CULTIST_OF_ENTROPY": {
+            "copy_add": {
+                "life_rating": -4
+            },
+            "desc": "<p>Cultists of Entropy are doomed beings which have unlocked the secrets of using entropy as a weapon. Their spells cause their bodies to wither away from entropic backlash, but they have learned how to resist this backlash and even pass it onto their foes.</p><p>Their most important stats are: Magic and Cunning</p>",
+            "display_name": "Cultist of Entropy",
+            "evolutions": [],
+            "images": [],
+            "locked_desc": "Everything ends eventually. Harness this inevitability.",
+            "name": "Cultist of Entropy",
+            "short_name": "CULTIST_OF_ENTROPY",
+            "stats": {
+                "cun": 3,
+                "mag": 6
+            },
+            "talents": {
+                "T_CHAOS_ORBS": 1,
+                "T_ENTROPIC_GIFT": 1,
+                "T_NETHERBLAST": 1,
+                "T_VOID_STARS": 1
+            },
+            "talents_types_class": {
+                "demented/chronophage": [false, 1.3, "demented / chronophage", false],
+                "demented/entropy": [true, 1.3, "demented / entropy", false],
+                "demented/madness": [true, 1.3, "demented / madness", false],
+                "demented/nether": [true, 1.3, "demented / nether", false],
+                "demented/oblivion": [false, 1.3, "demented / oblivion", false],
+                "demented/rift": [false, 1.3, "demented / rift", false],
+                "demented/timethief": [true, 1.3, "demented / timethief", false],
+                "demented/void": [true, 1.3, "demented / void", false]
+            },
+            "talents_types_generic": {
+                "cunning/survival": [false, 1, "cunning / survival", false],
+                "demented/beyond-sanity": [true, 1.3, "demented / beyond sanity", false],
+                "demented/calamity": [true, 1.3, "demented / calamity", false],
+                "demented/doom": [true, 1.3, "demented / doom", false],
+                "technique/combat-training": [true, 1, "technique / combat training", false]
+            }
+        },
+        "CURSED": {
+            "copy_add": {
+                "life_rating": 2
+            },
+            "desc": "<p>Through ignorance, greed or folly the Cursed served some dark design and are now doomed to pay for their sins.</p><p>Their only master now is the hatred they carry for every living thing.</p><p>Drawing strength from the death of all they encounter, the Cursed become terrifying combatants.</p><p>Worse, any who approach the Cursed can be driven mad by their terrible aura.</p><p>Their most important stats are: Strength and Willpower</p>",
+            "display_name": "Cursed",
+            "evolutions": [],
+            "images": [{
+                "file": "npc/humanoid_human_ben_cruthdar__the_cursed.png"
+            }],
+            "name": "Cursed",
+            "short_name": "CURSED",
+            "stats": {
+                "str": 5,
+                "wil": 4
+            },
+            "talents": {
+                "T_ARMOUR_TRAINING": 1,
+                "T_GLOOM": 1,
+                "T_SLASH": 1,
+                "T_UNNATURAL_BODY": 1,
+                "T_WEAPONS_MASTERY": 1,
+                "T_WEAPON_COMBAT": 1
+            },
+            "talents_types_class": {
+                "cursed/endless-hunt": [true, 1.3, "cursed / endless hunt", false],
+                "cursed/fears": [false, 1, "cursed / fears", false],
+                "cursed/gloom": [true, 1.3, "cursed / gloom", false],
+                "cursed/predator": [true, 1.3, "cursed / predator", false],
+                "cursed/rampage": [false, 1.3, "cursed / rampage", false],
+                "cursed/slaughter": [true, 1.3, "cursed / slaughter", false],
+                "cursed/strife": [true, 1.3, "cursed / strife", false]
+            },
+            "talents_types_generic": {
+                "cunning/survival": [false, 1, "cunning / survival", false],
+                "cursed/cursed-form": [true, 1, "cursed / cursed form", false],
+                "technique/combat-training": [true, 1.3, "technique / combat training", false]
+            }
+        },
+        "DEMONOLOGIST": {
+            "copy_add": {
+                "life_rating": 2
+            },
+            "desc": "<p>Contrary to popular beliefs Demonologists are not the pawns of demons, they enact pacts with them but always very carefully.</p><p>They use those demonic powers for their own purpose, often evil but a few have been known to use demonic powers to fight demons.</p><p>Demonologists are melee fighters, bashing their foes skulls with their shields while calling down rains of fire and darkness.</p>",
+            "display_name": "Demonologist",
+            "evolutions": [],
+            "images": [{
+                "file": "npc/humanoid_shalore_elven_warrior.png"
+            }, {
+                "file": "npc/demon_minor_fire_imp.png"
+            }],
+            "name": "Demonologist",
+            "short_name": "DEMONOLOGIST",
+            "stats": {
+                "con": 2,
+                "mag": 4,
+                "str": 3
+            },
+            "talents": {
+                "T_ARMOUR_TRAINING": 2,
+                "T_BLEAK_OUTCOME": 1,
+                "T_DEMON_SEED": 1,
+                "T_FLAME_LEASH": 1,
+                "T_SHIELD_PUMMEL": 1,
+                "T_WEAPONS_MASTERY": 1,
+                "T_WEAPON_COMBAT": 1
+            },
+            "talents_types_class": {
+                "corruption/demonic-pact": [true, 1.3, "corruption / demonic pact", false],
+                "corruption/doom-covenant": [false, 1.3, "corruption / doom covenant", false],
+                "corruption/doom-shield": [true, 1.3, "corruption / doom shield", false],
+                "corruption/infernal-combat": [true, 1.3, "corruption / infernal combat", false],
+                "corruption/shadowflame": [true, 1.3, "corruption / Shadowflame", false],
+                "corruption/spellblaze": [false, 1.3, "corruption / spellblaze", false],
+                "technique/combat-techniques-active": [true, 1.3, "technique / combat techniques", false],
+                "technique/combat-techniques-passive": [true, 1.3, "technique / combat veteran", false],
+                "technique/shield-offense": [true, 1.3, "technique / shield offense", false]
+            },
+            "talents_types_generic": {
+                "corruption/black-magic": [true, 1.3, "corruption / black-magic", false],
+                "corruption/torment": [true, 1.3, "corruption / torment", false],
+                "cunning/survival": [true, 1, "cunning / survival", false],
+                "technique/combat-training": [true, 1, "technique / combat training", false]
+            }
+        },
+        "DOOMBRINGER": {
+            "copy_add": {
+                "life_rating": 3
+            },
+            "desc": "<p>Weapon in hand and sheathed in flame, a Doombringer is a terrifying force in combat.</p><p>Doombringers are engines of war, cleaving and burning their way through entire armies.</p><p>The most powerful Doombringers can harness the full power of their demonic ties and transform themselves into a gigantic demon.</p><p>Their most important stats are: Strength and Magic</p>",
+            "display_name": "Doombringer",
+            "evolutions": [],
+            "images": [{
+                "file": "npc/demon_major_champion_of_urh_rok-cropped.png",
+                "height": 106,
+                "width": 64
+            }],
+            "name": "Doombringer",
+            "short_name": "DOOMBRINGER",
+            "stats": {
+                "con": 2,
+                "cun": 1,
+                "mag": 2,
+                "str": 4
+            },
+            "talents": {
+                "T_ARMOUR_TRAINING": 1,
+                "T_DRAINING_ASSAULT": 1,
+                "T_INCINERATING_BLOWS": 1,
+                "T_STAMINA_POOL": 1,
+                "T_WEAPONS_MASTERY": 1,
+                "T_WEAPON_COMBAT": 1,
+                "T_WRAITHFORM": 1
+            },
+            "talents_types_class": {
+                "corruption/brutality": [true, 1.3, "corruption / brutality", false],
+                "corruption/fearfire": [false, 1.3, "corruption / Fearfire", false],
+                "corruption/heart-of-fire": [true, 1.3, "corruption / Heart of Fire", false],
+                "corruption/shadowflame": [true, 1.3, "corruption / Shadowflame", false],
+                "corruption/torture": [true, 1.3, "corruption / torture", false],
+                "corruption/wrath": [false, 1.3, "corruption / wrath", false],
+                "technique/combat-techniques-active": [true, 1.3, "technique / combat techniques", false],
+                "technique/combat-techniques-passive": [true, 1.3, "technique / combat veteran", false]
+            },
+            "talents_types_generic": {
+                "corruption/demonic-strength": [true, 1.3, "corruption / demonic strength", false],
+                "corruption/hexes": [true, 1.1, "corruption / hexes", false],
+                "corruption/oppression": [true, 1.3, "corruption / Oppression", false],
+                "cunning/survival": [true, 1, "cunning / survival", false],
+                "technique/combat-training": [true, 1.3, "technique / combat training", false]
+            }
+        },
+        "DOOMED": {
+            "copy_add": [],
+            "desc": "<p>The Doomed are fallen mages who once wielded powerful magic wrought by ambition and dark bargains.</p><p>Stripped of their magic by the dark forces that once served them, they have learned to harness the hatred that burns in their minds.</p><p>Only time will tell if they can choose a new path or are doomed forever.</p><p>The Doomed strike from behind a veil of darkness or a host of shadows.</p><p>They feed upon their enemies as they unleash their minds on all who confront them.</p><p>Their most important stats are: Willpower and Cunning</p>",
+            "display_name": "Doomed",
+            "evolutions": [],
+            "images": [{
+                "file": "npc/shadow-caster.png"
+            }],
+            "name": "Doomed",
+            "short_name": "DOOMED",
+            "stats": {
+                "cun": 5,
+                "wil": 4
+            },
+            "talents": {
+                "T_CALL_SHADOWS": 1,
+                "T_FEED": 1,
+                "T_GESTURE_OF_PAIN": 1,
+                "T_UNNATURAL_BODY": 1,
+                "T_WILLFUL_STRIKE": 1
+            },
+            "talents_types_class": {
+                "cursed/advanced-shadowmancy": [false, 1.3, "cursed / advanced shadowmancy", false],
+                "cursed/darkness": [true, 1.3, "cursed / darkness", false],
+                "cursed/fears": [false, 1.3, "cursed / fears", false],
+                "cursed/force-of-will": [true, 1.3, "cursed / force of will", false],
+                "cursed/one-with-shadows": [false, 1.3, "cursed / one with shadows", false],
+                "cursed/punishments": [true, 1.3, "cursed / punishments", false],
+                "cursed/shadows": [true, 1.3, "cursed / shadows", false]
+            },
+            "talents_types_generic": {
+                "cunning/survival": [false, 1, "cunning / survival", false],
+                "cursed/cursed-form": [true, 1, "cursed / cursed form", false],
+                "cursed/dark-sustenance": [true, 1.3, "cursed / dark sustenance", false],
+                "cursed/gestures": [true, 1.3, "cursed / gestures", false]
+            }
+        },
+        "EMPYREAL": {
+            "desc": "<p>Their most important stats are: Magic and Constitution</p>",
+            "display_name": "Empyreal",
+            "evolutions": [],
+            "images": [],
+            "name": "Empyreal",
+            "short_name": "EMPYREAL",
+            "stats": {
+                "con": 3,
+                "mag": 6
+            },
+            "talents": {
+                "T_LUNAR_ORB": 1,
+                "T_SOLAR_ORB": 1
+            },
+            "talents_types_class": {
+                "celestial/circles": [false, 1.2, "celestial / circles", false],
+                "celestial/cosmic": [true, 1.3, "celestial / Cosmic", false],
+                "celestial/energies": [true, 1.3, "celestial / Energies", false],
+                "celestial/reflection": [true, 1.3, "celestial / Reflection", false],
+                "celestial/sol": [true, 1.3, "celestial / Sol", false],
+                "celestial/twilight": [false, 1, "celestial / twilight", false],
+                "celestial/void": [false, 1.2, "celestial / Void", false]
+            },
+            "talents_types_generic": {
+                "celestial/chants": [true, 1.2, "celestial / chants", false],
+                "celestial/hymns": [false, 1.2, "celestial / hymns", false],
+                "celestial/light": [true, 1, "celestial / light", false],
+                "cunning/survival": [false, 1, "cunning / survival", false]
+            }
+        },
+        "GUNSLINGER": {
+            "copy_add": {
+                "life_rating": -1
+            },
+            "desc": "<p>A tinker who dual-wields steamguns to great effect.</p><p>Their most important stats are: Cunning and Dexterity</p>",
+            "display_name": "Gunslinger",
+            "evolutions": [],
+            "images": [{
+                "file": "npc/humanoid_orc_orc_gunslinger.png"
+            }],
+            "locked_desc": "Build, experiment, discover. The path of inventions is never over!",
+            "name": "Gunslinger",
+            "short_name": "GUNSLINGER",
+            "stats": {
+                "con": 1,
+                "cun": 4,
+                "dex": 4
+            },
+            "talents": {
+                "T_SHOOT": 1,
+                "T_SMITH": 1,
+                "T_STEAMGUN_MASTERY": 1,
+                "T_STRAFE": 1,
+                "T_THERAPEUTICS": 1,
+                "T_WEAPON_COMBAT": 1
+            },
+            "talents_types_class": {
+                "steamtech/automation": [false, 1.3, "steamtech / automation", false],
+                "steamtech/avoidance": [true, 1.3, "steamtech / avoidance", false],
+                "steamtech/bullets-mastery": [true, 1.3, "steamtech / bullets mastery", false],
+                "steamtech/elusiveness": [true, 1.3, "steamtech / elusiveness", false],
+                "steamtech/gunner-training": [true, 1.3, "steamtech / gunner training", false],
+                "steamtech/gunslinging": [true, 1.3, "steamtech / gunslinging", false]
+            },
+            "talents_types_generic": {
+                "cunning/survival": [false, 0.9, "cunning / survival", false],
+                "steamtech/blacksmith": [false, 1.1, "steamtech / blacksmith", false],
+                "steamtech/chemistry": [true, 1.2, "steamtech / chemistry", false],
+                "steamtech/engineering": [true, 1.2, "steamtech / engineering", false],
+                "steamtech/physics": [true, 1.2, "steamtech / physics", false],
+                "technique/combat-training": [true, 1.3, "technique / combat training", false]
+            }
+        },
+        "MARAUDER": {
+            "desc": "<p>The wilds of Maj'Eyal are not a safe place. Untamed beasts and wandering dragons may seem a great threat, but the true perils walk on two legs. Thieves and brigands, assassins and opportunistic adventurers, even mad wizards and magic-hating zealots all carry danger to those who venture beyond the safety of city walls.</p><p>Amidst this chaos wanders one class of rogue that has learned to take by force rather than subterfuge. With refined techniques, agile feats and brawn-backed blades the Marauder seeks out his targets and removes them by the most direct methods. He uses dual weapons backed by advanced combat training to become highly effective in battle, and he is unafraid to use the dirtiest tactics when the odds are against him.</p><p>Their most important stats are: Strength, Dexterity and Cunning</p>",
+            "display_name": "Marauder",
+            "evolutions": [],
+            "images": [{
+                "file": "npc/humanoid_human_rej_arkatis-cropped.png",
+                "height": 78,
+                "width": 64
+            }],
+            "name": "Marauder",
+            "short_name": "MARAUDER",
+            "stats": {
+                "cun": 1,
+                "dex": 4,
+                "str": 4
+            },
+            "talents": {
+                "T_ARMOUR_TRAINING": 1,
+                "T_DIRTY_FIGHTING": 1,
+                "T_DUAL_STRIKE": 1,
+                "T_KNIFE_MASTERY": 1,
+                "T_SKULLCRACKER": 1,
+                "T_VITALITY": 1
+            },
+            "talents_types_class": {
+                "cunning/dirty": [true, 1.3, "cunning / dirty fighting", false],
+                "cunning/poisons": [false, 1, "cunning / poisons", true],
+                "cunning/tactical": [false, 1.3, "cunning / tactical", false],
+                "technique/battle-tactics": [false, 1.3, "technique / battle tactics", false],
+                "technique/bloodthirst": [false, 1, "technique / bloodthirst", false],
+                "technique/combat-techniques-active": [true, 1.3, "technique / combat techniques", false],
+                "technique/combat-techniques-passive": [true, 1, "technique / combat veteran", false],
+                "technique/dualweapon-attack": [true, 1.3, "technique / dual techniques", false],
+                "technique/duelist": [true, 1.3, "technique / duelist", false],
+                "technique/throwing-knives": [true, 1, "technique / throwing knives", false]
+            },
+            "talents_types_generic": {
+                "cunning/survival": [true, 1.3, "cunning / survival", false],
+                "technique/combat-training": [true, 1.3, "technique / combat training", false],
+                "technique/conditioning": [true, 1.3, "technique / conditioning", false],
+                "technique/mobility": [true, 1.3, "technique / mobility", false],
+                "technique/thuggery": [true, 1.3, "technique / thuggery", false]
+            }
+        },
+        "MINDSLAYER": {
+            "copy_add": {
+                "life_rating": -2
+            },
+            "desc": "<p>Mindslayers specialize in direct and brutal application of mental forces to their immediate surroundings.</p><p>When Mindslayers do battle, they will most often be found in the thick of the fighting, vast energies churning around them and telekinetically-wielded weapons hewing nearby foes at the speed of thought.</p><p>Their most important stats are: Willpower and Cunning</p>",
+            "display_name": "Mindslayer",
+            "evolutions": [],
+            "images": [{
+                "file": "npc/humanoid_yeek_yeek_mindslayer-cropped.png",
+                "height": 85,
+                "width": 64
+            }],
+            "name": "Mindslayer",
+            "short_name": "MINDSLAYER",
+            "stats": {
+                "cun": 4,
+                "str": 1,
+                "wil": 4
+            },
+            "talents": {
+                "T_KINETIC_AURA": 1,
+                "T_KINETIC_SHIELD": 1,
+                "T_SKATE": 1,
+                "T_TELEKINETIC_SMASH": 1,
+                "T_WEAPONS_MASTERY": 1,
+                "T_WEAPON_COMBAT": 1
+            },
+            "talents_types_class": {
+                "psionic/absorption": [true, 1.3, "psionic / absorption", false],
+                "psionic/augmented-striking": [true, 1.3, "psionic / augmented striking", false],
+                "psionic/charged-mastery": [false, 1.3, "psionic / charged mastery", false],
+                "psionic/focus": [true, 1.3, "psionic / focus", false],
+                "psionic/kinetic-mastery": [false, 1.3, "psionic / kinetic mastery", false],
+                "psionic/projection": [true, 1.3, "psionic / projection", false],
+                "psionic/psi-fighting": [true, 1.3, "psionic / psi-fighting", false],
+                "psionic/thermal-mastery": [false, 1.3, "psionic / thermal mastery", false],
+                "psionic/voracity": [true, 1.3, "psionic / voracity", false]
+            },
+            "talents_types_generic": {
+                "cunning/survival": [true, 1, "cunning / survival", false],
+                "psionic/augmented-mobility": [true, 1.3, "psionic / augmented mobility", false],
+                "psionic/finer-energy-manipulations": [true, 1.3, "psionic / finer energy manipulations", false],
+                "technique/combat-training": [true, 1, "technique / combat training", false]
+            }
+        },
+        "NECROMANCER": {
+            "copy_add": {
+                "life_rating": -3
+            },
+            "desc": "<p>While most magic is viewed with suspicion since the Spellblaze, the stigma surrounding the black art of Necromancy has been around since time immemorial.</p><p>These dark spellcasters extinguish life, twist death, and raise armies of undead monsters to sate their lust for power and pursue their ultimate goal: Eternal life.</p><p>Their most important stats are: Magic and Willpower</p>",
+            "display_name": "Necromancer",
+            "evolutions": [],
+            "images": [{
+                "file": "npc/humanoid_human_necromancer.png"
+            }, {
+                "file": "npc/undead_lich_lich-cropped.png"
+            }],
+            "name": "Necromancer",
+            "short_name": "NECROMANCER",
+            "stats": {
+                "cun": 1,
+                "mag": 5,
+                "wil": 3
+            },
+            "talents": {
+                "T_BLURRED_MORTALITY": 1,
+                "T_CALL_OF_THE_CRYPT": 1,
+                "T_INVOKE_DARKNESS": 1,
+                "T_SOUL_LEECH": 1
+            },
+            "talents_types_class": {
+                "spell/age-of-dusk": [false, 1.3, "spell / age of dusk", false],
+                "spell/animus": [true, 1.3, "spell / animus", false],
+                "spell/death": [true, 1.3, "spell / death", false],
+                "spell/dreadmaster": [true, 1.3, "spell / dreadmaster", false],
+                "spell/eradication": [false, 1.3, "spell / eradication", false],
+                "spell/glacial-waste": [true, 1.3, "spell / glacial waste", false],
+                "spell/grave": [true, 1.3, "spell / grave", false],
+                "spell/master-necromancer": [false, 1.3, "spell / master necromancer", false],
+                "spell/master-of-bones": [true, 1.3, "spell / master of bones", false],
+                "spell/master-of-flesh": [true, 1.3, "spell / master of flesh", false],
+                "spell/nightfall": [true, 1.3, "spell / nightfall", false],
+                "spell/rime-wraith": [false, 1.3, "spell / rime wraith", false]
+            },
+            "talents_types_generic": {
+                "cunning/survival": [true, 1, "cunning / survival", false],
+                "spell/necrosis": [true, 1.3, "spell / necrosis", false],
+                "spell/spectre": [true, 1.3, "spell / spectre", false]
+            }
+        },
+        "NONE": {
+            "desc": "<p>Your race cannot select a class; it has its own powers.</p>",
+            "display_name": "None",
+            "evolutions": [],
+            "images": [],
+            "name": "None",
+            "short_name": "NONE",
+            "talents_types_class": [],
+            "talents_types_generic": []
+        },
+        "OOZEMANCER": {
+            "copy_add": {
+                "life_rating": -3
+            },
+            "desc": "<p>Oozemancers separate themselves from normal civilisation so that they be more in harmony with Nature. Arcane force are reviled by them, and their natural attunement to the wilds lets them do battle with abusive magic-users on an equal footing.</p><p>They can spawn oozes to protect and attack from a distance while also being adept at harnessing the power of mindstars and psiblades.</p><p>Their most important stats are: Willpower and Cunning</p>",
+            "display_name": "Oozemancer",
+            "evolutions": [],
+            "images": [{
+                "file": "npc/vermin_oozes_bloated_ooze.png"
+            }, {
+                "file": "npc/humanoid_dwarf_dwarven_summoner.png"
+            }],
+            "name": "Oozemancer",
+            "short_name": "OOZEMANCER",
+            "stats": {
+                "cun": 4,
+                "wil": 5
+            },
+            "talents": {
+                "T_MITOSIS": 1,
+                "T_MUCUS": 1,
+                "T_PSIBLADES": 1,
+                "T_SLIME_SPIT": 1
+            },
+            "talents_types_class": {
+                "wild-gift/corrosive-blades": [false, 1.3, "wild-gift / corrosive blades", false],
+                "wild-gift/eyals-fury": [false, 1.3, "wild-gift / eyal's fury", false],
+                "wild-gift/moss": [true, 1.3, "wild-gift / moss", false],
+                "wild-gift/mucus": [true, 1.3, "wild-gift / mucus", false],
+                "wild-gift/ooze": [true, 1.3, "wild-gift / ooze", false],
+                "wild-gift/oozing-blades": [false, 1.3, "wild-gift / oozing blades", false],
+                "wild-gift/slime": [true, 1.3, "wild-gift / slime", false]
+            },
+            "talents_types_generic": {
+                "cunning/survival": [true, 1, "cunning / survival", false],
+                "wild-gift/antimagic": [true, 1.3, "wild-gift / antimagic", false],
+                "wild-gift/call": [true, 1.3, "wild-gift / call of the wild", false],
+                "wild-gift/fungus": [false, 1.3, "wild-gift / fungus", false],
+                "wild-gift/mindstar-mastery": [true, 1.3, "wild-gift / mindstar mastery", false]
+            }
+        },
+        "PARADOX_MAGE": {
+            "desc": "<p>A Paradox Mage studies the very fabric of spacetime, learning not just to bend it but shape it and remake it.</p><p>Most Paradox Mages lack basic skills that others take for granted (like general fighting sense), but they make up for it through control of cosmic forces.</p><p>Paradox Mages start off with knowledge of all but the most complex Chronomantic schools.</p><p>Their most important stats are: Magic and Willpower</p>",
+            "display_name": "Paradox Mage",
+            "evolutions": [],
+            "images": [{
+                "file": "npc/humanoid_elf_high_chronomancer_zemekkys.png"
+            }],
+            "name": "Paradox Mage",
+            "short_name": "PARADOX_MAGE",
+            "stats": {
+                "con": 2,
+                "mag": 5,
+                "wil": 2
+            },
+            "talents": {
+                "T_DIMENSIONAL_STEP": 1,
+                "T_PRECOGNITION": 1,
+                "T_REPULSION_BLAST": 1,
+                "T_TEMPORAL_BOLT": 1
+            },
+            "talents_types_class": {
+                "chronomancy/flux": [false, 1.3, "chronomancy / flux", false],
+                "chronomancy/gravity": [true, 1.3, "chronomancy / gravity", false],
+                "chronomancy/matter": [true, 1.3, "chronomancy / matter", false],
+                "chronomancy/spacetime-folding": [true, 1.3, "chronomancy / Spacetime Folding", false],
+                "chronomancy/speed-control": [true, 1.3, "chronomancy / Speed Control", false],
+                "chronomancy/spellbinding": [false, 1.3, "chronomancy / Spellbinding", false],
+                "chronomancy/stasis": [false, 1.3, "chronomancy / stasis", false],
+                "chronomancy/timeline-threading": [false, 1.3, "chronomancy / Timeline Threading", false],
+                "chronomancy/timetravel": [true, 1.3, "chronomancy / timetravel", false]
+            },
+            "talents_types_generic": {
+                "chronomancy/chronomancy": [true, 1.3, "chronomancy / Chronomancy", false],
+                "chronomancy/energy": [false, 1.3, "chronomancy / energy", false],
+                "chronomancy/fate-weaving": [true, 1.3, "chronomancy / Fate Weaving", false],
+                "chronomancy/spacetime-weaving": [true, 1.3, "chronomancy / Spacetime Weaving", false],
+                "cunning/survival": [false, 1, "cunning / survival", false]
+            }
+        },
+        "POSSESSOR": {
+            "copy_add": {
+                "life_rating": -4
+            },
+            "desc": "<p><span style=\"color: #dc143c\"><span class=\"tstr-color-CRIMSON\">BEWARE: This class is very <span style=\"font-style: italic\"><span class=\"tstr-font-italic\">strange</span></span> and may be confusing to play for beginners.</span></span></span></span></p><p>Possessors are a rare breed of psionics. Some call them body snatchers. Some call them nightmarish.</p><p>They are adept at stealing their foes corpses for their own use. Discarding their own bodies for a while to use other's.</p><p>Their most important stats are: Willpower and Cunning</p>",
+            "display_name": "Possessor",
+            "evolutions": [],
+            "images": [],
+            "name": "Possessor",
+            "short_name": "POSSESSOR",
+            "stats": {
+                "con": 0,
+                "cun": 2,
+                "dex": 2,
+                "mag": 0,
+                "str": 2,
+                "wil": 3
+            },
+            "talents": {
+                "T_ARMOUR_TRAINING": 1,
+                "T_BODIES_RESERVE": 1,
+                "T_POSSESS": 1,
+                "T_PSIONIC_DISRUPTION": 1,
+                "T_SOLIPSISM": 1,
+                "T_WEAPON_COMBAT": 1
+            },
+            "talents_types_class": {
+                "psionic/battle-psionics": [true, 1.3, "psionic / battle psionics", false],
+                "psionic/body-snatcher": [false, 1.3, "psionic / body snatcher", false],
+                "psionic/deep-horror": [false, 1.3, "psionic / deep horror", false],
+                "psionic/possession": [true, 1.3, "psionic / possession", false],
+                "psionic/psionic-menace": [true, 1.3, "psionic / psionic menace", false],
+                "psionic/psychic-blows": [true, 1.3, "psionic / psychic blows", false],
+                "psionic/solipsism": [true, 1.3, "psionic / solipsism", false]
+            },
+            "talents_types_generic": {
+                "cunning/survival": [true, 1, "cunning / survival", false],
+                "psionic/mentalism": [true, 1.3, "psionic / mentalism", false],
+                "psionic/ravenous-mind": [true, 1.3, "psionic / ravenous mind", false],
+                "technique/combat-training": [true, 1, "technique / combat training", false]
+            }
+        },
+        "PSYSHOT": {
+            "copy_add": {
+                "life_rating": -1
+            },
+            "desc": "<p>Powerful psionics are able to enter a gestalt with steam generators and technology to enhance their own mental prowess.</p><p>The Psyshot combines this ability to gestalt to enhance his mindstar all the while shooting her steamgun to devastate the enemy lines.</p><p>Their most important stats are: Cunning, Willpower and Dexterity</p>",
+            "display_name": "Psyshot",
+            "evolutions": [],
+            "images": [],
+            "locked_desc": "Bend the mind, bend the tech. All around inspire dread.",
+            "name": "Psyshot",
+            "short_name": "PSYSHOT",
+            "stats": {
+                "cun": 3,
+                "dex": 3,
+                "wil": 3
+            },
+            "talents": {
+                "T_GESTALT": 1,
+                "T_METALSTAR": 1,
+                "T_PSYSHOT": 1,
+                "T_SHOOT": 1,
+                "T_SMITH": 1,
+                "T_THERAPEUTICS": 1,
+                "T_WEAPON_COMBAT": 1
+            },
+            "talents_types_class": {
+                "psionic/action-at-a-distance": [true, 1.3, "psionic / action at a distance", false],
+                "psionic/gestalt": [true, 1.3, "psionic / gestalt", false],
+                "psionic/nightmare": [false, 1.3, "psionic / nightmare", false],
+                "psionic/psionic-fog": [true, 1.3, "psionic / psionic fog", false],
+                "steamtech/avoidance": [false, 1.3, "steamtech / avoidance", false],
+                "steamtech/dread": [false, 1.3, "steamtech / dread", false],
+                "steamtech/mechstar": [true, 1.3, "steamtech / mechstar", false],
+                "steamtech/psytech-gunnery": [true, 1.3, "steamtech / psytech gunnery", false],
+                "steamtech/thoughts-of-iron": [true, 1.3, "steamtech / thoughts of iron", false]
+            },
+            "talents_types_generic": {
+                "cunning/survival": [false, 0.9, "cunning / survival", false],
+                "steamtech/blacksmith": [false, 1.1, "steamtech / blacksmith", false],
+                "steamtech/chemistry": [true, 1.2, "steamtech / chemistry", false],
+                "steamtech/engineering": [true, 1.2, "steamtech / engineering", false],
+                "steamtech/physics": [true, 1.2, "steamtech / physics", false],
+                "technique/combat-training": [true, 1.3, "technique / combat training", false]
+            }
+        },
+        "REAVER": {
+            "copy_add": {
+                "life_rating": 1
+            },
+            "desc": "<p>Reavers are terrible foes, charging their enemies with a weapon in each hand.</p><p>They can harness the blight of evil, infecting their foes with terrible contagious diseases while crushing their skulls with devastating combat techniques.</p><p>Their most important stats are: Strength and Magic</p>",
+            "display_name": "Reaver",
+            "evolutions": [],
+            "images": [{
+                "file": "npc/humanoid_human_reaver.png"
+            }],
+            "name": "Reaver",
+            "short_name": "REAVER",
+            "stats": {
+                "dex": 1,
+                "mag": 4,
+                "str": 4
+            },
+            "talents": {
+                "T_ARMOUR_TRAINING": 1,
+                "T_CORRUPTED_STRENGTH": 1,
+                "T_DRAIN": 1,
+                "T_WEAPONS_MASTERY": 1,
+                "T_WEAPON_COMBAT": 1
+            },
+            "talents_types_class": {
+                "corruption/bone": [true, 1.3, "corruption / bone", false],
+                "corruption/plague": [true, 1.3, "corruption / plague", false],
+                "corruption/reaving-combat": [true, 1.3, "corruption / reaving combat", false],
+                "corruption/rot": [false, 1.3, "corruption / rot", false],
+                "corruption/sanguisuge": [true, 1, "corruption / sanguisuge", false],
+                "corruption/scourge": [true, 1.3, "corruption / scourge", false],
+                "corruption/vim": [true, 1, "corruption / vim", false]
+            },
+            "talents_types_generic": {
+                "corruption/curses": [false, 1.3, "corruption / curses", false],
+                "corruption/hexes": [false, 1.3, "corruption / hexes", false],
+                "corruption/torment": [true, 1.3, "corruption / torment", false],
+                "corruption/vile-life": [false, 1, "corruption / vile life", false],
+                "cunning/survival": [false, 1, "cunning / survival", false],
+                "technique/combat-training": [true, 1.3, "technique / combat training", false]
+            }
+        },
+        "ROGUE": {
+            "desc": "<p>Rogues are masters of tricks. A Rogue can get behind you unnoticed and stab you in the back for tremendous damage.</p><p>Rogues usually prefer to dual-wield daggers. They can also become trapping experts, detecting and disarming traps as well as setting them.</p><p>Their most important stats are: Dexterity and Cunning</p>",
+            "display_name": "Rogue",
+            "evolutions": [],
+            "images": [{
+                "file": "npc/humanoid_human_rogue.png"
+            }],
+            "name": "Rogue",
+            "short_name": "ROGUE",
+            "stats": {
+                "cun": 5,
+                "dex": 3,
+                "str": 1
+            },
+            "talents": {
+                "T_DUAL_STRIKE": 1,
+                "T_DUAL_WEAPON_MASTERY": 1,
+                "T_KNIFE_MASTERY": 1,
+                "T_LETHALITY": 1,
+                "T_STEALTH": 1,
+                "T_WEAPON_COMBAT": 1
+            },
+            "talents_types_class": {
+                "cunning/artifice": [false, 1.3, "cunning / artifice", false],
+                "cunning/dirty": [true, 1.3, "cunning / dirty fighting", false],
+                "cunning/poisons": [true, 1.3, "cunning / poisons", true],
+                "cunning/stealth": [true, 1.3, "cunning / stealth", false],
+                "cunning/trapping": [true, 1.3, "cunning / trapping", false],
+                "technique/assassination": [false, 1.3, "technique / assassination", false],
+                "technique/combat-techniques-active": [false, 1.3, "technique / combat techniques", false],
+                "technique/dualweapon-attack": [true, 1.3, "technique / dual techniques", false],
+                "technique/duelist": [true, 1.3, "technique / duelist", false],
+                "technique/throwing-knives": [true, 1.3, "technique / throwing knives", false]
+            },
+            "talents_types_generic": {
+                "cunning/lethality": [true, 1.3, "cunning / lethality", false],
+                "cunning/scoundrel": [false, 1.3, "cunning / scoundrel", false],
+                "cunning/survival": [true, 1.3, "cunning / survival", false],
+                "technique/combat-training": [true, 1.3, "technique / combat training", false],
+                "technique/mobility": [true, 1.3, "technique / mobility", false]
+            }
+        },
+        "SAWBUTCHER": {
+            "copy_add": {
+                "life_rating": 2
+            },
+            "desc": "<p>A formidable behemoth of war using steamsaws to improve his deadliness.</p><p>Their most important stats are: Strength and Cunning</p>",
+            "display_name": "Sawbutcher",
+            "evolutions": [],
+            "images": [{
+                "file": "npc/humanoid_orc_orc_guard.png"
+            }],
+            "locked_desc": "Build, experiment, discover. The path of inventions is never over!",
+            "name": "Sawbutcher",
+            "short_name": "SAWBUTCHER",
+            "stats": {
+                "con": 1,
+                "cun": 3,
+                "str": 5
+            },
+            "talents": {
+                "T_ARMOUR_TRAINING": 1,
+                "T_SAWWHEELS": 1,
+                "T_SMITH": 1,
+                "T_STEAMSAW_MASTERY": 1,
+                "T_THERAPEUTICS": 1,
+                "T_TO_THE_ARMS": 1,
+                "T_WEAPON_COMBAT": 1
+            },
+            "talents_types_class": {
+                "steamtech/automated-butchery": [false, 1.3, "steamtech / automated butchery", false],
+                "steamtech/battle-machinery": [true, 1.3, "steamtech / battle machinery", false],
+                "steamtech/battlefield-management": [true, 1.3, "steamtech / battlefield management", false],
+                "steamtech/butchery": [true, 1.3, "steamtech / butchery", false],
+                "steamtech/furnace": [false, 1.3, "steamtech / furnace", false],
+                "steamtech/sawmaiming": [true, 1.3, "steamtech / sawmaiming", false]
+            },
+            "talents_types_generic": {
+                "cunning/survival": [false, 1.2, "cunning / survival", false],
+                "steamtech/blacksmith": [true, 1.2, "steamtech / blacksmith", false],
+                "steamtech/chemistry": [true, 1.2, "steamtech / chemistry", false],
+                "steamtech/engineering": [false, 1.1, "steamtech / engineering", false],
+                "steamtech/physics": [true, 1.2, "steamtech / physics", false],
+                "technique/combat-training": [true, 1.3, "technique / combat training", false]
+            }
+        },
+        "SHADOWBLADE": {
+            "desc": "<p>Shadowblades are Rogues that are touched by the gift of magic, able to kill with their daggers under a veil of stealth while casting spells to enhance their performance and survival.</p><p>Their use of magic is innate and not really studied; as such they do not naturally regenerate mana and must use external means of recharging.</p><p>They use the schools of Phantasm, Temporal, Divination and Conveyance magic to enhance their arts.</p><p>Their most important stats are: Dexterity, Cunning and Magic</p>",
+            "display_name": "Shadowblade",
+            "evolutions": [],
+            "images": [{
+                "file": "npc/humanoid_human_shadowblade.png"
+            }],
+            "name": "Shadowblade",
+            "short_name": "SHADOWBLADE",
+            "stats": {
+                "cun": 3,
+                "dex": 3,
+                "mag": 3
+            },
+            "talents": {
+                "T_DUAL_STRIKE": 1,
+                "T_KNIFE_MASTERY": 1,
+                "T_LETHALITY": 1,
+                "T_PHASE_DOOR": 1,
+                "T_SHADOW_COMBAT": 1,
+                "T_WEAPON_COMBAT": 1
+            },
+            "talents_types_class": {
+                "cunning/ambush": [false, 1.3, "cunning / ambush", false],
+                "cunning/dirty": [true, 1, "cunning / dirty fighting", false],
+                "cunning/shadow-magic": [true, 1.3, "cunning / shadow magic", false],
+                "cunning/stealth": [true, 1.3, "cunning / stealth", false],
+                "spell/phantasm": [true, 1, "spell / phantasm", false],
+                "spell/temporal": [false, 1, "spell / temporal", false],
+                "technique/combat-techniques-active": [false, 1, "technique / combat techniques", false],
+                "technique/combat-techniques-passive": [false, 1.3, "technique / combat veteran", false],
+                "technique/dualweapon-attack": [true, 1, "technique / dual techniques", false],
+                "technique/duelist": [true, 1, "technique / duelist", false]
+            },
+            "talents_types_generic": {
+                "cunning/lethality": [true, 1.3, "cunning / lethality", false],
+                "cunning/survival": [true, 1, "cunning / survival", false],
+                "spell/conveyance": [true, 1, "spell / conveyance", false],
+                "spell/divination": [false, 1, "spell / divination", false],
+                "technique/combat-training": [true, 1, "technique / combat training", false],
+                "technique/mobility": [true, 1.3, "technique / mobility", false]
+            }
+        },
+        "SKIRMISHER": {
+            "copy_add": {
+                "life_rating": 0
+            },
+            "desc": "<p>While able to take maximum advantage of their sling by using deft movements to avoid and confuse enemies that try to get close, the Skirmisher truly excels when fighting other ranged users.</p><p>They have mastered the use of their shield as well as their sling and are nearly impossible to defeat in a standoff.</p><p>Their most important stats are: Dexterity and Cunning</p>",
+            "display_name": "Skirmisher",
+            "evolutions": [],
+            "images": [{
+                "file": "npc/humanoid_human_high_slinger.png"
+            }],
+            "name": "Skirmisher",
+            "short_name": "SKIRMISHER",
+            "stats": {
+                "cun": 4,
+                "dex": 4,
+                "wil": 1
+            },
+            "talents": {
+                "T_DISENGAGE": 1,
+                "T_SHOOT": 1,
+                "T_SKIRMISHER_BUCKLER_EXPERTISE": 1,
+                "T_SKIRMISHER_KNEECAPPER": 1,
+                "T_SKIRMISHER_SLING_SUPREMACY": 1,
+                "T_WEAPON_COMBAT": 1
+            },
+            "talents_types_class": {
+                "cunning/called-shots": [true, 1.3, "cunning / Called Shots", false],
+                "cunning/poisons": [false, 1.3, "cunning / poisons", true],
+                "cunning/trapping": [false, 1, "cunning / trapping", false],
+                "technique/buckler-training": [true, 1.3, "technique / Buckler Training", false],
+                "technique/skirmisher-slings": [true, 1.3, "technique / Skirmisher - Slings", false],
+                "technique/tireless-combatant": [true, 1.3, "technique / Tireless Combatant", false]
+            },
+            "talents_types_generic": {
+                "cunning/scoundrel": [true, 1.3, "cunning / scoundrel", false],
+                "cunning/survival": [true, 1.3, "cunning / survival", false],
+                "technique/combat-training": [true, 1.3, "technique / combat training", false],
+                "technique/mobility": [true, 1.3, "technique / mobility", false]
+            }
+        },
+        "SOLIPSIST": {
+            "copy_add": {
+                "life_rating": -4
+            },
+            "desc": "<p>The Solipsist believes that reality is malleable and nothing more than the collective vision of those that experience it.</p><p>They wield this knowledge to both create and destroy, to invade the minds of others, and to manipulate the dreams of those around them.</p><p>This knowledge comes with a heavy price and the Solipsist must guard his thoughts, lest he come to believe that the world exists only within his own mind.</p><p>Their most important stats are: Willpower and Cunning</p>",
+            "display_name": "Solipsist",
+            "evolutions": [],
+            "images": [{
+                "file": "npc/humanoid_yeek_yeek_psionic.png"
+            }],
+            "name": "Solipsist",
+            "short_name": "SOLIPSIST",
+            "stats": {
+                "cun": 4,
+                "str": 0,
+                "wil": 5
+            },
+            "talents": {
+                "T_MIND_SEAR": 1,
+                "T_SLEEP": 1,
+                "T_SOLIPSISM": 1,
+                "T_THOUGHT_FORMS": 1
+            },
+            "talents_types_class": {
+                "psionic/discharge": [false, 1.3, "psionic / discharge", false],
+                "psionic/distortion": [true, 1.3, "psionic / distortion", false],
+                "psionic/dream-smith": [true, 1.3, "psionic / Dream Smith", false],
+                "psionic/nightmare": [false, 1.3, "psionic / nightmare", false],
+                "psionic/psychic-assault": [true, 1.3, "psionic / Psychic Assault", false],
+                "psionic/slumber": [true, 1.3, "psionic / slumber", false],
+                "psionic/solipsism": [true, 1.3, "psionic / solipsism", false],
+                "psionic/thought-forms": [true, 1.3, "psionic / Thought-Forms", false]
+            },
+            "talents_types_generic": {
+                "cunning/survival": [true, 1, "cunning / survival", false],
+                "psionic/dream-forge": [false, 1.3, "psionic / Dream Forge", false],
+                "psionic/dreaming": [true, 1.3, "psionic / dreaming", false],
+                "psionic/feedback": [true, 1.3, "psionic / feedback", false],
+                "psionic/mentalism": [true, 1.3, "psionic / mentalism", false]
+            }
+        },
+        "STONE_WARDEN": {
+            "copy_add": {
+                "life_rating": 2
+            },
+            "desc": "<p>Stone Wardens are dwarves trained in both the eldritch arts and the worship of nature.</p><p>While other races are stuck in their belief that arcane forces and natural forces are meant to oppose, dwarves have found a way to combine them in harmony.</p><p>Stone Wardens are armoured fighters, dual wielding shields to channel many of their powers.</p><p>Their most important stats are: Strength, Magic and Willpower</p>",
+            "display_name": "Stone Warden",
+            "evolutions": [],
+            "images": [],
+            "name": "Stone Warden",
+            "short_name": "STONE_WARDEN",
+            "stats": {
+                "mag": 4,
+                "str": 2,
+                "wil": 3
+            },
+            "talents": {
+                "T_ARMOUR_TRAINING": 3,
+                "T_ELDRITCH_BLOW": 1,
+                "T_STONESHIELD": 1,
+                "T_STONE_VINES": 1,
+                "T_WEAPON_COMBAT": 1
+            },
+            "talents_types_class": {
+                "spell/deeprock": [false, 1.3, "spell / deeprock", false],
+                "spell/earth": [true, 1.3, "spell / earth", false],
+                "spell/eldritch-shield": [true, 1.3, "spell / eldritch shield", false],
+                "spell/eldritch-stone": [false, 1.3, "spell / eldritch stone", false],
+                "spell/stone": [false, 1.3, "spell / stone", false],
+                "wild-gift/dwarven-nature": [true, 1.3, "wild-gift / dwarven nature", false],
+                "wild-gift/earthen-power": [true, 1.3, "wild-gift / earthen power", false],
+                "wild-gift/earthen-vines": [true, 1.3, "wild-gift / earthen vines", false]
+            },
+            "talents_types_generic": {
+                "cunning/survival": [true, 1, "cunning / survival", false],
+                "spell/stone-alchemy": [false, 1.3, "spell / stone alchemy", false],
+                "technique/combat-training": [true, 1, "technique / combat training", false],
+                "wild-gift/call": [true, 1.3, "wild-gift / call of the wild", false]
+            }
+        },
+        "SUMMONER": {
+            "desc": "<p>Summoners never fight alone. They are always ready to summon one of their many minions to fight at their side.</p><p>Summons can range from a combat hound to a fire drake.</p><p>Their most important stats are: Willpower and Cunning</p>",
+            "display_name": "Summoner",
+            "evolutions": [],
+            "images": [{
+                "file": "npc/humanoid_thalore_ziguranth_summoner.png"
+            }, {
+                "file": "npc/summoner_ritch.png"
+            }],
+            "name": "Summoner",
+            "short_name": "SUMMONER",
+            "stats": {
+                "cun": 3,
+                "dex": 1,
+                "wil": 5
+            },
+            "talents": {
+                "T_HEIGHTENED_SENSES": 1,
+                "T_MEDITATION": 1,
+                "T_RITCH_FLAMESPITTER": 1,
+                "T_WAR_HOUND": 1
+            },
+            "talents_types_class": {
+                "technique/combat-techniques-active": [false, 1, "technique / combat techniques", false],
+                "wild-gift/summon-advanced": [false, 1.3, "wild-gift / summoning (advanced)", false],
+                "wild-gift/summon-augmentation": [false, 1.3, "wild-gift / summoning (augmentation)", false],
+                "wild-gift/summon-distance": [true, 1.3, "wild-gift / summoning (distance)", false],
+                "wild-gift/summon-melee": [true, 1.3, "wild-gift / summoning (melee)", false],
+                "wild-gift/summon-utility": [true, 1.3, "wild-gift / summoning (utility)", false]
+            },
+            "talents_types_generic": {
+                "cunning/survival": [true, 1, "cunning / survival", false],
+                "technique/combat-training": [true, 1, "technique / combat training", false],
+                "wild-gift/call": [true, 1.3, "wild-gift / call of the wild", false],
+                "wild-gift/harmony": [false, 1.3, "wild-gift / harmony", false],
+                "wild-gift/mindstar-mastery": [true, 1.3, "wild-gift / mindstar mastery", false]
+            }
+        },
+        "SUN_PALADIN": {
+            "copy_add": {
+                "life_rating": 2
+            },
+            "desc": "<p>Sun Paladins hail from the Gates of Morning, the last bastion of the free people in the Far East.</p><p>Their way of life is well represented by their motto 'The Sun is our giver, our purity, our essence. We carry the light into dark places, and against our strength none shall pass.'</p><p>They can channel the power of the Sun to smite all who seek to destroy the Sunwall.</p><p>Competent in both weapon and shield combat and magic, they usually burn their foes from afar before bashing them in melee.</p><p>Their most important stats are: Strength and Magic</p>",
+            "display_name": "Sun Paladin",
+            "evolutions": [{
+                "class_talents": [],
+                "desc": "<p>During your studies of celestial forces you came in contact with an entity far beyond Eyal: the living incarnation of a Star!</p><p>By allying yourself with it you can gain its power!</p><p></p><p>Grants multiple benefits:</p><p>- The strength of your bond is so strong that you can now <span style=\"color: #ffd700\"><span class=\"tstr-color-GOLD\">wield a two-handed weapon and a shield together</span></span></span></span></p><p>- 50% of all damage you deal is converted to <span style=\"color: #ffd700\"><span class=\"tstr-color-GOLD\">light damage</span></span></span></span></p><p>- <span style=\"color: #ffd700\"><span class=\"tstr-color-GOLD\">Gravitic Effulgence</span></span>: whenever your Weapon of Light hits the damage is now a radius 2 sphere and all foes in range 5 are drawn to it. (You can toggle this effect)</span></span></p><p>- The damage and chance to trigger of <span style=\"color: #ffd700\"><span class=\"tstr-color-GOLD\">Searing Sight</span></span> is doubled</span></span></p><p>- Whenever <span style=\"color: #ffd700\"><span class=\"tstr-color-GOLD\">Sun's Vengeance</span></span> triggers the remaining cooldown of Judgement is reduced by 6.</span></span></p><p>- If you also know <span style=\"color: #ffd700\"><span class=\"tstr-color-GOLD\">Irresistible Sun</span></span>, it will set the fire and light resistances of those affected to 0%</span></span></p><p></p><p><span style=\"font-style: italic\"><span class=\"tstr-font-italic\"><span style=\"color: #ffd700\"><span class=\"tstr-color-GOLD\">Will you bind yourself to the Distant Sun?</span></span></span></span></p><p></p>",
+                "generic_talents": [],
+                "name": "<p><span style=\"color: #b0c4de\"><span class=\"tstr-color-LIGHT_STEEL_BLUE\">Avatar of a Distant Sun (Class Evolution)</span></span></p>",
+                "removes": []
+            }, {
+                "class_talents": {
+                    "celestial/dark-sun": [true, 1.3, "celestial / Dark Sun", false],
+                    "celestial/darkside": [true, 1.3, "celestial / Darkside", false],
+                    "cursed/bloodstained": [true, 1.3, "cursed / Bloodstained", false],
+                    "cursed/crimson-templar": [true, 1.3, "cursed / Crimson Templar", false],
+                    "cursed/gloom": [true, 1.3, "cursed / gloom", false]
+                },
+                "desc": "<p>The code of the Sun Paladins can be a heavy burden.\t Wouldn't you like to let go?</p><p><span style=\"font-style: italic\"><span class=\"tstr-font-italic\"><span style=\"color: #7f7f7f\"><span class=\"tstr-color-GREY\">To give in to the darkness?</span></span></span></span></span></span></p><p></p><p><span style=\"color: #dc143c\"><span class=\"tstr-color-CRIMSON\">This evolution fundamentally alters your class and character in a huge way. Do not take it lightly.</span></span></span></span></p><p></p><p>Any offensive combat techniques or unlockable Celestial talent trees you know will be exchanged for cursed versions, allowing you to cut a bloody trail through enemies, turning your radiance to gloom, and more while also gaining new combat styles and defenses.</p><p></p><p>The following talent trees are swapped:</p><p>- <span style=\"color: #ffd700\"><span class=\"tstr-color-GOLD\">Radiance</span></span> turns into </span></span><span style=\"color: #dc143c\"><span class=\"tstr-color-CRIMSON\">Gloom</span></span>: Project onto others your own hate, hindering them</span></span></p><p>- <span style=\"color: #ffd700\"><span class=\"tstr-color-GOLD\">Guardian</span></span> turns into </span></span><span style=\"color: #dc143c\"><span class=\"tstr-color-CRIMSON\">Crimson Templar</span></span>: Use the power of blood to control and defeat the fools that oppose you</span></span></p><p>- <span style=\"color: #ffd700\"><span class=\"tstr-color-GOLD\">Crusader</span></span> turns into </span></span><span style=\"color: #dc143c\"><span class=\"tstr-color-CRIMSON\">Dark Sun</span></span>: Call upon the energies of dead suns to crush your foes</span></span></p><p></p><p>You will learn the following talents trees:</p><p>- <span style=\"color: #dc143c\"><span class=\"tstr-color-CRIMSON\">Bloodstained</span></span>: Make your foes bleed!</span></span></p><p>- <span style=\"color: #dc143c\"><span class=\"tstr-color-CRIMSON\">Darkside</span></span>: Every light casts a shadow, yours is powerful indeed</span></span></p><p>- <span style=\"color: #dc143c\"><span class=\"tstr-color-CRIMSON\">Hatred</span></span>: Manifest your hatred through bleeding</span></span></p><p>- <span style=\"color: #dc143c\"><span class=\"tstr-color-CRIMSON\">Dirge</span></span>: Sing of death and sorrow to strengthen your resolve</span></span></p><p></p><p>You will forget the following talent trees, refunding any talent points: Shield Offense, Two-handed Assault.</p><p>Also the cost of any talents of the Combat Techniques tree will be converted to hate instead of stamina.</p><p></p>",
+                "generic_talents": {
+                    "celestial/dirge": [true, 1.3, "celestial / Dirges", false],
+                    "cursed/hatred": [true, 1.3, "cursed / Hatred", false]
+                },
+                "name": "<p><span style=\"color: #b0c4de\"><span class=\"tstr-color-LIGHT_STEEL_BLUE\">Fallen (Class Evolution)</span></span></p>",
+                "removes": {
+                    "celestial/crusader": "celestial / crusader",
+                    "celestial/guardian": "celestial / guardian",
+                    "celestial/radiance": "celestial / radiance",
+                    "technique/2hweapon-assault": "technique / two-handed assault",
+                    "technique/shield-offense": "technique / shield offense"
+                }
+            }],
+            "images": [{
+                "file": "npc/humanoid_human_sun_paladin_guren.png"
+            }],
+            "name": "Sun Paladin",
+            "short_name": "SUN_PALADIN",
+            "stats": {
+                "mag": 4,
+                "str": 5
+            },
+            "talents": {
+                "T_ARMOUR_TRAINING": 2,
+                "T_CHANT_ACOLYTE": 1,
+                "T_SUN_BEAM": 1,
+                "T_WEAPONS_MASTERY": 1,
+                "T_WEAPON_OF_LIGHT": 1
+            },
+            "talents_types_class": {
+                "celestial/combat": [true, 1.3, "celestial / combat", false],
+                "celestial/crusader": [false, 1.3, "celestial / crusader", false],
+                "celestial/guardian": [false, 1.3, "celestial / guardian", false],
+                "celestial/radiance": [false, 1.3, "celestial / radiance", false],
+                "celestial/sun": [true, 1.3, "celestial / sun", false],
+                "technique/2hweapon-assault": [true, 1, "technique / two-handed assault", false],
+                "technique/combat-techniques-active": [false, 1, "technique / combat techniques", false],
+                "technique/combat-techniques-passive": [true, 1, "technique / combat veteran", false],
+                "technique/shield-offense": [true, 1, "technique / shield offense", false]
+            },
+            "talents_types_generic": {
+                "celestial/chants": [true, 1.3, "celestial / chants", false],
+                "celestial/light": [true, 1.3, "celestial / light", false],
+                "cunning/survival": [false, 1, "cunning / survival", false],
+                "technique/combat-training": [true, 1, "technique / combat training", false]
+            }
+        },
+        "TEMPORAL_WARDEN": {
+            "copy_add": {
+                "life_rating": 2
+            },
+            "desc": "<p>Their lifelines braided, Temporal Wardens have learned to work with their other selves across multiple timelines.</p><p>Through their study of chronomancy, they learn to blend archery and dual-weapon fighting, seamlessly switching from one to the other.</p><p>Their most important stats are: Magic, Dexterity, and Willpower</p>",
+            "display_name": "Temporal Warden",
+            "evolutions": [],
+            "images": [{
+                "file": "npc/humanoid_elf_star_crusader.png"
+            }, {
+                "file": "npc/humanoid_elf_elven_archer.png"
+            }],
+            "name": "Temporal Warden",
+            "short_name": "TEMPORAL_WARDEN",
+            "stats": {
+                "dex": 3,
+                "mag": 4,
+                "wil": 2
+            },
+            "talents": {
+                "T_ARROW_STITCHING": 1,
+                "T_DIMENSIONAL_STEP": 1,
+                "T_SHOOT": 1,
+                "T_STRENGTH_OF_PURPOSE": 1,
+                "T_WARP_BLADE": 1,
+                "T_WEAPON_COMBAT": 1
+            },
+            "talents_types_class": {
+                "chronomancy/blade-threading": [true, 1.3, "chronomancy / Blade Threading", false],
+                "chronomancy/bow-threading": [true, 1.3, "chronomancy / Bow Threading", false],
+                "chronomancy/guardian": [true, 1.3, "chronomancy / Temporal Guardian", false],
+                "chronomancy/spacetime-folding": [true, 1.3, "chronomancy / Spacetime Folding", false],
+                "chronomancy/speed-control": [true, 1.3, "chronomancy / Speed Control", false],
+                "chronomancy/stasis": [false, 1, "chronomancy / stasis", false],
+                "chronomancy/temporal-combat": [true, 1.3, "chronomancy / Temporal Combat", false],
+                "chronomancy/temporal-hounds": [false, 1.3, "chronomancy / Temporal Hounds", false],
+                "chronomancy/threaded-combat": [false, 1.3, "chronomancy / Threaded Combat", false]
+            },
+            "talents_types_generic": {
+                "chronomancy/chronomancy": [true, 1.3, "chronomancy / Chronomancy", false],
+                "chronomancy/fate-weaving": [false, 1, "chronomancy / Fate Weaving", false],
+                "chronomancy/spacetime-weaving": [true, 1.3, "chronomancy / Spacetime Weaving", false],
+                "cunning/survival": [false, 1, "cunning / survival", false],
+                "technique/combat-training": [true, 1.3, "technique / combat training", false]
+            }
+        },
+        "TUTORIAL_ADVENTURER": {
+            "desc": "<p>Adventurers have a generic talent set to teach to young ones.</p>",
+            "display_name": "Tutorial Adventurer",
+            "evolutions": [],
+            "images": [],
+            "name": "Tutorial Adventurer",
+            "short_name": "TUTORIAL_ADVENTURER",
+            "stats": {
+                "con": 5,
+                "cun": 5,
+                "dex": 8,
+                "mag": 10,
+                "str": 10,
+                "wil": 5
+            },
+            "talents": {
+                "T_ARMOUR_TRAINING": 2,
+                "T_WEAPONS_MASTERY": 2,
+                "T_WEAPON_COMBAT": 2
+            },
+            "talents_types_class": {
+                "technique/shield-defense": [true, 1.3, "technique / shield defense", false],
+                "technique/shield-offense": [true, 1.3, "technique / shield offense", false]
+            },
+            "talents_types_generic": {
+                "technique/combat-training": [true, 1.3, "technique / combat training", false]
+            }
+        },
+        "WANDERER": {
+            "copy_add": {
+                "life_rating": 2,
+                "mana_regen": 0.5,
+                "unused_generics": 2,
+                "unused_talents": 3,
+                "unused_talents_types": 3
+            },
+            "desc": "<p>Wanderers are adventurers who embrace the chaotic nature of the world. They start the game with the Combat Training talent tree, 3 random class trees and 1 random generic tree.</p><p><span style=\"font-weight: bold\"><span class=\"tstr-font-bold\"><span style=\"color: #80008b\"><span class=\"tstr-color-PURPLE\">Every 5 levels they gain a new unlocked class tree, at random.</span></span></span></span></span></span></p><p><span style=\"font-weight: bold\"><span class=\"tstr-font-bold\"><span style=\"color: #80008b\"><span class=\"tstr-color-PURPLE\">Every 10 levels starting at level 2 they gain a new unlocked generic tree, at random.</span></span></span></span></span></span></p><p><span style=\"font-weight: bold\"><span class=\"tstr-font-bold\"><span style=\"color: #ffd700\"><span class=\"tstr-color-GOLD\">This is a bonus class for the chaotically inclined. It is by no means balanced, fun or winnable, it is most of all </span></span><span style=\"font-style: italic\"><span class=\"tstr-font-italic\">RANDOM</span></span><span style=\"font-weight: bold\"><span class=\"tstr-font-bold\">.</span></span><span style=\"color: #ffffff\"><span class=\"tstr-color-WHITE\"></span></span></span></span></p><p>Their most important stats depend on what they get to do.</p>",
+            "display_name": "Wanderer",
+            "evolutions": [],
+            "images": [],
+            "name": "Wanderer",
+            "short_name": "WANDERER",
+            "stats": {
+                "con": 2,
+                "cun": 2,
+                "dex": 2,
+                "mag": 2,
+                "str": 2,
+                "wil": 2
+            },
+            "talents_types_class": [],
+            "talents_types_generic": []
+        },
+        "WRITHING_ONE": {
+            "copy_add": {
+                "life_rating": 3
+            },
+            "desc": "<p>Writhing Ones know that what we call <span style=\"font-style: italic\"><span class=\"tstr-font-italic\">horrors</span></span> hold the key to some ancient knowledge and power from the Age of Haze and they are ready to do anything to access it.</p><p>In their lust for power they somehow lost a part of themselves, turning more and more into the horrors they study.</p><p>Most of them forgo an entire arm to turn it into a deadly tentacle.</p><p>Some are even known to never leave their sanctuary without their own worm that walks friend.</p><p>Their most important stats are: Strength and Magic</p>",
+            "display_name": "Writhing One",
+            "evolutions": [],
+            "images": [],
+            "name": "Writhing One",
+            "short_name": "WRITHING_ONE",
+            "stats": {
+                "con": 3,
+                "mag": 3,
+                "str": 3
+            },
+            "talents": {
+                "T_ARMOUR_TRAINING": 1,
+                "T_CARRION_FEET": 1,
+                "T_CHAOS_ORBS": 1,
+                "T_INSANITY_POOL": 1,
+                "T_MUTATED_HAND": 1,
+                "T_WEAPONS_MASTERY": 1,
+                "T_WEAPON_COMBAT": 1
+            },
+            "talents_types_class": {
+                "demented/controlled-horrors": [true, 1.3, "demented / controlled horrors", false],
+                "demented/disfigured-face": [true, 1.3, "demented / disfigured face", false],
+                "demented/friend-of-the-worm": [false, 1.3, "demented / friend of the worm", false],
+                "demented/horrific-body": [true, 1.3, "demented / horrific body", false],
+                "demented/path-of-horror": [true, 1.3, "demented / path of horror", false],
+                "demented/slow-death": [false, 1.3, "demented / slow death", false],
+                "demented/tentacles": [true, 1.3, "demented / tentacles", false]
+            },
+            "talents_types_generic": {
+                "cunning/survival": [true, 1.3, "cunning / survival", false],
+                "demented/beyond-sanity": [true, 1.3, "demented / beyond sanity", false],
+                "technique/combat-training": [true, 1, "technique / combat training", false]
+            }
+        },
+        "WYRMIC": {
+            "copy_add": {
+                "life_rating": 2
+            },
+            "desc": "<p>Wyrmics are fighters who have learnt how to mimic some of the aspects of the dragons.</p><p>They have access to talents normally belonging to the various kind of drakes.</p><p>Their most important stats are: Strength and Willpower</p>",
+            "display_name": "Wyrmic",
+            "evolutions": [],
+            "images": [{
+                "file": "npc/humanoid_human_fire_wyrmic.png"
+            }, {
+                "file": "npc/humanoid_human_multihued_wyrmic.png"
+            }],
+            "name": "Wyrmic",
+            "short_name": "WYRMIC",
+            "stats": {
+                "con": 1,
+                "str": 5,
+                "wil": 3
+            },
+            "talents": {
+                "T_ARMOUR_TRAINING": 1,
+                "T_ICE_CLAW": 1,
+                "T_MEDITATION": 1,
+                "T_WEAPONS_MASTERY": 1,
+                "T_WEAPON_COMBAT": 1
+            },
+            "talents_types_class": {
+                "demented/scourge-drake": [false, 1.3, "demented / scourge drake", true],
+                "spell/undead-drake": [false, 1.3, "spell / undead drake", true],
+                "technique/2hweapon-assault": [true, 1.3, "technique / two-handed assault", false],
+                "technique/combat-techniques-active": [false, 1.3, "technique / combat techniques", false],
+                "technique/shield-offense": [true, 1.3, "technique / shield offense", false],
+                "wild-gift/cold-drake": [true, 1.3, "wild-gift / cold drake aspect", false],
+                "wild-gift/fire-drake": [true, 1.3, "wild-gift / fire drake aspect", false],
+                "wild-gift/higher-draconic": [false, 1.3, "wild-gift / higher draconic abilities", false],
+                "wild-gift/sand-drake": [true, 1.3, "wild-gift / sand drake aspect", false],
+                "wild-gift/storm-drake": [true, 1.3, "wild-gift / storm drake aspect", false],
+                "wild-gift/venom-drake": [true, 1.3, "wild-gift / venom drake aspect", false]
+            },
+            "talents_types_generic": {
+                "cunning/survival": [false, 1, "cunning / survival", false],
+                "technique/combat-training": [true, 1.3, "technique / combat training", false],
+                "wild-gift/call": [true, 1.3, "wild-gift / call of the wild", false],
+                "wild-gift/fungus": [true, 1, "wild-gift / fungus", false],
+                "wild-gift/harmony": [false, 1, "wild-gift / harmony", false]
+            }
+        }
+    }
+}

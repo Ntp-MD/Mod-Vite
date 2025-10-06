@@ -15,7 +15,7 @@ export default defineConfig({
   build: {
     outDir: "dist", // Output to the dist directory
   },
-  base: "/Mod-Vite/", // Ensure this matches your repository name
+  base: "/Tome-Custom/", // Ensure this matches your repository name
   server: {
     hmr: true,
     watch: {

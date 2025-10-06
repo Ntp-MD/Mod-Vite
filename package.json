@@ -1,8 +1,8 @@
 {
-  "name": "mod-vite",
+  "name": "tome-Custom",
   "version": "0.0.0",
   "private": true,
-  "homepage": "https://ntp-md.github.io/Mod-Vite",
+  "homepage": "https://ntp-md.github.io/Tome-Custom",
   "type": "module",
   "scripts": {
     "dev": "vite",
