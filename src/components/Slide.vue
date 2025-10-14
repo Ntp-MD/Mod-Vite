@@ -47,11 +47,136 @@
   </div>
 </template>
 
-<style>
-@import url("/src/css/mod-slide.css");
+<style scoped>
+.container_slide {
+  margin: 150px 0 0;
+  max-width: 1500px;
+  margin: auto;
+  min-height: 120vh;
+}
 
-#AppClient {
-  background: #fff;
+.title-section {
+  margin: 50px 0;
+}
+
+#box_slide {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  gap: 10px;
+  height: 30vw;
+  min-height: 500px;
+  width: 100%;
+}
+
+.slide_items {
+  scroll-snap-align: center;
+  position: relative;
+  z-index: 1;
+  width: 20%;
+  height: 100%;
+  transition: 0.3s ease-in-out;
+}
+
+.slide_items > div {
+  pointer-events: none;
+  user-select: none;
+}
+
+.slide_items.active {
+  width: 50%;
+}
+
+.slide_img {
+  height: 100%;
+}
+
+.slide_img img {
+  position: relative;
+  z-index: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.slide_items.active .slide_text {
+  visibility: visible;
+  bottom: 0;
+}
+
+.slide_text {
+  visibility: hidden;
+  position: absolute;
+  left: 0;
+  z-index: 0;
+  width: 100%;
+  bottom: -50%;
+  padding: 15px;
+  background: #000;
+  color: #fff;
+  transition: 0.3s ease-in-out;
+}
+
+#slide_dot {
+  display: flex;
+  place-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 15px;
+}
+
+.dot {
+  width: 15px;
+  height: 15px;
+  border-radius: 30px;
+  background: #000;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.dot.active {
+  width: 50px;
+  background: red;
+}
+
+@media screen and (max-width: 992px) {
+  .container_slide {
+    margin: 20px 0 0;
+  }
+}
+
+@media screen and (max-width: 440px) {
+  .container_slide {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+  }
+
+  #box_slide {
+    height: 350px;
+    min-height: auto;
+  }
+
+  .slide_items {
+    position: absolute;
+    width: 100%;
+    z-index: 0;
+    padding-bottom: 60px;
+    opacity: 0.1;
+    transition: 1.5s ease-in-out;
+  }
+
+  .slide_items.active {
+    z-index: 1;
+    width: 100%;
+    opacity: 1;
+  }
+
+  .slide_text {
+    visibility: visible;
+    padding: 10px;
+    bottom: 0;
+  }
 }
 </style>
 

@@ -2,6 +2,7 @@
   <div class="nav_header" ref="navheaderRef">
     <navAside ref="navMobileRef" :class="{ open: isOpen }"> </navAside>
     <ThemeSwitch></ThemeSwitch>
+    <button @click="handleLogout" class="logout-btn">Logout</button>
     <div class="nav_backdrop" ref="navMobileRef" :class="{ open: isOpen }" @click="toggleMenu"></div>
     <div class="nav_button" ref="nav_buttonRef" @click="toggleMenu">
       <div class="nav_icon">
@@ -15,31 +16,22 @@
 
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from "vue";
+import { useRouter } from "vue-router";
+import { useAuthStore } from "@/stores/auth";
 
+const router = useRouter();
+const authStore = useAuthStore();
 const isOpen = ref(false);
 const navMobileRef = ref(null);
 const nav_buttonRef = ref(null);
 const navheaderRef = ref(null);
 
-function toggleMenu() {
-  isOpen.value = !isOpen.value;
-}
+// ...existing code...
 
-function handleClickOutside(event) {
-  const navAsideEl = navMobileRef.value?.$el || navMobileRef.value;
-  const nav_headerEl = navheaderRef.value;
-  if (isOpen.value && navAsideEl && nav_headerEl && !navAsideEl.contains(event.target) && !nav_headerEl.contains(event.target)) {
-    isOpen.value = false;
-  }
-}
-
-onMounted(() => {
-  document.addEventListener("click", handleClickOutside);
-});
-
-onBeforeUnmount(() => {
-  document.removeEventListener("click", handleClickOutside);
-});
+const handleLogout = () => {
+  authStore.logout();
+  router.push("/login");
+};
 </script>
 
 <style scoped>

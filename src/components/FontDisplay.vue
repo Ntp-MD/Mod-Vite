@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import fontData from "/SSR/data/fontfamily.json";
+import fontData from "../assets/data/fontfamily.json";
 
 export default {
   methods: {

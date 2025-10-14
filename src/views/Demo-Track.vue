@@ -1,3 +1,37 @@
+<template>
+  <div v-if="!loading">
+    <div class="filter_box">
+      <form id="search_box">
+        <input class="search_input" type="search" placeholder="Search demo" v-model="searchQuery" />
+      </form>
+      <button class="filter_range" @click="filterRange(1, 199)">1–199</button>
+      <button class="filter_range" @click="filterRange(200, 399)">200–399</button>
+      <button class="filter_range" @click="filterRange(400, 599)">400–599</button>
+      <button class="filter_range" @click="filterRange(600, 800)">600–800</button>
+      <button class="filter_range" @click="clearFilter">All</button>
+    </div>
+    <table class="TableViews">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Note</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(row, idx) in filteredData" :key="idx">
+          <td>{{ row.column1 }}</td>
+          <td>{{ row.column2 }}</td>
+          <td :class="statusDetect(row.column3)">
+            {{ row.column3 }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <Loading v-else></Loading>
+</template>
+
 <script setup>
 import { ref, computed, onMounted } from "vue";
 import Papa from "papaparse";
@@ -68,37 +102,3 @@ function statusDetect(value) {
   return "";
 }
 </script>
-
-<template>
-  <div v-if="!loading">
-    <div class="filter_box">
-      <form id="search_box">
-        <input class="search_input" type="search" placeholder="Search demo" v-model="searchQuery" />
-      </form>
-      <button class="filter_range" @click="filterRange(1, 199)">1–199</button>
-      <button class="filter_range" @click="filterRange(200, 399)">200–399</button>
-      <button class="filter_range" @click="filterRange(400, 599)">400–599</button>
-      <button class="filter_range" @click="filterRange(600, 800)">600–800</button>
-      <button class="filter_range" @click="clearFilter">All</button>
-    </div>
-    <table class="TableViews">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Note</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(row, idx) in filteredData" :key="idx">
-          <td>{{ row.column1 }}</td>
-          <td>{{ row.column2 }}</td>
-          <td :class="statusDetect(row.column3)">
-            {{ row.column3 }}
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <Loading v-else></Loading>
-</template>

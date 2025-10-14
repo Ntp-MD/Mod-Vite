@@ -3,17 +3,15 @@
     <div class="nav_top">Administrator</div>
     <nav class="nav_mid">
       <router-link class="nav_menu_link" to="/">Dashboard</router-link>
-      <router-link class="nav_menu_link" to="/OnlinePromotion">Online Promotion</router-link>
+      <router-link class="nav_menu_link" to="/Online-Track">Online Promotion</router-link>
       <router-link class="nav_menu_link" to="/SmartWidget">Smart Widget</router-link>
-      <router-link class="nav_menu_link" to="/DemoWebsite">Demo Website</router-link>
+      <router-link class="nav_menu_link" to="/Demo-Track">Demo Website</router-link>
       <router-link class="nav_menu_link" to="/FontDisplay">Font Family</router-link>
       <router-link class="nav_menu_link" to="/SlidePause">Slide Pause</router-link>
       <router-link class="nav_menu_link" to="/Map">World Map</router-link>
-      <router-link class="nav_menu_link" to="/Table">Table </router-link>
-      <router-link class="nav_menu_link" to="/Countdown">Countdown </router-link>
-      <router-link class="nav_menu_link" to="/Free">Free </router-link>
     </nav>
     <div class="nav_bottom">
+      <Logout />
       <div id="bangkok-time">{{ bangkokTime }}</div>
     </div>
   </div>

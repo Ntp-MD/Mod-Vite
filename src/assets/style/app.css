@@ -48,7 +48,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--btn-color);
+  background: var(--font-color);
   border-radius: var(--border-radius);
   min-height: 5%;
 }
