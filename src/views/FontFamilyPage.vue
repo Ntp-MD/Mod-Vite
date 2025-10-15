@@ -1,22 +1,24 @@
 <template>
-  <div class="labelName">Font Family</div>
-  <div class="font_bookmark grid_431">
-    <div class="font_family" v-for="font in fonts" :key="font.font_name">
-      <div class="font_name">{{ font.font_name }}</div>
-      <div class="font_info">
-        <div class="font_url">
-          {{ font.font_url }}
+  <div>
+    <div class="labelName">Font Family</div>
+    <div class="font_bookmark grid_431">
+      <div class="font_family" v-for="font in fonts" :key="font.font_name">
+        <div class="font_name">{{ font.font_name }}</div>
+        <div class="font_info">
+          <div class="font_url">
+            {{ font.font_url }}
+          </div>
+          <div class="font_copy" @click="copyToClipboard(font.font_url)">
+            <img src="/src/assets/icon/link.png" alt="" />
+          </div>
         </div>
-        <div class="font_copy" @click="copyToClipboard(font.font_url)">
-          <img src="/src/assets/icon/link.png" alt="" />
-        </div>
-      </div>
-      <div class="font_info">
-        <div class="font_url">
-          {{ font.font_family }}
-        </div>
-        <div class="font_copy" @click="copyToClipboard(font.font_family)">
-          <img src="/src/assets/icon/copy.png" alt="" />
+        <div class="font_info">
+          <div class="font_url">
+            {{ font.font_family }}
+          </div>
+          <div class="font_copy" @click="copyToClipboard(font.font_family)">
+            <img src="/src/assets/icon/copy.png" alt="" />
+          </div>
         </div>
       </div>
     </div>
@@ -24,7 +26,7 @@
 </template>
 
 <script>
-import fontData from "../assets/data/fontfamily.json";
+import fontData from "@/assets/data/fontfamily.json";
 
 export default {
   methods: {
@@ -63,7 +65,7 @@ export default {
   padding: 15px;
   border-radius: 10px;
   min-height: auto;
-  background: var(--sub-color);
+  background: var(--main-color2);
   border: 1px solid var(--border-color);
 }
 
@@ -71,7 +73,7 @@ export default {
   display: grid;
   grid-template-columns: auto 35px;
   align-items: center;
-  background: var(--sub-color2);
+  background: var(--main-color3);
   border-radius: 5px;
   overflow: hidden;
   border: 1px solid var(--border-color);

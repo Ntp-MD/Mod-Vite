@@ -4,7 +4,6 @@
       <form id="search_box" @submit.prevent>
         <input class="search_input" type="search" placeholder="Search..." v-model="searchQuery" autocomplete="off" />
       </form>
-
       <button :class="{ active: selectedMonth === 0 }" @click="selectedMonth = 0">All</button>
       <button v-for="(name, i) in MONTH_NAMES" :key="i + 1" :class="{ active: selectedMonth === i + 1 }" @click="selectedMonth = i + 1">
         {{ name }}

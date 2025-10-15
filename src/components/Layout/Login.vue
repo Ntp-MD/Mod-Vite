@@ -16,7 +16,7 @@
 <script setup>
 import { ref } from "vue";
 import { useRouter } from "vue-router";
-import { useAuthStore } from "@/stores/auth";
+import { useAuthStore } from "@/stores/auth.js";
 
 const router = useRouter();
 const authStore = useAuthStore();
@@ -38,19 +38,16 @@ const handleLogin = async () => {
 <style scoped>
 .login-container {
   position: fixed;
-  width: 100%;
-  height: fit-content;
-  inset: 0;
   display: grid;
   place-content: center;
-  border-radius: var(--border-radius);
-  padding: var(--gap);
-  max-width: 360px;
+  width: 100%;
+  height: 100%;
   margin: auto;
+  background-color: var(--main-color2);
 }
 
 button {
-  background: var(--sub-color2);
+  background: var(--main-color3);
   margin: 0 auto;
 }
 </style>

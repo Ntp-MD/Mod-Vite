@@ -113,7 +113,7 @@ function clearStorage() {
   flex-wrap: wrap;
   width: 100%;
   gap: var(--gap);
-  background: var(--sub-color);
+  background: var(--main-color2);
   padding: var(--gap);
   border-radius: var(--border-radius);
   user-select: none;
@@ -144,14 +144,14 @@ function clearStorage() {
 
 .SmartWidgetForm :is(input, textarea) {
   border: 1px solid var(--border-color);
-  background: var(--sub-color2);
+  background: var(--main-color3);
 }
 
 .textBlock {
   border: 1px solid var(--border-color);
   padding: var(--gap);
   min-height: 20vh;
-  background: var(--sub-color2);
+  background: var(--main-color3);
 }
 
 /*

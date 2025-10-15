@@ -26,7 +26,33 @@ const navMobileRef = ref(null);
 const nav_buttonRef = ref(null);
 const navheaderRef = ref(null);
 
-// ...existing code...
+function toggleMenu() {
+  isOpen.value = !isOpen.value;
+}
+
+function closeMenu() {
+  isOpen.value = false;
+}
+
+function handleClickOutside(event) {
+  if (
+    isOpen.value &&
+    navMobileRef.value &&
+    !navMobileRef.value.contains(event.target) &&
+    navToggleRef.value &&
+    !navToggleRef.value.contains(event.target)
+  ) {
+    closeMenu();
+  }
+}
+
+onMounted(() => {
+  document.addEventListener("mousedown", handleClickOutside);
+});
+
+onBeforeUnmount(() => {
+  document.removeEventListener("mousedown", handleClickOutside);
+});
 
 const handleLogout = () => {
   authStore.logout();
@@ -42,7 +68,7 @@ const handleLogout = () => {
   gap: 20px;
   width: 100%;
   position: relative;
-  background: var(--sub-color2);
+  background: var(--main-color);
   border-bottom: 1px solid var(--border-color);
   height: 50px;
 }

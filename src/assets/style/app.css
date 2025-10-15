@@ -1,7 +1,7 @@
 :root {
   --main-color: #0d1117;
-  --sub-color: #151920;
-  --sub-color2: #1c2129;
+  --main-color2: #151920;
+  --main-color3: #1c2129;
   --btn-color: #1c2129;
   --font-color: #c5c5c5;
   --font-color2: #c5c5c5;
@@ -17,8 +17,8 @@
 
 .light-mode {
   --main-color: #fff;
-  --sub-color: #fff;
-  --sub-color2: #fff;
+  --main-color2: #fff;
+  --main-color3: #fff;
   --font-color: #222;
   --border-color: #bbbbbb;
   & img {
@@ -72,7 +72,7 @@ body {
   padding: 0;
   font-size: 14px;
   min-height: 100vh;
-  background: var(--main-color);
+
   overflow: hidden;
 }
 
@@ -95,21 +95,14 @@ footer {
 
 main {
   display: flex;
-}
-
-aside {
-  border-right: 1px solid var(--border-color);
-  height: calc(100vh - 100px);
-  width: clamp(240px, 30%, 300px);
-  user-select: none;
-  background: var(--sub-color);
+  height: calc(100vh - 50px);
+  background: var(--main-color);
 }
 
 section {
-  background: var(--main-color);
-  padding: var(--gap);
-  height: calc(100vh - 100px);
+  height: 100%;
   width: 100%;
+  padding: var(--gap) calc(var(--gap) * 5);
   overflow-y: scroll;
 }
 
@@ -167,7 +160,6 @@ td {
   text-align: left;
   height: 40px;
   overflow: hidden;
-  background: var(--sub-color);
 }
 
 td {

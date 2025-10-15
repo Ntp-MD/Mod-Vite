@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import { useAuthStore } from "./stores/auth";
+import { useAuthStore } from "@/stores/auth";
 
 // Dynamically import all `.vue` files from the `views` folder
 const viewFiles = import.meta.glob("@/**/*.vue");
@@ -13,7 +13,7 @@ const routes = Object.keys(viewFiles).map((path) => {
   const isToggleHide = pageTarget.includes(name.toLowerCase());
 
   return {
-    path: name.toLowerCase() === "dashboard" ? "/" : `/${name.toLowerCase()}`,
+    path: name.toLowerCase() === "panelpage" ? "/" : `/${name.toLowerCase()}`,
     name: name.toLowerCase(),
     component: viewFiles[path],
     meta: {
@@ -24,10 +24,10 @@ const routes = Object.keys(viewFiles).map((path) => {
 });
 
 // Add a fallback route for unmatched paths (NotFound.vue)
-if (viewFiles["/src/views/NotFound.vue"]) {
+if (viewFiles["@/views/NotFound.vue"]) {
   routes.push({
     path: "/:pathMatch(.*)*",
-    component: viewFiles["/src/views/NotFound.vue"],
+    component: viewFiles["@/views/NotFound.vue"],
   });
 }
 

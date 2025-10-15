@@ -76,8 +76,10 @@
 .Quick_access {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(clamp(180px, 30%, 300px), 1fr));
+  height: fit-content;
+  width: 100%;
   gap: var(--gap);
-  margin: auto;
+  padding: var(--gap);
 }
 
 .Quick_menu {
@@ -85,17 +87,15 @@
   flex-direction: column;
   overflow: hidden;
   border-radius: var(--border-radius);
-  background: var(--sub-color);
-  width: 100%;
-  min-height: clamp(250px, 15vw, 270px);
-  aspect-ratio: 4/2;
+  background: var(--main-color2);
+  height: fit-content;
 }
 
 .Quick_menu_text {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: var(--sub-color2);
+  background: var(--main-color3);
   padding: var(--gap);
 }
 
@@ -111,7 +111,7 @@
   place-items: center;
   height: 100%;
   width: 100%;
-  overflow: hidden;
+  height: 200px;
 }
 
 .Quick_menu_img img {
