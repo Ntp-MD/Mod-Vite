@@ -1,22 +1,21 @@
 <template>
   <div>
-    <div class="labelName">Font Family</div>
-    <div class="font_bookmark grid_431">
-      <div class="font_family" v-for="font in fonts" :key="font.font_name">
-        <div class="font_name">{{ font.font_name }}</div>
-        <div class="font_info">
-          <div class="font_url">
+    <div class="font-bookmark grid-431">
+      <div class="font-family" v-for="font in fonts" :key="font.font_name">
+        <div class="font-name">{{ font.font_name }}</div>
+        <div class="font-info">
+          <div class="font-url">
             {{ font.font_url }}
           </div>
-          <div class="font_copy" @click="copyToClipboard(font.font_url)">
+          <div class="font-copy" @click="copyToClipboard(font.font_url)">
             <img src="/src/assets/icon/link.png" alt="" />
           </div>
         </div>
-        <div class="font_info">
-          <div class="font_url">
+        <div class="font-info">
+          <div class="font-url">
             {{ font.font_family }}
           </div>
-          <div class="font_copy" @click="copyToClipboard(font.font_family)">
+          <div class="font-copy" @click="copyToClipboard(font.font_family)">
             <img src="/src/assets/icon/copy.png" alt="" />
           </div>
         </div>
@@ -50,15 +49,18 @@ export default {
 </script>
 
 <style scoped>
-.font_bookmark {
+.font-bookmark {
+  height: 90vh;
+  overflow-x: scroll;
+  padding-right: 20px;
 }
 
-.font_name {
+.font-name {
   font-size: 100%;
   font-weight: 600;
 }
 
-.font_family {
+.font-family {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -69,7 +71,7 @@ export default {
   border: 1px solid var(--border-color);
 }
 
-.font_info {
+.font-info {
   display: grid;
   grid-template-columns: auto 35px;
   align-items: center;
@@ -79,7 +81,7 @@ export default {
   border: 1px solid var(--border-color);
 }
 
-.font_url {
+.font-url {
   display: grid;
   align-items: center;
   overflow: hidden;
@@ -90,7 +92,7 @@ export default {
   height: 35px;
 }
 
-.font_copy {
+.font-copy {
   display: grid;
   place-items: center;
   width: 100%;
@@ -98,7 +100,7 @@ export default {
   cursor: pointer;
 }
 
-.font_copy img {
+.font-copy img {
   object-fit: contain;
   width: 40%;
   filter: invert(1);

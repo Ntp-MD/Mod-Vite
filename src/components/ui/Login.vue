@@ -50,4 +50,10 @@ button {
   background: var(--main-color3);
   margin: 0 auto;
 }
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+}
 </style>

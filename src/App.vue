@@ -1,16 +1,6 @@
 <template>
   <div id="AppClient">
-    <header v-if="route.meta.HideThis && isAuthenticated">
-      <Header></Header>
-    </header>
-    <main>
-      <aside v-if="route.meta.HideThis && isAuthenticated">
-        <NavAside></NavAside>
-      </aside>
-      <section>
-        <router-view></router-view>
-      </section>
-    </main>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -31,3 +21,13 @@ $(window).scroll(function () {
   }
 });
 </script>
+
+<style scoped>
+#AppClient {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+</style>

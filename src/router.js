@@ -1,57 +1,51 @@
+// src/router.js
 import { createRouter, createWebHistory } from "vue-router";
 import { useAuthStore } from "@/stores/auth";
 
-// Dynamically import all `.vue` files from the `views` folder
-const viewFiles = import.meta.glob("@/**/*.vue");
+// only auto-load real pages
+const viewFiles = import.meta.glob("@/views/**/*.vue");
 
-const pageTarget = ["namepage1", "namepage1"];
-const publicPages = ["/login"];
-
-// Dynamically create routes for each file
-const routes = Object.keys(viewFiles).map((path) => {
-  const name = path.split("/").pop().replace(".vue", "");
-  const isToggleHide = pageTarget.includes(name.toLowerCase());
-
-  return {
-    path: name.toLowerCase() === "panelpage" ? "/" : `/${name.toLowerCase()}`,
-    name: name.toLowerCase(),
-    component: viewFiles[path],
-    meta: {
-      HideThis: !isToggleHide,
-      requiresAuth: !publicPages.includes(`/${name.toLowerCase()}`),
-    },
-  };
-});
-
-// Add a fallback route for unmatched paths (NotFound.vue)
-if (viewFiles["@/views/NotFound.vue"]) {
-  routes.push({
-    path: "/:pathMatch(.*)*",
-    component: viewFiles["@/views/NotFound.vue"],
+// children under AppLayout (exclude AppLayout itself to avoid recursion)
+const childRoutes = Object.keys(viewFiles)
+  .filter((p) => !p.endsWith("/AppLayout.vue"))
+  .map((p) => {
+    const name = p.split("/").pop().replace(".vue", "");
+    const lower = name.toLowerCase();
+    return {
+      path: lower === "home" || lower === "index" ? "" : lower, // IMPORTANT: no leading slash
+      name: lower,
+      component: viewFiles[p],
+      meta: { requiresAuth: true },
+    };
   });
-}
 
-const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
-  routes,
-});
+const routes = [
+  {
+    path: "/login",
+    name: "login",
+    component: () => import("@/components/ui/Login.vue"),
+    meta: { guest: true },
+  },
+  {
+    path: "/",
+    component: () => import("@/components/ui/AppLayout.vue"), // AppLayout acts as layout
+    meta: { requiresAuth: true },
+    children: childRoutes,
+  },
+  { path: "/:pathMatch(.*)*", name: "notfound", component: () => import("@/views/NotFound.vue") },
+];
+
+const router = createRouter({ history: createWebHistory(import.meta.env.BASE_URL), routes });
 
 router.beforeEach((to, from, next) => {
-  const authStore = useAuthStore();
+  const auth = useAuthStore();
+  auth.initializeAuth();
 
-  // Initialize auth state from localStorage
-  authStore.initializeAuth();
+  if (to.meta.requiresAuth && !auth.isAuthenticated) return next({ name: "login", query: { redirect: to.fullPath } });
 
-  // Check if the route requires authentication
-  if (to.meta.requiresAuth && !authStore.isAuthenticated) {
-    // Redirect to login page if not authenticated
-    next("/login");
-  } else if (to.path === "/login" && authStore.isAuthenticated) {
-    // Redirect to home if already authenticated
-    next("/");
-  } else {
-    next();
-  }
+  if (to.meta.guest && auth.isAuthenticated) return next({ path: "/" });
+
+  next();
 });
 
 export default router;

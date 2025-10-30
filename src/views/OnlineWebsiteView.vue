@@ -1,45 +1,45 @@
 <template>
-  <div v-if="!loading">
-    <div class="filter_box">
+  <div v-if="!loading" class="container">
+    <div class="title">Online Website</div>
+    <div class="filter-sort flex">
       <form id="search_box" @submit.prevent>
-        <input class="search_input" type="search" placeholder="Search..." v-model="searchQuery" autocomplete="off" />
+        <input class="search-input" type="search" placeholder="Search..." v-model="searchQuery" autocomplete="off" />
       </form>
       <button :class="{ active: selectedMonth === 0 }" @click="selectedMonth = 0">All</button>
       <button v-for="(name, i) in MONTH_NAMES" :key="i + 1" :class="{ active: selectedMonth === i + 1 }" @click="selectedMonth = i + 1">
         {{ name }}
       </button>
     </div>
+    <div class="table-views">
+      <table>
+        <thead v-once>
+          <tr>
+            <th>Name</th>
+            <th>Add 5 Gb</th>
+            <th>Search Console</th>
+            <th>Smart Widget</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="row in filteredRows" :key="row.id">
+            <td>{{ row.selectName }}</td>
 
-    <table class="TableViews">
-      <thead v-once>
-        <tr>
-          <th>Name</th>
-          <th>Upgrade 5GB</th>
-          <th>WIC Search Console</th>
-          <th>WIC Smart Widget</th>
-        </tr>
-      </thead>
+            <td class="hasStatus" :class="free5gbClass(row)">
+              {{ free5gbLabel(row) }}
+            </td>
 
-      <tbody>
-        <tr v-for="row in filteredRows" :key="row.id">
-          <td>{{ row.selectName }}</td>
+            <td class="hasStatus" :class="searchConsoleClass(row)">
+              {{ searchConsoleLabel(row) }}
+            </td>
 
-          <td :class="free5gbClass(row)">
-            {{ free5gbLabel(row) }}
-          </td>
-
-          <td :class="searchConsoleClass(row)">
-            {{ searchConsoleLabel(row) }}
-          </td>
-
-          <td :class="smartWidgetClass(row)">
-            {{ smartWidgetLabel(row) }}
-          </td>
-        </tr>
-      </tbody>
-    </table>
-
-    <div ref="bottom"></div>
+            <td class="hasStatus" :class="smartWidgetClass(row)">
+              {{ smartWidgetLabel(row) }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!--    <div ref="bottom"></div>-->
   </div>
 
   <Loading v-else />
@@ -52,6 +52,7 @@ import axios from "axios";
 
 // ---------- constants ----------
 const MONTH_NAMES = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+//Wic sheet
 const GOOGLE_SHEET_CSV_URL =
   "https://corsproxy.io/?" +
   encodeURIComponent(
@@ -101,7 +102,6 @@ onMounted(async () => {
 
 onBeforeUnmount(() => controller.abort());
 
-// ---------- normalization ----------
 const norm = (v) => String(v ?? "").trim();
 const lc = (v) => norm(v).toLowerCase();
 
@@ -198,10 +198,38 @@ function smartWidgetLabel(row) {
   if (v === "ไม่มีบริการ") return "ไม่มีบริการ";
   if (v === "Google Ads") return "Google Ads";
   if (v === "Installed") return "Smart Widget Installed";
-  // If waiting but requested or empty → show requested label
   if (v === "Wait" && (row.selectfreeSmartWidget === "Smart Widget" || !row.selectfreeSmartWidget)) {
     return "Smart Widget";
   }
   return row.selectfreeSmartWidget || "Smart Widget";
 }
 </script>
+
+<style scoped>
+td.hasStatus:before {
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  content: "";
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  margin-right: 8px;
+}
+
+.Installed:before {
+  background: #09ff00;
+}
+
+.Wait:before {
+  background: #0087ff;
+}
+
+.Ads:before {
+  background: #b371ff;
+}
+
+.NoService:before {
+  background: #777;
+}
+</style>

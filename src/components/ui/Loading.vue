@@ -8,32 +8,30 @@
 .loading-screen {
   display: grid;
   place-content: center;
-  place-items: center;
   width: 100%;
   height: 100%;
+  user-select: none;
 }
 
 #loading-content {
   display: grid;
   position: relative;
   place-items: center;
-  width: 20vw;
-  min-width: 250px;
-  height: 20vw;
-  min-height: 250px;
+  width: 250px;
+  height: 250px;
 }
 
 #loading-content:before {
   content: "";
   position: absolute;
-  border: 10px solid var(--btn-color);
+  border: 6px solid red;
   inset: 0;
 }
 
 #loading-content:before {
-  border: 10px solid transparent;
-  border-top-color: var(--btn-color);
-  border-bottom-color: #fff;
+  border: 8px solid transparent;
+  border-top-color: var(--font-color);
+  border-bottom-color: #ccc;
   border-radius: 50%;
   animation: loader 3s linear infinite;
 }
@@ -41,14 +39,14 @@
 #loading-content:after {
   content: "";
   position: absolute;
-  border: 10px solid var(--btn-color);
+  border: 6px solid var(--font-color);
   inset: 25px;
 }
 
 #loading-content:after {
-  border: 8px solid transparent;
+  border: 5px solid transparent;
   border-top-color: #fff;
-  border-bottom-color: var(--btn-color);
+  border-bottom-color: var(--font-color);
   border-radius: 50%;
   animation: loader 1.5s linear infinite;
 }

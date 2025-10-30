@@ -5,6 +5,7 @@ export const useAuthStore = defineStore("auth", {
   state: () => ({
     isAuthenticated: false,
     user: null,
+    initialized: false, // add this
   }),
 
   actions: {
@@ -23,15 +24,18 @@ export const useAuthStore = defineStore("auth", {
     logout() {
       this.isAuthenticated = false;
       this.user = null;
+      this.initialized = true;
       localStorage.removeItem("auth");
     },
 
     initializeAuth() {
+      if (this.initialized) return; // avoid double init
       const auth = JSON.parse(localStorage.getItem("auth"));
       if (auth) {
         this.isAuthenticated = auth.isAuthenticated;
         this.user = auth.user;
       }
+      this.initialized = true;
     },
   },
 });

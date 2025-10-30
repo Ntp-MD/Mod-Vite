@@ -16,7 +16,7 @@ import { useSettingsStore } from "@/stores/theme.js";
 const settings = useSettingsStore();
 </script>
 
-<style scoped>
+<style>
 #toggleTheme {
   display: flex;
   border: 1px solid var(--border-color);
@@ -49,5 +49,13 @@ const settings = useSettingsStore();
 
 .light-mode .toggle-swap {
   transform: rotate(180deg);
+}
+
+.light-mode {
+  --main-color1: #fff;
+  --main-color2: #fff;
+  --main-color3: #fff;
+  --font-color: #222;
+  --border-color: #bbbbbb;
 }
 </style>
