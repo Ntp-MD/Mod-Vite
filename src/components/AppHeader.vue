@@ -1,7 +1,14 @@
 <template>
-  <div class="nav_header" ref="navheaderRef">
+  <div class="nav-header" ref="navheaderRef">
     <ThemeSwitch></ThemeSwitch>
     <button @click="handleLogout" class="logout-btn">Logout</button>
+    <div class="nav-button" ref="nav_buttonRef" @click="toggleMenu">
+      <div class="nav-icon">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -9,6 +16,8 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { useAuthStore } from "@/stores/auth";
+
+const emit = defineEmits(["toggle-menu"]);
 
 const router = useRouter();
 const authStore = useAuthStore();
@@ -18,12 +27,15 @@ const handleLogout = () => {
   authStore.logout();
   router.push("/login");
 };
+
+function toggleMenu() {
+  emit("toggle-menu");
+}
 </script>
 
 <style scoped>
-.nav_header {
+.nav-header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   gap: 20px;
   width: 100%;
@@ -35,6 +47,5 @@ const handleLogout = () => {
 
 .logout-btn {
   position: relative;
-  right: 40px;
 }
 </style>

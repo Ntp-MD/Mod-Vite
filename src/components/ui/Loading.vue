@@ -11,6 +11,9 @@
   width: 100%;
   height: 100%;
   user-select: none;
+  min-height: 80vh;
+  background: var(--color2);
+  border-radius: var(--border-radius);
 }
 
 #loading-content {

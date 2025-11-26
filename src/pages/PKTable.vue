@@ -108,7 +108,7 @@ import {
   currentPlayer,
   playerFolded,
   isPlayerBusted,
-} from "@/assets/store/Table.js";
+} from "../stores/Table";
 
 const timelineLogRef = ref(null);
 

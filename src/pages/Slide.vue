@@ -4,51 +4,51 @@
       <h2>gallery</h2>
     </div>
     <div id="box_slide">
-      <div class="slide_items">
-        <div class="slide_img">
+      <div class="slide-items">
+        <div class="slide-img">
           <img src="https://itp1.itopfile.com/ImageServer/z_itp_26012025ka3n/0/0/1z-z668805100343.jpg" />
         </div>
-        <div class="slide_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, sint.</div>
+        <div class="slide-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, sint.</div>
       </div>
-      <div class="slide_items">
-        <div class="slide_img">
+      <div class="slide-items">
+        <div class="slide-img">
           <img src="https://itp1.itopfile.com/ImageServer/z_itp_26012025ka3n/0/0/2z-z1033251447469.jpg" />
         </div>
-        <div class="slide_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, sint.</div>
+        <div class="slide-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, sint.</div>
       </div>
-      <div class="slide_items">
-        <div class="slide_img">
+      <div class="slide-items">
+        <div class="slide-img">
           <img src="https://itp1.itopfile.com/ImageServer/z_itp_26012025ka3n/0/0/3z-z752263557884.jpg" />
         </div>
-        <div class="slide_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, sint.</div>
+        <div class="slide-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, sint.</div>
       </div>
 
-      <div class="slide_items">
-        <div class="slide_img">
+      <div class="slide-items">
+        <div class="slide-img">
           <img src="https://itp1.itopfile.com/ImageServer/z_itp_26012025ka3n/0/0/4z-z57391367113.jpg" />
         </div>
-        <div class="slide_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, sint.</div>
+        <div class="slide-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, sint.</div>
       </div>
-      <div class="slide_items">
-        <div class="slide_img">
+      <div class="slide-items">
+        <div class="slide-img">
           <img src="https://itp1.itopfile.com/ImageServer/z_itp_26012025ka3n/0/0/5z-z1355768825409.jpg" />
         </div>
-        <div class="slide_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, sint.</div>
+        <div class="slide-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, sint.</div>
       </div>
 
-      <div class="slide_items">
-        <div class="slide_img">
+      <div class="slide-items">
+        <div class="slide-img">
           <img src="https://itp1.itopfile.com/ImageServer/z_itp_26012025ka3n/0/0/6z-z1095549849140.jpg" />
         </div>
-        <div class="slide_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, sint.</div>
+        <div class="slide-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, sint.</div>
       </div>
     </div>
-    <div id="slide_dot"></div>
+    <div id="slide-dot"></div>
   </div>
 </template>
 
 <style scoped>
-.container_slide {
+.container-slide {
   margin: 150px 0 0;
   max-width: 1500px;
   margin: auto;
@@ -69,7 +69,7 @@
   width: 100%;
 }
 
-.slide_items {
+.slide-items {
   scroll-snap-align: center;
   position: relative;
   z-index: 1;
@@ -78,20 +78,20 @@
   transition: 0.3s ease-in-out;
 }
 
-.slide_items > div {
+.slide-items > div {
   pointer-events: none;
   user-select: none;
 }
 
-.slide_items.active {
+.slide-items.active {
   width: 50%;
 }
 
-.slide_img {
+.slide-img {
   height: 100%;
 }
 
-.slide_img img {
+.slide-img img {
   position: relative;
   z-index: 0;
   height: 100%;
@@ -99,12 +99,12 @@
   object-fit: cover;
 }
 
-.slide_items.active .slide_text {
+.slide-items.active .slide-text {
   visibility: visible;
   bottom: 0;
 }
 
-.slide_text {
+.slide-text {
   visibility: hidden;
   position: absolute;
   left: 0;
@@ -117,7 +117,7 @@
   transition: 0.3s ease-in-out;
 }
 
-#slide_dot {
+#slide-dot {
   display: flex;
   place-content: center;
   gap: 8px;
@@ -140,13 +140,13 @@
 }
 
 @media screen and (max-width: 992px) {
-  .container_slide {
+  .container-slide {
     margin: 20px 0 0;
   }
 }
 
 @media screen and (max-width: 440px) {
-  .container_slide {
+  .container-slide {
     display: flex;
     flex-direction: column;
     margin-bottom: 40px;
@@ -157,7 +157,7 @@
     min-height: auto;
   }
 
-  .slide_items {
+  .slide-items {
     position: absolute;
     width: 100%;
     z-index: 0;
@@ -166,13 +166,13 @@
     transition: 1.5s ease-in-out;
   }
 
-  .slide_items.active {
+  .slide-items.active {
     z-index: 1;
     width: 100%;
     opacity: 1;
   }
 
-  .slide_text {
+  .slide-text {
     visibility: visible;
     padding: 10px;
     bottom: 0;
@@ -185,8 +185,8 @@ const modSlide = {
   init() {
     const container = document.getElementById("box_slide");
     if (!container) return; // Ensure the container exists
-    const items = container.querySelectorAll(".slide_items");
-    const dotIndicators = document.getElementById("slide_dot");
+    const items = container.querySelectorAll(".slide-items");
+    const dotIndicators = document.getElementById("slide-dot");
     if (!items.length || !dotIndicators) return; // Ensure items and dots exist
 
     let initialXPosition = null;
@@ -222,7 +222,7 @@ const modSlide = {
     }
 
     // Initialize active state for the first item
-    const activeSlide = container.querySelector(".slide_items.active");
+    const activeSlide = container.querySelector(".slide-items.active");
     if (!activeSlide) {
       setActive(0); // Only set the first active slide if none is currently active
     }
@@ -348,8 +348,8 @@ export default {
     initializeSlider() {
       // Ensure the required elements are available before initializing the script
       const container = document.getElementById("box_slide");
-      const items = container ? container.querySelectorAll(".slide_items") : [];
-      const dotIndicators = container ? document.getElementById("slide_dot") : null;
+      const items = container ? container.querySelectorAll(".slide-items") : [];
+      const dotIndicators = container ? document.getElementById("slide-dot") : null;
 
       if (container && items.length && dotIndicators) {
         // Initialize modSlide if all required elements are available

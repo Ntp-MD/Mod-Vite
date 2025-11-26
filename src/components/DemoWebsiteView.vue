@@ -1,6 +1,5 @@
 <template>
-  <div v-if="!loading" class="container">
-    <div class="title">Demo Website</div>
+  <div v-if="!loading" class="body-content" id="DemoWebsiteView">
     <div class="filter-sort flex">
       <form id="search_box">
         <input class="search-input" type="search" placeholder="Search demo" v-model="searchQuery" />
@@ -187,18 +186,3 @@ function statusDetect(value) {
   return "";
 }
 </script>
-
-<style scoped>
-.page-control.flex {
-  justify-content: end;
-}
-
-.pager-btn[disabled] {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.page-control {
-  justify-content: end;
-}
-</style>

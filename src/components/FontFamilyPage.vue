@@ -1,23 +1,21 @@
 <template>
-  <div>
-    <div class="font-bookmark grid-431">
-      <div class="font-family" v-for="font in fonts" :key="font.font_name">
-        <div class="font-name">{{ font.font_name }}</div>
-        <div class="font-info">
-          <div class="font-url">
-            {{ font.font_url }}
-          </div>
-          <div class="font-copy" @click="copyToClipboard(font.font_url)">
-            <img src="/src/assets/icon/link.png" alt="" />
-          </div>
+  <div class="font-bookmark grid-431">
+    <div class="font-family" v-for="font in fonts" :key="font.font_name">
+      <div class="font-name">{{ font.font_name }}</div>
+      <div class="font-info">
+        <div class="font-url">
+          {{ font.font_url }}
         </div>
-        <div class="font-info">
-          <div class="font-url">
-            {{ font.font_family }}
-          </div>
-          <div class="font-copy" @click="copyToClipboard(font.font_family)">
-            <img src="/src/assets/icon/copy.png" alt="" />
-          </div>
+        <div class="font-copy" @click="copyToClipboard(font.font_url)">
+          <img src="/src/assets/icon/link.png" alt="" />
+        </div>
+      </div>
+      <div class="font-info">
+        <div class="font-url">
+          {{ font.font_family }}
+        </div>
+        <div class="font-copy" @click="copyToClipboard(font.font_family)">
+          <img src="/src/assets/icon/copy.png" alt="" />
         </div>
       </div>
     </div>
@@ -67,7 +65,7 @@ export default {
   padding: 15px;
   border-radius: 10px;
   min-height: auto;
-  background: var(--main-color2);
+  background: var(--color2);
   border: 1px solid var(--border-color);
 }
 
@@ -75,7 +73,7 @@ export default {
   display: grid;
   grid-template-columns: auto 35px;
   align-items: center;
-  background: var(--main-color3);
+  background: var(--color3);
   border-radius: 5px;
   overflow: hidden;
   border: 1px solid var(--border-color);

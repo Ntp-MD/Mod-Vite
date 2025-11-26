@@ -34,26 +34,3 @@ const handleLogin = async () => {
   }
 };
 </script>
-
-<style scoped>
-.login-container {
-  position: fixed;
-  display: grid;
-  place-content: center;
-  width: 100%;
-  height: 100%;
-  margin: auto;
-  background-color: var(--main-color2);
-}
-
-button {
-  background: var(--main-color3);
-  margin: 0 auto;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  gap: var(--gap);
-}
-</style>

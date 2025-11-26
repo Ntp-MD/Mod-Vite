@@ -23,7 +23,7 @@ const settings = useSettingsStore();
   border-radius: 30px;
   height: 30px;
   width: 70px;
-  background: var(--main-color3);
+  background: var(--color3);
   cursor: pointer;
   overflow: hidden;
 }
@@ -52,10 +52,11 @@ const settings = useSettingsStore();
 }
 
 .light-mode {
-  --main-color1: #fff;
-  --main-color2: #fff;
-  --main-color3: #fff;
-  --font-color: #222;
-  --border-color: #bbbbbb;
+  --color1: #fff;
+  --color2: #fff;
+  --color3: #fff;
+  --font-color: #5a5a5a;
+  --font-color2: #5a5a5a;
+  --border-color: #5a5a5a;
 }
 </style>

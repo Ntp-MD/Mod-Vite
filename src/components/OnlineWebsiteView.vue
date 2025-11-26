@@ -1,6 +1,5 @@
 <template>
-  <div v-if="!loading" class="container">
-    <div class="title">Online Website</div>
+  <div v-if="!loading" class="body-content" id="OnlineWebsiteView">
     <div class="filter-sort flex">
       <form id="search_box" @submit.prevent>
         <input class="search-input" type="search" placeholder="Search..." v-model="searchQuery" autocomplete="off" />
@@ -15,7 +14,7 @@
         <thead v-once>
           <tr>
             <th>Name</th>
-            <th>Add 5 Gb</th>
+            <th>Space 5GB</th>
             <th>Search Console</th>
             <th>Smart Widget</th>
           </tr>

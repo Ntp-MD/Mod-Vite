@@ -1,8 +1,8 @@
-import "@/assets/style/app.css";
+import "./assets/style/app.css";
 import { createApp, ref, computed } from "vue";
 import { createPinia } from "pinia";
-import App from "@/App.vue";
-import router from "@/router.js";
+import App from "./App.vue";
+import router from "./router/router.js";
 
 const app = createApp(App);
 const pinia = createPinia();

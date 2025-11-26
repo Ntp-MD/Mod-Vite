@@ -66,7 +66,7 @@
   height: fit-content;
   width: fit-content;
   margin: auto;
-  background: var(--main-color3);
+  background: var(--color3);
   padding: 15px;
   cursor: pointer;
   user-select: none;
@@ -100,7 +100,7 @@
   width: 100%;
   aspect-ratio: 1;
   border-radius: 25px;
-  background: var(--main-color3);
+  background: var(--color3);
   box-shadow: 0 4px 18px rgb(0, 0, 0, 0.1);
 }
 
@@ -124,7 +124,7 @@
 }
 
 .modquee-dot.active {
-  background: var(--main-color3);
+  background: var(--color3);
 }
 </style>
 
