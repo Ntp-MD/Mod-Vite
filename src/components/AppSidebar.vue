@@ -1,14 +1,9 @@
 <template>
   <aside :class="{ open: isOpen }">
     <div class="nav-top">Welcome</div>
-    <div class="nav-mid">
-      <router-link class="nav-link" to="/fontfamilypage">Font Family</router-link>
-      <router-link class="nav-link" to="/smartwidget">Smart Widget</router-link>
-      <router-link class="nav-link" to="/onlinewebsiteview">Online Website</router-link>
-      <router-link class="nav-link" to="/demowebsiteview">Demo Website</router-link>
-      <router-link class="nav-link" to="/format">Format</router-link>
-      <router-link class="nav-link" to="/waterripple">Test Ripple</router-link>
-    </div>
+    <nav class="nav-mid">
+      <navLink></navLink>
+    </nav>
     <div class="nav-bottom">
       <div id="bangkok-time">{{ bangkokTime }}</div>
     </div>
@@ -17,6 +12,7 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from "vue";
+import navLink from "../components/navLink.vue";
 
 const props = defineProps({
   isOpen: { type: Boolean, default: false }, // <-- added

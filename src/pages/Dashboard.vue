@@ -1,18 +1,17 @@
 <template>
   <div class="dashboard-wrapper">
     <nav class="flex">
-      <router-link class="nav-link" to="/fontfamilypage">Font Family</router-link>
-      <router-link class="nav-link" to="/smartwidget">Smart Widget</router-link>
-      <router-link class="nav-link" to="/onlinewebsiteview">Online Website</router-link>
-      <router-link class="nav-link" to="/demowebsiteview">Demo Website</router-link>
-      <router-link class="nav-link" to="/format">Format</router-link>
-      <router-link class="nav-link" to="/waterripple">Test Ripple</router-link>
+      <navLink></navLink>
     </nav>
     <div class="page">
       <router-view></router-view>
     </div>
   </div>
 </template>
+
+<script setup>
+import navLink from "../components/navLink.vue";
+</script>
 
 <style scoped>
 .dashboard-wrapper {
@@ -26,14 +25,5 @@
 
 .dashboard-wrapper nav {
   margin-bottom: var(--gap);
-}
-
-nav > a {
-  display: grid;
-  place-items: center;
-  padding: 0 15px;
-  min-height: 45px;
-  background: var(--color2);
-  border-radius: 10px 10px 0 0;
 }
 </style>

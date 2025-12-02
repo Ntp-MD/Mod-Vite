@@ -6,7 +6,7 @@ import { useAuthStore } from "@/stores/auth";
 const START_PAGE_NAME = "onlinewebsiteview"; // must match lowercase route name
 
 // auto-load real pages under /pages
-const viewFiles = import.meta.glob("@/components/**/*.vue", { eager: false });
+const viewFiles = import.meta.glob("@/**/**/*.vue", { eager: false });
 
 const childRoutes = Object.keys(viewFiles)
   .filter((p) => !p.endsWith("/AppLayout.vue"))
@@ -44,7 +44,7 @@ const routes = [
   {
     path: "/:pathMatch(.*)*",
     name: "notfound",
-    component: () => import("../components/ui/NotFound.vue"),
+    component: () => import("../ui/NotFound.vue"),
   },
 ];
 

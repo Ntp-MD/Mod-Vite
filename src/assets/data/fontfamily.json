@@ -85,6 +85,11 @@
     "font_family": "font-family: 'Playfair Display', serif;",
     "font_url": "<link href=\"https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap\" rel=\"stylesheet\">"
   },
+  {
+    "font_name": "Manrope",
+    "font_family": "font-family: 'Manrope', sans-serif;",
+    "font_url": "<link href=\"https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap\" rel=\"stylesheet\">"
+  },
 
   {
     "font_name": "Teko",

@@ -30,9 +30,7 @@ export default {
     copyToClipboard(textToCopy) {
       navigator.clipboard
         .writeText(textToCopy)
-        .then(() => {
-          // alert(`${textToCopy} copied to clipboard!`);
-        })
+        .then(() => {})
         .catch((err) => {
           console.error("Failed to copy text: ", err);
         });

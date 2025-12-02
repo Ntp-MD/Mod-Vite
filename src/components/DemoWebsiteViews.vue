@@ -1,5 +1,6 @@
 <template>
-  <div v-if="!loading" class="body-content" id="DemoWebsiteView">
+  <div class="body-content">
+    <Loading v-if="ui.isLoading" />
     <div class="filter-sort flex">
       <form id="search_box">
         <input class="search-input" type="search" placeholder="Search demo" v-model="searchQuery" />
@@ -29,7 +30,7 @@
     </div>
     <div class="table-views">
       <table>
-        <thead>
+        <thead v-once>
           <tr>
             <th>Name</th>
             <th>Note</th>
@@ -43,25 +44,24 @@
             <td>{{ row.column2 }}</td>
             <td :class="statusDetect(row.column3)">{{ row.column3 }}</td>
           </tr>
-          <tr v-if="paginatedData.length === 0">
-            <td colspan="3" style="text-align: center; opacity: 0.7">No results</td>
-          </tr>
         </tbody>
       </table>
     </div>
 
     <!-- Pagination footer -->
   </div>
-
-  <Loading v-else />
 </template>
 
 <script setup>
 import { ref, computed, onMounted, watch } from "vue";
 import Papa from "papaparse";
 import axios from "axios";
+import Loading from "@/ui/Loading.vue";
+import { useLoading } from "@/stores/useLoading";
+import { useUiStore } from "@/stores/ui";
 
-const loading = ref(true);
+const { showLoading, hideLoading } = useLoading();
+const ui = useUiStore();
 const sheetRows = ref([]);
 const searchQuery = ref("");
 const filterMin = ref(null);
@@ -78,7 +78,7 @@ const GOOGLE_SHEET_CSV_URL =
   );
 
 onMounted(async () => {
-  loading.value = true;
+  showLoading();
   try {
     const res = await axios.get(GOOGLE_SHEET_CSV_URL, { responseType: "text" });
     Papa.parse(res.data, {
@@ -92,10 +92,12 @@ onMounted(async () => {
             column2: row.Note || "",
             column3: row.Status || "",
           }));
+        hideLoading();
       },
     });
-  } finally {
-    loading.value = false;
+  } catch (err) {
+    sheetRows.value = [];
+    hideLoading();
   }
 });
 

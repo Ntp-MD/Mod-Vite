@@ -1,5 +1,6 @@
 <template>
-  <div v-if="!loading" class="body-content" id="OnlineWebsiteView">
+  <div class="body-content">
+    <Loading v-if="ui.isLoading" />
     <div class="filter-sort flex">
       <form id="search_box" @submit.prevent>
         <input class="search-input" type="search" placeholder="Search..." v-model="searchQuery" autocomplete="off" />
@@ -40,14 +41,15 @@
     </div>
     <!--    <div ref="bottom"></div>-->
   </div>
-
-  <Loading v-else />
 </template>
 
 <script setup>
 import { ref, watch, onMounted, onBeforeUnmount, computed, nextTick } from "vue";
 import Papa from "papaparse";
 import axios from "axios";
+import Loading from "@/ui/Loading.vue";
+import { useLoading } from "@/stores/useLoading";
+import { useUiStore } from "@/stores/ui";
 
 // ---------- constants ----------
 const MONTH_NAMES = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -59,7 +61,6 @@ const GOOGLE_SHEET_CSV_URL =
   );
 
 // ---------- state ----------
-const loading = ref(true);
 const sheetRows = ref([]); // normalized rows
 const selectedMonth = ref(0); // 0 = All, else 1..12
 const searchQuery = ref("");
@@ -73,11 +74,12 @@ watch(searchQuery, (v) => {
   t = setTimeout(() => (debouncedQuery.value = (v || "").toLowerCase().trim()), 200);
 });
 
-// ---------- data load ----------
 const controller = new AbortController();
+const { showLoading, hideLoading } = useLoading();
+const ui = useUiStore();
 
 onMounted(async () => {
-  loading.value = true;
+  showLoading();
   try {
     const res = await axios.get(GOOGLE_SHEET_CSV_URL, {
       responseType: "text",
@@ -90,12 +92,12 @@ onMounted(async () => {
       complete: ({ data }) => {
         let id = 1;
         sheetRows.value = data.filter((r) => r?.Name).map((r) => normalizeRow(r, id++));
+        hideLoading();
       },
     });
   } catch {
     sheetRows.value = [];
-  } finally {
-    loading.value = false;
+    hideLoading();
   }
 });
 

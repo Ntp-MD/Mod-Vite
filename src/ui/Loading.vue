@@ -6,12 +6,13 @@
 
 <style scoped>
 .loading-screen {
+  position: absolute;
+  inset: 0;
   display: grid;
   place-content: center;
   width: 100%;
   height: 100%;
   user-select: none;
-  min-height: 80vh;
   background: var(--color2);
   border-radius: var(--border-radius);
 }
