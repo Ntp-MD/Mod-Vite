@@ -3,7 +3,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import { useAuthStore } from "@/stores/auth";
 
 // auto-load real pages under /views
-const START_PAGE_NAME = "onlinewebsiteview"; // must match lowercase route name
+const START_PAGE_NAME = "onlinewebsiteviews"; // must match lowercase route name
 
 // auto-load real pages under /pages
 const viewFiles = import.meta.glob("@/**/**/*.vue", { eager: false });
