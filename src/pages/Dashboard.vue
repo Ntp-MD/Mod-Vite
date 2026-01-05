@@ -26,4 +26,8 @@ import navLink from "../components/navLink.vue";
 .dashboard-wrapper nav {
   margin-bottom: var(--gap);
 }
+
+nav.flex > a:not(:last-child) {
+  border-right: 1px solid #fff;
+}
 </style>

@@ -124,6 +124,10 @@ tbody tr {
   table-layout: fixed;
 }
 
+thead th {
+  background: var(--color2);
+}
+
 tbody {
   height: 70vh;
   overflow-y: scroll;
