@@ -1,5 +1,5 @@
 <template>
-  <form id="SmartWidget">
+  <form id="SmartWidget" @submit.prevent>
     <div class="form-group">
       <label for="websiteName">Website Name</label>
       <input name="websiteName" v-model="form.websiteName" />
@@ -41,8 +41,8 @@
         <div>{{ form.websitePassword }}</div>
       </div>
       <div class="flex">
-        <button class="copyButton" @click="copyText(getInformationText())">Copy Info</button>
-        <button class="clearButton" @click="clearStorage">Clear Storage</button>
+        <button type="button" class="copyButton" @click="copyText(getInformationText())">Copy Info</button>
+        <button type="button" class="clearButton" @click="clearStorage">Clear Storage</button>
       </div>
     </div>
     <div class="form-group">
@@ -52,7 +52,7 @@
           .unknown { position: fixed; bottom: 8% !important; } .unknown_prf .btn-main, .unknown_prf:hover .btn-main { margin-bottom: 0 !important; }
         </code>
       </div>
-      <button class="copyButton" @click="copyText(cssSnippet)">Copy Css</button>
+      <button type="button" class="copyButton" @click="copyText(cssSnippet)">Copy Css</button>
     </div>
   </form>
 </template>
