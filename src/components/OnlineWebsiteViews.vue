@@ -5,15 +5,22 @@
       <form id="search_box" @submit.prevent>
         <input class="search-input" type="search" placeholder="Search..." v-model="searchQuery" autocomplete="off" />
       </form>
+      <button :class="{ active: selectedYear === 0 }" @click="selectedYear = 0">All</button>
+      <button :class="{ active: selectedYear === 2025 }" @click="selectedYear = 2025">2025</button>
+      <button :class="{ active: selectedYear === 2026 }" @click="selectedYear = 2026">2026</button>
       <button :class="{ active: selectedMonth === 0 }" @click="selectedMonth = 0">All</button>
       <button v-for="(name, i) in MONTH_NAMES" :key="i + 1" :class="{ active: selectedMonth === i + 1 }" @click="selectedMonth = i + 1">
         {{ name }}
+      </button>
+      <button :class="{ active: showLast100 }" @click="showLast100 = !showLast100" style="margin-left: auto">
+        {{ showLast100 ? "Last 100" : "See All" }}
       </button>
     </div>
     <div class="table-views">
       <table>
         <thead v-once>
           <tr>
+            <th style="width: 8%; white-space: nowrap">Date</th>
             <th>Name</th>
             <th>Space 5GB</th>
             <th>Search Console</th>
@@ -21,7 +28,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="row in filteredRows" :key="row.id">
+          <tr v-for="row in displayedRows" :key="row.id">
+            <td style="width: 8%; white-space: nowrap">{{ row.selectOnlineDate }}</td>
             <td>{{ row.selectName }}</td>
 
             <td class="hasStatus" :class="free5gbClass(row)">
@@ -62,10 +70,12 @@ const GOOGLE_SHEET_CSV_URL =
 
 // ---------- state ----------
 const sheetRows = ref([]); // normalized rows
+const selectedYear = ref(0); // 0 = All, else 2025, 2026, etc.
 const selectedMonth = ref(0); // 0 = All, else 1..12
 const searchQuery = ref("");
 const debouncedQuery = ref("");
 const bottom = ref(null);
+const showLast100 = ref(false);
 
 // debounce search
 let t = null;
@@ -109,11 +119,20 @@ const lc = (v) => norm(v).toLowerCase();
 function normalizeRow(r, id) {
   const monthNum = Number(norm(r["Month"])) || 0; // 1..12 or 0
   const selectName = norm(r["Name"]);
+  const onlineDate = norm(r["Online Date"]);
+
+  // Extract year from date (assuming format like "DD/MM/YYYY" or similar)
+  let yearNum = 0;
+  const yearMatch = onlineDate.match(/\d{4}/);
+  if (yearMatch) {
+    yearNum = Number(yearMatch[0]);
+  }
 
   const row = {
     id,
     // originals (for display)
     selectName,
+    selectOnlineDate: norm(r["OnlineDate"]),
     selectfree5GB: norm(r["Free5GB"]),
     selectfreeSearchConsole: norm(r["FreeSearchConsole"]),
     selectfreeSmartWidget: norm(r["FreeSmartWidget"]),
@@ -121,6 +140,7 @@ function normalizeRow(r, id) {
     onlineSmartWidget: norm(r["OnlineSmartWidget"]),
     Check5GB: norm(r["Check5GB"]),
     onlineMonth: monthNum,
+    onlineYear: yearNum,
 
     // normalized for filtering
     _name_lc: lc(r["Name"]),
@@ -134,19 +154,30 @@ function normalizeRow(r, id) {
 
 // ---------- filtering ----------
 const filteredRows = computed(() => {
+  const y = selectedYear.value;
   const m = selectedMonth.value;
   const q = debouncedQuery.value;
 
   // quick returns
-  if (m === 0 && !q) return sheetRows.value;
+  if (y === 0 && m === 0 && !q) return sheetRows.value;
 
   return sheetRows.value.filter((row) => {
+    const yearOk = y === 0 || row.onlineYear === y;
+    if (!yearOk) return false;
+
     const monthOk = m === 0 || row.onlineMonth === m;
     if (!monthOk) return false;
 
     if (!q) return true;
     return row._name_lc.includes(q) || row._5gb_lc.includes(q) || row._sc_lc.includes(q) || row._sw_lc.includes(q);
   });
+});
+
+// ---------- display rows (with limit) ----------
+const displayedRows = computed(() => {
+  const rows = filteredRows.value;
+  if (!showLast100.value) return rows;
+  return rows.slice(-100);
 });
 
 // ---------- scroll behavior ----------
