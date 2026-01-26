@@ -71,25 +71,6 @@ input {
   background: var(--color3);
 }
 
-.form-group {
-  display: flex;
-  flex-direction: column;
-  gap: var(--gap);
-}
-
-.btn-group {
-  display: flex;
-  align-items: center;
-  gap: var(--gap);
-}
-
-.text-frame {
-  border-radius: var(--border-radius);
-  min-height: 200px;
-  border: 1px solid var(--border-color);
-  padding: var(--gap);
-}
-
 .copyButton {
   display: inline-block;
 }

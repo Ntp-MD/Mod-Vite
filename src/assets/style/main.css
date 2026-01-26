@@ -1,0 +1,91 @@
+/* Main CSS Entry Point */
+
+/* Base Styles */
+@import "./variables.css";
+@import "./reset.css";
+
+/* Component Styles */
+@import "./utilities.css";
+@import "./table.css";
+@import "./forms.css";
+
+/* App Specific Styles */
+#AppClient {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  font-size: var(--font-4);
+}
+
+header {
+  background: var(--color2);
+  border-bottom: 1px solid var(--border-color);
+}
+
+aside {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+  min-width: 280px;
+  max-width: 280px;
+  border-right: 1px solid var(--border-color);
+  background: var(--color2);
+}
+
+main {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Layout Specific */
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.body-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap2);
+  padding: var(--gap2);
+  height: 100%;
+  overflow: auto;
+}
+
+.page {
+  flex: 1;
+  overflow: auto;
+  padding: var(--gap2);
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  aside {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    background: var(--color1);
+    height: calc(100vh - 50px);
+    z-index: 1000;
+  }
+
+  aside.open {
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 992px) {
+  .container {
+    padding: 0 20px;
+  }
+}

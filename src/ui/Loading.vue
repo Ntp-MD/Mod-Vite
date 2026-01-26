@@ -19,8 +19,8 @@
 
 #loading-content {
   display: grid;
-  position: relative;
   place-items: center;
+  position: relative;
   width: 250px;
   height: 250px;
 }

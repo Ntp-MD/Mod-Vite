@@ -1,0 +1,32 @@
+:root {
+  /* Colors */
+  --color1: #0d1117;
+  --color2: #151920;
+  --color3: #1c2129;
+  --btn-color: #1c2129;
+  --font-color: #c5c5c5;
+  --font-color2: #c5c5c5;
+  --border-color: #222935;
+
+  /* Accent Colors */
+  --primary: #2563eb;
+  --primary-hover: #3b82f6;
+  --danger: #dc2626;
+  --danger-hover: #b91c1c;
+  --success: #16a34a;
+  --warning: #f59e0b;
+
+  /* Spacing */
+  --gap: 10px;
+  --gap2: 15px;
+  --pad: 6vw;
+
+  /* Border */
+  --border-radius: 8px;
+
+  /* Font Sizes */
+  --font-1: 20px;
+  --font-2: 16px;
+  --font-3: 14px;
+  --font-4: 12px;
+}

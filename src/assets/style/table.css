@@ -1,0 +1,89 @@
+/* Table Styles */
+.table-views {
+  overflow: hidden;
+  border-radius: var(--border-radius);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--font-color);
+  table-layout: fixed;
+}
+
+thead,
+tbody {
+  display: block;
+}
+
+thead tr,
+tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+thead th {
+  position: sticky;
+  top: 0;
+  background: var(--color2);
+  font-weight: 600;
+  text-align: left;
+  z-index: 10;
+}
+
+tbody {
+  max-height: 70vh;
+  overflow-y: scroll;
+  width: 100%;
+}
+
+th,
+td {
+  padding: var(--gap) var(--gap2);
+  border: 1px solid var(--border-color);
+  text-align: left;
+  height: 40px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+td {
+  white-space: nowrap;
+}
+
+tbody tr:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* Status Cell Styles */
+.hasStatus {
+  font-weight: 500;
+}
+
+.hasStatus.Installed {
+  color: var(--success);
+  background: rgba(22, 163, 74, 0.1);
+}
+
+.hasStatus.Wait {
+  color: var(--warning);
+  background: rgba(245, 158, 11, 0.1);
+}
+
+.hasStatus.NoService {
+  color: var(--font-color);
+  opacity: 0.5;
+}
+
+.hasStatus.Ads {
+  color: var(--primary);
+  background: rgba(37, 99, 235, 0.1);
+}
+
+@media (max-width: 992px) {
+  th,
+  td {
+    padding: 8px var(--gap);
+  }
+}

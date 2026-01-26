@@ -1,5 +1,5 @@
 <template>
-  <div class="font-bookmark grid-431">
+  <div class="font-bookmark">
     <div class="font-family" v-for="font in fonts" :key="font.font_name">
       <div class="font-name">{{ font.font_name }}</div>
       <div class="font-info">
@@ -22,37 +22,24 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import fontData from "@/assets/data/fontfamily.json";
+import { useClipboard } from "@/composables/useClipboard";
 
-export default {
-  methods: {
-    copyToClipboard(textToCopy) {
-      navigator.clipboard
-        .writeText(textToCopy)
-        .then(() => {})
-        .catch((err) => {
-          console.error("Failed to copy text: ", err);
-        });
-    },
-  },
-  data() {
-    return {
-      fonts: fontData,
-    };
-  },
-};
+const fonts = fontData;
+const { copyToClipboard } = useClipboard();
 </script>
 
 <style scoped>
 .font-bookmark {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
   height: 90vh;
-  overflow-x: scroll;
   padding-right: 20px;
 }
 
 .font-name {
-  font-size: 100%;
+  font-size: var(--font-4);
   font-weight: 600;
 }
 
