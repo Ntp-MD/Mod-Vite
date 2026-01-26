@@ -1,0 +1,1 @@
+import{_ as n,c as e,a as s,F as r,m as a,o as t}from"./index-DKO9Ots2.js";const i={},o={class:"timeline-container"},_={class:"grid"};function d(l,m){return t(),e("div",o,[s("div",_,[(t(),e(r,null,a(52,c=>s("div",{key:c,class:"grid-item"})),64))])])}const u=n(i,[["render",d]]);export{u as default};
