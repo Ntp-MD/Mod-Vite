@@ -1,90 +1,73 @@
 <template>
-  <form id="SmartWidget" @submit.prevent>
-    <div class="form-group">
-      <label for="websiteName">Website Name</label>
-      <input name="websiteName" v-model="form.websiteName" />
-    </div>
-    <div class="form-group">
-      <label for="websiteEmail">Binding Email</label>
-      <input name="websiteEmail" v-model="form.websiteEmail" />
-    </div>
-    <div class="form-group">
-      <label for="websiteUser">Username</label>
-      <input name="websiteUser" v-model="form.websiteUser" />
-    </div>
-    <div class="form-group">
-      <label for="websitePassword">Password</label>
-      <input name="websitePassword" v-model="form.websitePassword" />
-    </div>
-    <div class="form-group">
-      <label for="websiteTel">Binding Tel</label>
-      <input name="websiteTel" v-model="form.websiteTel" />
-    </div>
+  <div class="smart-widget-container">
+    <form id="smart-widget" @submit.prevent>
+      <div class="form-group">
+        <label for="websiteName">Website Name</label>
+        <input name="websiteName" v-model="form.websiteName" />
+      </div>
+      <div class="form-group">
+        <label for="websiteEmail">Binding Email</label>
+        <input name="websiteEmail" v-model="form.websiteEmail" />
+      </div>
+      <div class="form-group">
+        <label for="websiteUser">Username</label>
+        <input name="websiteUser" v-model="form.websiteUser" />
+      </div>
+      <div class="form-group">
+        <label for="websitePassword">Password</label>
+        <input name="websitePassword" v-model="form.websitePassword" />
+      </div>
+      <div class="form-group">
+        <label for="websiteTel">Binding Tel</label>
+        <input name="websiteTel" v-model="form.websiteTel" />
+      </div>
 
-    <div class="form-group">
-      <label for="websiteTel2">Tel</label>
-      <input name="websiteTel2" v-model="form.websiteTel2" />
-    </div>
-    <div class="form-group">
-      <label for="websiteFacebook">Facebook Page</label>
-      <input name="websiteFacebook" v-model="form.websiteFacebook" />
-    </div>
-    <div class="form-group">
-      <label for="websiteLine">Line @</label>
-      <input name="websiteLine" v-model="form.websiteLine" />
-    </div>
-    <div class="form-group">
-      <label for="">Information </label>
-      <div class="text-frame">
-        <div>{{ form.websiteName }}</div>
-        <div>{{ form.websiteEmail }}</div>
-        <div>{{ form.websitePassword }}</div>
+      <div class="form-group">
+        <label for="websiteTel2">Tel</label>
+        <input name="websiteTel2" v-model="form.websiteTel2" />
       </div>
-      <div class="flex">
-        <button type="button" class="copyButton" @click="copyText(getInformationText())">Copy Info</button>
-        <button type="button" class="clearButton" @click="clearStorage">Clear Storage</button>
+      <div class="form-group">
+        <label for="websiteFacebook">Facebook Page</label>
+        <input name="websiteFacebook" v-model="form.websiteFacebook" />
+      </div>
+      <div class="form-group">
+        <label for="websiteLine">Line @</label>
+        <input name="websiteLine" v-model="form.websiteLine" />
+      </div>
+    </form>
+    <div>
+      <div class="form-panel">
+        <label for="">Information </label>
+        <div class="text-frame">
+          <div>{{ form.websiteName }}</div>
+          <div>{{ form.websiteEmail }}</div>
+          <div>{{ form.websitePassword }}</div>
+        </div>
+        <div class="flex">
+          <button type="button" class="copy-button" @click="copyText(getInformationText())">Copy Info</button>
+          <button type="button" class="clear-button" @click="clearStorage">Clear Storage</button>
+        </div>
+        <label for="">Snippet Css </label>
+        <div class="text-frame">
+          <code>
+            .unknown { position: fixed; bottom: 8% !important; } .unknown_prf .btn-main, .unknown_prf:hover .btn-main { margin-bottom: 0 !important; }
+          </code>
+        </div>
+        <button type="button" class="copy-button" @click="copyText(cssSnippet)">Copy Css</button>
       </div>
     </div>
-    <div class="form-group">
-      <label for="">Snippet Css </label>
-      <div class="text-frame">
-        <code>
-          .unknown { position: fixed; bottom: 8% !important; } .unknown_prf .btn-main, .unknown_prf:hover .btn-main { margin-bottom: 0 !important; }
-        </code>
-      </div>
-      <button type="button" class="copyButton" @click="copyText(cssSnippet)">Copy Css</button>
-    </div>
-  </form>
+  </div>
 </template>
 
 <style scoped>
-form#SmartWidget {
+form#smart-widget {
   display: flex;
   flex-wrap: wrap;
   gap: var(--gap);
 }
 
-form#SmartWidget > div {
+form#smart-widget > div {
   flex: 1 40%;
-}
-input {
-  background: var(--color3);
-}
-
-.copyButton {
-  display: inline-block;
-}
-
-.clearButton {
-  float: right;
-}
-
-@media screen and (max-width: 480px) {
-  .copyButton {
-    position: unset;
-    bottom: var(--gap);
-    right: var(--gap);
-  }
 }
 </style>
 

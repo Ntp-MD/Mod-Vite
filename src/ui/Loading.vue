@@ -1,6 +1,6 @@
 <template>
   <div class="loading-screen">
-    <div id="loading-content">Loading....</div>
+    <div id="loading-content">Loading...</div>
   </div>
 </template>
 
@@ -25,14 +25,10 @@
   height: 250px;
 }
 
-#loading-content:before {
+#loading-content::before {
   content: "";
   position: absolute;
-  border: 6px solid red;
   inset: 0;
-}
-
-#loading-content:before {
   border: 8px solid transparent;
   border-top-color: var(--font-color);
   border-bottom-color: #ccc;
@@ -40,14 +36,10 @@
   animation: loader 3s linear infinite;
 }
 
-#loading-content:after {
+#loading-content::after {
   content: "";
   position: absolute;
-  border: 6px solid var(--font-color);
   inset: 25px;
-}
-
-#loading-content:after {
   border: 5px solid transparent;
   border-top-color: #fff;
   border-bottom-color: var(--font-color);
@@ -57,13 +49,9 @@
 
 @keyframes loader {
   0% {
-    -webkit-transform: rotate(0deg);
-    -ms-transform: rotate(0deg);
     transform: rotate(0deg);
   }
   100% {
-    -webkit-transform: rotate(360deg);
-    -ms-transform: rotate(360deg);
     transform: rotate(360deg);
   }
 }

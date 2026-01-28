@@ -6,13 +6,9 @@
 
 <script setup>
 import { useRoute } from "vue-router";
-import { useAuthStore } from "@/stores/auth";
-import { storeToRefs } from "pinia";
 import { useUiStore } from "@/stores/ui";
 
 const route = useRoute();
-const authStore = useAuthStore();
-const { isAuthenticated } = storeToRefs(authStore);
 const ui = useUiStore();
 
 $(window).scroll(function () {
@@ -31,5 +27,6 @@ $(window).scroll(function () {
   height: 100vh;
   width: 100%;
   overflow: hidden;
+  font-size: var(--font-4);
 }
 </style>

@@ -12,6 +12,10 @@ body {
   color: var(--font-color);
 }
 
+a {
+  text-decoration: none;
+}
+
 /* Typography */
 
 /* Container */
@@ -21,22 +25,9 @@ body {
   margin: 0 auto;
 }
 
-/* Links */
-a {
-  color: var(--font-color);
-  text-decoration: none;
-  font-weight: 400;
-  letter-spacing: 0.5px;
-  transition: opacity 0.2s ease;
-}
-
-a:hover {
-  opacity: 0.8;
-}
-
 /* Images */
 img {
-  max-width: 100%;
+  width: 100%;
   height: auto;
   object-fit: contain;
 }
@@ -80,7 +71,6 @@ button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 40px;
   padding: 10px var(--gap2);
   background: var(--btn-color);
   color: #ededed;
@@ -92,6 +82,7 @@ button {
   cursor: pointer;
   transition: all 0.2s ease;
   user-select: none;
+  width: fit-content;
 }
 
 button:hover {

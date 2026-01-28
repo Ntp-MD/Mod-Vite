@@ -18,11 +18,17 @@
 
   /* Spacing */
   --gap: 10px;
-  --gap2: 15px;
+  --gap2: 20px;
   --pad: 6vw;
 
   /* Border */
   --border-radius: 8px;
+
+  /* Sizes */
+  --icon-size: 35px;
+
+  /* Animation */
+  --transition: 0.2s;
 
   /* Font Sizes */
   --font-1: 20px;
