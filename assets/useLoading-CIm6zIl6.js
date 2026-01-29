@@ -1,0 +1,1 @@
+import{r as i,g as l}from"./index-DvDUzVfj.js";function f(n={}){const{duration:e=1e3,waitForData:a=null}=n,t=i(!0);return l(async()=>{if(a){const r=()=>Array.isArray(a.value)?a.value.length>0:!!a.value,o=e*5,s=Date.now(),u=setInterval(()=>{(r()||Date.now()-s>o)&&(clearInterval(u),t.value=!1)},50)}else setTimeout(()=>{t.value=!1},e)}),{isLoading:t}}export{f as u};

@@ -1,1 +1,0 @@
-import a from"./navLink-CwgLtsmR.js";import{_ as t,c,a as e,b as o,o as r,e as _}from"./index-DKO9Ots2.js";const n={class:"dashboard-wrapper"},d={class:"flex"},p={class:"page"},i={__name:"Dashboard",setup(m){return(l,f)=>{const s=_("router-view");return r(),c("div",n,[e("nav",d,[o(a)]),e("div",p,[o(s)])])}}},u=t(i,[["__scopeId","data-v-0e994cec"]]);export{u as default};

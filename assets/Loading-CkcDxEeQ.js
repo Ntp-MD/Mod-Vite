@@ -1,1 +1,0 @@
-import{_ as o,c as n,a,o as s}from"./index-DKO9Ots2.js";const t={},c={class:"loading-screen"};function d(r,e){return s(),n("div",c,e[0]||(e[0]=[a("div",{id:"loading-content"},"Loading....",-1)]))}const _=o(t,[["render",d],["__scopeId","data-v-be497d21"]]);export{_ as default};
