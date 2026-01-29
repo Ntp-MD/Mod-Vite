@@ -63,7 +63,7 @@
   position: relative;
   overflow: hidden;
   display: flex;
-  gap: 10px;
+  gap: var(--gap);
   height: 30vw;
   min-height: 500px;
   width: 100%;
@@ -111,7 +111,7 @@
   z-index: 0;
   width: 100%;
   bottom: -50%;
-  padding: 15px;
+  padding: calc(var(--gap) * 1.5);
   background: #000;
   color: #fff;
   transition: 0.3s ease-in-out;
@@ -120,7 +120,7 @@
 #slide-dot {
   display: flex;
   place-content: center;
-  gap: 8px;
+  gap: calc(var(--gap) * 0.5);
   width: 100%;
   padding: 15px;
 }

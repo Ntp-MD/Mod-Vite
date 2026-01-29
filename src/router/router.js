@@ -1,13 +1,13 @@
 import { createRouter, createWebHistory } from "vue-router";
 
 // auto-load real pages under /views
-const START_PAGE_NAME = "onlinewebsiteviews"; // must match lowercase route name
+const START_PAGE_NAME = "online-website-views"; // must match lowercase route name
 
 // auto-load real pages under /pages
 const viewFiles = import.meta.glob("@/**/**/*.vue", { eager: false });
 
 const childRoutes = Object.keys(viewFiles)
-  .filter((p) => !p.endsWith("/AppLayout.vue"))
+  .filter((p) => !p.endsWith("/app-layout.vue"))
   .map((p) => {
     const name = p.split("/").pop().replace(".vue", "");
     const routeName = name.toLowerCase();
@@ -27,13 +27,13 @@ childRoutes.unshift({
 const routes = [
   {
     path: "/",
-    component: () => import("../Layout/AppLayout.vue"),
+    component: () => import("../Layout/app-layout.vue"),
     children: childRoutes,
   },
   {
     path: "/:pathMatch(.*)*",
     name: "notfound",
-    component: () => import("../ui/NotFound.vue"),
+    component: () => import("../ui/not-found.vue"),
   },
 ];
 

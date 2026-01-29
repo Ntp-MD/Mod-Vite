@@ -89,7 +89,7 @@
 }
 
 ._items {
-  padding: 20px;
+  padding: var(--gap2);
   margin: auto;
 }
 
@@ -101,7 +101,7 @@
   aspect-ratio: 1;
   border-radius: 25px;
   background: var(--color3);
-  box-shadow: 0 4px 18px rgb(0, 0, 0, 0.1);
+  box-shadow: var(--shadow);
 }
 
 .modquee-dots-contain {
@@ -111,13 +111,13 @@
   bottom: 10%;
   display: flex;
   justify-content: center;
-  gap: 10px;
+  gap: var(--gap);
   z-index: 2;
 }
 
 .modquee-dot {
-  width: 12px;
-  height: 12px;
+  width: calc(var(--gap) * 1.5);
+  height: calc(var(--gap) * 1.5);
   border-radius: 50%;
   background: #fff;
   cursor: pointer;

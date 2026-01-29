@@ -139,6 +139,26 @@ export function useOnlineWebsite() {
     return rows.slice(-100);
   });
 
+  // Count waiting/pending services
+  const waitingSpace5GB = computed(() => {
+    return filteredRows.value.filter((row) => {
+      const hasReq = row.selectfree5GB === "เพิ่มพื้นที่ (5 GB)";
+      return hasReq && !row.Check5GB;
+    }).length;
+  });
+
+  const waitingSearchConsole = computed(() => {
+    return filteredRows.value.filter((row) => {
+      return row.selectfreeSearchConsole && (!row.onlineSearchConsole || row.onlineSearchConsole === "Wait");
+    }).length;
+  });
+
+  const waitingSmartWidget = computed(() => {
+    return filteredRows.value.filter((row) => {
+      return row.selectfreeSmartWidget === "Smart Widget" && row.onlineSmartWidget !== "Installed";
+    }).length;
+  });
+
   // Scroll behavior
   function scrollToBottom() {
     if (!bottom.value) return;
@@ -225,5 +245,8 @@ export function useOnlineWebsite() {
     searchConsoleLabel,
     smartWidgetClass,
     smartWidgetLabel,
+    waitingSpace5GB,
+    waitingSearchConsole,
+    waitingSmartWidget,
   };
 }

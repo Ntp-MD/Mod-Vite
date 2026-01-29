@@ -31,7 +31,7 @@
         </div>
       </div>
     </div>
-    <aside class="filter-sidebar">
+    <div class="filter-sidebar">
       <div class="filter-section">
         <div class="filter-title">Filters</div>
 
@@ -77,7 +77,7 @@
           <span class="result-label">demos found</span>
         </div>
       </div>
-    </aside>
+    </div>
   </div>
 </template>
 

@@ -1,32 +1,41 @@
 <template>
-  <div id="AppClient">
+  <div class="app" :class="{ 'app--scrolled': isScrolled }">
     <router-view></router-view>
   </div>
 </template>
 
 <script setup>
+import { ref, onMounted, onUnmounted } from "vue";
 import { useRoute } from "vue-router";
 import { useUiStore } from "@/stores/ui";
 
 const route = useRoute();
 const ui = useUiStore();
+const isScrolled = ref(false);
 
-$(window).scroll(function () {
-  if ($(this).scrollTop() > 0) {
-    $("#AppClient").addClass("slideDown");
-  } else {
-    $("#AppClient").removeClass("slideDown");
-  }
+function handleScroll() {
+  isScrolled.value = window.scrollY > 0;
+}
+
+onMounted(() => {
+  window.addEventListener("scroll", handleScroll);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("scroll", handleScroll);
 });
 </script>
 
 <style scoped>
-#AppClient {
+.app {
   display: flex;
   flex-direction: column;
   height: 100vh;
   width: 100%;
   overflow: hidden;
-  font-size: var(--font-4);
+}
+
+.app--scrolled {
+  /* Add any scroll-specific styles here */
 }
 </style>

@@ -26,6 +26,7 @@ const settings = useSettingsStore();
   background: var(--color3);
   cursor: pointer;
   overflow: hidden;
+  margin-right: auto;
 }
 
 .toggle-swap {
@@ -49,14 +50,5 @@ const settings = useSettingsStore();
 
 .light-mode .toggle-swap {
   transform: rotate(180deg);
-}
-
-.light-mode {
-  --color1: #fff;
-  --color2: #fff;
-  --color3: #fff;
-  --font-color: #5a5a5a;
-  --font-color2: #5a5a5a;
-  --border-color: #5a5a5a;
 }
 </style>

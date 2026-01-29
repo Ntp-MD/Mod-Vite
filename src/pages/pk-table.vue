@@ -121,7 +121,7 @@ watch(
       }
     });
   },
-  { deep: true }
+  { deep: true },
 ); // Use deep watch as roundLogs is an array of arrays
 </script>
 
@@ -216,8 +216,8 @@ watch(
   place-content: center;
   place-items: center;
   border: 1px solid var(--border-color);
-  gap: 5px;
-  padding: 10px;
+  gap: calc(var(--gap) * 0.5);
+  padding: var(--gap);
   min-height: 85px;
 }
 
@@ -323,11 +323,11 @@ watch(
     flex-direction: column;
     text-align: center;
     place-content: center;
-    gap: 5px;
+    gap: calc(var(--gap) * 0.5);
   }
 
   .PlayerHand {
-    gap: 5px;
+    gap: calc(var(--gap) * 0.5);
   }
 }
 </style>

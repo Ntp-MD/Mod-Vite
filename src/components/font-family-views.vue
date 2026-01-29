@@ -83,7 +83,6 @@ const loadFont = (font) => {
 }
 
 .font-name {
-  font-size: var(--font-4);
   font-weight: 600;
 }
 
@@ -106,6 +105,19 @@ const loadFont = (font) => {
   white-space: nowrap;
   text-overflow: ellipsis;
   user-select: none;
-  font-size: var(--font-4);
+}
+
+.copy-btn img {
+  filter: invert(1);
+  width: var(--icon-size);
+  height: var(--icon-size);
+  transform: scale(0.5);
+}
+
+@media screen and (max-width: 992px) {
+  .font-bookmark {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
 </style>

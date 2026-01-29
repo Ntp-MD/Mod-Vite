@@ -5,7 +5,6 @@
   --color3: #1c2129;
   --btn-color: #1c2129;
   --font-color: #c5c5c5;
-  --font-color2: #c5c5c5;
   --border-color: #222935;
 
   /* Accent Colors */
@@ -16,6 +15,12 @@
   --success: #16a34a;
   --warning: #f59e0b;
 
+  /* Font size */
+  --font-lg: 24px;
+  --font-md: 16px;
+  --font-sm: 14px;
+  --font-xs: 12px;
+
   /* Spacing */
   --gap: 10px;
   --gap2: 20px;
@@ -25,14 +30,20 @@
   --border-radius: 8px;
 
   /* Sizes */
-  --icon-size: 35px;
+  --icon-size: 25px;
+  --icon-size2: 30px;
+  --icon-size3: 40px;
 
   /* Animation */
   --transition: 0.2s;
+}
 
-  /* Font Sizes */
-  --font-1: 20px;
-  --font-2: 16px;
-  --font-3: 14px;
-  --font-4: 12px;
+.light-mode {
+  /* Light Mode Colors */
+  --color1: #ffffff;
+  --color2: #f5f5f5;
+  --color3: #e8e8e8;
+  --btn-color: #e8e8e8;
+  --font-color: #1a1a1a;
+  --border-color: #d0d0d0;
 }

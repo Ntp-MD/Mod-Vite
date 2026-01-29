@@ -1,11 +1,11 @@
 <template>
-  <div class="app-layout">
-    <header>
+  <div class="layout">
+    <header class="layout__header">
       <AppHeader @toggle-menu="toggleSidebar"></AppHeader>
     </header>
-    <main>
-      <AppSidebar :isOpen="isOpen"></AppSidebar>
-      <div class="content-wrapper">
+    <main class="layout__main">
+      <AppSidebar :isOpen="isOpen" @close-sidebar="closeSidebar"></AppSidebar>
+      <div class="layout__content">
         <router-view></router-view>
       </div>
     </main>
@@ -14,30 +14,35 @@
 
 <script setup>
 import { ref } from "vue";
-import AppHeader from "../components/AppHeader.vue";
-import AppSidebar from "../components/AppSidebar.vue";
+import AppHeader from "../components/app-header.vue";
+import AppSidebar from "../components/app-sidebar.vue";
 
 const isOpen = ref(false);
 
 function toggleSidebar() {
   isOpen.value = !isOpen.value;
 }
+
+function closeSidebar() {
+  isOpen.value = false;
+}
 </script>
 
 <style>
-.app-layout {
+.layout {
   display: flex;
   flex-direction: column;
   height: 100%;
+  font-size: var(--font-xs);
 }
 
-header {
+.layout__header {
   background: var(--color2);
   border-bottom: 1px solid var(--border-color);
   height: auto;
 }
 
-main {
+.layout__main {
   display: flex;
   position: relative;
   overflow: auto;
@@ -56,11 +61,12 @@ aside {
   max-width: 250px;
 }
 
-.content-wrapper {
+.layout__content {
   position: relative;
   display: flex;
   flex-direction: column;
-  height: calc(100% - var(--gap));
+  background: var(--color1);
+  height: 100%;
   padding: calc(var(--gap) * 2);
   flex: 1;
   overflow: hidden;
