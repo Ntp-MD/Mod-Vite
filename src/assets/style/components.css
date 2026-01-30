@@ -325,7 +325,7 @@ input[type="radio"] {
 }
 
 /* Utility Classes */
-Card Component */ .card {
+.card {
   background: var(--color2);
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius);

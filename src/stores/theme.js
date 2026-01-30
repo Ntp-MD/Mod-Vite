@@ -11,7 +11,7 @@ export const useSettingsStore = defineStore("settings", {
     toggleTheme() {
       this.theme = this.isDark ? "light" : "dark";
       localStorage.setItem("theme", this.theme);
-      const app = document.getElementById("AppClient");
+      const app = document.getElementById("App");
       if (app) {
         app.classList.toggle("dark-mode", this.isDark);
         app.classList.toggle("light-mode", !this.isDark);

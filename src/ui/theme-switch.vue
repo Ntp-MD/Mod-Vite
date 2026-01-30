@@ -51,4 +51,14 @@ const settings = useSettingsStore();
 .light-mode .toggle-swap {
   transform: rotate(180deg);
 }
+
+.light-mode {
+  /* Light Mode Colors */
+  --color1: #ffffff;
+  --color2: #f5f5f5;
+  --color3: #e8e8e8;
+  --btn-color: #e8e8e8;
+  --font-color: #1a1a1a;
+  --border-color: #d0d0d0;
+}
 </style>

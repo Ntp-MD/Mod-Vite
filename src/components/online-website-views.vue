@@ -80,7 +80,7 @@
             </div>
             <div v-if="showWaiting === '5gb' && waitingList5GB.length" class="waiting-list">
               <ul>
-                <li v-for="row in waitingList5GB" :key="row.id">{{ row.selectName }} ({{ row.selectOnlineDate }})</li>
+                <li v-for="row in waitingList5GB" :key="row.id">{{ row.selectName }}</li>
               </ul>
             </div>
             <div class="waiting-stat" @click="showWaiting = showWaiting === 'sc' ? '' : 'sc'" style="cursor: pointer">
@@ -92,7 +92,7 @@
             </div>
             <div v-if="showWaiting === 'sc' && waitingListSC.length" class="waiting-list">
               <ul>
-                <li v-for="row in waitingListSC" :key="row.id">{{ row.selectName }} ({{ row.selectOnlineDate }})</li>
+                <li v-for="row in waitingListSC" :key="row.id">{{ row.selectName }}</li>
               </ul>
             </div>
             <div class="waiting-stat" @click="showWaiting = showWaiting === 'sw' ? '' : 'sw'" style="cursor: pointer">
@@ -104,7 +104,7 @@
             </div>
             <div v-if="showWaiting === 'sw' && waitingListSW.length" class="waiting-list">
               <ul>
-                <li v-for="row in waitingListSW" :key="row.id">{{ row.selectName }} ({{ row.selectOnlineDate }})</li>
+                <li v-for="row in waitingListSW" :key="row.id">{{ row.selectName }}</li>
               </ul>
             </div>
           </div>
@@ -213,8 +213,6 @@ const waitingListSW = computed(() =>
   background: var(--color1);
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
-  margin: 0.5em 0 1em 2em;
-  padding: 0.5em 1em;
   font-size: var(--font-sm);
   color: var(--font-color);
   max-height: 200px;
@@ -226,10 +224,11 @@ const waitingListSW = computed(() =>
   margin: 0;
   padding: 0;
   list-style: disc inside;
+  padding: var(--gap);
 }
 
 .waiting-list li {
-  margin: 0.2em 0;
+  min-height: var(--gap2);
   padding: 0;
 }
 </style>

@@ -19,13 +19,14 @@ function handleLinkClick() {
 }
 
 const pages = ref([
-  { path: "/font-family-views", label: "Font Family", icon: "https://api.iconify.design/mdi:format-text.svg" },
-  { path: "/smart-widget", label: "Smart Widget", icon: "https://api.iconify.design/mdi:cog.svg" },
-  { path: "/online-website-views", label: "Online Website", icon: "https://api.iconify.design/mdi:open-in-new.svg" },
-  { path: "/demo-website-views", label: "Demo Website", icon: "https://api.iconify.design/mdi:monitor-screenshot.svg" },
-  { path: "/format", label: "Format", icon: "https://api.iconify.design/mdi:format-align-left.svg" },
+  { path: "/font-family-views", label: "Font Family", icon: "https://api.iconify.design/mdi:format-font.svg" },
+  { path: "/smart-widget", label: "Smart Widget", icon: "https://api.iconify.design/mdi:widgets-outline.svg" },
+  { path: "/online-website-views", label: "Online Website", icon: "https://api.iconify.design/mdi:monitor-cellphone.svg" },
+  { path: "/demo-website-views", label: "Demo Website", icon: "https://api.iconify.design/mdi:monitor-multiple.svg" },
+  { path: "/format", label: "Example", icon: "https://api.iconify.design/mdi:database-refresh-outline.svg" },
   { path: "/water-ripple", label: "Test Ripple", icon: "https://api.iconify.design/mdi:water.svg" },
   { path: "/timeline", label: "Timeline", icon: "https://api.iconify.design/mdi:calendar.svg" },
+  { path: "/pk-table", label: "Poker", icon: "https://api.iconify.design/mdi:poker-chip.svg" },
 ]);
 </script>
 
