@@ -9,4 +9,10 @@ const pinia = createPinia();
 
 app.use(pinia);
 app.use(router);
+
 app.mount("#App");
+
+// Apply theme on startup
+import { useSettingsStore } from "@/stores/theme.js";
+const settings = useSettingsStore();
+settings.initTheme();

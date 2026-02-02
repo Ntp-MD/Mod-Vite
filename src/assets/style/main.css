@@ -3,5 +3,15 @@
 /* Base Styles */
 @import "./variables.css";
 @import "./reset.css";
-@import "./components.css";
+
+/* Components */
+@import "./button.css";
+@import "./form.css";
+@import "./status.css";
+@import "./pagination.css";
+@import "./filter.css";
+@import "./widget.css";
+
+/* Layout */
 @import "./table.css";
+@import "./lightmode.css";

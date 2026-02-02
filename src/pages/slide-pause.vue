@@ -119,7 +119,7 @@
   width: calc(var(--gap) * 1.5);
   height: calc(var(--gap) * 1.5);
   border-radius: 50%;
-  background: #fff;
+  background: var(--white);
   cursor: pointer;
 }
 

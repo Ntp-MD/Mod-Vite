@@ -1,19 +1,19 @@
 <template>
-  <aside class="sidebar" :class="{ 'sidebar--open': isOpen }">
-    <div class="sidebar__top">
-      <div class="sidebar__brand">
-        <div class="sidebar__brand-icon">M</div>
-        <div class="sidebar__brand-text">Personal Used</div>
+  <aside class="sidebar" :class="{ 'sidebar-open': isOpen }">
+    <div class="sidebar-top">
+      <div class="sidebar-brand">
+        <div class="sidebar-brand-icon">M</div>
+        <div class="sidebar-brand-text">Personal Used</div>
       </div>
     </div>
-    <nav class="sidebar__nav">
+    <nav class="sidebar-nav">
       <navLink @close-sidebar="$emit('close-sidebar')"></navLink>
     </nav>
-    <div class="sidebar__bottom">
-      <div class="sidebar__time">
-        <div class="sidebar__time-label">Bangkok Time</div>
-        <div class="sidebar__time-value">{{ timeOnly }}</div>
-        <div class="sidebar__time-date">{{ dateOnly }}</div>
+    <div class="sidebar-bottom">
+      <div class="sidebar-time">
+        <div class="sidebar-time-label">Bangkok Time</div>
+        <div class="sidebar-time-value">{{ timeOnly }}</div>
+        <div class="sidebar-time-date">{{ dateOnly }}</div>
       </div>
     </div>
   </aside>
@@ -75,18 +75,18 @@ onUnmounted(() => {
   border-right: 1px solid var(--border-color);
 }
 
-.sidebar__top {
+.sidebar-top {
   padding: calc(var(--gap2) * 1.5);
   border-bottom: 1px solid var(--border-color);
 }
 
-.sidebar__brand {
+.sidebar-brand {
   display: flex;
   align-items: center;
   gap: var(--gap2);
 }
 
-.sidebar__brand-icon {
+.sidebar-brand-icon {
   display: grid;
   place-items: center;
   width: var(--icon-size3);
@@ -95,11 +95,11 @@ onUnmounted(() => {
   border-radius: 10px;
   font-size: var(--font-lg);
   font-weight: 700;
-  color: #fff;
+  color: var(--white);
   box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
 }
 
-.sidebar__brand-text {
+.sidebar-brand-text {
   font-size: var(--font-md);
   font-weight: 700;
   background: linear-gradient(135deg, var(--primary), var(--primary-hover));
@@ -108,7 +108,7 @@ onUnmounted(() => {
   background-clip: text;
 }
 
-.sidebar__nav {
+.sidebar-nav {
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -116,13 +116,13 @@ onUnmounted(() => {
   padding: var(--gap2);
 }
 
-.sidebar__bottom {
+.sidebar-bottom {
   padding: calc(var(--gap2) * 1);
   border-top: 1px solid var(--border-color);
   background: var(--color1);
 }
 
-.sidebar__time {
+.sidebar-time {
   display: flex;
   flex-direction: column;
   gap: calc(var(--gap) * 0.4);
@@ -132,7 +132,7 @@ onUnmounted(() => {
   border-radius: var(--border-radius);
 }
 
-.sidebar__time-label {
+.sidebar-time-label {
   font-size: var(--font-xs);
   font-weight: 600;
   text-transform: uppercase;
@@ -141,7 +141,7 @@ onUnmounted(() => {
   opacity: 0.6;
 }
 
-.sidebar__time-value {
+.sidebar-time-value {
   font-size: var(--font-lg);
   font-weight: 700;
   font-variant-numeric: tabular-nums;
@@ -150,7 +150,7 @@ onUnmounted(() => {
   letter-spacing: 1px;
 }
 
-.sidebar__time-date {
+.sidebar-time-date {
   font-size: var(--font-sm);
   color: var(--font-color);
   opacity: 0.7;
@@ -169,7 +169,7 @@ onUnmounted(() => {
     box-shadow: 4px 0 24px rgba(0, 0, 0, 0.5);
   }
 
-  .sidebar--open {
+  .sidebar-open {
     transform: translateX(0%);
   }
 }

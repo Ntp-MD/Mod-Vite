@@ -1,11 +1,11 @@
 <template>
   <div class="layout">
-    <header class="layout__header">
+    <header class="layout-header">
       <AppHeader @toggle-menu="toggleSidebar"></AppHeader>
     </header>
-    <main class="layout__main">
+    <main class="layout-main">
       <AppSidebar :isOpen="isOpen" @close-sidebar="closeSidebar"></AppSidebar>
-      <div class="layout__content">
+      <div class="layout-content">
         <router-view></router-view>
       </div>
     </main>
@@ -33,16 +33,15 @@ function closeSidebar() {
   display: flex;
   flex-direction: column;
   height: 100%;
-  font-size: var(--font-xs);
 }
 
-.layout__header {
+.layout-header {
   background: var(--color2);
   border-bottom: 1px solid var(--border-color);
   height: auto;
 }
 
-.layout__main {
+.layout-main {
   display: flex;
   position: relative;
   overflow: auto;
@@ -61,7 +60,7 @@ aside {
   max-width: 250px;
 }
 
-.layout__content {
+.layout-content {
   position: relative;
   display: flex;
   flex-direction: column;

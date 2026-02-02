@@ -1,10 +1,10 @@
 <template>
   <div class="nav">
-    <router-link v-for="page in pages" :key="page.path" class="nav__item" :to="page.path" @click="handleLinkClick">
-      <span class="nav__icon">
+    <router-link v-for="page in pages" :key="page.path" class="nav-item" :to="page.path" @click="handleLinkClick">
+      <span class="nav-icon">
         <img :src="page.icon" :alt="page.label" />
       </span>
-      <span class="nav__label">{{ page.label }}</span>
+      <span class="nav-label">{{ page.label }}</span>
     </router-link>
   </div>
 </template>
@@ -23,9 +23,9 @@ const pages = ref([
   { path: "/smart-widget", label: "Smart Widget", icon: "https://api.iconify.design/mdi:widgets-outline.svg" },
   { path: "/online-website-views", label: "Online Website", icon: "https://api.iconify.design/mdi:monitor-cellphone.svg" },
   { path: "/demo-website-views", label: "Demo Website", icon: "https://api.iconify.design/mdi:monitor-multiple.svg" },
-  { path: "/format", label: "Example", icon: "https://api.iconify.design/mdi:database-refresh-outline.svg" },
   { path: "/water-ripple", label: "Test Ripple", icon: "https://api.iconify.design/mdi:water.svg" },
   { path: "/timeline", label: "Timeline", icon: "https://api.iconify.design/mdi:calendar.svg" },
+  { path: "/format", label: "Example", icon: "https://api.iconify.design/mdi:database-refresh-outline.svg" },
   { path: "/pk-table", label: "Poker", icon: "https://api.iconify.design/mdi:poker-chip.svg" },
 ]);
 </script>
@@ -37,7 +37,7 @@ const pages = ref([
   gap: calc(var(--gap) * 0.5);
 }
 
-.nav__item {
+.nav-item {
   position: relative;
   display: flex;
   align-items: center;
@@ -51,7 +51,7 @@ const pages = ref([
   overflow: hidden;
 }
 
-.nav__item::before {
+.nav-item::before {
   content: "";
   position: absolute;
   left: 0;
@@ -64,31 +64,31 @@ const pages = ref([
   transition: height 0.2s ease;
 }
 
-.nav__item:hover {
+.nav-item:hover {
   background: var(--color3);
-  color: #fff;
+  color: var(--primary-hover);
 }
 
-.nav__item:hover::before {
+.nav-item:hover::before {
   height: 60%;
 }
 
-.nav__item.router-link-active {
+.nav-item.router-link-active {
   background: linear-gradient(90deg, rgba(37, 99, 235, 0.15), transparent);
   color: var(--primary);
   font-weight: 600;
 }
 
-.nav__item.router-link-active::before {
+.nav-item.router-link-active::before {
   height: 70%;
   background: var(--primary);
 }
 
-.nav__item.router-link-active .nav__icon {
+.nav-item.router-link-active .nav-icon {
   transform: scale(1.1);
 }
 
-.nav__icon {
+.nav-icon {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -97,19 +97,22 @@ const pages = ref([
   transition: transform 0.2s ease;
 }
 
-.nav__icon img {
+.nav-item:hover .nav-icon img,
+.nav-item.router-link-active .nav-icon img {
+}
+
+.nav-icon img {
   width: 100%;
   height: 100%;
   object-fit: contain;
   filter: brightness(0) saturate(100%) invert(80%);
 }
 
-.nav__item:hover .nav__icon img,
-.nav__item.router-link-active .nav__icon img {
-  filter: brightness(0) saturate(100%) invert(45%) sepia(91%) saturate(3116%) hue-rotate(213deg) brightness(95%) contrast(92%);
+.light-mode .nav-icon img {
+  filter: brightness(0) saturate(100%) invert(35%) sepia(51%) saturate(2125%) hue-rotate(203deg) brightness(95%) contrast(97%);
 }
 
-.nav__label {
+.nav-label {
   flex: 1;
   white-space: nowrap;
   overflow: hidden;

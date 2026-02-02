@@ -30,8 +30,8 @@
   position: absolute;
   inset: 0;
   border: 8px solid transparent;
-  border-top-color: var(--font-color);
-  border-bottom-color: #ccc;
+  border-top-color: var(--primary);
+  border-bottom-color: var(--primary);
   border-radius: 50%;
   animation: loader 3s linear infinite;
 }
@@ -42,7 +42,7 @@
   inset: 25px;
   border: 5px solid transparent;
   border-top-color: #fff;
-  border-bottom-color: var(--font-color);
+  border-bottom-color: var(--primary-hover);
   border-radius: 50%;
   animation: loader 1.5s linear infinite;
 }

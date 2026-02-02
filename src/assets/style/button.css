@@ -1,0 +1,66 @@
+/* Buttons */
+button {
+  display: grid;
+  width: fit-content;
+  border-radius: var(--border-radius);
+  border: 1px solid transparent;
+  padding: var(--gap) var(--gap2);
+  font-size: var(--font-xs);
+  color: var(--white);
+  cursor: pointer;
+  user-select: none;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+button:hover {
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-primary {
+  background: var(--primary);
+}
+
+.btn-success {
+  background: var(--primary);
+}
+
+.btn-warning {
+  background: var(--primary);
+}
+
+.btn-reset {
+  background: var(--danger);
+}
+
+.btn-toggle {
+  background: var(--primary);
+}
+
+.btn-reserved {
+  background: var(--primary);
+}
+
+/* Copy Button Component */
+.copy-btn {
+  display: grid;
+  place-items: center;
+  width: var(--icon-size);
+  height: var(--icon-size);
+  cursor: pointer;
+  transition: background var(--transition);
+}
+
+.copy-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.copy-btn-icon {
+  width: 40%;
+  filter: invert(1);
+}

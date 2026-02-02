@@ -1,22 +1,17 @@
-/* Table Styles */
-
 .table-view-container {
   display: flex;
   gap: var(--gap2);
   height: 100%;
-  overflow: hidden;
+}
+
+.table-scroll {
+  flex: 1;
+  overflow: auto;
+  height: 100%;
+  padding-right: var(--gap);
 }
 
 .table-views {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: var(--gap2);
-  background: var(--color2);
-  border: 1px solid var(--border-color);
-  border-radius: var(--border-radius);
-  overflow: auto;
-  flex: 1;
 }
 
 .filter-sidebar {
@@ -72,148 +67,4 @@ td {
 
 tbody tr:hover {
   background: rgba(255, 255, 255, 0.02);
-}
-
-.table-section {
-  overflow: auto;
-}
-
-/* Status Cell Styles */
-.hasStatus {
-  font-weight: 500;
-  text-align: center;
-}
-
-.hasStatus.Installed {
-  color: var(--success);
-  background: rgba(22, 163, 74, 0.1);
-}
-
-.hasStatus.Wait {
-  color: var(--warning);
-  background: rgba(245, 158, 11, 0.1);
-}
-
-.hasStatus.NoService {
-  color: var(--font-color);
-  opacity: 0.5;
-}
-
-.hasStatus.Ads {
-  color: var(--primary);
-  background: rgba(37, 99, 235, 0.1);
-}
-
-.hasStatus.Service {
-  color: var(--primary);
-  background: rgba(37, 99, 235, 0.1);
-}
-
-.hasStatus.No {
-  color: var(--danger);
-  background: rgba(220, 38, 38, 0.1);
-}
-
-.hasStatus.Complete {
-  color: var(--success);
-  background: rgba(22, 163, 74, 0.1);
-}
-
-/* Mobile Responsive Styles */
-@media screen and (max-width: 1024px) {
-  .table-view-container {
-    flex-direction: column;
-  }
-
-  .filter-sidebar {
-    width: 100%;
-    order: -1;
-  }
-
-  .table-views {
-    min-height: 400px;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .table-view-container {
-    gap: var(--gap);
-  }
-
-  .table-views {
-    overflow-x: auto;
-    min-height: 300px;
-  }
-
-  table {
-    min-width: 600px;
-  }
-
-  th,
-  td {
-    padding: calc(var(--gap) * 0.75) var(--gap);
-    font-size: var(--font-xs);
-  }
-
-  .pagination-container {
-    flex-direction: column;
-    gap: var(--gap);
-    align-items: stretch;
-  }
-
-  .pagination-info {
-    text-align: center;
-    font-size: var(--font-xs);
-  }
-
-  .pagination-controls {
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  .pagination-controls button {
-    min-width: 32px;
-    padding: calc(var(--gap) * 0.75) var(--gap);
-    font-size: var(--font-xs);
-  }
-
-  .filter-sidebar {
-    max-height: none;
-  }
-
-  .filter-section {
-    padding: var(--gap);
-  }
-
-  .filter-title {
-    font-size: var(--font-md);
-  }
-
-  .filter-group {
-    margin-bottom: var(--gap2);
-  }
-
-  .filter-options {
-    gap: calc(var(--gap) * 0.5);
-  }
-
-  .filter-options button {
-    padding: calc(var(--gap) * 0.75) var(--gap);
-    font-size: var(--font-xs);
-  }
-}
-
-@media screen and (max-width: 480px) {
-  table {
-    min-width: 500px;
-  }
-
-  th,
-  td {
-    padding: calc(var(--gap) * 0.5) calc(var(--gap) * 0.75);
-  }
-
-  .pagination-controls button:not(.active):not(:disabled):not(:first-child):not(:last-child):not(:nth-child(2)):not(:nth-last-child(2)) {
-    display: none;
-  }
 }

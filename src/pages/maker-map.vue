@@ -55,7 +55,7 @@
 
 .map_content label {
   padding: 2px 10px;
-  color: #fff;
+  color: var(--white);
   background: var(--btn-color);
   cursor: all-scroll;
 }

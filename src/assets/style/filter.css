@@ -1,0 +1,60 @@
+/* Filter Sidebar Component */
+.filter-sidebar {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  background: var(--color2);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  padding: var(--gap2);
+  overflow-y: auto;
+  color: var(--font-color);
+}
+
+.filter-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap2);
+}
+
+.filter-title {
+  font-size: var(--font-lg);
+  font-weight: 600;
+}
+
+.filter-label {
+  display: grid;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: var(--gap);
+}
+
+.filter-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  padding-top: var(--gap2);
+  border-top: 1px solid var(--border-color);
+}
+
+.filter-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap);
+}
+
+.filter-options button {
+  flex: 0 0 auto;
+  background: var(--color3);
+  color: var(--font-color);
+}
+
+.filter-options button:hover {
+  border: 1px solid var(--primary);
+  transform: translateY(-1px);
+}
+
+.filter-options button.active {
+  background: var(--primary);
+  color: var(--white);
+}

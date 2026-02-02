@@ -1,28 +1,28 @@
 <template>
   <div class="header" ref="navheaderRef">
-    <button class="header__menu-toggle" ref="nav_buttonRef" @click="toggleMenu">
-      <div class="header__menu-icon">
+    <button class="header-menu-toggle" ref="nav_buttonRef" @click="toggleMenu">
+      <div class="header-menu-icon">
         <div></div>
         <div></div>
         <div></div>
       </div>
     </button>
 
-    <div class="header__actions">
+    <div class="header-actions">
       <ThemeSwitch></ThemeSwitch>
 
       <!-- Notification Bell -->
-      <div class="header__notification">
+      <div class="header-notification">
         <img src="https://api.iconify.design/mdi:bell-outline.svg" alt="Notifications" />
-        <span class="header__notification-badge">3</span>
+        <span class="header-notification-badge">3</span>
       </div>
 
       <!-- User Profile -->
-      <div class="header__user">
-        <div class="header__user-avatar">NS</div>
-        <div class="header__user-info">
-          <span class="header__user-name">Natthapon</span>
-          <span class="header__user-role">Administrator</span>
+      <div class="header-user">
+        <div class="header-user-avatar">NS</div>
+        <div class="header-user-info">
+          <span class="header-user-name">Natthapon</span>
+          <span class="header-user-role">Administrator</span>
         </div>
       </div>
     </div>
@@ -54,14 +54,14 @@ function toggleMenu() {
   padding: 0 var(--gap);
 }
 
-.header__actions {
+.header-actions {
   display: flex;
   align-items: center;
   gap: var(--gap2);
   width: 100%;
 }
 
-.header__notification {
+.header-notification {
   position: relative;
   display: flex;
   align-items: center;
@@ -73,17 +73,17 @@ function toggleMenu() {
   transition: background var(--transition);
 }
 
-.header__notification:hover {
+.header-notification:hover {
   background: var(--color3);
 }
 
-.header__notification img {
+.header-notification img {
   width: var(--icon-size);
   height: var(--icon-size);
   filter: brightness(0) saturate(100%) invert(80%);
 }
 
-.header__notification-badge {
+.header-notification-badge {
   position: absolute;
   top: 0px;
   right: -5px;
@@ -94,13 +94,13 @@ function toggleMenu() {
   height: 18px;
   padding: 0 calc(var(--gap) * 0.5);
   background: var(--danger);
-  color: #fff;
+  color: var(--white);
   font-size: var(--font-xs);
   font-weight: 600;
   border-radius: 9px;
 }
 
-.header__user {
+.header-user {
   display: flex;
   align-items: center;
   gap: calc(var(--gap) * 1.5);
@@ -110,11 +110,11 @@ function toggleMenu() {
   transition: background var(--transition);
 }
 
-.header__user:hover {
+.header-user:hover {
   background: var(--color3);
 }
 
-.header__user-avatar {
+.header-user-avatar {
   display: grid;
   place-content: center;
   font-size: var(--font-sm);
@@ -124,35 +124,36 @@ function toggleMenu() {
   border-radius: 50%;
   overflow: hidden;
   aspect-ratio: 1;
+  color: var(--white);
 }
 
-.header__user-avatar img {
+.header-user-avatar img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.header__user-info {
+.header-user-info {
   display: flex;
   flex-direction: column;
   gap: calc(var(--gap) * 0.5);
 }
 
-.header__user-name {
+.header-user-name {
   font-size: var(--font-sm);
   font-weight: 600;
   color: var(--font-color);
   line-height: 1;
 }
 
-.header__user-role {
+.header-user-role {
   font-size: var(--font-xs);
   color: var(--font-color);
   opacity: 0.6;
   line-height: 1;
 }
 
-.header__menu-toggle {
+.header-menu-toggle {
   display: none;
   align-items: center;
   justify-content: center;
@@ -165,18 +166,18 @@ function toggleMenu() {
   border: none;
 }
 
-.header__menu-toggle:hover {
+.header-menu-toggle:hover {
   background: var(--color3);
 }
 
-.header__menu-icon {
+.header-menu-icon {
   display: flex;
   flex-direction: column;
   gap: 4px;
   width: 20px;
 }
 
-.header__menu-icon div {
+.header-menu-icon div {
   width: 100%;
   height: 2px;
   background-color: var(--font-color);
@@ -185,12 +186,8 @@ function toggleMenu() {
 }
 
 @media screen and (max-width: 768px) {
-  .header__menu-toggle {
+  .header-menu-toggle {
     display: flex;
-  }
-
-  .header__user-info {
-    display: none;
   }
 }
 </style>

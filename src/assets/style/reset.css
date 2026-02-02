@@ -8,21 +8,12 @@
 body {
   font-family: "Inter", sans-serif;
   min-height: 100vh;
-
   color: var(--font-color);
+  font-size: var(--font-xs);
 }
 
 a {
   text-decoration: none;
-}
-
-/* Typography */
-
-/* Container */
-.container {
-  padding: 0 var(--pad);
-  max-width: 1400px;
-  margin: 0 auto;
 }
 
 /* Images */
@@ -32,81 +23,17 @@ img {
   object-fit: contain;
 }
 
-/* Form Elements */
-input,
-textarea,
-select {
-  width: 100%;
-  min-height: 40px;
-  padding: 0 var(--gap2);
-  background: transparent;
-  border: 1px solid var(--border-color);
-  border-radius: var(--border-radius);
-  color: var(--font-color);
-  font-family: inherit;
-  outline: none;
-  transition: border-color 0.2s ease;
-}
-
-input:focus,
-textarea:focus,
-select:focus {
-  border-color: var(--primary);
-}
-
-input::placeholder,
-textarea::placeholder {
-  color: var(--font-color);
-  opacity: 0.6;
-}
-
-textarea {
-  min-height: 100px;
-  padding: var(--gap2);
-  resize: vertical;
-}
-
-/* Buttons */
-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px var(--gap2);
-  background: var(--btn-color);
-  color: #ededed;
-  border: none;
-  border-radius: var(--border-radius);
-  font-family: inherit;
-  font-weight: 500;
-  letter-spacing: 0.5px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  user-select: none;
-  width: fit-content;
-}
-
-button:hover {
-  background: var(--color2);
-  opacity: 0.9;
-}
-
-button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
 /* Scrollbar */
 ::-webkit-scrollbar {
   width: 7px;
   height: 7px;
-  background: transparent;
+  background: var(--color3);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--font-color);
   border-radius: var(--border-radius);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--font-color2);
+  background: var(--neon);
 }

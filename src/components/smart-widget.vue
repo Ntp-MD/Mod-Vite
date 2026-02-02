@@ -3,36 +3,36 @@
     <form id="smart-widget" @submit.prevent>
       <div class="form-group">
         <label for="websiteName">Website Name</label>
-        <input class="input" name="websiteName" v-model="form.websiteName" />
+        <input name="websiteName" v-model="form.websiteName" />
       </div>
       <div class="form-group">
         <label for="websiteEmail">Binding Email</label>
-        <input class="input" name="websiteEmail" v-model="form.websiteEmail" />
+        <input name="websiteEmail" v-model="form.websiteEmail" />
       </div>
       <div class="form-group">
         <label for="websiteUser">Username</label>
-        <input class="input" name="websiteUser" v-model="form.websiteUser" />
+        <input name="websiteUser" v-model="form.websiteUser" />
       </div>
       <div class="form-group">
         <label for="websitePassword">Password</label>
-        <input class="input" name="websitePassword" v-model="form.websitePassword" />
+        <input name="websitePassword" v-model="form.websitePassword" />
       </div>
       <div class="form-group">
         <label for="websiteTel">Binding Tel</label>
-        <input class="input" name="websiteTel" v-model="form.websiteTel" />
+        <input name="websiteTel" v-model="form.websiteTel" />
       </div>
 
       <div class="form-group">
         <label for="websiteTel2">Tel</label>
-        <input class="input" name="websiteTel2" v-model="form.websiteTel2" />
+        <input name="websiteTel2" v-model="form.websiteTel2" />
       </div>
       <div class="form-group">
         <label for="websiteFacebook">Facebook Page</label>
-        <input class="input" name="websiteFacebook" v-model="form.websiteFacebook" />
+        <input name="websiteFacebook" v-model="form.websiteFacebook" />
       </div>
       <div class="form-group">
         <label for="websiteLine">Line @</label>
-        <input class="input" name="websiteLine" v-model="form.websiteLine" />
+        <input name="websiteLine" v-model="form.websiteLine" />
       </div>
     </form>
     <div>
@@ -44,8 +44,8 @@
           <div>{{ form.websitePassword }}</div>
         </div>
         <div class="button-group">
-          <button type="button" class="btn btn-primary" @click="copyText(getInformationText())">Copy Info</button>
-          <button type="button" class="btn btn-danger" @click="clearStorage">Clear Storage</button>
+          <button type="button" class="btn-primary" @click="copyText(getInformationText())">Copy Info</button>
+          <button type="button" class="btn-reset" @click="clearStorage">Clear Storage</button>
         </div>
         <label>Snippet Css</label>
         <div class="text-frame">
@@ -53,7 +53,7 @@
             .unknown { position: fixed; bottom: 8% !important; } .unknown_prf .btn-main, .unknown_prf:hover .btn-main { margin-bottom: 0 !important; }
           </code>
         </div>
-        <button type="button" class="btn btn-primary" @click="copyText(cssSnippet)">Copy Css</button>
+        <button type="button" class="btn-primary" @click="copyText(cssSnippet)">Copy Css</button>
       </div>
     </div>
   </div>
@@ -104,12 +104,12 @@ form#smart-widget > div {
   background: var(--color3);
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
-  color: var(--font-color);
+  color: var(--);
 }
 
 .text-frame code {
   font-family: monospace;
-  color: var(--primary);
+  color: var(--success);
   word-wrap: break-word;
 }
 

@@ -10,7 +10,7 @@
             {{ font.font_url }}
           </div>
           <div class="copy-btn" @click="copyToClipboard(font.font_url)">
-            <img src="/src/assets/icon/link.png" alt="" />
+            <img src="https://api.iconify.design/mdi:link-variant.svg" alt="" />
           </div>
         </div>
         <div class="font-info">
@@ -18,7 +18,7 @@
             {{ font.font_family }}
           </div>
           <div class="copy-btn" @click="copyToClipboard(font.font_family)">
-            <img src="/src/assets/icon/copy.png" alt="" />
+            <img src="https://api.iconify.design/mdi:content-copy.svg" alt="" />
           </div>
         </div>
       </div>

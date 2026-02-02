@@ -1,0 +1,26 @@
+/* Modern Light Mode Colors */
+.light-mode {
+  --color1: #f8fafc; /* Soft white background */
+  --color2: #f1f5f9; /* Light gray for cards/sections */
+  --color3: #e2e8f0; /* Slightly blue-gray for UI elements */
+  --btn-color: #38bdf8; /* Vibrant sky blue for buttons */
+  --font-color: #22223b; /* Deep navy for text */
+  --border-color: #cbd5e1; /* Subtle blue-gray border */
+  /* Accent Colors */
+  --primary: #2563eb;
+  --primary-hover: #3b82f6;
+  --danger: #dc2626;
+  --danger-hover: #b91c1c;
+  --success: #16a34a;
+  --warning: #d8b000;
+  --reserved: #d1adff;
+  --neon: #03dac6;
+}
+
+.light-mode .copy-btn img {
+  filter: unset;
+}
+
+.light-mode .toggle-swap {
+  transform: rotate(180deg);
+}

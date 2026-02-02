@@ -6,6 +6,7 @@
   --btn-color: #1c2129;
   --font-color: #c5c5c5;
   --border-color: #222935;
+  --white: #fff;
 
   /* Accent Colors */
   --primary: #2563eb;
@@ -13,7 +14,9 @@
   --danger: #dc2626;
   --danger-hover: #b91c1c;
   --success: #16a34a;
-  --warning: #f59e0b;
+  --warning: #d8b000;
+  --reserved: #d1adff;
+  --neon: #03dac6;
 
   /* Font size */
   --font-lg: 24px;
