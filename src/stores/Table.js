@@ -8,6 +8,7 @@ const deck = ref([]);
 export const hands = ref({});
 export const flop = ref([]);
 export const pot = ref(0);
+export const sidePots = ref([]); // Array of { amount, eligible: [playerIndices] }
 export const currentPlayer = ref(0);
 export const gamePhase = ref("idle");
 const currentMaxBet = ref(0);
@@ -16,7 +17,7 @@ const costRound = 10;
 const smallBlind = costRound * 2;
 const bigBlind = costRound * 4;
 export const minRaiseAmount = costRound;
-const numPlayers = ref(6);
+const numPlayers = ref(9);
 export const playerColors = ["#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff"];
 const startingMoney = ref(500);
 export const customStartingMoney = ref([1000, 1000, 1000, 1000, 1000, 1000]);
@@ -44,7 +45,7 @@ export const canCheck = computed(() => {
   return currentMaxBet.value === (playerBets.value[0] || 0);
 });
 export const canCall = computed(
-  () => currentMaxBet.value > (playerBets.value[0] || 0) && playerMoney.value[0] >= currentMaxBet.value - (playerBets.value[0] || 0)
+  () => currentMaxBet.value > (playerBets.value[0] || 0) && playerMoney.value[0] >= currentMaxBet.value - (playerBets.value[0] || 0),
 );
 export const canRaise = computed(() => {
   return (
@@ -253,6 +254,53 @@ export function increaseRaise(amount) {
 export function decreaseRaise(amount) {
   raiseInput.value = Math.max(minRaiseAmount, raiseInput.value - amount);
 }
+// Side pot management functions
+function buildSidePots() {
+  // Collect all unique bet amounts from active players
+  const allBets = playerBets.value
+    .map((bet, idx) => ({ amount: bet, playerIndex: idx }))
+    .filter(({ playerIndex }) => !playerFolded.value[playerIndex])
+    .sort((a, b) => a.amount - b.amount);
+
+  if (allBets.length === 0) return;
+
+  sidePots.value = [];
+  let previousLevel = 0;
+
+  for (const { amount: betLevel } of allBets) {
+    if (betLevel <= previousLevel) continue;
+
+    const potForThisLevel = (betLevel - previousLevel) * playerBets.value.length;
+    const eligiblePlayers = playerBets.value.map((_, idx) => idx).filter((idx) => !playerFolded.value[idx] && playerBets.value[idx] >= betLevel);
+
+    sidePots.value.push({
+      amount: potForThisLevel,
+      eligible: eligiblePlayers,
+    });
+
+    previousLevel = betLevel;
+  }
+}
+
+function awardSidePots(winners) {
+  // Award main pot and side pots based on eligibility
+  let totalAwarded = 0;
+
+  for (const sidePot of sidePots.value) {
+    const eligibleWinners = winners.filter((w) => sidePot.eligible.includes(w.index));
+
+    if (eligibleWinners.length > 0) {
+      const share = Math.floor(sidePot.amount / eligibleWinners.length);
+      for (const winner of eligibleWinners) {
+        playerMoney.value[winner.index] += share;
+        totalAwarded += share;
+      }
+    }
+  }
+
+  return totalAwarded;
+}
+
 export function setRaise(amount) {
   raiseInput.value = amount;
 }
@@ -810,6 +858,9 @@ function determineWinner() {
     return;
   }
 
+  // Build side pots for proper all-in handling
+  buildSidePots();
+
   // หา handRank ที่ดีที่สุด
   const bestRank = Math.max(...currentTurn.map((p) => p.handEvaluation.handRank));
   let bestPlayers = currentTurn.filter((p) => p.handEvaluation.handRank === bestRank);
@@ -832,14 +883,24 @@ function determineWinner() {
     // ถ้า cmp > 0 → aVals ดีกว่า → ไม่ต้องทำอะไร
   }
 
-  // แบ่ง pot ให้ผู้ชนะทุกคน (tie)
-  const share = Math.floor(pot.value / tiedWinners.length);
+  // Award side pots and main pot
+  awardSidePots(tiedWinners);
+
+  // Award main pot (total remaining after side pots)
+  const mainPot = pot.value - sidePots.value.reduce((sum, sp) => sum + sp.amount, 0);
+  if (mainPot > 0) {
+    const share = Math.floor(mainPot / tiedWinners.length);
+    for (const winner of tiedWinners) {
+      playerMoney.value[winner.index] += share;
+    }
+  }
+
   for (const winner of tiedWinners) {
-    playerMoney.value[winner.index] += share;
-    addLog(`${playerNames.value[winner.index]} wins $${share} with ${winner.handEvaluation.handName}`);
+    addLog(`${playerNames.value[winner.index]} wins with ${winner.handEvaluation.handName}`);
   }
 
   pot.value = 0;
+  sidePots.value = [];
   addLog(`--- End of Round ${currentRound.value} ---`);
   roundEnded.value = true;
 

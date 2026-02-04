@@ -17,15 +17,14 @@
   box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
 }
 
-.display-stats {
+.results-display {
   display: flex;
   gap: var(--gap);
   border-radius: var(--border-radius);
   width: 100%;
-  margin-bottom: var(--gap2);
 }
 
-.display-stats > div {
+.results-display > div {
   position: relative;
   flex: 1;
   display: flex;
@@ -38,12 +37,12 @@
   min-height: calc(var(--gap2) * 4);
   font-weight: 600;
   font-size: var(--font-md);
-
   cursor: pointer;
   user-select: none;
+  box-shadow: var(--box-shadow);
 }
 
-.display-stats > div:hover {
+.results-display > div:hover {
   border: 1px solid var(--primary);
 }
 

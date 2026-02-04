@@ -9,6 +9,7 @@ input {
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
   outline: none;
+  box-shadow: var(--box-shadow);
 }
 
 input:focus {
@@ -79,14 +80,4 @@ input[type="radio"] {
 
 #search_box {
   width: 100%;
-}
-
-.form-message-error {
-  color: var(--danger);
-  margin-top: calc(var(--gap) * 0.5);
-}
-
-.form-message-success {
-  color: var(--success);
-  margin-top: calc(var(--gap) * 0.5);
 }

@@ -1,25 +1,31 @@
 <template>
-  <div class="table-view-container">
-    <div class="table-views">
-      <Loading v-if="isLoading" />
-      <table v-else>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Note</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(row, idx) in paginatedData" :key="row.id ?? idx">
-            <td>{{ row.id }}</td>
-            <td>{{ row.column1 }}</td>
-            <td>{{ row.column2 }}</td>
-            <td :class="statusDetect(row.column3)">{{ row.column3 }}</td>
-          </tr>
-        </tbody>
-      </table>
+  <div class="wrapper-container">
+    <div class="wrapper-scroll">
+      <div class="results-display">
+        <div class="results-summary">
+          <span class="result-count">{{ filteredCount }}</span>
+          <span class="result-label">demos found</span>
+        </div>
+      </div>
+      <div class="table-views">
+        <Loading v-if="isLoading" />
+        <table v-else>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Note</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(row, idx) in paginatedData" :key="row.id ?? idx">
+              <td>{{ row.column1 }}</td>
+              <td>{{ row.column2 }}</td>
+              <td :class="statusDetect(row.column3)">{{ row.column3 }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
       <div class="pagination-container">
         <div class="pagination-info">Showing {{ displayFrom }}–{{ displayTo }} of {{ filteredCount }}</div>
         <div class="pagination-controls">
@@ -31,6 +37,7 @@
         </div>
       </div>
     </div>
+
     <div class="filter-sidebar">
       <div class="filter-section">
         <div class="filter-title">Filters</div>
@@ -68,14 +75,10 @@
 
         <!-- Actions -->
         <div class="filter-actions">
-          <button v-if="hasActiveFilters" @click="resetAllFilters" class="btn-reset"><span>🔄</span> Reset All</button>
+          <button v-if="hasActiveFilters" @click="resetAllFilters" class="btn-reset">Reset All</button>
         </div>
 
         <!-- Results Summary -->
-        <div class="results-summary">
-          <span class="result-count">{{ filteredCount }}</span>
-          <span class="result-label">demos found</span>
-        </div>
       </div>
     </div>
   </div>
@@ -111,10 +114,3 @@ const {
 
 const { isLoading } = useLoading(1200);
 </script>
-
-<style scoped>
-thead > tr > th:first-child,
-tbody > tr > td:first-child {
-  width: 5%;
-}
-</style>

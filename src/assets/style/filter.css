@@ -1,6 +1,7 @@
 /* Filter Sidebar Component */
 .filter-sidebar {
-  width: 20%;
+  flex: 1;
+  max-width: 250px;
   display: flex;
   flex-direction: column;
   background: var(--color2);
@@ -19,13 +20,10 @@
 
 .filter-title {
   font-size: var(--font-lg);
-  font-weight: 600;
 }
 
 .filter-label {
   display: grid;
-  text-transform: uppercase;
-  font-weight: 600;
   margin-bottom: var(--gap);
 }
 
@@ -44,7 +42,6 @@
 }
 
 .filter-options button {
-  flex: 0 0 auto;
   background: var(--color3);
   color: var(--font-color);
 }

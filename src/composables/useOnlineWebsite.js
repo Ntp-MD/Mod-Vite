@@ -18,6 +18,8 @@ export function useOnlineWebsite() {
   const debouncedQuery = ref("");
   const bottom = ref(null);
   const showLast100 = ref(false);
+  const currentPage = ref(1);
+  const pageSize = ref(100);
 
   const GOOGLE_SHEET_CSV_URL =
     "https://corsproxy.io/?" +
@@ -132,11 +134,64 @@ export function useOnlineWebsite() {
     });
   });
 
-  // Display rows
+  // Display rows with pagination
   const displayedRows = computed(() => {
     const rows = filteredRows.value;
-    if (!showLast100.value) return rows;
-    return rows.slice(-100);
+    const filtered = !showLast100.value ? rows : rows.slice(-100);
+    const start = (currentPage.value - 1) * pageSize.value;
+    const end = start + pageSize.value;
+    return filtered.slice(start, end);
+  });
+
+  // Pagination helpers
+  const filteredCount = computed(() => {
+    const rows = filteredRows.value;
+    return !showLast100.value ? rows.length : rows.slice(-100).length;
+  });
+
+  const totalPages = computed(() => Math.max(1, Math.ceil(filteredCount.value / pageSize.value || 1)));
+
+  watch([filteredCount, pageSize], () => {
+    if (currentPage.value > totalPages.value) currentPage.value = totalPages.value;
+  });
+
+  const displayFrom = computed(() => (filteredCount.value === 0 ? 0 : (currentPage.value - 1) * pageSize.value + 1));
+  const displayTo = computed(() => Math.min(currentPage.value * pageSize.value, filteredCount.value));
+
+  const pageWindow = computed(() => {
+    const span = 2;
+    const start = Math.max(1, currentPage.value - span);
+    const end = Math.min(totalPages.value, currentPage.value + span);
+    const arr = [];
+    for (let p = start; p <= end; p++) arr.push(p);
+    return arr;
+  });
+
+  // Pagination controls
+  function gotoPage(p) {
+    if (p >= 1 && p <= totalPages.value) currentPage.value = p;
+  }
+  function nextPage() {
+    if (currentPage.value < totalPages.value) currentPage.value++;
+  }
+  function prevPage() {
+    if (currentPage.value > 1) currentPage.value--;
+  }
+  function goFirst() {
+    currentPage.value = 1;
+  }
+  function goLast() {
+    currentPage.value = totalPages.value;
+  }
+
+  // Reset page when filters change
+  watch(filteredRows, () => {
+    currentPage.value = 1;
+  });
+
+  // Reset page when toggling Last 100
+  watch(showLast100, () => {
+    currentPage.value = 1;
   });
 
   // Count waiting/pending services
@@ -233,12 +288,24 @@ export function useOnlineWebsite() {
     debouncedQuery,
     bottom,
     showLast100,
+    currentPage,
+    pageSize,
     availableYears,
     hasActiveFilters,
     filteredRows,
     displayedRows,
+    filteredCount,
+    totalPages,
+    displayFrom,
+    displayTo,
+    pageWindow,
     resetFilters,
     scrollToBottom,
+    gotoPage,
+    nextPage,
+    prevPage,
+    goFirst,
+    goLast,
     free5gbClass,
     free5gbLabel,
     searchConsoleClass,

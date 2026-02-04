@@ -1,17 +1,27 @@
-.table-view-container {
+.wrapper-container {
   display: flex;
   gap: var(--gap2);
   height: 100%;
 }
 
-.table-scroll {
+.wrapper-scroll {
   flex: 1;
-  overflow: auto;
-  height: 100%;
-  padding-right: var(--gap);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap2);
+  height: auto;
+}
+
+.results-display,
+.pagination-container {
+  height: fit-content;
+  flex-shrink: 0;
 }
 
 .table-views {
+  position: relative;
+  flex-grow: 1;
+  overflow-y: auto;
 }
 
 .filter-sidebar {
@@ -55,10 +65,10 @@ th,
 td {
   padding: var(--gap) var(--gap2);
   border: 1px solid var(--border-color);
-  text-align: left;
   height: 40px;
   overflow: hidden;
   text-overflow: ellipsis;
+  text-align: left;
 }
 
 td {

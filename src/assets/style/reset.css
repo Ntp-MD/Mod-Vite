@@ -32,8 +32,9 @@ img {
 
 ::-webkit-scrollbar-thumb {
   border-radius: var(--border-radius);
+  background: var(--primary);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--neon);
+  background: var(--primary-hover);
 }

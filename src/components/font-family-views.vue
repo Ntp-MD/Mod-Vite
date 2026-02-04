@@ -80,6 +80,7 @@ const loadFont = (font) => {
   border-radius: var(--border-radius);
   background: var(--color2);
   border: 1px solid var(--border-color);
+  box-shadow: var(--box-shadow);
 }
 
 .font-name {

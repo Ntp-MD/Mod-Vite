@@ -1,36 +1,36 @@
 <template>
-  <div class="table-view-container">
-    <div class="table-scroll">
-      <div class="table-views">
-        <div class="display-stats">
-          <div class="results-summary">
-            <span class="result-label">websites</span>
-            <span class="result-count">{{ filteredRows.length }}</span>
-          </div>
-          <div class="show-stat" @click="showWaiting = showWaiting === '5gb' ? '' : '5gb'">
-            <span class="result-label">เพิ่มพื้นที่ 5GB</span>
-            <span class="show-stat-count">{{ waitingSpace5GB }}</span>
-            <div v-if="showWaiting === '5gb' && waitingList5GB.length" class="show-list">
-              <div v-for="row in waitingList5GB" :key="row.id">{{ row.selectName }}</div>
-            </div>
-          </div>
-
-          <div class="show-stat" @click="showWaiting = showWaiting === 'sc' ? '' : 'sc'">
-            <span class="result-label">Search Console</span>
-            <span class="show-stat-count">{{ waitingSearchConsole }}</span>
-            <div v-if="showWaiting === 'sc' && waitingListSC.length" class="show-list">
-              <div v-for="row in waitingListSC" :key="row.id">{{ row.selectName }}</div>
-            </div>
-          </div>
-
-          <div class="show-stat" @click="showWaiting = showWaiting === 'sw' ? '' : 'sw'">
-            <span class="result-label">Smart Widget</span>
-            <span class="show-stat-count">{{ waitingSmartWidget }}</span>
-            <div v-if="showWaiting === 'sw' && waitingListSW.length" class="show-list">
-              <div v-for="row in waitingListSW" :key="row.id">{{ row.selectName }}</div>
-            </div>
+  <div class="wrapper-container">
+    <div class="wrapper-scroll">
+      <div class="results-display">
+        <div class="results-summary">
+          <span class="result-label">websites</span>
+          <span class="result-count">{{ filteredRows.length }}</span>
+        </div>
+        <div class="show-stat" @click="showWaiting = showWaiting === '5gb' ? '' : '5gb'">
+          <span class="result-label">เพิ่มพื้นที่ 5GB</span>
+          <span class="show-stat-count">{{ waitingSpace5GB }}</span>
+          <div v-if="showWaiting === '5gb' && waitingList5GB.length" class="show-list">
+            <div v-for="row in waitingList5GB" :key="row.id">{{ row.selectName }}</div>
           </div>
         </div>
+
+        <div class="show-stat" @click="showWaiting = showWaiting === 'sc' ? '' : 'sc'">
+          <span class="result-label">Search Console</span>
+          <span class="show-stat-count">{{ waitingSearchConsole }}</span>
+          <div v-if="showWaiting === 'sc' && waitingListSC.length" class="show-list">
+            <div v-for="row in waitingListSC" :key="row.id">{{ row.selectName }}</div>
+          </div>
+        </div>
+
+        <div class="show-stat" @click="showWaiting = showWaiting === 'sw' ? '' : 'sw'">
+          <span class="result-label">Smart Widget</span>
+          <span class="show-stat-count">{{ waitingSmartWidget }}</span>
+          <div v-if="showWaiting === 'sw' && waitingListSW.length" class="show-list">
+            <div v-for="row in waitingListSW" :key="row.id">{{ row.selectName }}</div>
+          </div>
+        </div>
+      </div>
+      <div class="table-views">
         <Loading v-if="isLoading" />
         <table v-else>
           <thead>
@@ -58,6 +58,16 @@
             </tr>
           </tbody>
         </table>
+      </div>
+      <div class="pagination-container">
+        <div class="pagination-info">Showing {{ displayFrom }}–{{ displayTo }} of {{ filteredCount }}</div>
+        <div class="pagination-controls">
+          <button :disabled="currentPage === 1" @click="goFirst" title="First Page">«</button>
+          <button :disabled="currentPage === 1" @click="prevPage" title="Previous">‹</button>
+          <button v-for="p in pageWindow" :key="p" :class="{ active: p === currentPage }" @click="gotoPage(p)">{{ p }}</button>
+          <button :disabled="currentPage === totalPages" @click="nextPage" title="Next">›</button>
+          <button :disabled="currentPage === totalPages" @click="goLast" title="Last Page">»</button>
+        </div>
       </div>
     </div>
     <div class="filter-sidebar">
@@ -88,6 +98,15 @@
             </button>
           </div>
         </div>
+        <div class="filter-group">
+          <label class="filter-label">Per Page</label>
+          <select class="dropdown" v-model.number="pageSize">
+            <option :value="10">10 items</option>
+            <option :value="20">20 items</option>
+            <option :value="50">50 items</option>
+            <option :value="100">100 items</option>
+          </select>
+        </div>
         <div class="filter-actions">
           <button v-if="hasActiveFilters" @click="resetFilters" class="btn-reset">Reset</button>
           <button :class="['btn-toggle', { active: showLast100 }]" @click="showLast100 = !showLast100">
@@ -111,11 +130,23 @@ const {
   selectedMonth,
   searchQuery,
   showLast100,
+  currentPage,
+  pageSize,
   availableYears,
   hasActiveFilters,
   filteredRows,
   displayedRows,
+  filteredCount,
+  totalPages,
+  displayFrom,
+  displayTo,
+  pageWindow,
   resetFilters,
+  gotoPage,
+  nextPage,
+  prevPage,
+  goFirst,
+  goLast,
   free5gbClass,
   free5gbLabel,
   searchConsoleClass,
