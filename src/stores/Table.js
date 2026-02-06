@@ -18,9 +18,8 @@ const smallBlind = costRound * 2;
 const bigBlind = costRound * 4;
 export const minRaiseAmount = costRound;
 const numPlayers = ref(9);
-export const playerColors = ["#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff"];
-const startingMoney = ref(500);
-export const customStartingMoney = ref([1000, 1000, 1000, 1000, 1000, 1000]);
+export const playerColors = ["#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff"];
+export const startingMoney = ref(1000);
 const dealerPosition = ref(0);
 const roundEnded = ref(true);
 
@@ -60,6 +59,9 @@ export const canAll = computed(() => playerMoney.value[0] > 0 && gamePhase.value
 const lastRaiser = ref(null);
 
 export const opponentStats = [
+  { aggression: 0.5, tightness: 0.5 },
+  { aggression: 0.5, tightness: 0.5 },
+  { aggression: 0.5, tightness: 0.5 },
   { aggression: 0.5, tightness: 0.5 },
   { aggression: 0.5, tightness: 0.5 },
   { aggression: 0.5, tightness: 0.5 },
@@ -270,7 +272,8 @@ function buildSidePots() {
   for (const { amount: betLevel } of allBets) {
     if (betLevel <= previousLevel) continue;
 
-    const potForThisLevel = (betLevel - previousLevel) * playerBets.value.length;
+    const contributingPlayers = playerBets.value.filter((bet) => bet >= previousLevel).length;
+    const potForThisLevel = (betLevel - previousLevel) * contributingPlayers;
     const eligiblePlayers = playerBets.value.map((_, idx) => idx).filter((idx) => !playerFolded.value[idx] && playerBets.value[idx] >= betLevel);
 
     sidePots.value.push({
@@ -317,7 +320,7 @@ export function startGame() {
   playerNames.value = Array.from({ length: numPlayers.value }, (_, i) => (i === 0 ? "You" : `AI ${i}`));
   hands.value = dealHands(numPlayers.value, 2);
   playerContribution.value = Array(numPlayers.value).fill(0);
-  playerMoney.value = customStartingMoney.value.slice(0, numPlayers.value);
+  playerMoney.value = Array(numPlayers.value).fill(startingMoney.value);
   playerBets.value = Array(numPlayers.value).fill(0);
   playerFolded.value = Array(numPlayers.value).fill(false);
   playerDialog.value = Array(numPlayers.value).fill("");
@@ -473,7 +476,7 @@ function proceedToNextPhase() {
   lastRaiser.value = null;
   raiseInput.value = 0;
   let logMessage = "";
-  let roundEnded = false;
+  let phaseEnded = false;
 
   if (gamePhase.value === "betting") {
     dealInitialFlop();
@@ -487,17 +490,17 @@ function proceedToNextPhase() {
   } else if (gamePhase.value === "river") {
     gamePhase.value = "showdown";
     determineWinner();
-    roundEnded = true;
+    phaseEnded = true;
   } else {
     console.error("proceedToNextPhase called with unexpected gamePhase:", gamePhase.value);
-    roundEnded = true;
+    phaseEnded = true;
   }
 
   if (logMessage) {
     addLog(logMessage);
   }
 
-  if (roundEnded) {
+  if (phaseEnded) {
     return true;
   }
 
@@ -597,7 +600,12 @@ async function nextTurn() {
     try {
       const aiDecision = getAIAction(currentPlayer.value);
       await new Promise((resolve) => setTimeout(resolve, 200));
-      handleAction(currentPlayer.value, aiDecision);
+      const gameEnded = handleAction(currentPlayer.value, aiDecision);
+
+      // If everyone folded except one, game ended in handleAction
+      if (gameEnded) {
+        return;
+      }
     } catch (error) {
       console.error(`Error during AI ${playerNames.value[currentPlayer.value]}'s turn:`, error);
       addLog(`Error for ${playerNames.value[currentPlayer.value]}. They are folded due to an error.`);
@@ -643,8 +651,10 @@ export function playerAction(action, amount = 0) {
   if (autoPlay.value) {
     // Let AI decide for the human player
     const aiDecision = getAIAction(0);
-    handleAction(0, aiDecision);
-    setTimeout(() => nextTurn(), 200);
+    const gameEnded = handleAction(0, aiDecision);
+    if (!gameEnded) {
+      setTimeout(() => nextTurn(), 200);
+    }
     return;
   }
 
@@ -722,6 +732,13 @@ export function playerAction(action, amount = 0) {
   addLog(msg);
   hasActed.value[0] = true;
   currentPlayer.value = (currentPlayer.value + 1) % numPlayers.value;
+
+  // Check if everyone else folded
+  if (playerFolded.value.filter((f) => !f).length === 1 && gamePhase.value !== "showdown") {
+    gamePhase.value = "showdown";
+    determineWinner();
+    return;
+  }
 
   setTimeout(() => nextTurn(), 200);
 }
@@ -832,10 +849,10 @@ function handleAction(i, actionDecision) {
   if (playerFolded.value.filter((f) => !f).length === 1 && gamePhase.value !== "showdown") {
     gamePhase.value = "showdown";
     determineWinner();
-    return;
+    return true; // Signal that game ended
   }
 
-  setTimeout(nextTurn, 200);
+  return false; // Signal to continue
 }
 
 function determineWinner() {

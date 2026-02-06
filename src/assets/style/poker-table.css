@@ -4,7 +4,8 @@
   --hearts: #c0392b;
   --diamonds: #3498db;
   --clubs: #27ae60;
-  --gap: 8px;
+  --gap: 10px;
+  --border-radius: 8px;
   --ui-bg: #151920;
   --ui-bg2: #1c2129;
   --font-color: #b8b8b8;
@@ -12,7 +13,7 @@
   --btn-hover: #3b82f6;
   --focus: #03dac6;
   --danger: #dc2626;
-  --border-radius: 15px;
+
   --card-bg: #1c2129;
 }
 
@@ -30,7 +31,7 @@
   align-items: center;
   gap: var(--gap);
   padding: var(--gap);
-  border: 0.5px solid var(--font-color);
+  border: 0.5px solid var(--btn);
   border-radius: var(--border-radius);
   background: var(--ui-bg2);
   width: 100%;
@@ -51,9 +52,8 @@
 .CardBody {
   display: grid;
   place-content: center;
-  aspect-ratio: 2.2/3;
-  width: 20px;
-  height: auto;
+  width: 25px;
+  height: 35px;
   border: 1px solid var(--font-color);
   border-radius: 4px;
   background: var(--card-bg);
@@ -61,126 +61,128 @@
   text-align: center;
 }
 
-button {
+.TableLayout button {
   flex: 1;
+  display: grid;
   place-content: center;
   background: var(--ui-bg2);
-  padding: calc(var(--gap) * 0.5) var(--gap);
+  padding: var(--gap);
   color: var(--font-color);
   border-radius: 4px;
   width: 100%;
+  white-space: nowrap;
 }
 
 .TableLayout {
-  width: 100%;
-  height: 100%;
-  font-size: 12px;
-  background-color: var(--ui-bg2);
-  padding: 3vw;
-}
-
-.TablePlayZone {
-  position: relative;
-  width: 100%;
-  height: 80%;
-  background: radial-gradient(ellipse at center, #0a4d2c 0%, var(--ui-bg) 70%);
-  border-radius: 50%;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  gap: var(--gap);
+  height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
-/* Circular player positioning */
-.PlayerSlot {
-  position: absolute;
-  width: 200px;
+.section1 {
+  display: flex;
+  gap: var(--gap);
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
 }
 
-/* Position players around the table (adjust angles for your player count) */
-.PlayerSlot:nth-child(1) {
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 10;
+.TimelineLog {
+  flex: 1;
+  background-color: var(--ui-bg2);
+  padding: var(--gap);
+  border-radius: var(--border-radius);
+  overflow-y: auto;
+  min-height: 0;
 }
 
-.PlayerSlot:nth-child(2) {
-  top: 10%;
-  left: 50%;
-  transform: translate(-50%, 0);
+.RoundLog {
+  height: 100%;
+  background-color: var(--ui-bg);
+  padding: var(--gap);
+  border-radius: var(--border-radius);
+  overflow-y: auto;
 }
 
-.PlayerSlot:nth-child(3) {
-  top: 15%;
-  right: 10%;
-  transform: translate(0, 0);
-}
-
-.PlayerSlot:nth-child(4) {
-  top: 50%;
-  right: 5%;
-  transform: translate(0, -50%);
-}
-
-.PlayerSlot:nth-child(5) {
-  bottom: 15%;
-  right: 10%;
-  transform: translate(0, 0);
-}
-
-.PlayerSlot:nth-child(6) {
-  bottom: 10%;
-  left: 50%;
-  transform: translate(-50%, 0);
-}
-
-.PlayerSlot:nth-child(7) {
-  bottom: 15%;
-  left: 10%;
-  transform: translate(0, 0);
-}
-
-.PlayerSlot:nth-child(8) {
-  top: 50%;
-  left: 5%;
-  transform: translate(0, -50%);
-}
-
-.PlayerSlot:nth-child(9) {
-  top: 15%;
-  left: 10%;
-  transform: translate(0, 0);
-}
-
-/* Center board styling */
 .TableBoard {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 5;
-  text-align: center;
-  background: rgba(10, 77, 44, 0.6);
-  padding: 20px;
-  border-radius: 10px;
-  border: 2px solid var(--focus);
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  background-color: var(--ui-bg2);
+  padding: var(--gap);
+  border-radius: var(--border-radius);
+  min-height: 0;
+  overflow: hidden;
 }
 
 .TableFlop {
   display: flex;
-  gap: var(--gap);
-  margin-bottom: 10px;
   justify-content: center;
+  align-items: center;
+  gap: var(--gap);
+  background-color: var(--ui-bg);
+  padding: var(--gap);
+  border-radius: var(--border-radius);
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
 }
 
 .PotsMoney {
-  font-size: 18px;
-  font-weight: bold;
-  color: var(--focus);
-  margin: 10px 0;
+  background-color: var(--ui-bg);
+  padding: var(--gap);
+  text-align: center;
 }
 
 .TablePhase {
-  font-size: 12px;
-  color: var(--font-color);
+  background-color: var(--ui-bg);
+  padding: var(--gap);
+  text-align: center;
+}
+
+.TableSetting {
+  display: flex;
+  gap: var(--gap);
+}
+
+.TableSetting > * {
+  flex: 1;
+}
+
+.ChipButton {
+  display: flex;
+  gap: var(--gap);
+}
+
+.ChipButton > * {
+  flex: 1;
+}
+
+.ChipBtn {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+}
+
+.ActionButton {
+  display: flex;
+  gap: var(--gap);
+}
+
+.ActionButton > * {
+  flex: 1;
+}
+
+.TablePlayer {
+  display: flex;
+  gap: var(--gap);
+}
+
+.TablePlayer > * {
+  flex: 1;
 }
