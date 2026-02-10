@@ -64,6 +64,7 @@ export function useOnlineWebsite() {
     const monthNum = Number(norm(r["Month"])) || 0;
     const selectName = norm(r["Name"]);
     const onlineDate = norm(r["OnlineDate"]);
+    const demoWebsite = norm(r["DemoWebsite"]);
 
     let yearNum = 0;
     const yearMatch = onlineDate.match(/\d{4}/);
@@ -84,6 +85,7 @@ export function useOnlineWebsite() {
       onlineMonth: monthNum,
       onlineYear: yearNum,
       _name_lc: lc(r["Name"]),
+      demoWebsite: lc(r["DemoWebsite"]),
       _5gb_lc: lc(r["Free5GB"]),
       _sc_lc: lc(r["FreeSearchConsole"]),
       _sw_lc: lc(r["FreeSmartWidget"]),

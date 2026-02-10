@@ -37,6 +37,7 @@
             <tr>
               <th>Date</th>
               <th>Website Name</th>
+              <th>Sample Website</th>
               <th>Space 5GB</th>
               <th>Search Console</th>
               <th>Smart Widget</th>
@@ -46,6 +47,7 @@
             <tr v-for="row in displayedRows" :key="row.id">
               <td>{{ row.selectOnlineDate }}</td>
               <td>{{ row.selectName }}</td>
+              <td>{{ row.demoWebsite }}</td>
               <td class="hasStatus" :class="free5gbClass(row)">
                 {{ free5gbLabel(row) }}
               </td>

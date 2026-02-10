@@ -29,7 +29,6 @@
 
 .filter-actions {
   display: flex;
-  flex-direction: column;
   gap: var(--gap);
   padding-top: var(--gap2);
   border-top: 1px solid var(--border-color);
