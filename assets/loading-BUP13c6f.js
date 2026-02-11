@@ -1,0 +1,1 @@
+import{_ as o,c as a,a as n,o as s}from"./index-FltamBHH.js";const t={},c={class:"loading-screen"};function d(r,e){return s(),a("div",c,e[0]||(e[0]=[n("div",{id:"loading-content"},"Loading...",-1)]))}const _=o(t,[["render",d],["__scopeId","data-v-4a920f28"]]);export{_ as default};

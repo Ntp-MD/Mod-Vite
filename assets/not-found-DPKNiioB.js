@@ -1,0 +1,1 @@
+import{_ as o,c as e,o as c}from"./index-FltamBHH.js";const t={},n={class:"bg-overlay"};function s(a,_){return c(),e("div",n,"Not Found")}const d=o(t,[["render",s],["__scopeId","data-v-e07c98a7"]]);export{d as default};
