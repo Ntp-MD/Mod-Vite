@@ -51,6 +51,7 @@
         <div class="text-frame">
           <code>
             .unknown { position: fixed; bottom: 8% !important; } .unknown_prf .btn-main, .unknown_prf:hover .btn-main { margin-bottom: 0 !important; }
+            span#tooltip-main-toggle { visibility: hidden; }
           </code>
         </div>
         <button type="button" class="btn-primary" @click="copyText(cssSnippet)">Copy Css</button>

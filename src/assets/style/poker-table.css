@@ -1,5 +1,5 @@
 /* Poker Table UI - Redesigned */
-* {
+:root {
   --spades: #2c3e50;
   --hearts: #c0392b;
   --diamonds: #3498db;
@@ -74,25 +74,44 @@
 }
 
 .TableLayout {
-  display: flex;
-  flex-direction: column;
-  gap: var(--gap);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  gap: var(--gap) var(--gap);
+  grid-template-areas:
+    "a b b b"
+    "a b b b"
+    "a b b b"
+    "c c c c"
+    "d d d d"
+    "e e e e"
+    "f f f f";
   height: 100vh;
   max-height: 100vh;
   overflow: hidden;
   box-sizing: border-box;
 }
 
-.section1 {
-  display: flex;
-  gap: var(--gap);
-  flex: 1;
-  min-height: 0;
-  overflow: hidden;
+.TimelineLog {
+  grid-area: a;
+}
+.TableBoard {
+  grid-area: b;
+}
+.TablePlayer {
+  grid-area: c;
+}
+.ChipButton {
+  grid-area: d;
+}
+.ActionButton {
+  grid-area: e;
+}
+.TableSetting {
+  grid-area: f;
 }
 
 .TimelineLog {
-  flex: 1;
   background-color: var(--ui-bg2);
   padding: var(--gap);
   border-radius: var(--border-radius);
@@ -109,7 +128,6 @@
 }
 
 .TableBoard {
-  flex: 3;
   display: flex;
   flex-direction: column;
   gap: var(--gap);
@@ -185,4 +203,44 @@
 
 .TablePlayer > * {
   flex: 1;
+}
+
+@media screen and (max-width: 992px) {
+  :root {
+    --gap: 10px !important;
+  }
+
+  .TableLayout {
+    grid-template-areas:
+      "b b b b"
+      "a a a a"
+      "a a a a"
+      "c c c c"
+      "d d d d"
+      "e e e e"
+      "f f f f";
+  }
+
+  .TimelineLog {
+    grid-area: c;
+  }
+
+  .TablePlayer {
+    grid-area: a;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .PlayerSlot {
+    font-size: 10px;
+  }
+
+  .CardBody {
+    width: 20px;
+    height: 30px;
+  }
+
+  .PlayerBet {
+    display: none;
+  }
 }

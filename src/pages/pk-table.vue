@@ -1,21 +1,19 @@
 <template>
   <div class="TableLayout">
-    <div class="section1">
-      <div class="TimelineLog" ref="timelineLogRef">
-        <div class="RoundLog" v-for="(round, index) in roundLogs" :key="index">
-          <div v-for="(entry, i) in round" :key="i" v-html="entry"></div>
+    <div class="TimelineLog" ref="timelineLogRef">
+      <div class="RoundLog" v-for="(round, index) in roundLogs" :key="index">
+        <div v-for="(entry, i) in round" :key="i" v-html="entry"></div>
+      </div>
+    </div>
+    <div class="TableBoard">
+      <div class="TableFlop" v-if="flop && flop.length">
+        <div v-for="(card, index) in flop" :key="index" class="CardBody" :class="getSuitClass(card.suit)">
+          <div class="RankCard">{{ card.rank }}</div>
+          <div class="SuitCard">{{ card.suit }}</div>
         </div>
       </div>
-      <div class="TableBoard">
-        <div class="TableFlop" v-if="flop && flop.length">
-          <div v-for="(card, index) in flop" :key="index" class="CardBody" :class="getSuitClass(card.suit)">
-            <div class="RankCard">{{ card.rank }}</div>
-            <div class="SuitCard">{{ card.suit }}</div>
-          </div>
-        </div>
-        <div class="PotsMoney">{{ pot }}$</div>
-        <div class="TablePhase">Current Phase: {{ gamePhase }}</div>
-      </div>
+      <div class="PotsMoney">{{ pot }}$</div>
+      <div class="TablePhase">Current Phase: {{ gamePhase }}</div>
     </div>
     <div class="TablePlayer">
       <div class="PlayerSlot" v-for="(playerNames, i) in playerNames" :key="`player-${i}`">
