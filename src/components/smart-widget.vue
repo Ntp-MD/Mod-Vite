@@ -135,7 +135,7 @@ const form = reactive({
   websiteLine: "",
 });
 
-const cssSnippet = `.unknown { position: fixed; bottom: 8% !important; } .unknown_prf .btn-main, .unknown_prf:hover .btn-main { margin-bottom: 0 !important; }`;
+const cssSnippet = `.unknown { position: fixed; bottom: 8% !important; } .unknown_prf .btn-main, .unknown_prf:hover .btn-main { margin-bottom: 0 !important; } span#tooltip-main-toggle { visibility: hidden; }`;
 
 function getInformationText() {
   return `
