@@ -26,7 +26,7 @@ const pages = ref([
   { path: "/water-ripple", label: "Test Ripple", icon: "https://api.iconify.design/mdi:water.svg" },
   { path: "/timeline", label: "Timeline", icon: "https://api.iconify.design/mdi:calendar.svg" },
   { path: "/format", label: "Example", icon: "https://api.iconify.design/mdi:database-refresh-outline.svg" },
-  { path: "/pk-table", label: "Poker", icon: "https://api.iconify.design/mdi:poker-chip.svg" },
+  { path: "/pk-table", label: "Aliment", icon: "https://api.iconify.design/mdi:poker-chip.svg" },
 ]);
 </script>
 
