@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [
     vue(),
     Components({
-      dirs: ["./src/components"], // Directory for auto-imported components
+      dirs: ["./src/components", "./src/pages", "./src/ui"], // Include all component directories
       extensions: ["vue"], // Include .vue files
       deep: true, // Enable subdirectory scanning
     }),

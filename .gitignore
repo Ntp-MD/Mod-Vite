@@ -9,10 +9,6 @@ lerna-debug.log*
 
 node_modules
 dist
-ITP
-command.txt
-dist/*
-*.local
 
 # Editor directories and files
 .vscode/*
@@ -25,4 +21,15 @@ dist/*
 *.sln
 *.sw?
 
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Coverage
+coverage/
+
+# Temporary files
 format.vue
+command.txt
+ITP
