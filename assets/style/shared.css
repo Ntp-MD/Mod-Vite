@@ -1,0 +1,138 @@
+/* Shared layout and shell patterns */
+
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  background: var(--color1);
+}
+
+.layout-shell {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: var(--color1);
+  overflow: hidden;
+}
+
+.layout-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  background: var(--color2);
+  border-bottom: var(--border-width) solid var(--border-color);
+}
+
+.layout-main {
+  position: relative;
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  margin-top: var(--header-height, 60px);
+  height: calc(100vh - var(--header-height, 60px));
+}
+
+.layout-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--sidebar-width);
+  min-width: var(--sidebar-width);
+  height: 100vh;
+  z-index: 15;
+  padding-top: var(--header-height, 60px);
+}
+
+.layout-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  padding: var(--gap-md);
+  background: var(--color1);
+  margin-left: var(--sidebar-width);
+}
+
+.layout-overlay {
+  position: absolute;
+  inset: 0;
+  border: none;
+  background: rgba(13, 17, 23, 0.72);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition);
+  z-index: 25;
+}
+
+.layout-overlay--visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.panel-surface {
+  background: var(--color2);
+  border: var(--border-width) solid var(--border-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+.panel-surface-muted {
+  background: var(--color1);
+}
+
+.icon-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--icon-size2);
+  height: var(--icon-size2);
+  border: none;
+  border-radius: var(--border-radius);
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  transition: background var(--transition), transform var(--transition);
+}
+
+.icon-button:hover,
+.icon-button:focus-visible {
+  background: var(--color3);
+}
+
+.icon-button:focus-visible {
+  outline: var(--outline-width) solid var(--primary);
+  outline-offset: var(--outline-offset);
+}
+
+.text-muted {
+  color: var(--font-color);
+  opacity: 0.7;
+}
+
+@media screen and (min-width: 1201px) {
+  .layout-overlay {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .layout-content {
+    padding: var(--gap-sm);
+    margin-left: 0;
+  }
+
+  .layout-sidebar {
+    transform: translateX(-100%);
+    transition: transform var(--transition);
+  }
+
+  .layout-sidebar[data-open='true'] {
+    transform: translateX(0);
+  }
+}

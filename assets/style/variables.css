@@ -1,0 +1,64 @@
+:root {
+  /* Colors */
+  --color1: #0d1117;
+  --color2: #151920;
+  --color3: #1c2129;
+  --btn-color: #1c2129;
+  --font-color: #c5c5c5;
+  --border-color: #222935;
+  --white: #fff;
+
+  /* Accent Colors */
+  --primary: #2563eb;
+  --primary-hover: #3b82f6;
+  --danger: #dc2626;
+  --danger-hover: #b91c1c;
+  --success: #16a34a;
+  --warning: #d8b000;
+  --reserved: #d1adff;
+  --neon: #03dac6;
+
+  /* Font size */
+  --font-lg: 24px;
+  --font-md: 16px;
+  --font-sm: 14px;
+  --font-xs: 12px;
+
+  /* Spacing */
+  --gap-xs: 5px;
+  --gap-sm: 10px;
+  --gap-md: 20px;
+  --gap-lg: 30px;
+  --gap-xl: 50px;
+  --gap: 10px;
+  --gap2: 20px;
+
+  /* Layout */
+  --header-height: 60px;
+  --sidebar-width: 250px;
+  --border-width: 1px;
+  --outline-width: 1px;
+  --outline-offset: 2px;
+  --scrollbar-width: 7px;
+  --table-row-height: 40px;
+  --focus-shadow-spread: 2px;
+  --hover-shadow-spread: 3px;
+  --letter-spacing-sm: 0.5px;
+
+  /* UI Elements */
+  --btn-bg: #1c2129;
+  --card-bg: #ffffff;
+  --focus-color: #06b6d4;
+
+  /* Border */
+  --border-radius: 6px;
+  --box-shadow: 1px 1px 2px transparent;
+
+  /* Sizes */
+  --icon-size: 25px;
+  --icon-size2: 30px;
+  --icon-size3: 40px;
+
+  /* Animation */
+  --transition: 0.2s;
+}

@@ -1,0 +1,257 @@
+/* Poker Table Styles - Project Rules Compliant */
+.TableLayout {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-md);
+  height: 100vh;
+  padding: var(--gap-md);
+  background: var(--color1);
+}
+
+.TimelineLog {
+  flex: 1;
+  max-width: 300px;
+  overflow-y: auto;
+  font-size: var(--font-sm);
+  line-height: 1.6;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color3) transparent;
+  background: var(--color2);
+  padding: var(--gap-md);
+  border-radius: var(--border-radius);
+  border: var(--border-width) solid var(--border-color);
+}
+
+.RoundLog {
+  margin-bottom: var(--gap-sm);
+  padding-bottom: var(--gap-sm);
+  border-bottom: var(--border-width) solid var(--border-color);
+}
+
+.RoundLog:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.RoundLog > div {
+  padding: calc(var(--gap-xs) * 0.8) 0;
+  color: var(--font-color);
+  opacity: 0.8;
+}
+
+.TableBoard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap-lg);
+  background: linear-gradient(135deg, #1a4d2e 0%, #0f2922 100%);
+  border: var(--border-width) solid var(--success);
+  border-radius: 50%;
+  aspect-ratio: 1;
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.TableBoard::before {
+  content: "";
+  position: absolute;
+  inset: var(--gap-lg);
+  border: var(--border-width) solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.TableFlop {
+  display: flex;
+  gap: var(--gap-sm);
+  z-index: 1;
+}
+
+.PotsMoney {
+  font-size: var(--font-lg);
+  font-weight: 700;
+  color: var(--warning);
+  text-shadow: 0 var(--border-width) var(--gap-sm) rgba(245, 158, 11, 0.3);
+  z-index: 1;
+}
+
+.TablePhase {
+  font-size: var(--font-sm);
+  font-weight: 500;
+  color: var(--font-color);
+  opacity: 0.7;
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-sm);
+  z-index: 1;
+}
+
+.TablePlayer {
+  display: flex;
+  gap: var(--gap-md);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.PlayerSlot {
+  flex: 1;
+  min-width: 140px;
+}
+
+.PlayerFrame {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap-sm);
+  padding: var(--gap-sm);
+  background: var(--color2);
+  border: var(--border-width) solid var(--border-color);
+  border-radius: var(--border-radius);
+  transition: all var(--transition);
+}
+
+.PlayerFrame.isTurn {
+  border-color: var(--focus-color);
+  box-shadow: 0 0 0 var(--gap-sm) rgba(6, 182, 212, 0.2);
+}
+
+.PlayerFrame.isFolded {
+  opacity: 0.5;
+}
+
+.PlayerFrame.isMain {
+  border-color: var(--primary);
+}
+
+.PlayerName {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-xs);
+  font-weight: 600;
+  font-size: var(--font-sm);
+}
+
+.PlayerPosition {
+  font-size: var(--font-xs);
+  font-weight: 500;
+  color: var(--warning);
+  background: rgba(245, 158, 11, 0.1);
+  padding: calc(var(--gap-xs) * 0.4) calc(var(--gap-xs) * 1.2);
+  border-radius: calc(var(--border-radius) * 0.7);
+}
+
+.PlayerMoney {
+  font-size: var(--font-md);
+  font-weight: 700;
+  color: var(--success);
+}
+
+.PlayerHand {
+  display: flex;
+  gap: var(--gap-sm);
+}
+
+.CardBody {
+  display: grid;
+  place-content: center;
+  width: 25px;
+  height: 35px;
+  border: var(--border-width) solid var(--border-color);
+  border-radius: calc(var(--border-radius) * 0.7);
+  background: var(--card-bg);
+  line-height: 0.8;
+  text-align: center;
+  font-weight: 600;
+}
+
+.CardBody:hover {
+  transform: translateY(-calc(var(--gap-xs) * 0.5));
+  transition: transform var(--transition);
+}
+
+.hideCard {
+  background: var(--color3);
+  color: var(--font-color);
+  position: relative;
+}
+
+.hideCard::before {
+  content: "?";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: var(--font-lg);
+  color: rgba(255, 255, 255, 0.2);
+}
+
+.RankCard {
+  font-size: var(--font-md);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.SuitCard {
+  font-size: var(--font-lg);
+  line-height: 1;
+}
+
+/* Card Suit Colors */
+.CardBody.spades {
+  color: var(--color2);
+}
+
+.CardBody.hearts {
+  color: var(--danger);
+}
+
+.CardBody.diamonds {
+  color: var(--primary);
+}
+
+.CardBody.clubs {
+  color: var(--success);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 992px) {
+  .TableLayout {
+    gap: var(--gap-sm);
+    padding: var(--gap-sm);
+  }
+
+  .TimelineLog {
+    max-width: 250px;
+    font-size: var(--font-xs);
+  }
+
+  .PlayerSlot {
+    font-size: var(--font-xs);
+  }
+
+  .CardBody {
+    width: 20px;
+    height: 30px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .TableLayout {
+    flex-direction: column;
+  }
+
+  .TimelineLog {
+    max-width: 100%;
+    order: 2;
+  }
+
+  .TableBoard {
+    order: 1;
+    max-width: 400px;
+  }
+
+  .TablePlayer {
+    order: 3;
+  }
+}
