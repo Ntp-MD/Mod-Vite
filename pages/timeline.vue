@@ -32,7 +32,7 @@
   display: grid;
   grid-template-columns: max-content auto 1fr;
   grid-auto-rows: auto;
-  column-gap: var(--gap2);
+  column-gap: var(--gap-md);
   align-items: center;
   max-width: 50%;
 }

@@ -5,7 +5,7 @@ input {
   background: var(--color2);
   width: 100%;
   min-height: 40px;
-  padding: 0 var(--gap2);
+  padding: 0 var(--gap-md);
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
   outline: none;
@@ -31,13 +31,13 @@ textarea::placeholder {
 
 textarea {
   min-height: 100px;
-  padding: var(--gap2);
+  padding: var(--gap-md);
   resize: vertical;
 }
 
 select {
   width: 100%;
-  padding: var(--gap) var(--gap2);
+  padding: var(--gap-sm) var(--gap-md);
   font-size: var(--font-sm);
   background: var(--color3);
   border: 1px solid var(--border-color);
@@ -64,7 +64,7 @@ input[type="radio"] {
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: var(--gap);
+  gap: var(--gap-sm);
 }
 
 .form-group label {
@@ -75,7 +75,7 @@ input[type="radio"] {
 .form-row {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: var(--gap2);
+  gap: var(--gap-md);
 }
 
 #search_box {

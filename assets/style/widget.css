@@ -1,7 +1,7 @@
 /* Search Input */
 .search-input {
   width: 100%;
-  padding: var(--gap) var(--gap2);
+  padding: var(--gap-sm) var(--gap-md);
   font-size: var(--font-sm);
   border-radius: var(--border-radius);
   border: var(--border-width) solid var(--border-color);
@@ -19,7 +19,7 @@
 
 .results-display {
   display: flex;
-  gap: var(--gap);
+  gap: var(--gap-sm);
   border-radius: var(--border-radius);
   width: 100%;
 }
@@ -29,12 +29,12 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: var(--gap2);
+  gap: var(--gap-md);
   background: var(--color3);
-  padding: var(--gap2);
+  padding: var(--gap-md);
   border-radius: var(--border-radius);
   border: var(--border-width) solid transparent;
-  min-height: calc(var(--gap2) * 4);
+  min-height: calc(var(--gap-md) * 4);
   font-weight: 600;
   font-size: var(--font-md);
   cursor: pointer;
@@ -60,7 +60,7 @@
   padding: inherit;
   border-radius: inherit;
   width: 100%;
-  gap: var(--gap);
+  gap: var(--gap-sm);
   font-size: var(--font-xs);
   z-index: 1000;
   overflow: auto;

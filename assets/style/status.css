@@ -1,7 +1,7 @@
 /* Status Component */
 .status {
-  padding: calc(var(--gap) * 0.5) calc(var(--gap) * 1.5);
-  border-radius: calc(var(--gap) * 0.5);
+  padding: calc(var(--gap-sm) * 0.5) calc(var(--gap-sm) * 1.5);
+  border-radius: calc(var(--gap-sm) * 0.5);
   font-weight: 600;
   text-align: center;
   white-space: nowrap;

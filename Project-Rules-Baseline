@@ -73,23 +73,6 @@
 
 ---
 
-## 🎯 REQUIRED WORKFLOW PATTERNS
-
-### **Before Any Code Writing**
-
-```bash
-# 1. Check shared classes first
-cat src/styles/shared.css | grep -i "pattern"
-
-# 2. Verify variable exists
-grep -r "var(--variable-name)" src/styles/variables.css
-
-# 3. Search existing usage
-grep -r "var(--variable-name)" src/ --include="*.css" --include="*.vue"
-
-# 4. Plan confirmation required
-```
-
 ### **CSS Development Sequence**
 
 ```css
@@ -179,7 +162,7 @@ grep -r "var(--variable-name)" src/ --include="*.css" --include="*.vue"
 
 - **CSS Files**: kebab-case (`shared.css`)
 - **Vue Components**: PascalCase (`Hero.vue`)
-- **JS Files**: kebab-case (`utility.js`)
+- **TS Files**: kebab-case (`utility.ts`)
 
 ### **Media Queries (Exact Breakpoints Only)**
 
@@ -222,46 +205,6 @@ grep -r "var(--variable-name)" src/ --include="*.css" --include="*.vue"
 
 ---
 
-## 🔄 RESOURCE MANAGEMENT
-
-## 🔄 VARIABLE CHANGE PROTOCOL
-
-### **Before Any Variable Modification**
-
-```bash
-# 1. Search all usages
-grep -r "var(--variable-name)" src/ --include="*.css" --include="*.vue"
-
-# 2. Update all dependent components
-
-# 3. Run validation
-npm run validate:variables
-
-# 4. Verify build
-npm run build
-```
-
-### **Replacement Priority Chain**
-
-- **Gap**: `--gap-xs → sm → md → lg → xl`
-- **Radius**: `--radius-xs → sm → md → lg → xl`
-- **Transition**: `--transition-fast → normal → slow`
-
-### **Emergency Variable Mapping**
-
-| Deleted Variable     | Replacement         | Context         |
-| -------------------- | ------------------- | --------------- |
-| `--color-primary`    | `--main-color-1`    | Primary actions |
-| `--color-secondary`  | `--main-color-6`    | Secondary text  |
-| `--space-sm`         | `--gap-sm`          | Small spacing   |
-| `--space-md`         | `--gap-md`          | Medium spacing  |
-| `--border-radius-sm` | `--radius-sm`       | Small borders   |
-| `--transition-quick` | `--transition-fast` | Fast animations |
-
----
-
-## � SHARED RESOURCES
-
 ### **SHARED CLASSES CATALOG (USE THESE FIRST)**
 
 #### **Section Patterns**
@@ -293,24 +236,6 @@ npm run build
 - **Missing Variables** → Use closest semantic equivalent
 - **Deprecated Variables** → Map to current standard
 - **Generic Variables** → Use specific semantic alternatives
-
-| Missing/Deprecated Variable | Smart Replacement      | Replacement Logic                  |
-| --------------------------- | ---------------------- | ---------------------------------- |
-| `--color-primary`           | `--main-color-1`       | Primary actions → Main color 1     |
-| `--color-secondary`         | `--main-color-6`       | Secondary text → Main color 6      |
-| `--color-accent`            | `--main-color-3`       | Accent highlight → Main color 3    |
-| `--color-border`            | `--main-color-8`       | Border lines → Main color 8        |
-| `--color-background`        | `--color-white`        | Background fill → White            |
-| `--color-text`              | `--main-color-2`       | Primary text → Main color 2        |
-| `--color-text-muted`        | `--main-color-6`       | Muted text → Main color 6          |
-| `--space-xs/sm/md/lg/xl`    | `--gap-xs/sm/md/lg/xl` | Spacing → Gap (same size)          |
-| `--margin-*`                | `--gap-*`              | Margin spacing → Gap spacing       |
-| `--padding-*`               | `--gap-*`              | Padding spacing → Gap spacing      |
-| `--border-radius-*`         | `--radius-*`           | Border radius → Radius (same size) |
-| `--transition-quick`        | `--transition-fast`    | Quick → Fast                       |
-| `--transition-slow`         | `--transition-slow`    | Slow → Slow (keep)                 |
-| `--font-size-*`             | `--font-*`             | Font size → Font (same size)       |
-| `--shadow-*`                | `--shadow-*`           | Keep existing shadow variables     |
 
 **🔍 Smart Selection Priority:**
 

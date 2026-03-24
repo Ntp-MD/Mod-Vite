@@ -89,7 +89,7 @@
 }
 
 ._items {
-  padding: var(--gap2);
+  padding: var(--gap-md);
   margin: auto;
 }
 
@@ -111,13 +111,13 @@
   bottom: 10%;
   display: flex;
   justify-content: center;
-  gap: var(--gap);
+  gap: var(--gap-sm);
   z-index: 2;
 }
 
 .modquee-dot {
-  width: calc(var(--gap) * 1.5);
-  height: calc(var(--gap) * 1.5);
+  width: calc(var(--gap-sm) * 1.5);
+  height: calc(var(--gap-sm) * 1.5);
   border-radius: 50%;
   background: var(--white);
   cursor: pointer;
@@ -243,9 +243,12 @@ const observer = new MutationObserver(() => {
 
     function resetTimer() {
       if (timer) clearInterval(timer);
-      timer = setInterval(() => {
-        next();
-      }, waitDuration + slideDuration * 1000);
+      timer = setInterval(
+        () => {
+          next();
+        },
+        waitDuration + slideDuration * 1000,
+      );
     }
 
     document.querySelector(".modquee-next").onclick = next;

@@ -44,134 +44,123 @@
           <div>{{ form.websitePassword }}</div>
         </div>
         <div class="button-group">
-          <button
-            type="button"
-            class="btn-primary"
-            @click="copyText(getInformationText())"
-          >
-            Copy Info
-          </button>
-          <button type="button" class="btn-reset" @click="clearStorage">
-            Clear Storage
-          </button>
+          <button type="button" class="btn-primary" @click="copyText(getInformationText())">Copy Info</button>
+          <button type="button" class="btn-reset" @click="clearStorage">Clear Storage</button>
         </div>
         <label>Snippet Css</label>
         <div class="text-frame">
           <code>
-            .unknown { position: fixed; bottom: 8% !important; } .unknown_prf
-            .btn-main, .unknown_prf:hover .btn-main { margin-bottom: 0
-            !important; } span#tooltip-main-toggle { visibility: hidden; }
+            .unknown { position: fixed; bottom: 8% !important; } .unknown_prf .btn-main, .unknown_prf:hover .btn-main { margin-bottom: 0 !important; }
+            span#tooltip-main-toggle { visibility: hidden; }
           </code>
         </div>
-        <button type="button" class="btn-primary" @click="copyText(cssSnippet)">
-          Copy Css
-        </button>
+        <button type="button" class="btn-primary" @click="copyText(cssSnippet)">Copy Css</button>
       </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-  .smart-widget-container {
-    display: flex;
-    flex-direction: column;
-    gap: var(--gap2);
-  }
+.smart-widget-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-md);
+}
 
-  form#smart-widget {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--gap2);
-  }
+form#smart-widget {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap-md);
+}
 
-  form#smart-widget > div {
-    flex: 1 40%;
-  }
+form#smart-widget > div {
+  flex: 1 40%;
+}
 
-  .form-panel {
-    display: flex;
-    flex-direction: column;
-    gap: var(--gap);
-    padding: var(--gap2);
-    background: var(--color2);
-    border: 1px solid var(--border-color);
-    border-radius: var(--border-radius);
-  }
+.form-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-sm);
+  padding: var(--gap-md);
+  background: var(--color2);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+}
 
-  .form-panel label {
-    font-weight: 600;
-    color: var(--font-color);
-    margin-top: var(--gap);
-  }
+.form-panel label {
+  font-weight: 600;
+  color: var(--font-color);
+  margin-top: var(--gap-sm);
+}
 
-  .form-panel label:first-child {
-    margin-top: 0;
-  }
+.form-panel label:first-child {
+  margin-top: 0;
+}
 
-  .text-frame {
-    display: flex;
-    flex-direction: column;
-    gap: calc(var(--gap) * 0.5);
-    padding: var(--gap);
-    background: var(--color3);
-    border: 1px solid var(--border-color);
-    border-radius: var(--border-radius);
-    color: var(--);
-  }
+.text-frame {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap-sm) * 0.5);
+  padding: var(--gap-sm);
+  background: var(--color3);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  color: var(--);
+}
 
-  .text-frame code {
-    font-family: monospace;
-    color: var(--success);
-    word-wrap: break-word;
-  }
+.text-frame code {
+  font-family: monospace;
+  color: var(--success);
+  word-wrap: break-word;
+}
 
-  .button-group {
-    display: flex;
-    gap: var(--gap);
-  }
+.button-group {
+  display: flex;
+  gap: var(--gap-sm);
+}
 </style>
 
 <script setup lang="ts">
-  import { reactive, onMounted, watch } from 'vue'
+import { reactive, onMounted, watch } from "vue";
 
-  const STORAGE_KEY = 'SmartWidgetFormData'
+const STORAGE_KEY = "SmartWidgetFormData";
 
-  const form: Record<string, string> = reactive({
-    websiteName: '',
-    websiteEmail: '',
-    websiteUser: '',
-    websitePassword: '',
-    websiteTel: '',
-    websiteTel2: '',
-    websiteFacebook: '',
-    websiteLine: ''
-  })
+const form: Record<string, string> = reactive({
+  websiteName: "",
+  websiteEmail: "",
+  websiteUser: "",
+  websitePassword: "",
+  websiteTel: "",
+  websiteTel2: "",
+  websiteFacebook: "",
+  websiteLine: "",
+});
 
-  const cssSnippet = `.unknown { position: fixed; bottom: 8% !important; } .unknown_prf .btn-main, .unknown_prf:hover .btn-main { margin-bottom: 0 !important; } span#tooltip-main-toggle { visibility: hidden; }`
+const cssSnippet = `.unknown { position: fixed; bottom: 8% !important; } .unknown_prf .btn-main, .unknown_prf:hover .btn-main { margin-bottom: 0 !important; } span#tooltip-main-toggle { visibility: hidden; }`;
 
-  function getInformationText() {
-    return `
+function getInformationText() {
+  return `
 ${form.websiteName}
 ${form.websiteEmail}
 ${form.websitePassword}
-  `.trim()
-  }
+  `.trim();
+}
 
-  function copyText(text: string) {
-    navigator.clipboard.writeText(text).catch(() => {})
-  }
+function copyText(text: string) {
+  navigator.clipboard.writeText(text).catch(() => {});
+}
 
-  onMounted(() => {
-    const saved = localStorage.getItem(STORAGE_KEY)
-    if (saved) Object.assign(form, JSON.parse(saved))
-  })
+onMounted(() => {
+  const saved = localStorage.getItem(STORAGE_KEY);
+  if (saved) Object.assign(form, JSON.parse(saved));
+});
 
-  watch(form, (val) => localStorage.setItem(STORAGE_KEY, JSON.stringify(val)), {
-    deep: true
-  })
+watch(form, (val) => localStorage.setItem(STORAGE_KEY, JSON.stringify(val)), {
+  deep: true,
+});
 
-  function clearStorage() {
-    localStorage.removeItem(STORAGE_KEY)
-    Object.keys(form).forEach((k) => (form[k] = ''))
-  }
+function clearStorage() {
+  localStorage.removeItem(STORAGE_KEY);
+  Object.keys(form).forEach((k) => (form[k] = ""));
+}
 </script>
