@@ -1,0 +1,16 @@
+{
+  "builds": [
+    {
+      "src": "nuxt.config.ts",
+      "use": "@nuxt/vercel-builder"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ],
+  "framework": "nuxt",
+  "outputDirectory": ".output/public"
+}
