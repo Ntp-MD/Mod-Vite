@@ -10,7 +10,8 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "deploy": "nuxt generate && gh-pages -d .output/public",
+    "deploy": "nuxt generate && gh-pages --dotfiles -d .output/public --add",
+    "deploy-safe": "rm -rf .output dist && npm run deploy",
     "test": "vitest"
   },
   "dependencies": {
