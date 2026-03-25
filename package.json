@@ -2,7 +2,6 @@
   "name": "mod-vite",
   "version": "0.0.0",
   "private": true,
-  "homepage": "https://ntp-md.github.io/Mod-Vite",
   "type": "module",
   "scripts": {
     "dev": "nuxt dev",
@@ -10,8 +9,6 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "deploy": "nuxt generate && gh-pages --dotfiles -d .output/public --add",
-    "deploy-safe": "rm -rf .output dist && npm run deploy",
     "test": "vitest"
   },
   "dependencies": {
@@ -26,7 +23,6 @@
     "@types/node": "^25.5.0",
     "@types/papaparse": "^5.5.2",
     "@vue/test-utils": "^2.4.6",
-    "gh-pages": "^5.0.0",
     "jsdom": "^26.1.0",
     "typescript": "^6.0.2",
     "vitest": "^1.6.0"
