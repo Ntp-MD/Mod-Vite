@@ -6,7 +6,6 @@ export default defineNuxtConfig({
   ssr: false,
 
   app: {
-    baseURL: '/Mod-Vite/',
     head: {
       title: 'Mod-Vite',
       meta: [
@@ -14,7 +13,7 @@ export default defineNuxtConfig({
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       ],
       link: [
-        { rel: 'icon', type: 'image/svg+xml', href: '/Mod-Vite/favicon.svg' },
+        { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
       ],
     },
   },
