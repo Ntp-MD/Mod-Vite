@@ -11,6 +11,6 @@
       "dest": "/index.html"
     }
   ],
-  "framework": "nuxt",
+  "framework": "nuxtjs",
   "outputDirectory": ".output/public"
 }
