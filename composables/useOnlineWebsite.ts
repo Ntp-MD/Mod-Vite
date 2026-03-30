@@ -40,11 +40,10 @@ export function useOnlineWebsite() {
   const currentPage = ref(1);
   const pageSize = ref(100);
 
-  const GOOGLE_SHEET_CSV_URL =
-    "https://corsproxy.io/?" +
-    encodeURIComponent(
-      "https://docs.google.com/spreadsheets/d/e/2PACX-1vRbhLBcw4jg80ogDxEeLs5wRrsQdFrWoN0g8OGy3aO_YJ0UoL-BIhuY8EozSzuTXppIIbfqp100FYIZ/pub?gid=1419480009&single=true&output=csv",
-    );
+  const GOOGLE_SHEET_CSV_URL = 
+  process.client 
+    ? "https://r.jina.ai/http://docs.google.com/spreadsheets/d/e/2PACX-1vRbhLBcw4jg80ogDxEeLs5wRrsQdFrWoN0g8OGy3aO_YJ0UoL-BIhuY8EozSzuTXppIIbfqp100FYIZ/pub?gid=1419480009&single=true&output=csv"
+    : "/api/proxy/sheet";
 
   // Dynamic year list
   const availableYears = computed(() => {

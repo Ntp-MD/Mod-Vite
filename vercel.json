@@ -5,8 +5,17 @@
   "framework": "nuxtjs",
   "rewrites": [
     {
+      "source": "/api/proxy/sheet",
+      "destination": "/api/proxy/sheet"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
-  ]
+  ],
+  "functions": {
+    "api/proxy/sheet.ts": {
+      "runtime": "nodejs18.x"
+    }
+  }
 }
