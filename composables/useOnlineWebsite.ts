@@ -40,10 +40,7 @@ export function useOnlineWebsite() {
   const currentPage = ref(1);
   const pageSize = ref(100);
 
-  const GOOGLE_SHEET_CSV_URL = 
-  process.client 
-    ? "https://r.jina.ai/http://docs.google.com/spreadsheets/d/e/2PACX-1vRbhLBcw4jg80ogDxEeLs5wRrsQdFrWoN0g8OGy3aO_YJ0UoL-BIhuY8EozSzuTXppIIbfqp100FYIZ/pub?gid=1419480009&single=true&output=csv"
-    : "/api/proxy/sheet";
+  const GOOGLE_SHEET_CSV_URL = "/api/proxy/sheet";
 
   // Dynamic year list
   const availableYears = computed(() => {
@@ -114,21 +111,33 @@ export function useOnlineWebsite() {
   async function fetchData() {
     showLoading();
     try {
+      console.log('Fetching from:', GOOGLE_SHEET_CSV_URL);
       const res = await axios.get(GOOGLE_SHEET_CSV_URL, {
         responseType: "text",
         signal: controller.signal,
       });
+      
+      console.log('Response status:', res.status);
+      console.log('Response data length:', res.data?.length);
 
-      Papa.parse(res.data as string, {
+      Papa.parse(res.data, {
         header: true,
         skipEmptyLines: true,
-        complete: ({ data }: Papa.ParseResult<Record<string, string>>) => {
+        complete: (results) => {
+          console.log('Parsed data length:', results.data.length);
           let id = 1;
-          sheetRows.value = data.filter((r: Record<string, string>) => r?.Name).map((r: Record<string, string>) => normalizeRow(r, id++));
+          sheetRows.value = results.data.filter((r: any) => r?.Name).map((r: any) => normalizeRow(r, id++));
+          console.log('Sheet rows after processing:', sheetRows.value.length);
           hideLoading();
         },
+        error: (error: any) => {
+          console.error('Parse error:', error);
+          sheetRows.value = [];
+          hideLoading();
+        }
       });
-    } catch {
+    } catch (error) {
+      console.error('Fetch error:', error);
       sheetRows.value = [];
       hideLoading();
     }

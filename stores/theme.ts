@@ -2,13 +2,18 @@ import { defineStore } from "pinia";
 
 export const useSettingsStore = defineStore("settings", {
   state: () => ({
-    theme: localStorage.getItem("theme") || "dark",
+    theme: "dark",
   }),
   getters: {
     isDark: (state) => state.theme === "dark",
   },
   actions: {
     initTheme() {
+      // Only access localStorage on client side
+      if (process.client) {
+        this.theme = localStorage.getItem("theme") || "dark";
+      }
+      
       const app = document.getElementById("App");
       if (app) {
         app.classList.toggle("dark-mode", this.isDark);
@@ -17,7 +22,12 @@ export const useSettingsStore = defineStore("settings", {
     },
     toggleTheme() {
       this.theme = this.isDark ? "light" : "dark";
-      localStorage.setItem("theme", this.theme);
+      
+      // Only access localStorage on client side
+      if (process.client) {
+        localStorage.setItem("theme", this.theme);
+      }
+      
       const app = document.getElementById("App");
       if (app) {
         app.classList.toggle("dark-mode", this.isDark);
