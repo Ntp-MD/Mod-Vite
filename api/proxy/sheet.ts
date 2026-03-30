@@ -10,7 +10,10 @@ export default defineEventHandler(async (event) => {
     })
     
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`)
+      throw createError({
+        statusCode: response.status,
+        statusMessage: `HTTP error! status: ${response.status}`
+      })
     }
     
     const csvText = await response.text()
@@ -19,8 +22,8 @@ export default defineEventHandler(async (event) => {
       headers: {
         'Content-Type': 'text/csv',
         'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET',
-        'Access-Control-Allow-Headers': 'Content-Type'
+        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization'
       }
     })
   } catch (error) {
