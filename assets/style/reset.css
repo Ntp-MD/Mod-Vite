@@ -6,10 +6,11 @@
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   min-height: 100vh;
   color: var(--font-color);
   font-size: var(--font-xs);
+  scroll-behavior: smooth;
 }
 
 a {

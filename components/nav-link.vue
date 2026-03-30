@@ -1,7 +1,7 @@
 <template>
   <ul class="nav-list">
     <li v-for="page in pages" :key="page.path" class="nav-list-item">
-      <NuxtLink class="nav-item" :to="page.path" @click="handleLinkClick">
+      <NuxtLink class="nav-item" :to="page.path" @click="handleLinkClick($event)">
         <span class="nav-icon">
           <img :src="page.icon" :alt="page.label" />
         </span>
@@ -12,10 +12,14 @@
 </template>
 
 <script setup lang="ts">
-const emit = defineEmits(["close-sidebar"]);
+import { useSmoothScroll } from "~/composables/useSmoothScroll";
 
-function handleLinkClick() {
+const emit = defineEmits(["close-sidebar"]);
+const { handleAnchorClick } = useSmoothScroll();
+
+function handleLinkClick(event: MouseEvent) {
   emit("close-sidebar");
+  handleAnchorClick(event);
 }
 
 const pages = [
@@ -25,7 +29,7 @@ const pages = [
     icon: "https://api.iconify.design/mdi:format-font.svg",
   },
   {
-    path: "/smart-widget",
+    path: "/smart-widget#smart-widget",
     label: "Smart Widget",
     icon: "https://api.iconify.design/mdi:widgets-outline.svg",
   },
@@ -48,6 +52,11 @@ const pages = [
     path: "/timeline",
     label: "Timeline",
     icon: "https://api.iconify.design/mdi:calendar.svg",
+  },
+  {
+    path: "/slide#box_slide",
+    label: "Gallery",
+    icon: "https://api.iconify.design/mdi:image-multiple.svg",
   },
   {
     path: "/format",

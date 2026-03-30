@@ -35,6 +35,12 @@ export default defineNuxtConfig({
     strict: true,
   },
 
+  router: {
+    options: {
+      scrollBehaviorType: 'smooth'
+    }
+  },
+
   nitro: {
     prerender: {
       routes: ['/']
