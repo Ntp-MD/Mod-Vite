@@ -12,10 +12,5 @@
       "source": "/(.*)",
       "destination": "/index.html"
     }
-  ],
-  "functions": {
-    "api/proxy/sheet.ts": {
-      "runtime": "@vercel/node"
-    }
-  }
+  ]
 }
