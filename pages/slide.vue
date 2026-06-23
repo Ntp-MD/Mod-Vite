@@ -3,47 +3,52 @@
     <div class="title-section">
       <h2>gallery</h2>
     </div>
-    <div id="box_slide">
-      <div class="slide-items">
-        <div class="slide-img">
-          <img src="https://itp1.itopfile.com/ImageServer/z_itp_26012025ka3n/0/0/1z-z668805100343.jpg" />
+    <div class="slide-wrapper">
+      <div id="box_slide">
+        <div class="slide-items">
+          <div class="slide-img">
+            <img src="https://itp1.itopfile.com/ImageServer/z_itp_26012025ka3n/0/0/1z-z668805100343.jpg" />
+          </div>
+          <div class="slide-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, sint.</div>
         </div>
-        <div class="slide-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, sint.</div>
-      </div>
-      <div class="slide-items">
-        <div class="slide-img">
-          <img src="https://itp1.itopfile.com/ImageServer/z_itp_26012025ka3n/0/0/2z-z1033251447469.jpg" />
+        <div class="slide-items">
+          <div class="slide-img">
+            <img src="https://itp1.itopfile.com/ImageServer/z_itp_26012025ka3n/0/0/2z-z1033251447469.jpg" />
+          </div>
+          <div class="slide-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, sint.</div>
         </div>
-        <div class="slide-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, sint.</div>
-      </div>
-      <div class="slide-items">
-        <div class="slide-img">
-          <img src="https://itp1.itopfile.com/ImageServer/z_itp_26012025ka3n/0/0/3z-z752263557884.jpg" />
+        <div class="slide-items">
+          <div class="slide-img">
+            <img src="https://itp1.itopfile.com/ImageServer/z_itp_26012025ka3n/0/0/3z-z752263557884.jpg" />
+          </div>
+          <div class="slide-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, sint.</div>
         </div>
-        <div class="slide-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, sint.</div>
-      </div>
+        <div class="slide-items">
+          <div class="slide-img">
+            <img src="https://itp1.itopfile.com/ImageServer/z_itp_26012025ka3n/0/0/4z-z57391367113.jpg" />
+          </div>
+          <div class="slide-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, sint.</div>
+        </div>
+        <div class="slide-items">
+          <div class="slide-img">
+            <img src="https://itp1.itopfile.com/ImageServer/z_itp_26012025ka3n/0/0/5z-z1355768825409.jpg" />
+          </div>
+          <div class="slide-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, sint.</div>
+        </div>
 
-      <div class="slide-items">
-        <div class="slide-img">
-          <img src="https://itp1.itopfile.com/ImageServer/z_itp_26012025ka3n/0/0/4z-z57391367113.jpg" />
+        <div class="slide-items">
+          <div class="slide-img">
+            <img src="https://itp1.itopfile.com/ImageServer/z_itp_26012025ka3n/0/0/6z-z1095549849140.jpg" />
+          </div>
+          <div class="slide-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, sint.</div>
         </div>
-        <div class="slide-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, sint.</div>
       </div>
-      <div class="slide-items">
-        <div class="slide-img">
-          <img src="https://itp1.itopfile.com/ImageServer/z_itp_26012025ka3n/0/0/5z-z1355768825409.jpg" />
-        </div>
-        <div class="slide-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, sint.</div>
+      <div class="slide-nav-container">
+        <button class="slide-nav prev" id="prevBtn">‹</button>
+        <button class="slide-nav next" id="nextBtn">›</button>
       </div>
-
-      <div class="slide-items">
-        <div class="slide-img">
-          <img src="https://itp1.itopfile.com/ImageServer/z_itp_26012025ka3n/0/0/6z-z1095549849140.jpg" />
-        </div>
-        <div class="slide-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, sint.</div>
-      </div>
+      <div id="slide-dot"></div>
     </div>
-    <div id="slide-dot"></div>
   </div>
 </template>
 
@@ -59,6 +64,11 @@
   margin: 50px 0;
 }
 
+.slide-wrapper {
+  position: relative;
+  width: 100%;
+}
+
 #box_slide {
   position: relative;
   overflow: hidden;
@@ -67,6 +77,8 @@
   height: 30vw;
   min-height: 500px;
   width: 100%;
+  max-width: 88%;
+  margin: auto;
 }
 
 .slide-items {
@@ -125,18 +137,50 @@
   padding: 15px;
 }
 
-.dot {
+:deep(.dot) {
+  display: block;
   width: 15px;
   height: 15px;
   border-radius: 30px;
-  background: #000;
+  background: #fff;
   transition: 0.3s;
   cursor: pointer;
 }
 
-.dot.active {
+:deep(.dot.active) {
   width: 50px;
   background: red;
+}
+
+.slide-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #fff;
+  color: red;
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 10;
+  transition: background 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slide-nav:hover {
+  background: #fff;
+}
+
+.slide-nav.prev {
+  left: 20px;
+}
+
+.slide-nav.next {
+  right: 20px;
 }
 
 @media screen and (max-width: 992px) {
@@ -236,6 +280,28 @@ const modSlide = {
       }
     });
 
+    // Add click event listeners to prev/next buttons
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+
+    if (prevBtn) {
+      prevBtn.addEventListener("click", () => {
+        const activeIndex = Array.from(items).findIndex((item) => item.classList.contains("active"));
+        const newIndex = (activeIndex - 1 + items.length) % items.length;
+        setActive(newIndex);
+        resetAutoplay();
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener("click", () => {
+        const activeIndex = Array.from(items).findIndex((item) => item.classList.contains("active"));
+        const newIndex = (activeIndex + 1) % items.length;
+        setActive(newIndex);
+        resetAutoplay();
+      });
+    }
+
     // Handle dragging behavior
     function handleDragEnd() {
       if (initialXPosition !== null && currentXPosition !== null) {
@@ -325,10 +391,6 @@ const modSlide = {
     }
     // Any other cleanup logic if necessary
   },
-};
-
-window.onload = function () {
-  modSlide.init();
 };
 
 export default {
