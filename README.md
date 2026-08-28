@@ -8,3 +8,9 @@ plax-123-aloha
     pointer-events: none;
     opacity: 0;
 }
+
+
+
+#layoutmanager-middle-main {
+    visibility: hidden;
+}
